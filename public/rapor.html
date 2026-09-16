@@ -1,0 +1,396 @@
+<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Futuristic — Tam araştırma raporu</title><style>body{font:16px/1.8 system-ui,sans-serif;color:#243c2b;max-width:1000px;margin:auto;padding:35px 22px}h1,h2,h3{line-height:1.3;letter-spacing:-.03em}h1{font-size:42px}h2{margin-top:50px;border-top:1px solid #ccd9c6;padding-top:24px}h3{margin-top:30px}a{color:#315d36;overflow-wrap:anywhere}table{border-collapse:collapse;font-size:12px;display:block;overflow:auto}td,th{border:1px solid #d3dfcc;padding:10px;text-align:left;min-width:110px}th{background:#edf3e7}pre{overflow:auto;padding:20px;background:#edf3e7}code{overflow-wrap:anywhere}button{padding:12px 20px;cursor:pointer;background:#294f3b;color:white;border:0;border-radius:7px}nav{display:flex;gap:20px;align-items:center}nav a{font-size:13px}@media print{nav{display:none}body{font-size:10pt;max-width:none}h2{break-before:page}table{display:table;overflow:visible}td,th{font-size:8pt;min-width:0}pre{white-space:pre-wrap}h1{font-size:30pt}a{color:inherit}}</style><nav><button onclick="window.print()">Yazdır / PDF olarak kaydet</button><a href="https://karacaismail.github.io/futuristic/">Etkileşimli rapora dön</a></nav><main><h1>Futuristic — Yapay zekâdan üretim sistemine</h1>
+<p><strong>Araştırma sentezi · 16 Eylül 2026 · v1.0</strong></p>
+<p>AI video üretimi ve yazılım geliştirme için mimari, araç, maliyet, kalite ve uygulama raporu. Altı kaynak belgenin tamamı korunmuştur; bütün iddiaların doğrulandığı ileri sürülmez.</p>
+<h2>Yönetici özeti</h2>
+<p>En güçlü ortak yatırım, yaratıcı modelleri deterministik yürütme ve açık doğrulama kapılarıyla birleştirmektir. Video için tek formatta insan onaylı bir üretim hattı; yazılım için kabul kriteri, TDD, küçük diff ve ölçülmüş review döngüsüyle başla. Başarıyı üretilen çıktı sayısıyla değil, kabul edilen çıktı başına toplam maliyet, kalite ve insan emeğiyle ölç.</p>
+<p>Kapsam: <strong>6 özgün belge</strong>, <strong>112 benzersiz referans</strong>, <strong>55 araç/teknoloji kartı</strong>, <strong>11 seçilmiş kritik iddia kontrolü</strong>. Arşiv 263.605 bayttır; 209 çözümlenemeyen eski sohbet atıf belirteci orijinallerde korunur.</p>
+<hr/>
+<h2>1. Video üretimi</h2>
+<h3>Karar: önce tek bir formatı uçtan uca çalıştır</h3>
+<p>Başlangıç için önerimiz, <strong>30 saniyelik Türkçe bir B2B ürün anlatımı</strong>: onaylı ürün bilgisi → senaryo → referans görseller → ses → altyazı → deterministik kurgu → önizleme → onay → tek platformda yayın. Bu bir tasarım önerisidir; gelir veya teslimat süresi garantisi değildir. Video kaynakları aynı noktada birleşiyor: üretim bileşenleri güçlü olsa da bütün zincirin güvenilirliği ayrı bir mühendislik işi. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a></p>
+<p>İlk pilotta bir LLM, karşılaştırılan iki Türkçe ses sağlayıcısından biri ve tek render motoru yeterli. Ürün için onaylı görselleri kullan; jeneratif videoyu yalnızca anlatıya değer katan sahnelere ekle. Yayın hesabı ve uygulama izinlerini yaratıcı üretimle eşzamanlı hazırla.</p>
+<h3>Beş üretim yaklaşımı</h3>
+<table><thead><tr><th>Yaklaşım</th><th>En uygun kullanım</th><th>Sınırı</th><th>Pilot kararı</th></tr></thead><tbody><tr><td>Stok + ses + altyazı</td><td>Basit açıklayıcı, düşük maliyetli kısa video</td><td>Anahtar kelimeye göre stok eşleşmesi anlatıyı kaçırabilir</td><td>Özgün analiz ve editoryal kontrolle dene</td></tr><tr><td>Avatar / sunucu</td><td>Eğitim, onboarding, B2B anlatım, lokalizasyon</td><td>Rıza, Türkçe telaffuz ve dudak uyumu</td><td>Gerçek izleyiciyle kör değerlendirme</td></tr><tr><td>Jeneratif sahneler</td><td>Ürün atmosferi, sinematik B-roll, kampanya</td><td>Sahne tutarlılığı, tekrar üretim maliyeti</td><td>Onaylı görselden kısa sahneler üret</td></tr><tr><td>Uzun içerikten kısa video</td><td>Webinar, podcast, mevcut demo</td><td>Kaynak materyal ve bağlamın korunması gerekir</td><td>Kaynak içerik varsa ilk aday</td></tr><tr><td>Programatik kurgu</td><td>Marka şablonu, ürün kataloğu, veri grafikleri</td><td>Yaratıcı varlıkları kendisi üretmez</td><td>Üretim hattının ortak temeli</td></tr></tbody></table>
+<p>MoneyPrinterTurbo ve ShortGPT hızlı stok tabanlı başlangıç sağlar. OpenMontage kaynaklarda daha ajansal prodüksiyon örneği olarak sunuluyor; araç/skill sayıları ve olgunluk iddiaları bağımsız doğrulanmadı. Bir projeyi üretime alırken lisansı, güncelliği, kimlik doğrulaması ve bağımlılıkları ayrıca incele. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a></p>
+<h3>Üretim hattının kalbi: timeline ve varlık manifestosu</h3>
+<p>Videonun esas kaydı yalnızca son MP4 olmamalı. Brief, senaryo sürümü, sahne kimliği, referans görsel, üretim denemeleri, ses, altyazı zamanları, timeline, onay ve platform gönderi kimliği birlikte tutulmalı. Sağlayıcı değiştiğinde bu kayıt korunur. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a></p>
+<p><strong>Şablonla başla:</strong> Creatomate, Shotstack veya JSON2Video hızlı bir ilk hat için adaydır. React ile karmaşık grafik ve marka animasyonu gerekiyorsa Remotion; encode, mux, ölçekleme, ses ve teknik kontroller için FFmpeg değerlendir. Remotion’ın kaynak erişimi, MIT lisansı anlamına gelmez; şirket kullanımını lisans koşulları belirler. <a href="https://github.com/remotion-dev/remotion/blob/main/LICENSE.md">Resmî lisans</a></p>
+<p>Sesi sahne sürelerinden bağımsız üretip sonradan rastgele sıkıştırma. Telaffuz sözlüğünü sürümle; Türkçe ürün adları, sayılar, kısaltmalar ve yabancı isimlerle test et. ASR/forced alignment çıktısını altyazıya dönüştür; satır uzunluğu, güvenli alan, okuma hızı ve son sözcüğün kesilmemesini kontrol et. Google TTS, ElevenLabs, Whisper/Scribe ve diğerleri kaynakların aday havuzudur; “Türkçede en iyi” kararı bu raporda ölçülmüş değildir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a></p>
+<h3>Yayınlamak da bir durum makinesi</h3>
+<p>YouTube, TikTok, Instagram/Facebook ve LinkedIn için ayrı adaptör kullan. Ortak arayüz; gönderim, durum sorgusu, token yenileme, hata sınıflandırma ve sonuç kaydını kapsasın. HTTP 200, videonun herkese açık olarak yayında olduğunu kanıtlamaz. Processing ve moderasyon durumunu izle. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a></p>
+<table><thead><tr><th>Platform</th><th>Tasarımda korunacak ayrım</th><th>Doğrulama</th></tr></thead><tbody><tr><td>YouTube</td><td>Proje kotası, kanal sınırı ve audit ayrı konular</td><td>Güncel tabloda videos.insert için 100 çağrı/gün; eski 1.600 birim hesabını kullanma</td></tr><tr><td>TikTok</td><td>Creator bilgisi, kullanıcı onayı, görünürlük, audit</td><td>Denetlenmemiş istemciler private ile sınırlı; init için token başına 6 istek/dk</td></tr><tr><td>Instagram</td><td>Container → processing → publish; login yolu ve scope</td><td>90 saniye evrensel API sınırı değil; Meta örneği 3 sn–15 dk</td></tr><tr><td>LinkedIn</td><td>Medya upload ile post oluşturma farklı işlemler</td><td>Organizasyon/üye izinlerini ve kullanılan sürümü hesap üzerinde sınama</td></tr></tbody></table>
+<p><a href="https://developers.google.com/youtube/v3/determine_quota_cost">YouTube kota tablosu</a> · <a href="https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post">TikTok Direct Post</a> · <a href="https://github.com/fbsamples/reels_publishing_apis/blob/main/insta_reels_publishing_api_sample/README.md">Meta örneği</a></p>
+<p>Postiz, Blotato, Upload-Post ve Ayrshare ortak yayın katmanı adaylarıdır. Üçüncü taraf kullanmak hesap yetkilendirmesini, içerik sorumluluğunu veya tüm platform kısıtlarını ortadan kaldırmaz. Kaynaklardaki fiyat/plan ve denetim iddialarını sözleşme öncesi yeniden teyit et. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a></p>
+<h3>İki onay, dört kalite kontrolü</h3>
+<p>Senaryo onayı pahalı üretimden önce; final video onayı yayından önce gelir. Onay video sürümü ve hash’iyle eşleşmelidir. Onaydan sonra değişen çıktı tekrar incelenir.</p>
+<ul>
+<li><strong>Teknik:</strong> codec, fps, oran, süre, bozuk kare, ses clipping ve sessizlik.</li>
+<li><strong>Anlamsal:</strong> anlatılan ürün, sayı, vaat, görüntü ve senaryo uyumu.</li>
+<li><strong>Marka:</strong> logo, yazı tipi, telaffuz, CTA, ton ve güvenli alan.</li>
+<li><strong>Haklar:</strong> görsel/müzik lisansı, ses/yüz kullanımı, AI bildirimi ve platform koşulları.</li>
+</ul>
+<p>Çok sahneli kimlik tutarlılığı, uzun videoda anlatı ritmi, yaratıcı renk düzenleme, beat-matching ve Türkçe avatar değerlendirmesi açık kalan kalite alanlarıdır. Teknik olarak tamamlanan üretimi otomatik olarak kabul edilmiş sayma. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a></p>
+<h3>Başarı nasıl ölçülür?</h3>
+<p>Kabul edilen saniye başına tüm üretim harcaması, insan düzeltme süresi, ret oranı, p50/p95 iş süresi ve başarılı yayın oranı temel operasyon metrikleridir. İçerik etkisini izlenme süresi, tutulma, tıklama ve ürün dönüşümüyle ayrıca değerlendir. “Ayda şu kadar gelir” veya sabit bir RPM, bu kaynaklardan güvenilir iş sonucu olarak çıkarılamaz.</p>
+<hr/>
+<h2>2. Yazılım geliştirme</h2>
+<h3>Karar: ajanı doğrulanabilir işlerle başlat</h3>
+<p>Birincil yatırım, tek bir modele bağlanmak yerine <strong>spesifikasyon → başarısız test → küçük değişiklik → doğrulama → inceleme</strong> döngüsünü kurmaktır. İlk görevler; bir bug’ın regresyon testi, API değiştirmeyen refactor, dokümantasyon ve sınırlı bağımlılık güncellemesi olabilir. İşin bitişi “ajan tamamladım dedi” değil, kabul kriterlerinin geçtiği kanıttır. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D02">D02</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>Bir model ile bir ajan aynı şey değil</h3>
+<p>Model akıl yürütür ve çıktı üretir. Ajan; modele repo araması, dosya düzenleme, terminal, tarayıcı, test ve tekrar deneme döngüsü sağlar. Kodlama ortamı bu araçların izinlerini ve çalışma alanını belirler. Orkestratör görevleri koordine eder. Bu katmanları bir ürün sıralamasında karıştırmak yanlış satın alma kararına yol açar.</p>
+<table><thead><tr><th>Katman</th><th>Kaynaklardaki örnekler</th><th>Seçim sorusu</th></tr></thead><tbody><tr><td>IDE / CLI ajanı</td><td>Codex, Claude Code, Cursor, Copilot, Aider, Cline</td><td>Kendi repo görevlerinde doğru değişiklik yapabiliyor mu?</td></tr><tr><td>İzole ajan ortamı</td><td>OpenHands, worktree, container/VM</td><td>Dosya ayrımı mı gerekiyor, güvenlik izolasyonu mu?</td></tr><tr><td>Spec / bağlam</td><td>AGENTS.md, Spec Kit, ADR, alan sözlüğü</td><td>Komutlar, sınırlar ve done kriteri açık mı?</td></tr><tr><td>Test ve review</td><td>Playwright, CodeRabbit, Qodo, Copilot review</td><td>Gerçek hatayı yakalıyor mu, inceleme yükünü azaltıyor mu?</td></tr><tr><td>Deterministik güvenlik</td><td>Semgrep, CodeQL, dependency/secret scan</td><td>Kritik bulgu build’i durduruyor mu?</td></tr><tr><td>Model serving</td><td>vLLM, SGLang, MLX, llama.cpp/Ollama</td><td>Gerçek eşzamanlı yükte kalite, gecikme ve maliyet ne?</td></tr><tr><td>RAG / uygulama framework’ü</td><td>LlamaIndex, Haystack, LangGraph</td><td>Repo dışı bilgi veya kalıcı dallanan iş akışı gerekiyor mu?</td></tr></tbody></table>
+<p>Worktree ayrı checkout sağlar; host dosyalarına veya ağa erişimi engelleyen bir sandbox değildir. Üretim verisi ve güçlü araç erişimi varsa container/VM, dar kapsamlı kimlik bilgileri ve ayrı işlem yetkileri gerekir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>TDD, ajan için çalıştırılabilir sözleşme</h3>
+<ol>
+<li>Beklenen davranışı, sınır durumlarını ve korunacak mevcut davranışı yaz.</li>
+<li>Testi çalıştır; doğru nedenle başarısız olduğunu kaydet.</li>
+<li>Testi geçiren en küçük üretim değişikliğini yap.</li>
+<li>İlgili testleri, tip kontrolünü ve mevcut kritik akışları çalıştır.</li>
+<li>Refactor et; aynı testleri tekrar geçir. Testi silerek veya assertion’ı gevşeterek başarı elde etme.</li>
+<li>Değişiklik, test kanıtı ve kalan belirsizlikleri incelemeye sun.</li>
+</ol>
+<p>Birim testleri hesap ve iş kuralını; entegrasyon testleri sınırları; tarayıcı testleri gerçek kullanıcı akışını doğrular. Ekran görüntüsü veya bir MCP tarayıcı oturumu, kalıcı bir E2E testi yerine geçmez. Playwright gözlemini sabit locator ve assertion içeren teste dönüştür. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<p>Bu portalda da ilk davranış testleri uygulamadan önce yazıldı: Türkçe arama, yeniden üretimi içeren maliyet modeli, yerel kayıt dayanıklılığı, kaynak bütünlüğü ve mobil/masaüstü okuma akışları.</p>
+<h3>Bağlamı küçük ve işe yarar tut</h3>
+<p>AGENTS.md içinde gerçek kurulum/test komutları, modül sınırları, mevcut konvansiyonlar ve tamamlanma kriterleri olsun. Yaşayan mimari kararlarını ADR’lerde, alan terimlerini sözlükte sakla. Araçların kendi talimat dosyası desteğini sürüme göre teyit et. Kaynaklardaki “ne kadar çok bağlam o kadar iyi” varsayımı desteklenmiyor. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D02">D02</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<p>Prompt caching; sağlayıcıya, eşleşen prefix’e, token eşiğine ve TTL’e bağlıdır. Statik içerikleri başta, değişken görev verisini sonda tutmak bir optimizasyon adaydır. Tek dosyadaki bir karakterin her durumda bütün önbelleği yok ettiği veya her istekte %90 indirim sağlandığı söylenemez. Cache hit ve gerçek faturayı ölç.</p>
+<h3>MCP ve RAG: farklı ihtiyaçlar</h3>
+<p>MCP dış araç ve verilere erişimi standartlaştırır; RAG ilgili bilgiyi getirir. PostgreSQL şemasını okumak, issue almak ve tarayıcı testi yapmak araç erişimidir. Repo dışı iş kuralları, runbook ve müşteri dokümantasyonu ise bilgi getirmeyi gerektirebilir. Her repo için vektör veritabanı kurmak zorunlu değildir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a></p>
+<p>Başlangıçta GitHub, güncel dokümantasyon ve Playwright gibi birkaç gerekli entegrasyon seç. Dönen veriyi talimat kabul etme; tool izinleri, kimlik, log ve veri çıkışını kontrol et. MCP kendi başına güvenlik garantisi vermez. Uzak taşıma için Streamable HTTP güncel temel; eski HTTP+SSE örneklerini sürümünü bilmeden kopyalama. <a href="https://modelcontextprotocol.io/specification/2025-06-18/basic/transports">MCP transport spesifikasyonu</a></p>
+<h3>Daha çok kod, daha yüksek üretkenlik anlamına gelmez</h3>
+<p>METR’nin 2025 deneyinde kendi olgun projelerinde çalışan 16 geliştirici, 246 görevde AI ile ortalama %19 daha uzun süre harcadı. Bu, belirli bir örneklem ve araç döneminin sonucu. 2026 takip yazısı seçim etkilerinin güncel hızlanma büyüklüğünü güvenilir ölçmeyi zorlaştırdığını söylüyor. Dolayısıyla iki sonuçtan da evrensel bir “AI hız oranı” türetmiyoruz. <a href="https://arxiv.org/abs/2507.09089">2025 çalışma</a> · <a href="https://metr.org/blog/2026-02-24-uplift-update/">2026 yöntem güncellemesi</a></p>
+<p>DORA’nın 2025 bulgusu, AI’ın mevcut organizasyonel kapasiteyi büyütmesi: test ve teslimat darboğazları çözülmeden daha fazla üretim aynı ölçüde daha fazla değer yaratmayabilir. <a href="https://dora.dev/research/2025/dora-report/">DORA raporu</a></p>
+<p><strong>2–4 haftalık baz ölçüm</strong> ve benzer görevlerle pilot öneriyoruz. PR cycle time, review süresi, escaped defect, change failure rate, mühendislik saati ve kabul edilen görev başına maliyeti birlikte izle. Kod satırı miktarını başarı KPI’ı yapma. GitClear, SWE-bench ve vendor benchmark sayıları kaynaklarda korunuyor; farklı görev/harness/sürüm sonuçlarını doğrudan sıralamaya dönüştürmüyoruz. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D02">D02</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a></p>
+<h3>Yerel model kararı: önce iş yükünü ölç</h3>
+<p>Açık ağırlık, ücretsiz işletim veya sınırsız ticari kullanım demek değildir. Model lisansı, runtime lisansı ve eğitim/veri koşulları farklıdır. VRAM hesabına ağırlıklar, KV cache, context uzunluğu, batching ve concurrency dahil edilir. MoE’nin aktif parametre sayısı, bütün modelin belleğe sığdığı anlamına gelmez.</p>
+<p>Kaynakların 15 eşzamanlı ajan, 128 GB Mac ve Hetzner GPU senaryolarını kapasite hipotezi olarak kullan. Evrensel “150 milyon tokenda self-host kazanır” eşiği vermiyoruz. Gerçek token giriş/çıkış oranı, cache, kabul edilen görev kalitesi, bekleme süresi, GPU kullanım oranı ve bakım emeğiyle 30 günlük karşılaştırma yap. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D02">D02</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<p>Python için Ruff + bir tip kontrolcü + pytest; React/TypeScript için formatter/linter + TypeScript + Vitest + Playwright tutarlı bir geri bildirim hattıdır. Mevcut projedeki mypy eklentileri veya lint kuralları korunmalı; sırf yeni olduğu için araç geçişi yapılmamalı.</p>
+<hr/>
+<h2>3. Referans mimari</h2>
+<h3>Ortak tasarım: olasılıksal karar, deterministik yürütme</h3>
+<p>Video üretimi ile yazılım geliştirme aynı kontrol sorununu paylaşır: modelin yaratıcılığı yararlı, sonucu ise doğrulanmaya muhtaçtır. Ajan bir sahne veya kod değişikliği önerir; sözleşmeler, durum kayıtları, test ve insan incelemesi bu öneriyi teslim edilebilir çıktıya dönüştürür. Bu ortak mimari, altı belgenin birlikte değerlendirilmesinden çıkan sentezdir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D02">D02</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>Video alan modeli</h3>
+<pre><code class="language-text">Campaign → ContentJob
+  ├─ ScriptVersion → StoryboardVersion → Scene
+  │                                   └─ GenerationAttempt
+  ├─ Asset + rights + checksum
+  ├─ TimelineVersion → Render → QCResult
+  ├─ Approval (artifact hash + actor + time)
+  └─ Publication (platform + state + post id)
+                   └─ AnalyticsSnapshot
+</code></pre>
+<p>Provider payload’ları yalnızca adaptörde yaşar. Çekirdek sözleşme, sağlayıcı kapandığında veya model değiştiğinde sabit kalır. <code>content_id</code>, <code>scene_id</code>, model sürümü, prompt hash’i ve varlık checksum’ı her adımdan izlenebilir olmalı. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a></p>
+<pre><code class="language-json">{
+  &quot;content_id&quot;: &quot;demo-001&quot;,
+  &quot;version&quot;: 1,
+  &quot;language&quot;: &quot;tr-TR&quot;,
+  &quot;target&quot;: &quot;shorts_9x16&quot;,
+  &quot;state&quot;: &quot;AWAITING_SCRIPT_APPROVAL&quot;,
+  &quot;idempotency_key&quot;: &quot;demo-001:v1:youtube&quot;,
+  &quot;budget_limit&quot;: 20,
+  &quot;currency&quot;: &quot;USD&quot;
+}
+</code></pre>
+<p>Bu payload bir tasarım örneğidir; çalışan bir API veya gerçek iş kaydı değildir.</p>
+<h3>Dayanıklılık: sadece retry eklemek yetmez</h3>
+<ul>
+<li><strong>İdempotency:</strong> aynı içerik sürümü + platform için unique kayıt tut; timeout sonrasında yeni upload’dan önce eski gönderimin durumunu sorgula.</li>
+<li><strong>Durum kalıcılığı:</strong> vendor job ID’sini beklemeye geçmeden kaydet; işlem yeniden başladığında kaldığı noktadan devam et.</li>
+<li><strong>Callback güvenliği:</strong> imzayı doğrula, zaman penceresi ve replay kontrolü uygula; tekrar veya sırasız gelen event’leri yönet.</li>
+<li><strong>Retry bütçesi:</strong> 429/5xx için sınırlı backoff + jitter; <code>Retry-After</code> varsa dikkate al. Yetki/policy hatalarını körlemesine tekrar etme.</li>
+<li><strong>Circuit breaker:</strong> hata eşiğinde sağlayıcı çağrılarını durdur; kontrollü probe ile toparlanmayı sınama. Her hata doğrudan DLQ’ya gönderilmek zorunda değil.</li>
+<li><strong>Kurtarma kuyruğu:</strong> yeniden deneme bütçesi tükenen veya müdahale isteyen işleri sebebiyle kaydet; tekrar başlatma maliyetini görünür kıl.</li>
+<li><strong>Dosya ömrü:</strong> imzalı URL’nin süresi provider’ın indirme süresini kapsasın. Kopyayı ve hash’i kontrol edilen depoda sakla.</li>
+</ul>
+<p>Üretim timeout’u yeni faturalı deneme başlatmakla aynı şey değildir. Önce sağlayıcının eski job’ının akıbetini uzlaştır. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a></p>
+<h3>Orkestrasyon seçenekleri</h3>
+<table><thead><tr><th>Seçenek</th><th>Ne zaman değerli?</th><th>Operasyonel bedel</th></tr></thead><tbody><tr><td>n8n</td><td>Webhook, HTTP, DB, onay ve iş sistemi entegrasyonları</td><td>Queue/concurrency, secrets, yükseltme ve hata yönetimi</td></tr><tr><td>Make / Zapier</td><td>Teknik olmayan ekibin dar kapsamlı otomasyonu</td><td>İşlem bazlı maliyet, plan sınırları ve dışa taşıma</td></tr><tr><td>Temporal</td><td>Uzun süren, yeniden başlayabilen, kritik iş akışı</td><td>Workflow determinismi ve yeni altyapı</td></tr><tr><td>Container workers</td><td>FFmpeg/Remotion render</td><td>Kaynak sınırı, job izolasyonu ve ölçekleme</td></tr><tr><td>ComfyUI + GPU worker</td><td>Gizlilik veya ölçülmüş yüksek hacimli üretim</td><td>Model lisansı, VRAM, cold start ve kapasite</td></tr><tr><td>OpenClaw / ajan SDK</td><td>Araştırma, triage, öneri ve mesajlaşma</td><td>Tool izinleri ve dış içerik güvenliği</td></tr></tbody></table>
+<p>n8n akışı yürütür; ajan sınırlı karar verir; insan yüksek etkili sonucu onaylar. OpenClaw, LangGraph veya CrewAI gereksinim olmadan eklenirse yönetilecek yeni bir sistem oluşturur. n8n’in fair-code lisansını da dağıtım/ticari kullanım modeliyle birlikte değerlendir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>Kodlama hattı</h3>
+<p>Issue + kabul kriterleri → izole branch/çalışma alanı → başarısız test → uygulama → lint/typecheck/tests → güvenlik taraması → diff incelemesi → PR → inceleme/merge → sürüm izleme.</p>
+<p>Sentry/Datadog/Grafana kayıtlarından gelen hata bağlamı bu döngüye beslenebilir. Ajanın hipoteziyle log kanıtını ayır. Production telemetry salt okunur olmalı; hassas veriler maskelenmeli. Güvenlik tarayıcısı bulgusunu düzelten ajan, tarayıcıyı ve regresyon testini yeniden çalıştırmalıdır. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>Saklama ve gözlemlenebilirlik</h3>
+<p><code>raw</code>, <code>work</code>, <code>master</code>, <code>delivery</code> alanlarını ayrı lifecycle kurallarıyla tut. Ara çıktı büyümesi final MP4’ten çok daha yüksek olabilir. Kaynaklardaki 100 video × 200 MB = 20 GB/gün hesabı yalnızca final dosyalar için örnektir; varyant, yedek ve egress dahil değildir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a></p>
+<p>İzlenecek olaylar: bekleyen işler, callback timeout, 429 oranı, token süresi, kalite reddi, tekrar harcaması, render belleği, yayın görünürlüğü, insan onay süresi. Uzun ömürlü render süreçleri yerine kaynak limitli ayrı işler arıza alanını küçültür; kaynaklardaki bütün bellek problemlerini tek başına FFmpeg’e atfetmek doğru değildir.</p>
+<hr/>
+<h2>4. Riskler ve boşluklar</h2>
+<h3>Kritik ayrım: belgede geçmesi, doğrulanmış olması değil</h3>
+<p>Altı kaynak birbirini destekleyen mimari öneriler yanında çelişkili fiyat, tarih, limit ve benchmark iddiaları da içeriyor. Kaynak kütüphanesinde orijinal metinler değiştirilmeden saklandı. Bu rapor ise <strong>doğrulanmış bilgi</strong>, <strong>düzeltilmiş iddia</strong>, <strong>kaynak aktarımı</strong> ve <strong>tasarım önerisini</strong> birbirinden ayırıyor.</p>
+<h3>Öncelikli risk kaydı</h3>
+<table><thead><tr><th>Risk</th><th>Erken sinyal</th><th>Kontrol</th><th>Sorumlu rol</th></tr></thead><tbody><tr><td>Sahne / ürün tutarsızlığı</td><td>Yüksek insan ret oranı</td><td>Onaylı referanslar, sahne bazlı yeniden üretim</td><td>İçerik editörü</td></tr><tr><td>Mükerrer yayın</td><td>Timeout sonrası ikinci post</td><td>İdempotency, işlem uzlaştırma, platform ID’si</td><td>Backend</td></tr><tr><td>Maliyet taşması</td><td>Attempt ve token artışı</td><td>İş başına bütçe, tur/süre limiti, alarm</td><td>Operasyon</td></tr><tr><td>Prompt injection</td><td>Araç çıktısındaki eylem talimatı</td><td>Trust boundary, sınırlı yetki, veri çıkışı kontrolü</td><td>Güvenlik</td></tr><tr><td>Test zayıflatma</td><td>Silinen assertion veya test</td><td>Test diff incelemesi, davranış sözleşmesi</td><td>Reviewer</td></tr><tr><td>Gizli veri sızıntısı</td><td>Prompt/log içinde kişisel veri veya secret</td><td>Sentetik fixture, maskeleme, dar erişim</td><td>Veri sorumlusu</td></tr><tr><td>Sağlayıcı kapanışı</td><td>Deprecation ve model ID değişimi</td><td>Adaptör, sürüm kayıtları, alternatif pilot</td><td>Teknik lider</td></tr><tr><td>İçerik hakları</td><td>Asset’in rıza/lisans kaydı yok</td><td>Asset bazlı kullanım kaydı ve yayın kapısı</td><td>İçerik/uyum</td></tr><tr><td>Yayın erişimi</td><td>İşlem başarılı ama private</td><td>Audit, hesap izinleri, görünürlük sorgusu</td><td>Entegrasyon</td></tr><tr><td>Review darboğazı</td><td>PR kuyruğu ve yeniden iş artışı</td><td>Küçük işler, kapasite limiti, net sahiplik</td><td>Ekip lideri</td></tr></tbody></table>
+<p>Bu risk öncelikleri analitik sentezdir; ölçülmüş olasılık yüzdeleri değildir. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D02">D02</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>Provenans, bildirim ve haklar</h3>
+<p>C2PA içerik geçmişinin doğrulanabilir kaydını, watermark ise farklı bir işaretleme mekanizmasını temsil eder. Yeniden kodlama veya düzenleme sonrası imzanın/manifestonun geçerliliği ayrıca sınanmalıdır; basit metadata pass-through bütün provenansı koruma garantisi değildir. Yayın platformunun AI bildirimi de ayrı bir adımdır. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D01">D01</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a></p>
+<p>YouTube’un 15 Temmuz 2025 tarihli güncellemesi tekrarlı/kitlesel içerik konusunu açıklar. AI kullanmak tek başına para kazanmayı engellemez; özgün yorum, anlatı ve izleyiciye değer esas alınır. Kaynaklardaki “AI etiketini kaybetmek otomatik %90 erişim düşüşü yaratır” veya “repost kesin shadowban getirir” ifadelerine doğrulanmış platform kuralı olarak yer vermiyoruz. <a href="https://support.google.com/youtube/answer/1311392">YouTube politikası</a></p>
+<p>EU AI Act’te sağlayıcı ve kullanan tarafın sorumlulukları farklıdır. Konsolide metin, 2 Ağustos 2026 öncesinde piyasaya sunulmuş ilgili sistemlerin sağlayıcılarına Madde 50(2) için 2 Aralık 2026’ya kadar geçiş verir. Her AI medyası için aynı teknik işaretin zorunlu olduğu çıkarımı yapılmamalı; kapsam ve istisnalar kullanım özelinde değerlendirilir. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/2026-07-27/eng">Konsolide mevzuat</a></p>
+<p>Gerçek kişinin sesini/yüzünü, kişisel logları ve müşteri belgelerini kullanırken hak, rıza ve veri aktarımı koşulları netleştirilmelidir. Müzik için platform, kanal, ticari kullanım ve abonelik sonrasındaki hakları kayıt altına al. Suno/Udio, Artlist veya Epidemic planlarıyla ilgili kaynak fiyatları ve davalara dair tarihsel iddialar güncel sözleşme yerine geçmez. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a></p>
+<h3>Henüz bilmediğimiz şeyler</h3>
+<p>Günlük hacim, eşzamanlı iş, hedef platform, ortalama süre, marka sayısı, bütçe, veri ikameti, onay SLA’sı, telif kapsamı ve gerçek izleyici tepkisi belirlenmeden “en iyi stack” kararı kesinleşmez.</p>
+<p>Yazılım tarafında da repo büyüklüğü, mevcut test kalitesi, gerçek aylık token kullanımı, cache oranı, inceleme yükü ve self-host bakım kapasitesi ölçülmelidir. D06’daki 15 ajan ve GPU donanımı anlatımı, bu portalın kullanıcısına ait doğrulanmış canlı kapasite verisi değildir.</p>
+<h3>Karara taşınmayan sayısal iddialar</h3>
+<p>Kaynaklarda geçen model liderlik skorları, GitHub yıldızları, API/abonelik fiyatları, sabit GPU break-even eşiği, gelir/RPM projeksiyonları ve güvenlik açıklarına ait başarı yüzdeleri topluca yeniden doğrulanmadı. Bunlar tam metin arşivinde bulunur; dashboard’da doğrulanmış istatistik olarak kullanılmaz.</p>
+<p>Benzer şekilde “Q8 kayıpsızdır”, “KV cache context ile logaritmik büyür”, “MCP halüsinasyonu engeller” ve “bir araç tek başına güvenliği garanti eder” türü genellemeler karar temeli değildir. Donanım kapasitesi ve kaliteyi seçilen runtime, model ve iş yükünde ölçmek gerekir.</p>
+<hr/>
+<h2>5. Uygulama yol haritası</h2>
+<h3>Takvimden önce geçiş kriteri</h3>
+<p>Aşağıdaki plan kaynakların ortak önerilerinden türetilmiş bir başlangıç sırasıdır. Haftalar tahmindir; ekip kapasitesi, app review ve içerik kalitesi süreyi değiştirir. D03’teki yaklaşık beş aylık program ile D04/D06’daki kısa yazılım pilotu, aynı teslimat taahhüdü olarak birleştirilmedi. <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D03">D03</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D04">D04</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D05">D05</a> <a href="https://karacaismail.github.io/futuristic/#/sources?doc=D06">D06</a></p>
+<h3>01 · Çerçeve ve baz ölçüm</h3>
+<p><strong>İlk 1–2 hafta.</strong> Tek içerik formatı, hedef kitle, platform, editör ve maliyet tavanını tanımla. Ürün bilgi kaynağı, marka kiti, kullanım hakları ve telaffuz sözlüğünü hazırla. Platform erişim/audit başvurusunu erken başlat.</p>
+<p>Yazılım için mevcut lint/typecheck/test komutlarını tek doğrulama akışına bağla. Kısa AGENTS.md ve kabul kriteri şablonu oluştur. PR süresi, hata ve inceleme emeği için baz veri toplamayı başlat.</p>
+<p><strong>Çıkış kriteri:</strong> iş kuralları, kaynak sahipliği ve ölçülecek KPI’lar yazılı; ajan mevcut testi tek komutla çalıştırabiliyor.</p>
+<h3>02 · Dar kapsamlı pilot</h3>
+<p><strong>2–4. haftalar.</strong> 10–20 video adayı veya 20–50 eşlenmiş sahneyle sağlayıcı karşılaştırması yap. Bu sayılar deney tasarımı önerisidir. Aynı brief, referans, kalite rubriği ve değerlendiriciyi kullan. Bir ses sağlayıcısı, bir renderer ve bir publisher ile ilk hattı tamamla.</p>
+<p>Kod tarafında tek repo, sınırlı görevler ve küçük değişiklikler seç. Her bug için önce regresyon testi, sonra fix; her sonuç için doğrulama kanıtı üret. AI PR review’u yardımcı katman olarak dene.</p>
+<p><strong>Çıkış kriteri:</strong> uçtan uca gerçek çıktı; maliyet ve insan emeği kaydı; kalite bozulmadan net fayda.</p>
+<h3>03 · Dayanıklılık ve kontrollü yayın</h3>
+<p><strong>5–8. haftalar.</strong> Duplicate callback, kayıp callback, 429, timeout, token expiry ve worker restart senaryolarını test et. Onay sonrası çıktı değişimini engelle; idempotency ve bütçe sınırlarını doğrula. Final yayın görünürlüğünü platformdan teyit et.</p>
+<p>Test, SAST, dependency ve secret taramasını CI kapılarına bağla. İnceleme kapasitesini aşan ajan eşzamanlılığını düşür. Incident için log → hipotez → fix PR akışını sınırlı yetkiyle kur.</p>
+<p><strong>Çıkış kriteri:</strong> gözlemlenen hata senaryolarından veri ve yayın kaybı olmadan kurtarma; sorumlu kişi ve runbook.</p>
+<h3>04 · Ölçerek ölçekleme</h3>
+<p><strong>9–12. haftalar ve sonrası.</strong> İkinci platformu, ikinci formatı veya model routing’i tek tek ekle. Yoğun kullanılan bir video sahne tipinde ComfyUI/GPU pilotu veya yazılım ajanlarında self-host serving dene. Her ek katmanın bakım maliyetini hesapla.</p>
+<p>Yüksek hacimli video için D03’ün 3–6 aylık durable workflow, gelişmiş QC ve hibrit GPU programını bu fazın devamı olarak ele al. Kalite verisi birikmeden bütün onayları kaldırma.</p>
+<p><strong>Çıkış kriteri:</strong> kabul edilen çıktı başına toplam maliyet ve p95 süre iyileşiyor; ret, incident ve review yükü artmıyor.</p>
+<h3>Başarı panosu</h3>
+<table><thead><tr><th>Video operasyonu</th><th>Yazılım operasyonu</th></tr></thead><tbody><tr><td>Kabul edilen saniye başına maliyet</td><td>Kabul edilen görev / merge başına maliyet</td></tr><tr><td>İlk denemede kabul oranı</td><td>İlk CI geçiş oranı</td></tr><tr><td>Editör dakikası / video</td><td>Review ve rework dakikası / PR</td></tr><tr><td>Yayınlama başarısı ve görünürlük</td><td>Change failure ve escaped defect</td></tr><tr><td>İzleyici tutulması ve ürün dönüşümü</td><td>PR cycle time ve ekip memnuniyeti</td></tr></tbody></table>
+<p>Yalnızca üretilen video veya kod satırı sayısı başarı ölçütü değildir. Baseline, dönem, örneklem ve ölçüm yöntemiyle birlikte karar ver.</p>
+<hr/>
+<h2>6. Yöntem ve kapsam</h2>
+<h3>Kapsam ve yöntem</h3>
+<p>Bu rapor 16 Eylül 2026 tarihli bir araştırma sentezidir. Kullanıcının paylaştığı altı belgenin tamamı değişmeden arşivlendi. Video belgeleri D01/D03/D05; yazılım belgeleri D02/D04/D06 olarak kimliklendirildi. Ortak öneriler birleştirildi, farklı senaryolar ayrı tutuldu ve karar etkisi yüksek seçilmiş iddialar birincil kaynaklardan kontrol edildi.</p>
+<p><strong>Eksiksiz arşiv, bütün iddiaların doğrulanması anlamına gelmez.</strong> Dış bağlantıların tamamı indekslendi; hepsinin güncel fiyatı, bütün sayfaların içeriği veya bütün akademik sonuçlar yeniden araştırılmadı. Doğrulama tablosu kontrol edilen iddiayı, tarihi, ilgili belgeyi ve kanıt bağlantısını ayrı gösterir.</p>
+<h3>Dört kanıt seviyesi</h3>
+<ul>
+<li><strong>Doğrulandı:</strong> bağlantılı birincil kaynak, belirtilen dar iddiayı destekliyor.</li>
+<li><strong>Düzeltildi:</strong> özgün belgede tarih, limit veya yorum sorunu var; sentezde düzeltme kullanılıyor.</li>
+<li><strong>Kaynak aktarımı:</strong> belgede bulunan bağlantı, araç veya iddia; yeniden doğrulama anlamına gelmiyor.</li>
+<li><strong>Sentez / varsayım:</strong> bu raporun mimari önerisi, deney tasarımı veya kullanıcı kontrollü hesap girdisi.</li>
+</ul>
+<p>Araç kataloğu kaynakların rol ve kullanım senaryolarını bir araya getirir. Bir araç kartında yer almak, bağımsız performans testi, satın alma önerisi veya mevcut API erişimi garantisi değildir. Fiyat ve benchmark sıralamaları bu nedenle katalog kartlarına kesin sayı olarak aktarılmadı.</p>
+<h3>Kaynak izlenebilirliği</h3>
+<p>Her özgün dosya byte uzunluğu ve SHA-256 ile manifestoda yer alır. Kaynak sayfasında tam metni okumak, tek dosyayı indirmek veya altı belgeyi manifestoyla ZIP olarak almak mümkündür. Tam metinler ihtiyaç anında yüklenir; mobil açılışta bütün arşiv indirilmez.</p>
+<p>İki belgede paragraf/satır ayrımları aktarım sırasında kaybolmuştur. Orijinal dosya aynen korunur; okuyucu yalnızca görsel satır kırma uygular. Diğer belgelerin Markdown, tablo, kod ve şema metinleri de özgün biçimleriyle indirilebilir.</p>
+<p>D03/D04’teki eski sohbet atıf belirteçleri (<code>turn…search…</code> vb.) erişilebilir kaynak URL’si değildir. Bu belirteçlerden bağlantı uydurulmaz; orijinal metinde saklanır ve çözümlenemeyen atıf olarak sayılır. Açık URL’ler, çıplak alan adları, açık GitHub repo kimlikleri ve arXiv numaraları ayrı indekslenir.</p>
+<h3>Tasarım tercihleri</h3>
+<p>Mobil kullanıcı önce kararı, özeti ve sonraki adımı görür. Alt gezinme ve bölüm paneli tek elle erişilir. Uzun rapor alt bölümlere ayrılır; araç karşılaştırması dar ekranda dikey kartlara dönüşür. 48px etkileşim alanı, klavye odağı, reduced motion ve cihaz güvenli alanı tasarımın temelidir.</p>
+<p>Masaüstünde kalıcı içerik menüsü, daha geniş karşılaştırma alanı ve aynı URL/okuma durumu kullanılır. Okundu ve yol haritası işaretleri yalnızca bu tarayıcıda saklanır; hesap veya cihazlar arası senkronizasyon yoktur. Depolama engellenirse oturum içi kullanım devam eder.</p>
+<h3>Teknik kapsam</h3>
+<p>Portal React, TypeScript, Vite, Tailwind CSS ve daisyUI ile hazırlanmış statik bir GitHub Pages uygulamasıdır. Gerçek video üretimi, ücretli model çağrısı, sosyal hesap bağlantısı veya sunucu tarafı ajan çalıştırma içermez. Hesaplayıcı bir planlama aracıdır; canlı fiyat servisi değildir.</p>
+<p>DX için birim ve tarayıcı testleri, tip kontrolü, sürümü sabitlenmiş bağımlılıklar, kaynak bütünlüğü testi ve GitHub Actions yayın hattı kullanılır. Test başarısızsa yeni sürüm yayın aşamasına geçmez.</p>
+<h2>7. Maliyet modeli</h2>
+<p>Aylık toplam = video sayısı × video başına üretilen saniye × saniye birim fiyatı × kabul başına ortalama deneme + video sayısı × inceleme dakikası / 60 × saatlik insan maliyeti + video sayısı × diğer değişken gider + sabit gider.</p>
+<p><strong>Örnek senaryo, güncel teklif değildir:</strong> 100 video/ay, 30 üretilen saniye/video, $0,12/sn, 2 deneme, 5 dakika inceleme/video, $12/saat insan emeği, $0,50 diğer/video ve $50 sabit gider → $720 üretim + $100 insan + $50 diğer + $50 sabit = <strong>$920/ay</strong>. Video başına $9,20; kabul edilen saniye başına üretim $0,24. Deneme sayısı 4 olduğunda toplam $1.640 olur. Vergi ve kur etkisi dahil değildir. [D03 ve D05 sentezi]</p>
+<p><a href="https://karacaismail.github.io/futuristic/#/cost">Kendi senaryonu hesapla</a>. Self-host karşılaştırmasında GPU kirası, idle kapasite, model lisansı, bakım emeği, disk/egress ve aynı kaliteyi yakalama maliyeti ayrıca hesaba katılır.</p>
+<h2>8. Araç ve teknoloji kataloğu</h2>
+<p>Bu katalog kaynak sentezidir; güncel fiyat veya bağımsız performans sıralaması içermez.</p>
+<h3>Video</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate">Veo</a></td><td>Görsel ve metinden sahne üretimi. Ürün atmosferi ve kontrollü kısa planlar</td><td>Sürüm, bölge, süre ve tekrar üretim maliyeti</td><td>Bulut</td><td>D01, D03, D05</td></tr><tr><td><a href="https://docs.dev.runwayml.com/">Runway</a></td><td>Jeneratif video ve dönüşüm. API ile sahne üretimi</td><td>Model ve endpoint özellikleri ayrı doğrulanmalı</td><td>Bulut</td><td>D01, D03, D05</td></tr><tr><td><a href="https://docs.lumalabs.ai/">Luma</a></td><td>Sahne üretimi ve video dönüşümü. Görselden video pilotu</td><td>Asenkron job ve kalite değişkenliği</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://kling.ai/">Kling</a></td><td>Jeneratif sahne ve hareket kontrolü. Ürün referansı ile sahne karşılaştırması</td><td>API erişimi, lisans ve model sürümü</td><td>Bulut</td><td>D01, D03, D05</td></tr><tr><td><a href="https://platform.minimax.io/">MiniMax / Hailuo</a></td><td>Video ve ses ailesi. Tek sağlayıcıyla video/ses pilotu</td><td>Model ve ücretleri ayrı değerlendirmek gerekir</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://developer.adobe.com/firefly-services/docs/firefly-api/">Adobe Firefly</a></td><td>Görsel, video ve yaratıcı servisler. Adobe üretim ekosistemi</td><td>UI özellikleri API kapsamını garanti etmez</td><td>Bulut</td><td>D03</td></tr></tbody></table>
+<h3>Avatar</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://docs.heygen.com/">HeyGen</a></td><td>Sunucu, çeviri ve avatar. B2B anlatım ve lokalizasyon</td><td>API ve UI aboneliği farklı; rıza ve Türkçe test</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://docs.synthesia.io/">Synthesia</a></td><td>Metinden sunuculu video. Eğitim ve onboarding</td><td>Yaratıcı kontrol ve sözleşme kapsamı</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://docs.tavus.io/">Tavus</a></td><td>Etkileşimli video persona. Canlı konuşan avatar</td><td>Offline video render ile aynı kullanım değil</td><td>Bulut</td><td>D03, D05</td></tr></tbody></table>
+<h3>Ses</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://elevenlabs.io/docs">ElevenLabs</a></td><td>TTS, dublaj ve transkripsiyon. Türkçe ses karşılaştırması</td><td>Telaffuz ve ses hakkı ayrıca değerlendirilir</td><td>Bulut</td><td>D01, D03, D05</td></tr><tr><td><a href="https://cloud.google.com/text-to-speech/docs">Google Cloud TTS</a></td><td>Metinden konuşma. Türkçe ses ve SSML tabanlı akış</td><td>Seçilen ses/model bazında ölçüm</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://platform.openai.com/docs/guides/text-to-speech">OpenAI TTS</a></td><td>Metinden konuşma. LLM ile ortak sağlayıcı akışı</td><td>Ses seçenekleri ve fiyatı model bazında teyit</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/openai/whisper">Whisper</a></td><td>Sesin metne dökülmesi. Altyazı üretimi ve kontrol</td><td>Hizalama, özel terim ve konuşma kalitesi</td><td>Yerel</td><td>D05</td></tr></tbody></table>
+<h3>Kurgu</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://github.com/remotion-dev/remotion">Remotion</a></td><td>React ile programatik video. Marka motion sistemi ve veri grafikleri</td><td>Şirket lisansı ve render operasyonu</td><td>Yerel</td><td>D01, D03, D05</td></tr><tr><td><a href="https://ffmpeg.org/">FFmpeg</a></td><td>Encode, filtre, ses ve mux. Deterministik medya işlemleri</td><td>Yaratıcı sahne üretmez; build lisansı incelenir</td><td>Yerel</td><td>D01, D03, D05</td></tr><tr><td><a href="https://shotstack.io/docs/">Shotstack</a></td><td>JSON timeline ve cloud render. API ile hızlı üretim hattı</td><td>Kullanım maliyeti ve sağlayıcı bağımlılığı</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://creatomate.com/docs/api/introduction">Creatomate</a></td><td>Şablon ve JSON ile render. Sosyal video varyantları</td><td>Kredi modeli ve template sınırları</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://json2video.com/docs/">JSON2Video</a></td><td>JSON ile sahne birleştirme. Basit otomatik video şablonları</td><td>Render ve çözünürlük maliyeti</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/WyattBlue/auto-editor">auto-editor</a></td><td>Sessizlik tabanlı otomatik kesim. Konuşma içeriklerini temizleme</td><td>Anlatı/viral an seçiminin yerine geçmez</td><td>Yerel</td><td>D03</td></tr><tr><td><a href="https://www.opus.pro/">OpusClip</a></td><td>Uzun videodan kısa kesitler. Podcast ve webinar yeniden kullanımı</td><td>Kaynaklardaki API planları çelişkili; teyit gerekli</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/harry0703/MoneyPrinterTurbo">MoneyPrinterTurbo</a></td><td>Stok, ses ve altyazı otomasyonu. Hızlı faceless pilot</td><td>Auth, lisans, secret ve editoryal katman gerekir</td><td>Yerel</td><td>D01, D05</td></tr><tr><td><a href="https://github.com/RayVentura/ShortGPT">ShortGPT</a></td><td>Programlanabilir kısa video üretimi. Stok ve dublaj deneyleri</td><td>Bağımlılık ve bakım durumunu incele</td><td>Yerel</td><td>D01, D05</td></tr></tbody></table>
+<h3>Model</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://github.com/Comfy-Org/ComfyUI">ComfyUI</a></td><td>Düğüm tabanlı inference workflow. Yerel video/görsel GPU üretimi</td><td>VRAM, node tedarik zinciri ve model lisansı</td><td>Yerel</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/Lightricks/LTX-2">LTX-2</a></td><td>Video ve ses üretim modeli. Hibrit GPU pilotu</td><td>Ağırlık lisansı ve donanım benchmark’ı</td><td>Yerel</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/Wan-Video/Wan2.2">Wan 2.2</a></td><td>Açık video model ailesi. Yerel sahne üretimi</td><td>Daha yeni Wan sürümlerine lisansı genelleme</td><td>Yerel</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/Tencent-Hunyuan/HunyuanVideo">HunyuanVideo</a></td><td>Video üretim modeli. GPU tabanlı araştırma/pilot</td><td>Donanım ve ticari kullanım koşulları</td><td>Yerel</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/zai-org/CogVideo">CogVideo</a></td><td>Video üretim ve ince ayar. Kontrollü açık model deneyi</td><td>Model/weight lisansı ve kaynak ihtiyacı</td><td>Yerel</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/vllm-project/vllm">vLLM / SGLang</a></td><td>Yüksek verimli model serving. Eşzamanlı self-host ajan pilotu</td><td>KV cache, batching, GPU ve bakım maliyeti</td><td>Yerel</td><td>D02, D06</td></tr><tr><td><a href="https://github.com/ml-explore/mlx">MLX / Ollama</a></td><td>Yerel model çalıştırma. Mac/kişisel ortamda gizli veri pilotu</td><td>Belleğe sığmak hedef gecikmeyi garanti etmez</td><td>Yerel</td><td>D02, D06</td></tr></tbody></table>
+<h3>Yayın</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://github.com/gitroomhq/postiz-app">Postiz</a></td><td>Sosyal içerik planlama. Kontrollü self-host yayın katmanı</td><td>Platform uygulama ve OAuth gereksinimleri</td><td>Hibrit</td><td>D05</td></tr><tr><td><a href="https://blotato.com/">Blotato</a></td><td>Çoklu sosyal yayın katmanı. Entegrasyon pilotunu hızlandırma</td><td>Hesap izinlerini ve plan kapsamını teyit et</td><td>Bulut</td><td>D05</td></tr><tr><td><a href="https://upload-post.com/">Upload-Post</a></td><td>Sosyal yayın API katmanı. Dar kapsamlı yayın pilotu</td><td>Kota, desteklenen platform ve plan</td><td>Bulut</td><td>D01, D05</td></tr><tr><td><a href="https://www.ayrshare.com/">Ayrshare</a></td><td>Birleşik sosyal API. Çoklu müşteri/hesap entegrasyonu</td><td>Profil bazlı maliyet ve sözleşme</td><td>Bulut</td><td>D05</td></tr></tbody></table>
+<h3>Orkestrasyon</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://docs.n8n.io/">n8n</a></td><td>Webhook ve deterministik iş akışı. Video hattı, CI bildirimleri ve onay</td><td>Fair-code lisans; queue ve secrets yönetimi</td><td>Hibrit</td><td>D01, D03, D05, D06</td></tr><tr><td><a href="https://docs.temporal.io/workflows">Temporal</a></td><td>Kalıcı ve uzun süreli workflow. Kritik asenkron üretim işleri</td><td>Yeni altyapı ve deterministik workflow disiplini</td><td>Hibrit</td><td>D03, D05</td></tr><tr><td><a href="https://www.make.com/">Make / Zapier</a></td><td>Görsel SaaS otomasyonu. Düşük hacimli iş sistemi bağlantıları</td><td>İşlem maliyeti ve taşınabilirlik</td><td>Bulut</td><td>D03, D05</td></tr><tr><td><a href="https://github.com/openclaw/openclaw">OpenClaw</a></td><td>Araç kullanan otonom ajan. Triage, öneri ve mesajlaşma</td><td>Güçlü araç erişimi; izolasyon ve izin denetimi</td><td>Yerel</td><td>D05, D06</td></tr><tr><td><a href="https://github.com/langchain-ai/langgraph">LangGraph</a></td><td>Durumlu ajan grafı. Gerçek dallanan ajan iş akışları</td><td>Küçük ihtiyaçta ek karmaşıklık</td><td>Yerel</td><td>D04, D05, D06</td></tr><tr><td><a href="https://github.com/run-llama/llama_index">LlamaIndex / Haystack</a></td><td>Bilgi getirme ve veri pipeline’ı. Repo dışı kurumsal bilgi</td><td>Gereksiz RAG eklemek context ve bakım yükü yaratır</td><td>Yerel</td><td>D04</td></tr></tbody></table>
+<h3>Kodlama</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://github.com/openai/codex">Codex</a></td><td>Repo, terminal ve test ajanı. Tanımlı bug, refactor ve test görevleri</td><td>İzin, ortam ve model kapasitesi ayrı konular</td><td>Hibrit</td><td>D04, D06</td></tr><tr><td><a href="https://code.claude.com/docs/">Claude Code</a></td><td>Terminal ve araç kullanan ajan. Bağlamlı repo geliştirme</td><td>Hooks ve alt ajan izinleri gözden geçirilmeli</td><td>Hibrit</td><td>D02, D06</td></tr><tr><td><a href="https://cursor.com/">Cursor</a></td><td>Ajan odaklı IDE. Etkileşimli geliştirme ve repo keşfi</td><td>Kota, ortam erişimi ve review yükü</td><td>Bulut</td><td>D02, D04, D06</td></tr><tr><td><a href="https://docs.github.com/en/copilot">GitHub Copilot</a></td><td>IDE, review ve repo ajanı. GitHub merkezli geliştirme</td><td>Review tam hata kapsamı sağlamaz</td><td>Bulut</td><td>D04, D06</td></tr><tr><td><a href="https://github.com/Aider-AI/aider">Aider</a></td><td>Git ile çalışan terminal ajanı. Model bağımsız küçük değişiklikler</td><td>Doğru context ve test altyapısı gerekir</td><td>Yerel</td><td>D02, D04, D06</td></tr><tr><td><a href="https://github.com/OpenHands/openhands">OpenHands</a></td><td>Yazılım ajan platformu. İzole görev ve özelleştirme</td><td>Sandbox kurulumu ve operasyon</td><td>Yerel</td><td>D02, D04, D06</td></tr><tr><td><a href="https://github.com/QwenLM/qwen-code">Qwen Code / Coder</a></td><td>Ajan runtime’ı ve ayrı model ailesi. Açık ekosistem coding pilotu</td><td>Runtime ile model ağırlığı lisansı farklı</td><td>Yerel</td><td>D04, D06</td></tr><tr><td><a href="https://github.com/github/spec-kit">Spec Kit</a></td><td>Spec, plan ve task iş akışı. Uzun ömürlü ve çok modüllü geliştirme</td><td>Küçük görevlerde ek süreç yükü</td><td>Yerel</td><td>D06</td></tr><tr><td><a href="https://github.com/upstash/context7">Context7</a></td><td>Kütüphane dokümantasyonunu getirme. Sürüm bağlamı ve API araştırması</td><td>Dönen veri doğrulanmalı; halüsinasyonu sıfırlamaz</td><td>Bulut</td><td>D06</td></tr><tr><td><a href="https://github.com/swe-agent/swe-agent">SWE-agent</a></td><td>Araştırma amaçlı repo ajanı. Harness ve agent deneyleri</td><td>Benchmark başarısı ürün ROI’si değildir</td><td>Yerel</td><td>D04</td></tr></tbody></table>
+<h3>Kalite</h3>
+<table><thead><tr><th>Araç</th><th>Rol ve uygun kullanım</th><th>Sınır</th><th>Ortam</th><th>Kaynak belgeler</th></tr></thead><tbody><tr><td><a href="https://playwright.dev/">Playwright</a></td><td>Tarayıcı akışı ve E2E testi. Mobil/masaüstü davranış doğrulama</td><td>Test senaryosu ve assertion kalitesi önemli</td><td>Yerel</td><td>D04, D06</td></tr><tr><td><a href="https://coderabbit.ai/">CodeRabbit</a></td><td>PR bağlamında AI inceleme. Review kuyruğuna yardımcı ilk katman</td><td>Yanlış pozitifler ve plan özellikleri</td><td>Bulut</td><td>D02, D04, D06</td></tr><tr><td><a href="https://www.qodo.ai/">Qodo</a></td><td>Kod kalitesi, test ve review. Kurala dayalı doğrulama pilotu</td><td>Vendor metrikleri bağımsız ölçüm değil</td><td>Bulut</td><td>D02, D04, D06</td></tr><tr><td><a href="https://semgrep.dev/">Semgrep</a></td><td>Statik güvenlik ve triage. CI ve agent değişikliklerini tarama</td><td>Kural kapsamı ve veri akışı sınırları</td><td>Hibrit</td><td>D02, D04, D06</td></tr><tr><td><a href="https://www.sonarsource.com/products/sonarqube/">SonarQube</a></td><td>Kalite kapısı ve teknik borç. Kurumsal kod kalite görünürlüğü</td><td>AI doğruluğu veya güvenlik garantisi değil</td><td>Hibrit</td><td>D02</td></tr><tr><td><a href="https://docs.sentry.io/product/ai-in-sentry/">Sentry Seer</a></td><td>Telemetry bağlamında hata araştırması. Production hata → kanıt → fix adayı</td><td>Kaliteli log/trace ve veri maskeleme gerekir</td><td>Bulut</td><td>D04, D06</td></tr></tbody></table>
+<h2>9. Tarihli doğrulama / düzeltme kaydı</h2>
+<h3>V01 · YouTube yükleme kotası</h3>
+<p><strong>Düzeltildi · 2026-09-16 · Belgeler: D01, D05</strong></p>
+<p>D05’teki 1.600 birim / yaklaşık 6 video hesabı güncel değil. 15 Eylül 2026 tarihli kota tablosunda videos.insert ve search.list için ayrı ayrı varsayılan 100 çağrı/gün, çağrı başına 1 kota belirtiliyor. Kanal yükleme sınırı bu proje kotasından ayrıdır. <a href="https://developers.google.com/youtube/v3/determine_quota_cost">Birincil kaynak</a></p>
+<h3>V02 · YouTube politika tarihi</h3>
+<p><strong>Düzeltildi · 2026-09-16 · Belgeler: D01, D05</strong></p>
+<p>Inauthentic content adlandırması 15 Temmuz 2025 tarihli; D01’deki Temmuz 2026 tarihi hatalı. AI kullanımı tek başına yasak değil; özgün değer taşımayan tekrarlı ve kitlesel içerik para kazanmaya uygun olmayabilir. <a href="https://support.google.com/youtube/answer/1311392">Birincil kaynak</a></p>
+<h3>V03 · Sora API yaşam döngüsü</h3>
+<p><strong>Doğrulandı · 2026-09-16 · Belgeler: D03, D05</strong></p>
+<p>Resmî OpenAI duyurusu API’nin 24 Eylül 2026’da sonlandırılacağını belirtiyor. Rapor tarihi itibarıyla gelecekteki bu kapanış, yeni entegrasyon seçimini etkiliyor. <a href="https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation">Birincil kaynak</a></p>
+<h3>V04 · TikTok: audit, onay ve hız sınırı</h3>
+<p><strong>Doğrulandı · 2026-09-16 · Belgeler: D01, D03, D05</strong></p>
+<p>Direct Post belgesi denetlenmemiş istemcilerin içeriklerini private görünürlükle sınırlar. video.publish kapsamı, kullanıcı onayı ve creator bilgisi gerekir. Init endpoint’i kullanıcı access token’ı başına dakikada 6 istektir; tüm API için tek evrensel limit değildir. <a href="https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post">Birincil kaynak</a></p>
+<h3>V05 · Instagram: 90 saniye evrensel sınır değil</h3>
+<p><strong>Düzeltildi · 2026-09-16 · Belgeler: D01, D05</strong></p>
+<p>Meta’nın resmî Reels örneği 3 saniye–15 dakika aralığı veriyor; kaynaklardaki kesin 90 saniye ifadesi genellenemez. Bu örnek Facebook Login akışına aittir; kullanılacak API sürümü, login yolu ve hesap izinleri ayrıca sınanmalı. <a href="https://github.com/fbsamples/reels_publishing_apis/blob/main/insta_reels_publishing_api_sample/README.md">Birincil kaynak</a></p>
+<h3>V06 · METR: bağlama bağlı üretkenlik</h3>
+<p><strong>Doğrulandı · 2026-09-16 · Belgeler: D02, D04</strong></p>
+<p>2025 RCT’sinde 16 geliştirici ve 246 görevde tamamlama süresi %19 arttı. Bu bulgu bütün geliştiricilere, görevlere veya 2026 modellerine genellenemez. <a href="https://arxiv.org/abs/2507.09089">Birincil kaynak</a></p>
+<h3>V07 · METR 2026: kesin hızlanma oranı yok</h3>
+<p><strong>Düzeltildi · 2026-09-16 · Belgeler: D04</strong></p>
+<p>24 Şubat 2026 güncellemesi yeni deneyin seçim etkileri nedeniyle güncel verimlilik için güvenilir bir büyüklük tahmini vermediğini söylüyor. Ham sonuçlar evrensel %4–20 hızlanma kanıtı olarak kullanılamaz. <a href="https://metr.org/blog/2026-02-24-uplift-update/">Birincil kaynak</a></p>
+<h3>V08 · DORA: araçtan önce organizasyon</h3>
+<p><strong>Doğrulandı · 2026-09-16 · Belgeler: D02, D04</strong></p>
+<p>2025 araştırmasının ana sonucu AI’ın organizasyonun mevcut güçlü ve zayıf yönlerini büyüttüğü. İyileşme, test, review ve teslimat sistemine yapılacak yatırımla birlikte değerlendirilmelidir. <a href="https://dora.dev/research/2025/dora-report/">Birincil kaynak</a></p>
+<h3>V09 · Remotion lisansı</h3>
+<p><strong>Doğrulandı · 2026-09-16 · Belgeler: D01, D03, D05</strong></p>
+<p>Remotion MIT olarak varsayılmamalı. İncelenen lisans bireyler, en fazla 3 çalışanlı kâr amaçlı kuruluşlar ve belirtilen diğer gruplar için ücretsiz kullanım tanımlar; kapsam dışındaki ticari kuruluşlarda şirket lisansı gerekir. <a href="https://github.com/remotion-dev/remotion/blob/main/LICENSE.md">Birincil kaynak</a></p>
+<h3>V10 · MCP taşıma katmanı</h3>
+<p><strong>Düzeltildi · 2026-09-16 · Belgeler: D02, D06</strong></p>
+<p>2025-06-18 spesifikasyonunda uzak bağlantılar için Streamable HTTP, eski HTTP+SSE taşımasının yerini alır. SSE bu akış içinde kullanılabilir; eski transport ile aynı kavram değildir. stdio yerel seçenek olarak kalır. <a href="https://modelcontextprotocol.io/specification/2025-06-18/basic/transports">Birincil kaynak</a></p>
+<h3>V11 · AI Act: uygulama ve geçiş tarihleri</h3>
+<p><strong>Doğrulandı · 2026-09-16 · Belgeler: D01, D05</strong></p>
+<p>Konsolide mevzuat, 2 Ağustos 2026’dan önce piyasaya sunulmuş ilgili üretken sistemlerin sağlayıcılarına Madde 50(2) için 2 Aralık 2026’ya kadar geçiş tanıyor. Sağlayıcı ve kullanan tarafın yükümlülükleri ayrıdır; her içerik ve aktör için tek genel kural çıkarılamaz. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/2026-07-27/eng">Birincil kaynak</a></p>
+<h2>10. Özgün kaynaklar ve kapsam matrisi</h2>
+<h3>D01 · Video otomasyonu: mimari ve risk analizi</h3>
+<p>Ajansal prodüksiyon, Remotion/FFmpeg, n8n, yayınlama, kalite ve provenans.</p>
+<ul>
+<li><a href="https://karacaismail.github.io/futuristic/sources/D01.txt">Özgün tam metin</a></li>
+<li>24734 bayt; 23050 karakter; 0 açık referans.</li>
+<li>SHA-256: <code>664eefccfcc0433d3d7bfdd7529f130634862ad70f3774f4d2641d2ae8adc030</code></li>
+</ul>
+<h3>D02 · AI ile yazılım: mimari ve üretkenlik</h3>
+<p>METR, DORA, SDD, bağlam, prompt caching, MCP, yerel modeller ve kalite.</p>
+<ul>
+<li><a href="https://karacaismail.github.io/futuristic/sources/D02.txt">Özgün tam metin</a></li>
+<li>38392 bayt; 35591 karakter; 3 açık referans.</li>
+<li>SHA-256: <code>39f467655fe287e42037eed9a22055a98b808de92bfa62344e37a129cd42f13d</code></li>
+</ul>
+<h3>D03 · Uçtan uca video: araçlar ve referans mimari</h3>
+<p>Sağlayıcı envanteri, timeline sözleşmeleri, platform API’leri ve operasyon modeli.</p>
+<ul>
+<li><a href="https://karacaismail.github.io/futuristic/sources/D03.txt">Özgün tam metin</a></li>
+<li>57415 bayt; 54041 karakter; 33 açık referans.</li>
+<li>SHA-256: <code>eb8a787c7794d784956fac0e461b1e836fadbf89489e8ec8d67cb6fc4f464d28</code></li>
+</ul>
+<h3>D04 · AI geliştirme: 2023–2026 uygulama rehberi</h3>
+<p>Araç ve repo karşılaştırması, doğrulama döngüsü, ROI, yönetişim ve pilot.</p>
+<ul>
+<li><a href="https://karacaismail.github.io/futuristic/sources/D04.txt">Özgün tam metin</a></li>
+<li>66000 bayt; 60872 karakter; 17 açık referans.</li>
+<li>SHA-256: <code>d93d8e5cabac82a417cbd24b810e90b3e0fa642075a6734141ca207eb62d3cc8</code></li>
+</ul>
+<h3>D05 · Video içerik hattı: pragmatik saha rehberi</h3>
+<p>Beş üretim yaklaşımı, B2B senaryoları, self-host, OpenClaw, müzik ve platformlar.</p>
+<ul>
+<li><a href="https://karacaismail.github.io/futuristic/sources/D05.txt">Özgün tam metin</a></li>
+<li>32688 bayt; 32636 karakter; 37 açık referans.</li>
+<li>SHA-256: <code>2cf6fbab402d7fdb7d106256e1e8b5f13289ee1bc03d3ee02c38fd8cb9ab4b7f</code></li>
+</ul>
+<h3>D06 · Yazılım ajanları: karar odaklı rehber</h3>
+<p>Worktree, AGENTS.md, Spec Kit, MCP, test, model serving ve GPU ekonomisi.</p>
+<ul>
+<li><a href="https://karacaismail.github.io/futuristic/sources/D06.txt">Özgün tam metin</a></li>
+<li>44376 bayt; 42014 karakter; 22 açık referans.</li>
+<li>SHA-256: <code>96d53681790e3d946bf21f5bea55bdac6e54c2d0a6996fb41e635437ab7640ca</code></li>
+</ul>
+<p><a href="https://karacaismail.github.io/futuristic/sources/arastirma-arsivi.zip">Altı belgeyi manifestoyla ZIP indir</a>.</p>
+<h2>11. Tam referans indeksi</h2>
+<p>Aşağıdaki bağlantılar kaynak belgelerden çıkarılmıştır. Bu liste doğrulama listesi değildir.</p>
+<ul>
+<li><strong>R001</strong> <a href="https://Epoch.ai">Epoch.ai</a> — D02</li>
+<li><strong>R002</strong> <a href="https://arxiv.org/abs/2507.09089">arxiv.org/abs/2507.09089</a> — D02</li>
+<li><strong>R003</strong> <a href="https://arxiv.org/abs/2605.18461">arxiv.org/abs/2605.18461</a> — D02</li>
+<li><strong>R004</strong> <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate">cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate</a> — D03</li>
+<li><strong>R005</strong> <a href="https://docs.dev.runwayml.com/">docs.dev.runwayml.com/</a> — D03</li>
+<li><strong>R006</strong> <a href="https://docs.lumalabs.ai/">docs.lumalabs.ai/</a> — D03</li>
+<li><strong>R007</strong> <a href="https://developer.adobe.com/firefly-services/docs/firefly-api/">developer.adobe.com/firefly-services/docs/firefly-api/</a> — D03</li>
+<li><strong>R008</strong> <a href="https://kling.ai/">kling.ai/</a> — D03</li>
+<li><strong>R009</strong> <a href="https://platform.minimax.io/">platform.minimax.io/</a> — D03</li>
+<li><strong>R010</strong> <a href="https://docs.heygen.com/">docs.heygen.com/</a> — D03</li>
+<li><strong>R011</strong> <a href="https://docs.synthesia.io/">docs.synthesia.io/</a> — D03</li>
+<li><strong>R012</strong> <a href="https://docs.tavus.io/">docs.tavus.io/</a> — D03</li>
+<li><strong>R013</strong> <a href="https://developer.adobe.com/firefly-services/docs/audio-video-api/">developer.adobe.com/firefly-services/docs/audio-video-api/</a> — D03</li>
+<li><strong>R014</strong> <a href="https://www.veed.io/">www.veed.io/</a> — D03</li>
+<li><strong>R015</strong> <a href="https://elevenlabs.io/docs/api-reference/text-to-speech">elevenlabs.io/docs/api-reference/text-to-speech</a> — D03</li>
+<li><strong>R016</strong> <a href="https://cloud.google.com/text-to-speech/docs">cloud.google.com/text-to-speech/docs</a> — D03</li>
+<li><strong>R017</strong> <a href="https://platform.openai.com/docs/guides/text-to-speech">platform.openai.com/docs/guides/text-to-speech</a> — D03</li>
+<li><strong>R018</strong> <a href="https://shotstack.io/docs/">shotstack.io/docs/</a> — D03</li>
+<li><strong>R019</strong> <a href="https://creatomate.com/docs/api/introduction">creatomate.com/docs/api/introduction</a> — D03</li>
+<li><strong>R020</strong> <a href="https://json2video.com/docs/">json2video.com/docs/</a> — D03</li>
+<li><strong>R021</strong> <a href="https://github.com/remotion-dev/remotion">github.com/remotion-dev/remotion</a> — D03</li>
+<li><strong>R022</strong> <a href="https://ffmpeg.org/">ffmpeg.org/</a> — D03</li>
+<li><strong>R023</strong> <a href="https://github.com/WyattBlue/auto-editor">github.com/WyattBlue/auto-editor</a> — D03</li>
+<li><strong>R024</strong> <a href="https://developer.adobe.com/premiere-pro/">developer.adobe.com/premiere-pro/</a> — D03</li>
+<li><strong>R025</strong> <a href="https://github.com/Comfy-Org/ComfyUI">github.com/Comfy-Org/ComfyUI</a> — D03</li>
+<li><strong>R026</strong> <a href="https://github.com/Lightricks/LTX-2">github.com/Lightricks/LTX-2</a> — D03</li>
+<li><strong>R027</strong> <a href="https://arxiv.org/abs/2501.00103">arxiv.org/abs/2501.00103</a> — D03</li>
+<li><strong>R028</strong> <a href="https://github.com/Wan-Video/Wan2.2">github.com/Wan-Video/Wan2.2</a> — D03</li>
+<li><strong>R029</strong> <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo">github.com/Tencent-Hunyuan/HunyuanVideo</a> — D03</li>
+<li><strong>R030</strong> <a href="https://github.com/zai-org/CogVideo">github.com/zai-org/CogVideo</a> — D03</li>
+<li><strong>R031</strong> <a href="https://arxiv.org/abs/2408.06072">arxiv.org/abs/2408.06072</a> — D03</li>
+<li><strong>R032</strong> <a href="https://docs.n8n.io/">docs.n8n.io/</a> — D03</li>
+<li><strong>R033</strong> <a href="https://docs.temporal.io/workflows">docs.temporal.io/workflows</a> — D03</li>
+<li><strong>R034</strong> <a href="https://developers.google.com/youtube/v3/docs/videos/insert">developers.google.com/youtube/v3/docs/videos/insert</a> — D03</li>
+<li><strong>R035</strong> <a href="https://developers.tiktok.com/products/content-posting-api/">developers.tiktok.com/products/content-posting-api/</a> — D03</li>
+<li><strong>R036</strong> <a href="https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api">learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api</a> — D03</li>
+<li><strong>R037</strong> <a href="https://GitLab.com">GitLab.com</a> — D04</li>
+<li><strong>R038</strong> <a href="https://github.com/bigcode-project/starcoder2">github.com/bigcode-project/starcoder2</a> — D04</li>
+<li><strong>R039</strong> <a href="https://arxiv.org/abs/2402.19173">arxiv.org/abs/2402.19173</a> — D04</li>
+<li><strong>R040</strong> <a href="https://github.com/salesforce/CodeGen">github.com/salesforce/CodeGen</a> — D04</li>
+<li><strong>R041</strong> <a href="https://deepmind.google/blog/competitive-programming-with-alphacode/">deepmind.google/blog/competitive-programming-with-alphacode/</a> — D04</li>
+<li><strong>R042</strong> <a href="https://github.com/QwenLM/Qwen3-Coder">github.com/QwenLM/Qwen3-Coder</a> — D04</li>
+<li><strong>R043</strong> <a href="https://github.com/QwenLM/qwen-code">github.com/QwenLM/qwen-code</a> — D04</li>
+<li><strong>R044</strong> <a href="https://github.com/OpenHands/openhands">github.com/OpenHands/openhands</a> — D04</li>
+<li><strong>R045</strong> <a href="https://github.com/OpenHands/software-agent-sdk">github.com/OpenHands/software-agent-sdk</a> — D04</li>
+<li><strong>R046</strong> <a href="https://github.com/swe-agent/swe-agent">github.com/swe-agent/swe-agent</a> — D04</li>
+<li><strong>R047</strong> <a href="https://arxiv.org/abs/2405.15793">arxiv.org/abs/2405.15793</a> — D04</li>
+<li><strong>R048</strong> <a href="https://github.com/Aider-AI/aider">github.com/Aider-AI/aider</a> — D04</li>
+<li><strong>R049</strong> <a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a> — D04</li>
+<li><strong>R050</strong> <a href="https://github.com/run-llama/llama_index">github.com/run-llama/llama_index</a> — D04</li>
+<li><strong>R051</strong> <a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a> — D04</li>
+<li><strong>R052</strong> <a href="https://github.com/huggingface/transformers">github.com/huggingface/transformers</a> — D04</li>
+<li><strong>R053</strong> <a href="https://github.com/continuedev/continue">github.com/continuedev/continue</a> — D04</li>
+<li><strong>R054</strong> <a href="https://support.google.com/youtube/answer/1311392">support.google.com/youtube/answer/1311392</a> — D05</li>
+<li><strong>R055</strong> <a href="https://Captions.ai">Captions.ai</a> — D05</li>
+<li><strong>R056</strong> <a href="https://fal.ai">fal.ai</a> — D05</li>
+<li><strong>R057</strong> <a href="https://AutoShorts.ai">AutoShorts.ai</a> — D05</li>
+<li><strong>R058</strong> <a href="https://Revid.ai">Revid.ai</a> — D05</li>
+<li><strong>R059</strong> <a href="https://Predis.ai">Predis.ai</a> — D05</li>
+<li><strong>R060</strong> <a href="https://Make.com">Make.com</a> — D05</li>
+<li><strong>R061</strong> <a href="https://github.com/harry0703/MoneyPrinterTurbo">github.com/harry0703/MoneyPrinterTurbo</a> — D05</li>
+<li><strong>R062</strong> <a href="https://github.com/gitroomhq/postiz-app">github.com/gitroomhq/postiz-app</a> — D05</li>
+<li><strong>R063</strong> <a href="https://github.com/openclaw/openclaw">github.com/openclaw/openclaw</a> — D05</li>
+<li><strong>R064</strong> <a href="https://github.com">github.com</a> — D05</li>
+<li><strong>R065</strong> <a href="https://n8n.io/workflows/2971">n8n.io/workflows/2971</a> — D05</li>
+<li><strong>R066</strong> <a href="https://n8n.io/workflows/10455">n8n.io/workflows/10455</a> — D05</li>
+<li><strong>R067</strong> <a href="https://n8n.io/workflows/2875">n8n.io/workflows/2875</a> — D05</li>
+<li><strong>R068</strong> <a href="https://n8n.io/workflows/6014">n8n.io/workflows/6014</a> — D05</li>
+<li><strong>R069</strong> <a href="https://developers.google.com/youtube/v3">developers.google.com/youtube/v3</a> — D05</li>
+<li><strong>R070</strong> <a href="https://developers.tiktok.com/doc/content-posting-api-reference-direct-post">developers.tiktok.com/doc/content-posting-api-reference-direct-post</a> — D05</li>
+<li><strong>R071</strong> <a href="https://developers.facebook.com/documentation/instagram-platform/content-publishing">developers.facebook.com/documentation/instagram-platform/content-publishing</a> — D05</li>
+<li><strong>R072</strong> <a href="https://elevenlabs.io/docs">elevenlabs.io/docs</a> — D05</li>
+<li><strong>R073</strong> <a href="https://digital-strategy.ec.europa.eu/en/policies/guidelines-transparency-ai-generated-content">digital-strategy.ec.europa.eu/en/policies/guidelines-transparency-ai-generated-content</a> — D05</li>
+<li><strong>R074</strong> <a href="https://artificialintelligenceact.eu/transparency-rules-article-50/">artificialintelligenceact.eu/transparency-rules-article-50/</a> — D05</li>
+<li><strong>R075</strong> <a href="https://modelslab.com">modelslab.com</a> — D05</li>
+<li><strong>R076</strong> <a href="https://buildmvpfast.com">buildmvpfast.com</a> — D05</li>
+<li><strong>R077</strong> <a href="https://runpod.io/articles">runpod.io/articles</a> — D05</li>
+<li><strong>R078</strong> <a href="https://blotato.com/blog">blotato.com/blog</a> — D05</li>
+<li><strong>R079</strong> <a href="https://upload-post.com">upload-post.com</a> — D05</li>
+<li><strong>R080</strong> <a href="https://checkthat.ai">checkthat.ai</a> — D05</li>
+<li><strong>R081</strong> <a href="https://colossyan.com">colossyan.com</a> — D05</li>
+<li><strong>R082</strong> <a href="https://eesel.ai">eesel.ai</a> — D05</li>
+<li><strong>R083</strong> <a href="https://epidemicsound.com">epidemicsound.com</a> — D05</li>
+<li><strong>R084</strong> <a href="https://artlist.io">artlist.io</a> — D05</li>
+<li><strong>R085</strong> <a href="https://help.suno.com">help.suno.com</a> — D05</li>
+<li><strong>R086</strong> <a href="https://creatomate.com">creatomate.com</a> — D05</li>
+<li><strong>R087</strong> <a href="https://shotstack.io">shotstack.io</a> — D05</li>
+<li><strong>R088</strong> <a href="https://json2video.com">json2video.com</a> — D05</li>
+<li><strong>R089</strong> <a href="https://remotion.pro">remotion.pro</a> — D05</li>
+<li><strong>R090</strong> <a href="https://github.com/RayVentura/ShortGPT">github.com/RayVentura/ShortGPT</a> — D05</li>
+<li><strong>R091</strong> <a href="https://chatgpt.com/codex">chatgpt.com/codex</a> — D06</li>
+<li><strong>R092</strong> <a href="https://runpane.com">runpane.com</a> — D06</li>
+<li><strong>R093</strong> <a href="https://LogicStar.ai">LogicStar.ai</a> — D06</li>
+<li><strong>R094</strong> <a href="https://coderabbit.ai/pricing">coderabbit.ai/pricing</a> — D06</li>
+<li><strong>R095</strong> <a href="https://vals.ai/benchmarks/swebench">vals.ai/benchmarks/swebench</a> — D06</li>
+<li><strong>R096</strong> <a href="https://Arena.ai">Arena.ai</a> — D06</li>
+<li><strong>R097</strong> <a href="https://support.claude.com">support.claude.com</a> — D06</li>
+<li><strong>R098</strong> <a href="https://bex.co">bex.co</a> — D06</li>
+<li><strong>R099</strong> <a href="https://anthropic.com">anthropic.com</a> — D06</li>
+<li><strong>R100</strong> <a href="https://openai.com">openai.com</a> — D06</li>
+<li><strong>R101</strong> <a href="https://github.com/github/spec-kit">github.com/github/spec-kit</a> — D06</li>
+<li><strong>R102</strong> <a href="https://github.com/no-fluff/awesome-vibe-coding">github.com/no-fluff/awesome-vibe-coding</a> — D06</li>
+<li><strong>R103</strong> <a href="https://github.com/andyrewlee/awesome-agent-orchestrators">github.com/andyrewlee/awesome-agent-orchestrators</a> — D06</li>
+<li><strong>R104</strong> <a href="https://github.com/SamurAIGPT/awesome-openclaw">github.com/SamurAIGPT/awesome-openclaw</a> — D06</li>
+<li><strong>R105</strong> <a href="https://github.com/BloopAI/vibe-kanban">github.com/BloopAI/vibe-kanban</a> — D06</li>
+<li><strong>R106</strong> <a href="https://github.com/freddy-schuetz/n8n-claw">github.com/freddy-schuetz/n8n-claw</a> — D06</li>
+<li><strong>R107</strong> <a href="https://github.com/upstash/context7">github.com/upstash/context7</a> — D06</li>
+<li><strong>R108</strong> <a href="https://github.com/microsoft/playwright-mcp">github.com/microsoft/playwright-mcp</a> — D06</li>
+<li><strong>R109</strong> <a href="https://github.com/czlonkowski/n8n-mcp">github.com/czlonkowski/n8n-mcp</a> — D06</li>
+<li><strong>R110</strong> <a href="https://arxiv.org/abs/2602.11988">arxiv.org/abs/2602.11988</a> — D06</li>
+<li><strong>R111</strong> <a href="https://arxiv.org/abs/2605.10039">arxiv.org/abs/2605.10039</a> — D06</li>
+<li><strong>R112</strong> <a href="https://arxiv.org/abs/2603.22489">arxiv.org/abs/2603.22489</a> — D06</li>
+</ul></main></html>

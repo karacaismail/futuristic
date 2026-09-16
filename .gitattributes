@@ -1,0 +1,3 @@
+# Preserve original source bytes and raw test output, including whitespace.
+public/sources/*.txt -text -whitespace
+docs/evidence/*.txt -whitespace

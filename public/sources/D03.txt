@@ -1,0 +1,874 @@
+# Yapay Zekâ ile Uçtan Uca Video İçerik Üretimi, Kurgu ve Otomatik Yayınlama
+
+## Yönetici özeti
+
+**Araştırma tarihi: 16 Eylül 2026.** Pazar artık “AI ile video üretilebilir mi?” aşamasını geçmiş durumda. Bugün metinden videoya üretim, görselden videoya üretim, yapay ses, dijital sunucu/avatar, altyazı, otomatik kırpma, programatik kurgu, motion graphics ve sosyal platformlara API üzerinden yükleme ayrı ayrı üretim kalitesine ulaşmış durumda. Ancak **tek bir ürünün yaratıcı üretimden çoklu sosyal ağlara güvenilir, denetlenebilir ve ölçeklenebilir yayına kadar tüm zinciri eksiksiz çözmesi hâlâ gerçekçi değil**. En sağlam yaklaşım, modelleri değiştirilebilir servisler olarak kullanan bir **vendor-neutral içerik üretim orkestrasyonu** kurmaktır. Bu değerlendirme, Google Veo, Runway, Luma, Adobe, HeyGen, Synthesia, Tavus, ElevenLabs, Shotstack, Creatomate, JSON2Video, FFmpeg, Remotion, ComfyUI ve sosyal platformların resmi API dokümantasyonlarının birlikte incelenmesine dayanıyor. citeturn0search0turn3search4turn5search0turn9search12turn13search2
+
+En güçlü mimari, AI'ın doğrudan nihai MP4 üretmesine bel bağlamak yerine içeriği önce **yapılandırılmış bir “video planına”** dönüştürmektir: brief → senaryo → shot list/storyboard → sahne varlıkları → ses/avatar → deterministik timeline → kalite kontrol → platform varyantları → onay → yayın → analitik geri besleme. Böylece Veo bugün daha iyi sonuç verip altı ay sonra başka bir model öne çıktığında yalnızca “generation adapter” değiştirilir; edit, marka kuralları, yayınlama ve izleme altyapısı korunur. Runway'in 2026'da ayrı model-router konfigürasyonları, allow/deny listeleri ve maliyet/gecikme/kalite optimizasyonu eklemiş olması da pazarın bu çok-modelli mimariye ilerlediğinin güçlü bir göstergesidir. citeturn3search4
+
+**Bugünkü en önemli ürün aileleri şöyle ayrışıyor:**
+
+| İhtiyaç | En güçlü aday sınıfı | Araştırma sonucu |
+|---|---|---|
+| Sinematik generative video | Google Veo 3.1, Runway, Luma, Kling, MiniMax | API-first kullanılabilir; fakat kısa klip tabanlı üretim ve yeniden üretim maliyeti hâlâ temel sorun. citeturn0search0turn3search4turn0search2turn21search0turn21search1 |
+| Script → bitmiş video | HeyGen Video Agent, Synthesia, VEED, InVideo | Hızlı MVP için güçlü; fakat yaratıcı kontrol ve vendor bağımlılığı daha yüksek. citeturn5search0turn6search1turn24search2turn24search6 |
+| AI presenter/avatar | HeyGen, Synthesia, Tavus, Adobe Avatar API | Kurumsal eğitim, satış, ürün anlatımı ve lokalizasyon için olgun kategori. citeturn5search0turn6search1turn5search2turn4search23 |
+| TTS/dublaj | ElevenLabs, Google Cloud TTS, OpenAI TTS, MiniMax, Adobe | Çok dilli üretim yeterince olgun; ses hakkı/klonlama izni ayrı yönetişim gerektiriyor. citeturn7search0turn7search2turn8search0turn21search1turn4search17 |
+| Deterministik video assembly | Shotstack, Creatomate, JSON2Video, Remotion, FFmpeg | Uçtan uca otomasyonun en kritik ve en az “AI” olan katmanı. citeturn9search12turn25search1turn9search29turn23view3turn10search26 |
+| Uzun videodan short üretme | OpusClip, AI clipping araçları, auto-editor | Podcast/webinar/uzun video repurposing için güçlü. OpusClip API 2026'da genel kullanıma açıldı. citeturn24search1turn24search5turn10search3 |
+| Açık kaynak üretim | ComfyUI + LTX-2/LTX-Video + Wan + HunyuanVideo + CogVideo | Veri kontrolü ve model bağımsızlığı açısından güçlü; GPU/MLOps operasyonu gerekir. citeturn23view0turn16search5turn23view2turn23view1turn22academia15 |
+| Otomatik yayınlama | YouTube Data API, TikTok Content Posting API, Meta Content Publishing, LinkedIn APIs | Mümkün; fakat OAuth, app review, audit, hesap tipi ve platform politikaları gerçek bottleneck. citeturn13search2turn13search1turn26search0turn14search0turn15search1 |
+| Low-code orchestration | n8n, Make, Zapier | MVP ve orta hacim için uygun; uzun süren generative job'larda callback/job-state tasarımı şart. citeturn19view0turn18search2turn18search1 |
+| Dayanıklı production orchestration | Temporal veya eşdeğer durable-workflow yaklaşımı | Dakikalar/saatler süren render, retry ve insan onaylı süreçlerde daha doğru mimari. citeturn17search2turn17search3turn17search4 |
+
+Önemli güncel bir uyarı: **OpenAI'nin Sora video API'si stratejik yeni entegrasyon için uygun bir aday değildir.** OpenAI'nin resmi dokümantasyonunda API'nin deprecated olduğu ve **24 Eylül 2026'da kalıcı olarak kapatılacağı** belirtiliyor; bu raporun tarihi 16 Eylül 2026 olduğundan kapanış sekiz gün sonradır. citeturn2search0turn2search1
+
+Bu nedenle tavsiyem bir “AI video tool” seçmek değil, üç katmanlı bir platform oluşturmaktır:
+
+**Creative Intelligence Layer → Deterministic Media Engine → Distribution & Observability Layer.**
+
+İlk 3–6 ay için optimum strateji de **SaaS-first, adapter-based, human-in-the-loop** başlamaktır. Açık kaynak GPU inference ancak hacim, gizlilik veya birim maliyet bunu haklı çıkardığında ikinci aşamada eklenmelidir. ComfyUI'nin bugün API endpoint'leri, asenkron kuyruk, model offloading, quantized model desteği ve çok sayıda açık video modelini desteklemesi hibrit modele geçişi mümkün kılıyor. citeturn23view0
+
+
+## Kapsam, varsayımlar ve hedef yetenek modeli
+
+Aşağıdaki noktalar kullanıcı tarafından belirtilmediği için **UNK — unknown** kabul edilmiştir: aylık bütçe, günlük video hacmi, ortalama video süresi, hedef platformların kesin listesi, organik/reklam içerik oranı, 9:16/16:9/1:1 dağılımı, 4K/HDR gereksinimi, Türkçe dışındaki diller, kullanıcı başına kişiselleştirme ihtiyacı, canlı avatar ihtiyacı, insan onayının zorunlu olup olmadığı, içerik üretim SLA'sı, veri ikameti, kurum içi GPU olup olmadığı ve mevcut DAM/PIM/CMS altyapısı.
+
+Bu belirsizlikler nedeniyle rapor **orta ölçekli bir içerik fabrikası** varsayımıyla tasarlanmıştır: çoklu marka/ürün içeriği, Shorts/Reels/TikTok ile gerektiğinde 16:9 YouTube/LinkedIn içerikleri, API kontrollü üretim, gerektiğinde insan onayı ve daha sonra hacim büyüdükçe self-hosted bileşenlere geçiş.
+
+Hedef sistem bir videoyu tek dosya olarak değil şu tür bir “content package” olarak ele almalıdır:
+
+```json
+{
+  "content_id": "campaign-product-2026-09-001",
+  "objective": "product_education",
+  "language": "tr-TR",
+  "brand": "brand-a",
+  "script": {},
+  "scenes": [],
+  "voice": {},
+  "music": {},
+  "captions": {},
+  "variants": {
+    "youtube_16x9": {},
+    "shorts_9x16": {},
+    "instagram_reel": {},
+    "tiktok": {},
+    "linkedin": {}
+  },
+  "rights": {},
+  "approval": {},
+  "publication": {},
+  "analytics": {}
+}
+```
+
+Bu yaklaşım özellikle önemlidir; çünkü güncel üreticilerin output özellikleri birbirinden ciddi biçimde farklılaşmaktadır. Örneğin Google Veo 3.1 4/6/8 saniyelik üretimler, 9:16 ve 16:9 oranları, 720p/1080p ve belirli kullanım yollarında 4K, ses üretimi ve MP4 çıktı sunarken; Runway'in 2026 kataloğu Wan 3 ile 30 saniyeye kadar native audio, Seedance 2.5 ile 4–30 saniyelik klipler ve MiniMax/Hailuo gibi farklı modelleri aynı API yüzeyinde topluyor. citeturn0search0turn3search4
+
+Dolayısıyla **“video” ana veri modeli değildir; storyboard/timeline + asset manifest ana veri modeli olmalıdır.** Bu, aşağıdaki yetenek haritasını mümkün kılar:
+
+| Katman | Hedef yetenek |
+|---|---|
+| İçerik zekâsı | Brief alma, research, senaryo, hook, CTA, fact-check, marka tonu |
+| Creative planning | Storyboard, shot list, süre, kamera, görsel referanslar |
+| Generation | T2V, I2V, V2V, product shots, b-roll, avatar |
+| Audio | TTS, voice cloning, dublaj, müzik, SFX, loudness |
+| Assembly | Timeline, trimming, transitions, overlay, captions, lower thirds |
+| Motion | Dinamik başlık, grafik, chart, logo animasyonu, data-driven animation |
+| Finishing | Reframe, LUT/color transform, SDR/HDR, codec/transcode |
+| QC | Teknik, semantik, hukuki ve marka kontrolleri |
+| Localization | Translation, TTS/dubbing, subtitle, visual-text replacement |
+| Distribution | Çoklu platform render/publish/schedule |
+| Feedback | Reach, retention, CTR, conversion → sonraki içerik planına geri besleme |
+
+Bu ayrım aynı zamanda generative AI'ın nondeterministik doğasıyla deterministik video pipeline'ını birbirinden ayırır. LTX-Video ve CogVideoX gibi araştırmalar video generation tarafında latent diffusion / diffusion-transformer mimarilerinin yüksek kaliteli text-to-video ve image-to-video üretimine nasıl ölçeklendiğini gösterirken, timeline kompozisyonu farklı bir mühendislik problemidir. LTX-Video makalesi 768×512 çözünürlükte beş saniyelik 24 fps içeriğin H100 üzerinde iki saniyede üretilebildiğini rapor etmiş; CogVideoX çalışması ise 10 saniyelik 768×1360 videoları hedefleyen diffusion-transformer yaklaşımını yayımlamıştır. Bunlar araştırma benchmarklarıdır; gerçek production performansı kullanılan donanım ve workflow'a bağlıdır. citeturn22academia14turn22academia15
+
+
+## Güncel araç ve platform envanteri
+
+Aşağıdaki envanter “her AI video web sitesi” listesinden ziyade **otomasyona alınabilir ve üretim mimarisinde anlamlı rol oynayan** ürünlere odaklanmaktadır.
+
+### Generative video ve video dönüşümü
+
+| Platform | Temel yetenekler | Fiyat modeli | API | Format / süre | Dil | Entegrasyon ve not |
+|---|---|---|---|---|---|---|
+| [Google Veo 3.1 / Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate) | T2V, I2V, first/last frame, extend, reference image, ses | Cloud kullanım/kota; serving modeline göre | Evet | MP4; 4/6/8 sn; 9:16,16:9; 720/1080, bazı varyantlarda 4K | Prompt: resmi dokümanda İngilizce | Kurumsal Google Cloud için güçlü seçenek; C2PA desteği mevcut. citeturn0search0turn0search11 |
+| [Runway API](https://docs.dev.runwayml.com/) | T2V/I2V/V2V, çoklu model, audio, references, HDR/format conversion | **$0.01/credit**, model başına credit/sec | Evet | Modele göre 480p–2K+, ProRes/PNG/HDR seçenekleri | Model bağımlı | 2026'da Wan, Seedance, Hailuo, Veo, Grok vb. aynı API yüzeyinde; router mevcut. citeturn3search1turn3search4 |
+| [Luma Dream Machine API](https://docs.lumalabs.ai/) | T2V, I2V, modify video, camera control, reframe, audio | Usage-based | Evet | Ray modellerinde yaklaşık 10–15 sn sınırlamaları; reframe oranları çoklu | Prompt/model bağımlı | Async job + polling/callback modeli otomasyon için uygun. citeturn0search2turn0search16turn0search6turn0search12 |
+| [Adobe Firefly APIs](https://developer.adobe.com/firefly-services/docs/firefly-api/) | Generate/edit image, video, audio, avatar | Generative/API kullanım; kurumsal planlar | Evet | Video API 16:9, 9:16, 1:1; 540–1080 sınıfı boyutlar | Model/endpointe bağlı | Creative Cloud/Premiere ekosistemiyle doğal entegrasyon avantajı. citeturn4search4turn4search18 |
+| [Kling AI API](https://kling.ai/) | T2V, I2V, video editing, motion control, avatar; Kling Video 3.0/Omni | Usage/API | Evet | 3.0 ailesi; native 4K ürün iddiası | Model bağımlı | Sinematik üretim adaylarından biri; production PoC ile benchmark edilmeli. citeturn21search0 |
+| [MiniMax API](https://platform.minimax.io/) | H3/Hailuo: T2V, I2V, first-last frame, multimodal references | Usage-based | Evet | H3: 768p/2K, 4–15 sn, 24 fps; eski Hailuo 1080p seçenekleri | Prompt tarafı model bağımlı | Aynı sağlayıcıda TTS de bulunduğu için video+audio pipeline sadeleşebilir. citeturn21search1 |
+| OpenAI Sora API | Video generation | — | **Deprecated** | — | — | **24 Eylül 2026'da kapanıyor; yeni mimaride kullanılmamalı.** citeturn2search0turn2search1 |
+
+Runway, çok sağlayıcılı tek API isteyen bir organizasyon açısından şu anda özel bir konumdadır: 2026 değişikliklerinde Wan 3'ün 30 saniyeye kadar native-audio üretimi, Seedance 2.5'in 4–30 saniyelik üretimleri, Hailuo 3'ün T2V/I2V/V2V özellikleri ve SDR→HDR Ruby servisi aynı platform üzerinde yer alıyor. Ancak bu kolaylık aynı zamanda ikinci seviye vendor lock-in yaratır; bu nedenle uygulamanın Runway veri modelini değil kendi `GenerationJob` şemasını kullanması daha sağlıklıdır. citeturn3search4
+
+### Script-to-video, avatar ve presenter
+
+| Platform | Yeteneği | Fiyat modeli | API | Dil/lokalizasyon | Otomasyon değeri |
+|---|---|---|---|---|---|
+| [HeyGen](https://docs.heygen.com/) | Avatar, voice, Video Agent, translation, lip-sync, clipping, music/SFX | Abonelik/API kullanım/enterprise | **Güçlü** REST + webhook + batch + CLI/MCP | Video Translation **175+ dil** olarak belgeleniyor | En API-first avatar/platform adaylarından biri; 100'e kadar batch request ve webhook desteği bulunuyor. citeturn5search0 |
+| [Synthesia](https://docs.synthesia.io/) | Script → presenter video, custom avatar, localization, brand kit, analytics | Free + abonelik + enterprise | Evet | **160+ dil** | Eğitim, onboarding ve corporate explainer için güçlü; free planda 10 dk/ay ve 9 stock avatar bilgisi yayımlanıyor. citeturn6search1turn5search1 |
+| [Tavus](https://docs.tavus.io/) | Real-time conversational video/persona | API usage / enterprise | Evet | Persona/model bağımlı | Offline render'dan ziyade canlı AI insan/agent senaryolarında öne çıkıyor; LiveKit, Meet, Zoom, Teams entegrasyonları bulunuyor. citeturn5search2 |
+| [Adobe Avatar API](https://developer.adobe.com/firefly-services/docs/audio-video-api/) | Text veya audio → avatar video | API/enterprise | Evet | Stock voice seçenekleri | Kendi audio'su ve image/video background kullanılabiliyor; async job modeli var. citeturn4search23 |
+| [VEED](https://www.veed.io/) | AI video, avatar, dubbing, TTS, subtitles, AI edit | Subscription/API/enterprise | Video Editing API mevcut | Çok dilli ürün seti | Sosyal içerik üretiminde “all-in-one” yaklaşım. citeturn24search2 |
+| InVideo AI | Prompt/script → full video, stock/generative media, voice | Subscription/credits | Public API kapsamı **UNK** | Çoklu AI audio/image modeli | UI-first tam video üretiminde güçlü; API-first backend için sözleşme doğrulaması gerekli. citeturn24search6 |
+
+HeyGen ve Synthesia özellikle “haber sunucusu / eğitimci / satış temsilcisi / ürün anlatıcısı” formatında generative b-roll yaklaşımından daha deterministik bir üretim sunar. Tavus ise aynı kategoriye yüzeysel olarak benzese de asıl farkı gerçek zamanlı konuşan persona/agent modelidir. citeturn5search0turn6search1turn5search2
+
+### TTS, dublaj ve audio
+
+| Platform | API | Fiyat modeli | Format / yetenek | Dil |
+|---|---|---|---|---|
+| [ElevenLabs](https://elevenlabs.io/docs/api-reference/text-to-speech) | Evet | Credit/subscription + API usage | MP3 örneğin `mp3_44100_128`; expressive Eleven v3, Multilingual, Turbo/Flash | Multilingual; modele bağlı | Resmi API text-to-speech ve farklı model seçeneklerini sunuyor. citeturn7search0 |
+| [Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech/docs) | REST/gRPC | Karakter bazlı | MP3, Linear16/PCM, OGG Opus, ALAW/MULAW; sync/streaming/async | Geniş; **tr-TR destekleniyor** | Türkçe için PoC'nin referans sağlayıcılarından biri olmalı. citeturn7search4turn7search5turn7search12 |
+| [OpenAI TTS](https://platform.openai.com/docs/guides/text-to-speech) | Evet | Usage | 11 built-in voice belgeleniyor | Model bağımlı | LLM ile aynı provider kullanılıyorsa entegrasyonu basitleştirir. citeturn8search0 |
+| MiniMax Speech | Evet | Usage | speech-2.8 HD/Turbo; emotion control | **40 dil** | Video+voice tek vendor PoC'si yapılabilir. citeturn21search1 |
+| Adobe TTS | Evet | API/enterprise | Stock voices | Voice kataloguna bağlı | Firefly/Avatar pipeline ile bütünleşir. citeturn4search17 |
+| Runway Seed Audio / Eleven v3 | Evet | Credit/sec | TTS/SFX; WAV/MP3/Ogg Opus seçenekleri | Model bağımlı | Video API ile aynı billing/orchestration yüzeyi avantaj sağlar. citeturn3search4turn3search1 |
+
+Burada özellikle **pronunciation dictionary/glossary** ayrı bir asset olarak tutulmalıdır. Ürün adları, kişi isimleri, teknik terimler ve Türkçe/İngilizce karma kullanımlar modelin doğal dil desteğinden bağımsız olarak hataya neden olabilir. Google TTS'nin SSML ve mark/timestamp mekanizmaları, altyazı ve animasyon senkronizasyonunda kullanılabilir. citeturn7search7
+
+### Kurgu, assembly, motion graphics ve finishing
+
+| Araç | Tür | Fiyat | API/automation | Güçlü olduğu alan |
+|---|---|---|---|---|
+| [Shotstack](https://shotstack.io/docs/) | Cloud programmatic editor | Usage/subscription | REST, JSON timeline, templates, callbacks, SDK | Ölçekli deterministik assembly; timeline/tracks/clips. citeturn9search12turn9search20 |
+| [Creatomate](https://creatomate.com/docs/api/introduction) | Template + JSON render API | Credit/subscription | REST, SDK, Zapier/Make/n8n | Social template automation, captions, dynamic content. citeturn25search1turn9search17turn9search28turn9search25 |
+| [JSON2Video](https://json2video.com/docs/) | JSON → video | Usage/subscription | REST, webhook; Make/n8n | Scenes, text, video, image, audio, TTS, subtitle composition. citeturn9search29turn9search10turn9search22 |
+| [Remotion](https://github.com/remotion-dev/remotion) | Code-first video rendering | Kaynak kodu açık; ticari lisans koşulları ayrıca incelenmeli | React/programmatic | Karmaşık brand motion systems ve data-driven video. citeturn23view3 |
+| [FFmpeg](https://ffmpeg.org/) | OSS media engine | Ücretsiz OSS | CLI/library | Encode, mux, filters, concat, crossfade, scale, LUT/transcode. citeturn10search26turn10search2turn10search10 |
+| [auto-editor](https://github.com/WyattBlue/auto-editor) | OSS automatic editor | OSS | CLI | Sessizlik/loudness tabanlı otomatik cut; subtitle retiming vb. citeturn10search3turn10search7 |
+| [Adobe Premiere UXP](https://developer.adobe.com/premiere-pro/) | Professional NLE automation | Creative Cloud | UXP API/plugin | İnsan editör + otomasyon hibriti, Premiere project manipulation. citeturn4search2turn4search6turn4search9 |
+| DaVinci Resolve | Professional edit/color | Free + Studio | Scripting/pro entegrasyonu mevcut olmakla birlikte bu araştırmada güncel resmi API sözleşmesinin ayrıntıları **UNK** | Profesyonel finishing/color; Resolve 21.1 Eylül 2026'da güncel sürüm hattında. citeturn11search1 |
+| Runway Ruby | AI finishing utility | Credit/sec | API | SDR→HDR / HDR-oriented transform | Yaratıcı color grade'in yerine geçmez; programatik HDR dönüşüm seçeneğidir. citeturn3search4turn3search1 |
+| OpusClip | Long → shorts | Free/Pro, API Pro/free trial | Public API | Highlight/viral short seçimi, captions, publish | API 2026'da public hale geldi; core API limiti 30 req/min/API key. citeturn24search1turn24search5 |
+
+Motion graphics açısından özellikle Shotstack'in HTML5 asset yaklaşımı JavaScript ile animasyon, dinamik grafik ve data visualization üretimine izin verirken, Creatomate ve Remotion template/data-driven yaklaşımı daha sofistike marka sistemleri için kullanılabilir. citeturn9search24turn25search1turn23view3
+
+**Color grading alanı generative video kadar olgun bir API kategorisi değildir.** LUT uygulamak, exposure/color transform veya HDR dönüşümü yapmak programatik olarak kolaydır; fakat “bu sahneye markanın sinematik görünümünü yaratıcı biçimde uygula ve bütün videoda continuity koru” seviyesinde güvenilir, vendor-neutral bir otomatik grading servisi hâlâ eksik halkalardan biridir. Bu nedenle yaratıcı grade için Resolve/Premiere tabanlı insan-onaylı finishing, mekanik renk dönüşümleri için FFmpeg/API yaklaşımı daha güvenlidir. Adobe Premiere'in güncel sürüm notları Lumetri Auto adjustment ve API üzerinden oluşturulan caption track gibi özelliklerin aktif geliştirildiğini de gösteriyor. citeturn20search3turn20search7
+
+### Açık kaynak ve self-hosted ekosistem
+
+ComfyUI artık yalnızca Stable Diffusion GUI'si değil; resmi reposu kendisini görüntü, video, 3D ve audio için modüler AI engine olarak tanımlıyor. API endpoint'leri, workflow JSON, asenkron kuyruk, VRAM/RAM yönetimi ve model offloading destekliyor; güncel video listesinde Wan 2.1/2.2, LTX-Video 2/2.3, HunyuanVideo 1.5, CogVideoX ve başka modeller bulunuyor. Çekirdek GPL-3.0 lisanslıdır. citeturn23view0
+
+| Açık çözüm | Rol | Deployment | Not |
+|---|---|---|---|
+| [ComfyUI](https://github.com/Comfy-Org/ComfyUI) | Node-based inference/workflow backend | Local/container/GPU/cloud | API + workflow JSON nedeniyle self-hosted generation gateway için güçlü aday. citeturn23view0 |
+| [LTX-2](https://github.com/Lightricks/LTX-2) | Video + senkron audio generation | GPU | Open-access foundation model ailesi. citeturn16search5 |
+| [LTX-Video paper](https://arxiv.org/abs/2501.00103) | T2V/I2V research/model | GPU | Latent diffusion; code ve pretrained weights yayımlanmış. citeturn22academia14 |
+| [Wan 2.2](https://github.com/Wan-Video/Wan2.2) | Generative video | GPU | Açık video model ailesi; ayrıca ComfyUI tarafından destekleniyor. citeturn23view2turn23view0 |
+| [HunyuanVideo](https://github.com/Tencent-Hunyuan/HunyuanVideo) | Large video generation | GPU | Tencent'in açık modeli/framework'ü. citeturn23view1 |
+| [CogVideo](https://github.com/zai-org/CogVideo) | T2V/I2V/V2V | GPU | Inference ve fine-tuning repo; CogVideoX ağırlıkları açık yayımlandı. citeturn16search3turn22academia15 |
+| [FFmpeg](https://ffmpeg.org/) | Render/transcode | CPU/GPU container | Generation dışında tüm pipeline'ın temel media utility'si olabilir. citeturn10search26 |
+| [Remotion](https://github.com/remotion-dev/remotion) | Programmatic motion/render | Container/server render | UI yerine kodla marka/timeline üretimi. citeturn23view3 |
+| [auto-editor](https://github.com/WyattBlue/auto-editor) | Automatic cuts | CPU | Konuşma tabanlı içerik preprocessing. citeturn10search3 |
+
+Self-hosted video generation “ücretsiz video” anlamına gelmez. GPU zamanı, model cold-start, model storage, worker utilization ve operasyon yükü SaaS maliyetiyle karşılaştırılmalıdır. Örneğin LTX'in ComfyUI advanced workflow dokümantasyonunda bazı kurulumlar için **32 GB+ VRAM ve 100 GB+ boş disk** önerilmektedir; dolayısıyla sıradan küçük container worker ile eşdeğer değildir. citeturn16search10
+
+
+## Referans mimari ve otomasyon pipeline'ları
+
+Önerilen mimari, sağlayıcıların birbirinden ayrıldığı **hexagonal/adaptor benzeri** bir media pipeline'dır. Generator, TTS, renderer veya publisher'ın sağlayıcı-specific payload'u yalnızca kendi adaptörünün içinde yaşamalıdır.
+
+```mermaid
+flowchart LR
+    A[Brief / CMS / PIM / Content Calendar] --> B[Content Orchestrator]
+    B --> C[Script & Storyboard]
+    C --> D[Policy / Brand / Fact Check]
+
+    D --> E{Scene Router}
+    E --> F[Veo / Runway / Luma / Kling]
+    E --> G[Stock / DAM / Existing Assets]
+    E --> H[HeyGen / Synthesia / Avatar]
+    E --> I[ComfyUI / Local Models]
+
+    C --> J[TTS / Dubbing / Music / SFX]
+
+    F --> K[Asset Store]
+    G --> K
+    H --> K
+    I --> K
+    J --> K
+
+    K --> L[Deterministic Timeline Engine]
+    L --> M[Shotstack / Creatomate / Remotion / FFmpeg]
+    M --> N[Technical + Semantic QC]
+    N --> O{Approval Gate}
+
+    O -->|Reject| C
+    O -->|Approve| P[Variant & Transcode]
+    P --> Q[Publishing Adapters]
+
+    Q --> R[YouTube]
+    Q --> S[TikTok]
+    Q --> T[Instagram / Facebook]
+    Q --> U[LinkedIn]
+
+    R --> V[Analytics / Event Store]
+    S --> V
+    T --> V
+    U --> V
+    V --> B
+```
+
+Bu ayrım, generative API'lerin neredeyse tamamının **asenkron job** şeklinde çalışması nedeniyle özellikle önemlidir. Luma örneğinde generation request bir ID döndürür ve durum daha sonra sorgulanır; Shotstack render tamamlandığında callback gönderebilir; HeyGen webhook/batch desteği sağlar. Dolayısıyla orchestrator'ın HTTP request'in açık kalmasını beklemesi yerine `QUEUED → GENERATING → RENDERING → QC → APPROVAL → PUBLISHING → PUBLISHED/FAILED` durum makinesi tutması gerekir. citeturn0search2turn9search20turn5search0
+
+### Referans içerik akışı
+
+İlk çağrı bir `ContentJob` oluşturur:
+
+```http
+POST /content-jobs
+Idempotency-Key: campaign-a-product-17-tr
+```
+
+```json
+{
+  "brief": "Ürünün üç temel faydasını 30 saniyede anlat",
+  "language": "tr-TR",
+  "targets": ["instagram_reel", "tiktok", "youtube_short"],
+  "brand_id": "brand-a",
+  "approval_required": true
+}
+```
+
+Orchestrator senaryoyu doğrudan paragraf olarak değil örneğin şu yapıda üretir:
+
+```json
+{
+  "duration_target": 30,
+  "hook": "…",
+  "scenes": [
+    {
+      "id": "s01",
+      "duration": 5,
+      "narration": "…",
+      "visual_intent": "product close-up",
+      "generation_mode": "image_to_video",
+      "camera": "slow push-in",
+      "safe_text_area": "center",
+      "fallback": "stock"
+    }
+  ],
+  "cta": "…"
+}
+```
+
+Her generative sahne için `GenerationAdapter` uygun model seçer:
+
+```text
+scene s01
+  -> policy check
+  -> model router
+       premium/hero shot    -> Veo / Runway high quality
+       cheap B-roll         -> faster model / stock
+       brand-safe product   -> image-to-video from approved packshot
+       presenter            -> HeyGen/Synthesia
+  -> submit async task
+  -> persist vendor_job_id
+  -> webhook/poll
+  -> download immutable asset
+  -> checksum + metadata
+```
+
+Model router'ın girdileri yalnızca “en iyi model hangisi?” olmamalıdır:
+
+```text
+score =
+  quality_weight        * expected_quality
++ consistency_weight    * reference_control
++ latency_weight        * expected_latency
++ cost_weight           * expected_cost
++ compliance_weight     * policy_fit
++ availability_weight   * quota_health
+```
+
+Bu yaklaşım Runway'in kendi 2026 Router özelliğindeki cost/latency/quality optimizasyonuna benzerdir fakat uygulama seviyesinde vendor bağımsız kalır. citeturn3search4
+
+### Audio ve timeline akışı
+
+Narration TTS'e gönderilir; sözcük/phrase zamanları mümkün olduğunca ayrı metadata olarak saklanır. Google TTS, SSML ve mark/timepoint mekanizmaları sunduğu için animasyon ve subtitle cue üretiminde kullanılabilir. citeturn7search7
+
+Sonrasında video renderer'a **AI prompt değil timeline specification** verilir:
+
+```json
+{
+  "resolution": { "width": 1080, "height": 1920 },
+  "fps": 30,
+  "tracks": [
+    {
+      "type": "video",
+      "clips": [
+        {"asset": "s01.mp4", "start": 0, "length": 5},
+        {"asset": "s02.mp4", "start": 5, "length": 6}
+      ]
+    },
+    {
+      "type": "captions",
+      "source": "captions.json",
+      "template": "brand_caption_v3"
+    },
+    {
+      "type": "audio",
+      "asset": "voice.wav"
+    }
+  ]
+}
+```
+
+Shotstack'in resmi modeli timeline → tracks → clips yapısına dayandığından bu tür bir abstraction ile doğrudan eşleşir; Creatomate ise template veya tamamen JSON üzerinden render oluşturabilir. citeturn9search4turn9search0turn25search1
+
+### Template-first ile generative-first farkı
+
+**Template-first** yaklaşım ürün katalogları, e-ticaret, haber kartları, emlak, kampanya varyantları ve binlerce benzer videoda tercih edilmelidir. Burada AI senaryo ve asset üretir; nihai layout deterministiktir. Shotstack, Creatomate ve JSON2Video bu modele uygundur. citeturn9search16turn25search1turn9search29
+
+**Generative-first** yaklaşım hero campaign, cinematic b-roll ve yüksek yaratıcı çeşitlilik istenen projelerde tercih edilmelidir. Veo, Runway, Luma ve Kling bu katmandadır. citeturn0search0turn3search4turn0search2turn21search0
+
+En güçlü production sistemi bu ikisini birleştirir:
+
+> AI sahneyi üretir; kod videoyu inşa eder.
+
+Bu, araştırmadaki en önemli mimari çıkarımdır.
+
+
+## Entegrasyon, orkestrasyon ve otomatik yayınlama
+
+### Sosyal platformların doğrudan API'leri
+
+**YouTube** tarafında Data API `videos.insert` ile video ve metadata yükleyebilir, resumable upload yapılabilir ve özel thumbnail ayrıca ayarlanabilir. Önemli production kısıtı, 2020 sonrasında oluşturulmuş ve audit'ten geçmemiş API projelerinden yapılan upload'ların private olarak sınırlandırılabilmesidir. citeturn13search2turn13search0turn13search12turn13search18
+
+**TikTok Content Posting API**, Direct Post veya draft/upload workflow'ları sunar. Resmi Direct Post sürecinde önce creator bilgisi sorgulanır, ardından post initialize edilir ve medya TikTok'a aktarılır; durum polling veya webhook üzerinden takip edilebilir. Audit edilmemiş client'larda Direct Post içeriğinin private görünürlükle kısıtlanabilmesi production öncesi çözülmesi gereken kritik bir app-review problemidir. citeturn13search1turn13search3turn13search7turn13search9
+
+TikTok büyük medyayı URL pull veya chunk/file upload yoluyla kabul edebildiğinden, orchestrator'ın videoyu kendi belleğinden upload etmek yerine presigned/publicly-fetchable asset URL kullanması yüksek hacimde daha mantıklıdır. citeturn13search15
+
+**Instagram** için Meta'nın Content Publishing API ailesi Reels yayınlama senaryolarını desteklemektedir; Meta 2026'da Reels publishing API'sine user tagging gibi yeni yetenekler eklemeye devam etmektedir. Ancak hesap tipi, app permission ve app review şartları deployment öncesi hedef hesaplar üzerinde test edilmelidir. citeturn26search0
+
+**LinkedIn** tarafında Posts API organic/sponsored post oluşturmayı destekler; Videos API video upload yanında captions ve thumbnails gibi varlıkları da yönetmektedir. citeturn14search0turn15search1
+
+Dolayısıyla publisher arayüzünün platform-spesifik olması gerekir:
+
+```text
+Publisher
+ ├─ YouTubePublisher
+ ├─ TikTokPublisher
+ ├─ InstagramPublisher
+ ├─ FacebookPublisher
+ └─ LinkedInPublisher
+```
+
+ve ortak cevap şu formda tutulmalıdır:
+
+```json
+{
+  "platform": "tiktok",
+  "content_id": "abc123",
+  "platform_post_id": null,
+  "state": "PROCESSING",
+  "submitted_at": "...",
+  "visibility": "PUBLIC",
+  "retryable": true,
+  "raw_status": {}
+}
+```
+
+Platform API'sinin `200 OK` döndürmesi içeriğin yayında olduğu anlamına gelmeyebilir; video processing ve moderation asenkron devam edebilir. TikTok'un ayrıca status API/webhook sağlamasının nedeni de budur. citeturn13search7
+
+### n8n referans deseni
+
+n8n kendisini AI özellikleri ile business-process automation'ı birleştiren fair-code workflow automation aracı olarak tanımlıyor; self-host, Docker Compose ve cloud seçenekleri mevcut. ComfyUI gibi iç servislerle HTTP Request üzerinden konuşabildiği için özellikle kurum içi MVP için güçlü adaydır. citeturn19view0
+
+Örnek:
+
+```text
+Webhook / CMS Trigger
+      ↓
+Load brand + campaign data
+      ↓
+Generate script
+      ↓
+Human approval?
+      ↓
+Split scenes
+      ↓
+HTTP → video generation APIs
+      ↓
+Wait / webhook callbacks
+      ↓
+Merge generated assets
+      ↓
+TTS
+      ↓
+Creatomate / Shotstack render
+      ↓
+QC
+      ↓
+Publish YouTube / TikTok / Meta / LinkedIn
+      ↓
+Store IDs + metrics
+```
+
+Production hacmi yükseldiğinde n8n'in worker/concurrency davranışı kapasite planlamasına dahil edilmelidir; güncel n8n dokümantasyonu queue-mode worker'larında concurrency'nin bir worker'ın aynı anda çalıştırdığı job sayısını belirlediğini açıklıyor. citeturn17search0
+
+### Make referans deseni
+
+Make custom webhook ile HTTPS üzerinden event alabilir; webhook isteklerini queue'ya koyabilir, paralel işleyebilir veya “process data in order” ile sıralı çalıştırabilir. Güncel resmi dokümantasyonda 10 saniyelik aralıkta 300 incoming webhook request limiti de belirtiliyor. citeturn18search2
+
+Creatomate'in resmi materyalleri Make üzerinden Instagram/YouTube Shorts/TikTok otomasyonu örnekleri sunduğu için no-code prototip açısından kombinasyon oldukça uygundur. citeturn9search17turn25search1
+
+Örnek:
+
+```text
+Custom Webhook
+ → Router: content type
+ → HTTP: script service
+ → Iterator: scenes
+ → HTTP: Runway/Luma
+ → callback webhook
+ → Array aggregator
+ → Creatomate
+ → publish routes
+ → Data Store / external DB
+```
+
+### Zapier referans deseni
+
+Zapier'in Webhooks aracı GET, POST, PUT ve Custom Request desteklemektedir; ayrıca Catch Hook/Catch Raw Hook ile dış API callback'leri workflow'a sokulabilir. citeturn18search1turn18search5
+
+Creatomate ve OpusClip gibi servislerin Zapier-uyumlu senaryoları olduğundan marketing operasyonlarının kendisinin workflow değiştirmesi gereken düşük hacimli ortamlarda tercih edilebilir. citeturn9search28turn24search1
+
+### Production-grade durable orchestration
+
+Video üretimi klasik request/response işinden farklıdır:
+
+```text
+generate scene
+ → 3 dakika bekle
+ → vendor rate-limit
+ → retry
+ → ikinci scene hazır
+ → üçüncü scene policy reject
+ → regenerate
+ → render 5 dakika
+ → manager approval için 6 saat bekle
+ → TikTok upload
+ → processing webhook bekle
+```
+
+Bu tip sürecin tek bir serverless function içinde tutulması doğru değildir. Temporal'ın Durable Execution yaklaşımında workflow state'i event history'de tutulur; process/network/server failure sonrasında workflow kaldığı yerden devam eder ve human approval gibi çok günlü beklemeler desteklenir. citeturn17search3turn17search4
+
+Bu nedenle ölçeğe göre tercih sırası:
+
+| Ölçek / ihtiyaç | Orkestrasyon |
+|---|---|
+| PoC, < yüzlerce iş/gün | Make / Zapier |
+| Teknik ekip + self-host kontrolü | n8n |
+| Kritik ve uzun süreli production | Temporal benzeri durable workflow |
+| Heavy media render | Queue + container workers |
+| Self-host video AI | GPU worker pool + ComfyUI/model serving |
+| Çok büyük batch/data pipeline | Kubernetes/worker orchestration + durable control plane |
+
+Serverless, burada **control plane** için çok uygundur: webhook receiver, job submitter, token exchange, metadata transform, status query. Uzun FFmpeg render veya büyük GPU inference ise container/GPU worker katmanında tutulmalıdır. Bu öneri, video servislerinin asenkron job/callback desenleri ile Temporal'ın uzun süreli workflow tasarımının birlikte değerlendirilmesinden çıkan mimari sonuçtur. citeturn0search2turn9search20turn17search6
+
+
+## Gap analizi, bilinmeyenler ve riskler
+
+Bugünkü pazarın önemli özelliği şudur: **bileşenler olgun, zincirin bütünü hâlâ heterojen.**
+
+| İstenen uçtan uca özellik | Bugünkü durum | Gap | Öneri |
+|---|---|---|---|
+| Brief → script | Çok güçlü | Düşük | LLM + brand/RAG |
+| Script → storyboard | Güçlü | Düşük-orta | Structured JSON contract |
+| Storyboard → tutarlı multi-shot video | Gelişiyor | **Yüksek** | Reference image + regeneration + asset continuity |
+| Uzun form tek-pass video | Sınırlı | **Yüksek** | Sahne bazlı üret + assembly |
+| Character/product consistency | İyileşiyor | Orta-yüksek | Approved reference pack + I2V |
+| TTS | Olgun | Düşük | Multi-provider routing |
+| Avatar presenter | Olgun | Düşük | HeyGen/Synthesia/Adobe |
+| Türkçe TTS | Mevcut | Kalite UNK | Provider bake-off; Google tr-TR referansı var. citeturn7search5 |
+| Türkçe avatar/lip-sync | Mevcut olma ihtimali yüksek | Kalite/aksan UNK | Native-speaker evaluation |
+| Auto captions | Olgun | Düşük | ASR + forced timing + glossary |
+| Deterministik assembly | Olgun | Düşük | Shotstack/Creatomate/Remotion |
+| Motion graphics | Olgun | Düşük-orta | Template/code-first |
+| Creative auto color grading | Parçalı | **Yüksek** | Human finishing + LUT rules |
+| Automated SDR/HDR | Var | Düşük-orta | Runway Ruby/standard media tools. citeturn3search4 |
+| Multi-platform rendering | Olgun | Düşük | Master timeline + target presets |
+| Multi-platform publishing | Teknik olarak var | **Orta-yüksek** | Per-platform adapters + app reviews |
+| Scheduling | Var | Orta | Own scheduler/platform capabilities |
+| Full automatic approval | Riskli | **Yüksek** | Risk-based human gate |
+| Closed-loop optimization | Parçalı | Yüksek | Normalize analytics + experiment DB |
+| Vendor-independent quality routing | Az ürünleşmiş | Orta | Own model gateway/router |
+| Provenance/AI disclosure | Gelişiyor | Orta-yüksek | Metadata + provenance ledger |
+
+En kritik gap **multi-shot continuity**'dir. Tek bir güzel AI klibi üretmek ile 30–120 saniyelik videoda aynı ürünün, kişinin, mekanın, kostümün ve ışık düzeninin sürekli kalmasını sağlamak farklı problemlerdir. Bu nedenle production mimarisi “30 saniyelik video üret” yerine “onaylanmış reference assets ile 4–8 kontrollü shot üret ve timeline'da birleştir” biçiminde tasarlanmalıdır. Veo, Luma, Runway ve açık modellerde reference/first-last-frame/image-to-video özelliklerinin giderek merkezi hale gelmesi de bu ihtiyacı yansıtıyor. citeturn0search0turn0search6turn3search4
+
+İkinci kritik gap **platform publishing governance**'dır. YouTube ve TikTok'un audit edilmemiş uygulamalara private-upload sınırlaması uygulayabilmesi, “API endpoint'i çalışıyor” ile “production otomatik yayın sistemi hazır” arasında ciddi fark yaratır. citeturn13search2turn13search9
+
+Üçüncü gap **quality evaluation**'dır. Model “completed” statüsüne geldiğinde teknik olarak geçerli bir MP4 üretmiş olabilir ancak eller/anatomi, logo deformasyonu, ürün yanlışlığı, telaffuz, yanlış claim, subtitle safe-zone ihlali veya marka tonu problemi taşıyabilir. Bu nedenle dört farklı QC sınıfı gerekir:
+
+| QC | Kontroller |
+|---|---|
+| Teknik | codec, resolution, fps, duration, silence, clipping, corrupted frames |
+| Semantic | script-video uyumu, hallucinated text/object, product consistency |
+| Brand | font/logo/safe area/CTA/tone/template |
+| Compliance | telif, kişi/voice rights, claim, AI disclosure, platform rules |
+
+Bunların ilk ve üçüncü grubu büyük ölçüde otomatikleştirilebilir; semantic/compliance için risk skoru üzerinden human review bırakılması başlangıç döneminde daha güvenlidir.
+
+### UNK listesi
+
+Production tasarımını kilitlemeden önce aşağıdaki değerlerin ölçülmesi gerekir:
+
+| UNK | Mimariyi neden değiştirir? |
+|---|---|
+| Video/gün ve peak concurrency | API quota, worker sayısı, queue |
+| Ortalama video süresi | Render/storage/generation maliyeti |
+| Hedef platformlar | OAuth/app-review kapsamı |
+| 9:16 vs 16:9 vs 1:1 oranı | Master composition stratejisi |
+| Yalnızca Türkçe mi? | TTS/avatar/provider seçimi |
+| AI presenter oranı | HeyGen/Synthesia yatırımının değeri |
+| 4K/HDR ihtiyacı | Model/render/storage maliyeti |
+| İnsan onayı SLA'sı | Workflow engine ve UI |
+| Marka sayısı | Template/brand-token modeli |
+| Ürün sayısı | PIM/DAM entegrasyonu |
+| Kişiselleştirme | Render hacmi |
+| Veri ikameti | Cloud/vendor seçenekleri |
+| Voice/avatar consent | Hukuki yönetişim |
+| Music/SFX hak modeli | Asset library |
+| İçerik saklama süresi | Storage/lifecycle |
+| Hedef aylık maliyet | SaaS vs GPU break-even |
+| KPI | Model/router optimization objective |
+
+### Ana riskler
+
+**Vendor/model churn çok yüksek.** Runway'in yalnızca 2026 içinde birden fazla yeni video modelini, Router'ı, HDR servislerini ve yeni formatları eklemiş olması; MiniMax'in bazı Music API'lerini 20 Ağustos 2026'dan itibaren yeni ücretli kullanıcılara kapatması; OpenAI'nin Sora API'sini 24 Eylül 2026'da sonlandırması API lifecycle riskinin teorik olmadığını gösteriyor. citeturn3search4turn21search1turn2search1
+
+**Generative maliyet deterministik değildir.** Bir videonun maliyetini yalnızca çıktı süresiyle hesaplamak yanlıştır çünkü rejected/regenerated sahneler gerçek maliyet sürücüsüdür. Bu nedenle `attempt_count`, `accepted_generation_cost` ve `discarded_generation_cost` ayrı metrikler olmalıdır.
+
+**Lisans ve kişilik hakları ayrı bir data modeli gerektirir.** Voice clone, custom avatar, müzik, stock asset ve kullanıcıdan gelen görselin kullanım yetkisi her content job ile ilişkilendirilmelidir. Vendor'ın teknik olarak bir özelliği sunması, kurumun ilgili sesi/yüzü kullanma yetkisine sahip olduğu anlamına gelmez.
+
+**Prompt/data retention ve model-training şartları UNK olarak vendor sözleşmelerinde ayrıca kontrol edilmelidir.** Özellikle yayımlanmamış ürünler veya müşteri verisi kullanılacaksa API'nin enterprise privacy/data-retention şartları teknik benchmark kadar önemlidir.
+
+**API özelliği ile web-UI özelliği eş tutulmamalıdır.** Bir servis web uygulamasında AI edit sunuyor olsa bile bunun public API endpoint'i olmayabilir. Bu nedenle procurement kriterinde “UI'da var” değil “API contract + quota + webhook + SLA'da var” aranmalıdır.
+
+
+## Uygulama yol haritası, maliyet ve operasyon modeli
+
+Önerilen ilk production sürüm **yaklaşık beş aylık** bir programdır. İlk iki ay vendor lock-in yaratmadan SaaS API'leriyle doğrulama yapılmalı; self-hosted GPU ve gelişmiş closed-loop optimization sonraki aşamada eklenmelidir.
+
+```mermaid
+gantt
+    title AI Video Factory Uygulama Yol Haritası
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d %b
+
+    section Temel
+    Gereksinimler ve KPI                :a1, 2026-09-21, 14d
+    Brand ve asset veri modeli          :a2, after a1, 14d
+    Provider benchmark                  :a3, 2026-09-28, 28d
+
+    section MVP
+    Script ve storyboard servisi        :b1, 2026-10-12, 21d
+    TTS ve generation adapterları       :b2, 2026-10-19, 28d
+    Timeline ve render engine           :b3, 2026-11-02, 28d
+
+    section Distribution
+    YouTube ve TikTok adapterları       :c1, 2026-11-16, 21d
+    Meta ve LinkedIn adapterları        :c2, 2026-11-23, 28d
+    OAuth ve app review                 :c3, 2026-11-16, 56d
+
+    section Production
+    QC ve approval workflow             :d1, 2026-12-07, 28d
+    Observability ve cost tracking      :d2, 2026-12-14, 28d
+    Load ve failure testing             :d3, 2027-01-04, 21d
+
+    section Scale
+    Multi-model routing                 :e1, 2027-01-18, 21d
+    ComfyUI self-hosted pilot           :e2, 2027-01-18, 28d
+    Production rollout                  :e3, 2027-02-08, 12d
+```
+
+### İlk dönem: benchmark ve contracts
+
+İlk amaç “en iyi AI video modeli”ni bulmak değil **measurement harness** oluşturmaktır.
+
+Aynı 20–50 storyboard sahnesi Veo, Runway/Luma/Kling/MiniMax ve gerekiyorsa LTX/Wan üzerinde çalıştırılmalıdır. Her sonuç kalite, temporal coherence, prompt adherence, product/character consistency, generation latency, başarısızlık oranı, accepted-generation başına maliyet ve insan puanı ile değerlendirilmelidir.
+
+Bu benchmark'ın sonucunda aşağıdaki interface'ler sabitlenmelidir:
+
+```text
+ScriptProvider
+ImageProvider
+VideoGenerationProvider
+TTSProvider
+AvatarProvider
+RenderProvider
+StorageProvider
+Publisher
+ModerationProvider
+AnalyticsProvider
+```
+
+### MVP dönemi: ilk uçtan uca vertical slice
+
+İlk gerçek workflow tek bir kullanım örneği olmalıdır:
+
+**“Bir ürün kaydı → 30 saniyelik Türkçe dikey ürün videosu → insan onayı → YouTube Shorts + TikTok/Instagram.”**
+
+Bu dar kapsam, PIM/brief → script → visuals → voice → subtitles → render → publish zincirinin tamamını test eder ve onlarca farklı içerik formatını aynı anda çözmeye çalışmaktan daha fazla mimari bilgi üretir.
+
+Gerekli başlangıç asset'leri:
+
+| Asset | İçerik |
+|---|---|
+| Brand kit | Logo, fonts, palette, minimum logo size, safe areas |
+| Motion kit | Intro/outro, lower-third, CTA, transitions |
+| Prompt library | Shot türlerine göre versioned prompts |
+| Voice profile | Voice ID, pronunciation glossary, speaking rate |
+| Presenter profile | Avatar/persona ve kullanım izni |
+| Product assets | Packshot, transparent PNG, lifestyle image, dimensions |
+| Knowledge source | Ürün özellikleri, claims, yasak ifadeler |
+| Music/SFX pack | Lisans durumu açık asset'ler |
+| Platform presets | Resolution, duration, caption/CTA rules |
+| OAuth credentials | Platform hesapları ve app credentials |
+| Approval rules | Hangi risk skorunda kim onaylar |
+
+### Ölçek dönemi: hybrid SaaS + open source
+
+Açık kaynak pilotu, SaaS'ın yerine her şeyi taşımaya çalışmamalıdır. Önce yüksek hacimli veya maliyetli tek bir kategori seçilmelidir; örneğin generic b-roll.
+
+```text
+Generation Router
+        |
+        +-- privacy sensitive ------> Local ComfyUI/LTX/Wan
+        |
+        +-- cheap generic b-roll ---> Local / low-cost SaaS
+        |
+        +-- premium hero shot ------> Veo / premium Runway model
+        |
+        +-- avatar -----------------> HeyGen/Synthesia
+        |
+        +-- failure ----------------> fallback provider
+```
+
+ComfyUI'nin local API, async queue, model offloading ve Wan/LTX/Hunyuan/CogVideo desteği bu hibrit gateway için güçlü bir temel sağlar. citeturn23view0
+
+### Compute ve storage
+
+**SaaS-first** modelde GPU ihtiyacı yoktur. Control-plane servisleri normal CPU container/serverless üzerinde tutulabilir; ağır workload renderer/generative provider'a gider.
+
+**Self-hosted** modelde GPU pool gerekecektir. LTX'in gelişmiş ComfyUI workflow'larında 32 GB+ VRAM ve 100 GB+ disk tavsiyesi bulunduğu için ilk GPU pilotunda VRAM requirement model/model workflow bazında benchmark edilmelidir. citeturn16search10
+
+Storage üç katmana ayrılmalıdır:
+
+```text
+/raw
+    source uploads
+    product images
+    reference material
+
+/work
+    generated shots
+    WAV
+    transparent overlays
+    intermediate renders
+
+/master
+    approved mezzanine/master
+
+/delivery
+    tiktok.mp4
+    instagram.mp4
+    youtube.mp4
+    linkedin.mp4
+```
+
+Örneğin günde 100 video ve yalnızca 200 MB final/video varsayılırsa final çıktılar **20 GB/gün** eder. Intermediate asset'lerin finalin örneğin 3–10 katı olduğu varsayılan bir workflow 60–200 GB/gün ek çalışma alanına ulaşabilir. Bu oranlar vendor gerçeği değil kapasite planlama varsayımıdır; lifecycle policy ile `/work` hızlı silinmeli, `/master` ve metadata daha uzun tutulmalıdır.
+
+### Maliyet modeli
+
+Toplam video maliyeti şu şekilde izlenmelidir:
+
+\[
+C_{video} =
+C_{script}
++ \sum(C_{generation\ attempts})
++ C_{tts}
++ C_{avatar}
++ C_{render}
++ C_{storage}
++ C_{egress}
++ C_{automation}
++ C_{publishing}
++ C_{human-review}
+\]
+
+En büyük hata yalnızca **accepted output** maliyetini ölçmektir.
+
+Örneğin Runway'in 16 Eylül 2026 fiyatlamasında kredi **$0.01**; Gen-4.5 **12 credit/sn**, Veo 3.1 audio ise **40 credit/sn** olarak listeleniyor. Dolayısıyla yalnızca model ücreti açısından sekiz saniyelik tek kabul edilmiş klip yaklaşık:
+
+- Gen-4.5: `8 × 12 × $0.01 = $0.96`
+- Runway üzerinden Veo 3.1 audio: `8 × 40 × $0.01 = $3.20`
+
+olur. citeturn3search1
+
+On adet sekiz saniyelik accepted shot bu varsayımla sırasıyla yaklaşık **$9.60** ve **$32** generation maliyeti yaratır. Ancak ortalama 2 attempt gerekiyorsa gerçek generation spend yaklaşık iki katına çıkabilir. “2 attempt” burada fiyat tahmini değil, cost-model senaryosudur.
+
+Bu yüzden ana FinOps metriği:
+
+\[
+\text{Accepted Second Cost}
+=
+\frac{\text{tüm generation harcaması}}
+{\text{yayına kabul edilen toplam video saniyesi}}
+\]
+
+olmalıdır.
+
+Aynı şekilde model başına şunlar takip edilmelidir:
+
+```text
+request_count
+success_rate
+technical_failure_rate
+policy_failure_rate
+human_reject_rate
+avg_attempts_to_accept
+p50_generation_time
+p95_generation_time
+cost_per_attempt
+cost_per_accepted_second
+```
+
+### Monitoring ve observability
+
+Her `content_id` baştan sona trace edilebilmelidir:
+
+```text
+content_id
+  -> script_version
+  -> storyboard_version
+  -> scene_id
+  -> provider/model/version
+  -> prompt_hash
+  -> seed/reference assets
+  -> vendor_job_id
+  -> generated_asset_hash
+  -> render_id
+  -> approval_id
+  -> platform_publish_id
+  -> analytics snapshots
+```
+
+Generative modeller hızla değiştiği için yalnızca “Runway kullandık” kaydı yeterli değildir; **model ID/version, prompt template version ve reference asset hash** tutulmalıdır. Veo gibi servislerde model ID'lerinin açıkça versiyonlanması ve Runway'in sürekli yeni model eklemesi bu lineage ihtiyacını güçlendiriyor. citeturn0search0turn3search4
+
+Operasyon alarm seti en azından `provider latency`, `429/rate-limit`, generation reject ratio, render failure, callback timeout, publish failure, OAuth expiration, storage growth, cost anomaly ve “job stuck in state” metriklerini kapsamalıdır.
+
+Production orchestration için ayrıca **idempotency** kritik olmalıdır. Retry edilen `publish` işlemi aynı TikTok/YouTube videosunu iki kez yayımlamamalı; retry edilen render da aynı content version için gereksiz render maliyeti oluşturmamalıdır.
+
+
+## Önerilen hedef mimari ve karar
+
+En dengeli başlangıç mimarisi aşağıdaki kombinasyondur:
+
+| Katman | Başlangıç önerisi | Alternatif / sonraki aşama |
+|---|---|---|
+| Senaryo/planning | LLM + structured schema | Multi-model |
+| Premium video | Veo / Runway benchmark winner | Kling/Luma/MiniMax |
+| Generic video | Runway fast / Luma / düşük maliyetli model | ComfyUI + LTX/Wan |
+| Avatar | HeyGen | Synthesia/Adobe |
+| Türkçe TTS | Google TTS + ElevenLabs karşılaştırması | MiniMax/OpenAI |
+| Timeline/render | Creatomate veya Shotstack | Remotion + FFmpeg |
+| Complex motion | Template renderer | Remotion |
+| Finishing | FFmpeg + preset/LUT | Premiere/Resolve human finishing |
+| Long→short | OpusClip | OSS auto-editor + custom ranking |
+| MVP workflow | n8n | Make/Zapier |
+| Production orchestration | Durable workflow engine | Managed equivalent |
+| Storage | Object storage + CDN | Multi-region/DAM |
+| Open-source inference | Başlangıçta yok | ComfyUI GPU workers |
+| Publishing | Direct platform APIs | Unified social API yalnızca abstraction arkası |
+| Approval | Human-in-loop | Risk-score auto-approve |
+| Analytics | Common event model | Closed-loop optimization |
+
+Buradaki en önemli stratejik tercih, **HeyGen/VEED/InVideo gibi tek bir “AI video suite” etrafında sistem kurmamak** olmalıdır. Bu ürünler içerik ekibinin UI'sı olarak kullanılabilir; fakat şirketin asıl varlığı provider bağımsız **Content Job + Storyboard + Asset Manifest + Timeline + Publication State** veri modeli olmalıdır.
+
+Önerilen çekirdek domain kabaca şöyledir:
+
+```text
+Campaign
+  └── ContentJob
+       ├── ScriptVersion
+       ├── StoryboardVersion
+       │    └── Scene[]
+       │         └── GenerationAttempt[]
+       ├── Asset[]
+       ├── TimelineVersion[]
+       ├── Render[]
+       ├── QCResult[]
+       ├── Approval[]
+       └── Publication[]
+             └── AnalyticsSnapshot[]
+```
+
+Bu veri modeli, üç önemli avantaja sahiptir:
+
+**Birincisi, modeller değiştirilebilir.** OpenAI Sora API örneğinde olduğu gibi bir API sekiz gün sonra kapanıyor olsa bile domain modeli etkilenmez; yalnızca adapter devreden çıkarılır. citeturn2search0turn2search1
+
+**İkincisi, yeniden kullanım sağlanır.** Aynı Türkçe master storyboard'dan 9:16 Instagram/TikTok, 16:9 YouTube ve LinkedIn varyantı üretilebilir.
+
+**Üçüncüsü, gerçek optimizasyon yapılabilir.** “Veo daha güzel” gibi öznel değerlendirmeler yerine belirli scene sınıfında hangi provider'ın accepted-second başına daha ucuz, hızlı ve kaliteli olduğu ölçülebilir.
+
+Araştırmanın sonucunda önerdiğim 3–6 aylık hedef **“tam otonom AI sosyal medya robotu” değil, “denetlenebilir otomatik video fabrikası”dır**. İlk production release'te insan yalnızca exception ve final approval noktalarında devreye girmeli; senaryo üretimi, shot generation, TTS, assembly, captions, format varyantları, technical QC, yükleme ve status takibi otomatikleştirilmelidir. Daha sonra kalite verisi biriktikçe belirli düşük-risk formatlar auto-approve edilebilir.
+
+Bir başka deyişle hedef:
+
+```text
+Brief
+  ↓
+Structured Creative Plan
+  ↓
+AI Assets
+  ↓
+Deterministic Video
+  ↓
+Automated QC
+  ↓
+Risk-Based Approval
+  ↓
+Multi-Platform Publish
+  ↓
+Analytics
+  ↓
+Next Creative Decision
+```
+
+olmalıdır.
+
+Başlıca birincil kaynaklar ve örnek repository'ler:
+
+| Alan | Birincil kaynak |
+|---|---|
+| Google Veo | [Vertex AI Veo 3.1](https://cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate) citeturn0search0 |
+| Runway | [Runway API](https://docs.dev.runwayml.com/) citeturn3search1turn3search4 |
+| Luma | [Luma API](https://docs.lumalabs.ai/) citeturn0search2 |
+| Adobe Firefly | [Firefly Services](https://developer.adobe.com/firefly-services/docs/firefly-api/) citeturn4search4 |
+| HeyGen | [HeyGen API](https://docs.heygen.com/) citeturn5search0 |
+| Synthesia | [Synthesia API](https://docs.synthesia.io/) citeturn5search1 |
+| Tavus | [Tavus Docs](https://docs.tavus.io/) citeturn5search2 |
+| ElevenLabs | [TTS API](https://elevenlabs.io/docs/api-reference/text-to-speech) citeturn7search0 |
+| Google TTS | [Cloud TTS](https://cloud.google.com/text-to-speech/docs) citeturn7search4 |
+| Shotstack | [Shotstack Docs](https://shotstack.io/docs/) citeturn9search12 |
+| Creatomate | [Creatomate API](https://creatomate.com/docs/api/introduction) citeturn25search1 |
+| FFmpeg | [FFmpeg](https://ffmpeg.org/) citeturn10search26 |
+| Remotion | [GitHub — Remotion](https://github.com/remotion-dev/remotion) citeturn23view3 |
+| ComfyUI | [GitHub — ComfyUI](https://github.com/Comfy-Org/ComfyUI) citeturn23view0 |
+| LTX-2 | [GitHub — LTX-2](https://github.com/Lightricks/LTX-2) citeturn16search5 |
+| LTX-Video paper | [arXiv](https://arxiv.org/abs/2501.00103) citeturn22academia14 |
+| Wan 2.2 | [GitHub — Wan2.2](https://github.com/Wan-Video/Wan2.2) citeturn23view2 |
+| HunyuanVideo | [GitHub — HunyuanVideo](https://github.com/Tencent-Hunyuan/HunyuanVideo) citeturn23view1 |
+| CogVideo | [GitHub — CogVideo](https://github.com/zai-org/CogVideo) / [paper](https://arxiv.org/abs/2408.06072) citeturn16search3turn22academia15 |
+| n8n | [n8n Docs](https://docs.n8n.io/) citeturn19view0 |
+| Temporal | [Temporal Workflows](https://docs.temporal.io/workflows) citeturn17search2 |
+| YouTube Publishing | [YouTube Data API videos.insert](https://developers.google.com/youtube/v3/docs/videos/insert) citeturn13search2 |
+| TikTok Publishing | [Content Posting API](https://developers.tiktok.com/products/content-posting-api/) citeturn13search1turn13search3 |
+| LinkedIn Publishing | [LinkedIn Posts API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api) citeturn14search0 |
+
+**Sonuç:** 2026 itibarıyla uçtan uca AI video otomasyonu için teknoloji engeli artık “video üretilemiyor” değildir. Asıl mühendislik problemleri **sağlayıcı bağımsızlığı, multi-shot tutarlılık, deterministik assembly, kalite kontrolü, hak/provenance yönetimi, platform app-review süreçleri, retry/idempotency, maliyet optimizasyonu ve analitik geri beslemedir**. En sürdürülebilir çözüm bu nedenle tek bir AI ürününe yatırım yapmak değil; generative modelleri değiştirilebilir üretim motorları olarak kullanan, timeline ve dağıtım katmanlarını kendi kontrolünde tutan bir **AI Video Factory platformu** oluşturmaktır. Bu sonuç, güncel generative model API'lerinin hızlı değişimi, programatik render servislerinin olgunluğu ve sosyal yayın API'lerinin platforma özgü kontrol gereksinimleri birlikte değerlendirildiğinde ortaya çıkmaktadır. citeturn3search4turn23view0turn25search1turn13search2turn13search1

@@ -1,0 +1,180 @@
+
+> futuristic-research@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /Users/w6x/Desktop/futuristic
+
+ ❯ tests/research.test.ts (14 tests | 13 failed) 8ms
+   ❯ Türkçe araştırma araması (4)
+     × Türkçe harfleri ve noktasız ı aramalarını eşler 2ms
+     × başlık eşleşmesini gövdeden önce getirir 0ms
+     × tüm sözcüklerin bulunmasını ister 0ms
+     × boş arama ve bulunamadı durumunu açıkça döndürür 0ms
+   ❯ maliyet senaryosu (7)
+     × reddedilen denemeler, insan süresi ve sabit gideri dahil eder 0ms
+     × deneme sayısını iki katına çıkarmak sadece generation maliyetini iki katına çıkarır 0ms
+     × sıfır üretimde yalnızca sabit gideri gösterir, NaN üretmez 0ms
+     × geçersiz girdiyi reddeder: -1 3ms
+     × geçersiz girdiyi reddeder: NaN 0ms
+     × geçersiz girdiyi reddeder: Infinity 0ms
+   ❯ cihaza kaydedilen okuma ve yol haritası (3)
+     × bozuk kaydı ve depolama engelini güvenle karşılar 0ms
+     × yabancı kimlikleri ve tekrarları temizler 0ms
+     × işaretlemeyi geri almayı destekler 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/research.test.ts > Türkçe araştırma araması > Türkçe harfleri ve noktasız ı aramalarını eşler
+Error: Not implemented
+ ❯ normalizeText src/lib/research.ts:3:62
+      1| export type CostInput = { videos: number; seconds: number; rate: numbe…
+      2| export type SearchItem = { id: string; title: string; text: string; ty…
+      3| export function normalizeText(_text: string): string { throw new Error…
+       |                                                              ^
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+ ❯ tests/research.test.ts:10:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/research.test.ts > Türkçe araştırma araması > başlık eşleşmesini gövdeden önce getirir
+Error: Not implemented
+ ❯ searchItems src/lib/research.ts:4:89
+      2| export type SearchItem = { id: string; title: string; text: string; ty…
+      3| export function normalizeText(_text: string): string { throw new Error…
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+       |                                                                                         ^
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+ ❯ tests/research.test.ts:13:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/research.test.ts > Türkçe araştırma araması > tüm sözcüklerin bulunmasını ister
+Error: Not implemented
+ ❯ searchItems src/lib/research.ts:4:89
+      2| export type SearchItem = { id: string; title: string; text: string; ty…
+      3| export function normalizeText(_text: string): string { throw new Error…
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+       |                                                                                         ^
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+ ❯ tests/research.test.ts:16:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/research.test.ts > Türkçe araştırma araması > boş arama ve bulunamadı durumunu açıkça döndürür
+Error: Not implemented
+ ❯ searchItems src/lib/research.ts:4:89
+      2| export type SearchItem = { id: string; title: string; text: string; ty…
+      3| export function normalizeText(_text: string): string { throw new Error…
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+       |                                                                                         ^
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+ ❯ tests/research.test.ts:20:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  tests/research.test.ts > maliyet senaryosu > reddedilen denemeler, insan süresi ve sabit gideri dahil eder
+Error: Not implemented
+ ❯ estimateCost src/lib/research.ts:5:169
+      3| export function normalizeText(_text: string): string { throw new Error…
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+       |                                                                                                                                                                         ^
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+      7| export function toggleId(_ids: string[], _id: string): string[] { thro…
+ ❯ tests/research.test.ts:28:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  tests/research.test.ts > maliyet senaryosu > deneme sayısını iki katına çıkarmak sadece generation maliyetini iki katına çıkarır
+Error: Not implemented
+ ❯ estimateCost src/lib/research.ts:5:169
+      3| export function normalizeText(_text: string): string { throw new Error…
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+       |                                                                                                                                                                         ^
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+      7| export function toggleId(_ids: string[], _id: string): string[] { thro…
+ ❯ tests/research.test.ts:31:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  tests/research.test.ts > maliyet senaryosu > sıfır üretimde yalnızca sabit gideri gösterir, NaN üretmez
+Error: Not implemented
+ ❯ estimateCost src/lib/research.ts:5:169
+      3| export function normalizeText(_text: string): string { throw new Error…
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+       |                                                                                                                                                                         ^
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+      7| export function toggleId(_ids: string[], _id: string): string[] { thro…
+ ❯ tests/research.test.ts:36:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  tests/research.test.ts > maliyet senaryosu > geçersiz girdiyi reddeder: -1
+ FAIL  tests/research.test.ts > maliyet senaryosu > geçersiz girdiyi reddeder: NaN
+ FAIL  tests/research.test.ts > maliyet senaryosu > geçersiz girdiyi reddeder: Infinity
+AssertionError: expected [Function] to throw error including 'Geçerli' but got 'Not implemented'
+
+Expected: "Geçerli"
+Received: "Not implemented"
+
+ ❯ tests/research.test.ts:39:52
+     37|   });
+     38|   it.each([-1, NaN, Infinity])('geçersiz girdiyi reddeder: %s', (rate)…
+     39|     expect(() => estimateCost({ ...input, rate })).toThrow('Geçerli');
+       |                                                    ^
+     40|   });
+     41|   it('kesirli video sayısını ve birden az denemeyi reddeder', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ FAIL  tests/research.test.ts > cihaza kaydedilen okuma ve yol haritası > bozuk kaydı ve depolama engelini güvenle karşılar
+Error: Not implemented
+ ❯ readStoredIds src/lib/research.ts:6:119
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+       |                                                                                                                       ^
+      7| export function toggleId(_ids: string[], _id: string): string[] { thro…
+      8|
+ ❯ tests/research.test.ts:49:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯
+
+ FAIL  tests/research.test.ts > cihaza kaydedilen okuma ve yol haritası > yabancı kimlikleri ve tekrarları temizler
+Error: Not implemented
+ ❯ readStoredIds src/lib/research.ts:6:119
+      4| export function searchItems(_items: SearchItem[], _query: string): Sea…
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+       |                                                                                                                       ^
+      7| export function toggleId(_ids: string[], _id: string): string[] { thro…
+      8|
+ ❯ tests/research.test.ts:53:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯
+
+ FAIL  tests/research.test.ts > cihaza kaydedilen okuma ve yol haritası > işaretlemeyi geri almayı destekler
+Error: Not implemented
+ ❯ toggleId src/lib/research.ts:7:73
+      5| export function estimateCost(_input: CostInput): { generation: number;…
+      6| export function readStoredIds(_storage: Pick<Storage, 'getItem'>, _key…
+      7| export function toggleId(_ids: string[], _id: string): string[] { thro…
+       |                                                                         ^
+      8|
+ ❯ tests/research.test.ts:56:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed | 1 passed (14)
+   Start at  23:13:33
+   Duration  126ms (transform 52%, tests 23%, import 19%, worker 6%)
+

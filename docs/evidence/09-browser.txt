@@ -1,0 +1,55 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:67592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 28 tests using 4 workers
+
+(node:67598) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67599) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67597) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma (536ms)
+  ✓   2 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (543ms)
+  ✓   3 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma (583ms)
+  ✓   5 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma (517ms)
+  ✓   6 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma (552ms)
+  ✓   7 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma (569ms)
+  ✓   9 [desktop] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü (209ms)
+  ✓  11 [desktop] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (298ms)
+  ✓   4 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma (1.6s)
+  ✓   8 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma (581ms)
+  ✓  10 [desktop] › tests/e2e/accessibility.spec.ts:26:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (615ms)
+  ✓  13 [desktop] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (166ms)
+  ✓  12 [desktop] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (356ms)
+  ✓  14 [desktop] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (345ms)
+(node:67655) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  16 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma (483ms)
+  ✓  15 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (488ms)
+  ✓  17 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma (531ms)
+  ✓  19 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma (472ms)
+  ✓  20 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma (503ms)
+  ✓  23 [mobile] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü (171ms)
+  ✓  21 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma (505ms)
+  ✓  22 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma (550ms)
+  ✓  25 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (299ms)
+  ✓  27 [mobile] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (155ms)
+  ✓  24 [mobile] › tests/e2e/accessibility.spec.ts:26:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (619ms)
+  ✓  18 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma (1.6s)
+  ✓  26 [mobile] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (370ms)
+  ✓  28 [mobile] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (313ms)
+
+  28 passed (5.1s)

@@ -1,0 +1,262 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:65580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 8 workers
+
+(node:65586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65583) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65585) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65587) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65581) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [desktop] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (944ms)
+  ✓  2 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (1.6s)
+  ✓  3 [desktop] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (1.6s)
+  ✓  6 [mobile] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (2.4s)
+  ✘  4 [mobile] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (6.1s)
+  ✘  1 [mobile] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (30.1s)
+  ✘  8 [desktop] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (30.1s)
+  ✘  5 [desktop] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (30.2s)
+
+
+  1) [desktop] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Araştırmada ara' }).first()
+        - locator resolved to <button class="sidebar-search" aria-label="Araştırmada ara">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+        - element was detached from the DOM, retrying
+          - locator resolved to <button class="sidebar-search" aria-label="Araştırmada ara">…</button>
+        - attempting click action
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 20ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+        40 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <dialog open="" aria-labelledby="dialog-title" class="modal research-dialog wide">…</dialog> from <div class="main-shell">…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      17 |   await expect(page.getByRole('dialog')).toContainText('EYLUL 2026');
+      18 |   await page.getByRole('button', { name: 'Pencereyi kapat' }).click();
+    > 19 |   await page.getByRole('button', { name: 'Araştırmada ara' }).first().click();
+         |                                                                       ^
+      20 |   await page.getByRole('searchbox', { name: 'Tüm araştırmada ara' }).fill('idempotency');
+      21 |   await expect(page.getByRole('dialog').getByRole('link').first()).toBeVisible();
+      22 | });
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:19:71
+
+    Error Context: test-results/reader-kaynakların-tam-met-815c3-nir-ve-Türkçe-arama-çalışır-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-kaynakların-tam-met-815c3-nir-ve-Türkçe-arama-çalışır-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-kaynakların-tam-met-815c3-nir-ve-Türkçe-arama-çalışır-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma ──────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '2 aracı karşılaştır' })
+
+
+      39 |   await page.getByRole('searchbox', { name: 'Araçlarda ara' }).fill('FFmpeg');
+      40 |   await page.getByRole('checkbox', { name: 'FFmpeg karşılaştır' }).check();
+    > 41 |   await page.getByRole('button', { name: '2 aracı karşılaştır' }).click();
+         |                                                                   ^
+      42 |   await expect(page.getByRole('dialog')).toContainText('Remotion');
+      43 |   await expect(page.getByRole('dialog')).toContainText('FFmpeg');
+      44 | });
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:41:67
+
+    Error Context: test-results/reader-araç-filtreleri-ve-karşılaştırma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-araç-filtreleri-ve-karşılaştırma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-araç-filtreleri-ve-karşılaştırma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "Geçerli"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('alert')
+        - waiting for navigation to finish...
+        - navigated to "http://127.0.0.1:4173/futuristic/#/cost"
+
+
+      29 |   await expect(output).not.toHaveText(before!);
+      30 |   await page.getByLabel('Aylık video sayısı').fill('-2');
+    > 31 |   await expect(page.getByRole('alert')).toContainText('Geçerli');
+         |                                         ^
+      32 | });
+      33 |
+      34 | test('araç filtreleri ve karşılaştırma', async ({ page }) => {
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:31:41
+
+    Error Context: test-results/reader-maliyet-hesaplayıcı-91c01-girdilerle-sonucu-günceller-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-maliyet-hesaplayıcı-91c01-girdilerle-sonucu-günceller-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-maliyet-hesaplayıcı-91c01-girdilerle-sonucu-günceller-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma ───────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '2 aracı karşılaştır' })
+
+
+      39 |   await page.getByRole('searchbox', { name: 'Araçlarda ara' }).fill('FFmpeg');
+      40 |   await page.getByRole('checkbox', { name: 'FFmpeg karşılaştır' }).check();
+    > 41 |   await page.getByRole('button', { name: '2 aracı karşılaştır' }).click();
+         |                                                                   ^
+      42 |   await expect(page.getByRole('dialog')).toContainText('Remotion');
+      43 |   await expect(page.getByRole('dialog')).toContainText('FFmpeg');
+      44 | });
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:41:67
+
+    Error Context: test-results/reader-araç-filtreleri-ve-karşılaştırma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-araç-filtreleri-ve-karşılaştırma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-araç-filtreleri-ve-karşılaştırma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [desktop] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır 
+    [desktop] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma ───────────────────
+    [mobile] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller 
+    [mobile] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma ────────────────────
+  4 passed (31.2s)

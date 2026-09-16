@@ -1,0 +1,776 @@
+[
+  {
+    "id": "T01",
+    "name": "Veo",
+    "category": "Video",
+    "role": "Görsel ve metinden sahne üretimi",
+    "fit": "Ürün atmosferi ve kontrollü kısa planlar",
+    "limitation": "Sürüm, bölge, süre ve tekrar üretim maliyeti",
+    "hosting": "Bulut",
+    "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T02",
+    "name": "Runway",
+    "category": "Video",
+    "role": "Jeneratif video ve dönüşüm",
+    "fit": "API ile sahne üretimi",
+    "limitation": "Model ve endpoint özellikleri ayrı doğrulanmalı",
+    "hosting": "Bulut",
+    "url": "https://docs.dev.runwayml.com/",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T03",
+    "name": "Luma",
+    "category": "Video",
+    "role": "Sahne üretimi ve video dönüşümü",
+    "fit": "Görselden video pilotu",
+    "limitation": "Asenkron job ve kalite değişkenliği",
+    "hosting": "Bulut",
+    "url": "https://docs.lumalabs.ai/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T04",
+    "name": "Kling",
+    "category": "Video",
+    "role": "Jeneratif sahne ve hareket kontrolü",
+    "fit": "Ürün referansı ile sahne karşılaştırması",
+    "limitation": "API erişimi, lisans ve model sürümü",
+    "hosting": "Bulut",
+    "url": "https://kling.ai/",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T05",
+    "name": "MiniMax / Hailuo",
+    "category": "Video",
+    "role": "Video ve ses ailesi",
+    "fit": "Tek sağlayıcıyla video/ses pilotu",
+    "limitation": "Model ve ücretleri ayrı değerlendirmek gerekir",
+    "hosting": "Bulut",
+    "url": "https://platform.minimax.io/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T06",
+    "name": "Adobe Firefly",
+    "category": "Video",
+    "role": "Görsel, video ve yaratıcı servisler",
+    "fit": "Adobe üretim ekosistemi",
+    "limitation": "UI özellikleri API kapsamını garanti etmez",
+    "hosting": "Bulut",
+    "url": "https://developer.adobe.com/firefly-services/docs/firefly-api/",
+    "documents": [
+      "D03"
+    ]
+  },
+  {
+    "id": "T07",
+    "name": "HeyGen",
+    "category": "Avatar",
+    "role": "Sunucu, çeviri ve avatar",
+    "fit": "B2B anlatım ve lokalizasyon",
+    "limitation": "API ve UI aboneliği farklı; rıza ve Türkçe test",
+    "hosting": "Bulut",
+    "url": "https://docs.heygen.com/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T08",
+    "name": "Synthesia",
+    "category": "Avatar",
+    "role": "Metinden sunuculu video",
+    "fit": "Eğitim ve onboarding",
+    "limitation": "Yaratıcı kontrol ve sözleşme kapsamı",
+    "hosting": "Bulut",
+    "url": "https://docs.synthesia.io/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T09",
+    "name": "Tavus",
+    "category": "Avatar",
+    "role": "Etkileşimli video persona",
+    "fit": "Canlı konuşan avatar",
+    "limitation": "Offline video render ile aynı kullanım değil",
+    "hosting": "Bulut",
+    "url": "https://docs.tavus.io/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T10",
+    "name": "ElevenLabs",
+    "category": "Ses",
+    "role": "TTS, dublaj ve transkripsiyon",
+    "fit": "Türkçe ses karşılaştırması",
+    "limitation": "Telaffuz ve ses hakkı ayrıca değerlendirilir",
+    "hosting": "Bulut",
+    "url": "https://elevenlabs.io/docs",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T11",
+    "name": "Google Cloud TTS",
+    "category": "Ses",
+    "role": "Metinden konuşma",
+    "fit": "Türkçe ses ve SSML tabanlı akış",
+    "limitation": "Seçilen ses/model bazında ölçüm",
+    "hosting": "Bulut",
+    "url": "https://cloud.google.com/text-to-speech/docs",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T12",
+    "name": "OpenAI TTS",
+    "category": "Ses",
+    "role": "Metinden konuşma",
+    "fit": "LLM ile ortak sağlayıcı akışı",
+    "limitation": "Ses seçenekleri ve fiyatı model bazında teyit",
+    "hosting": "Bulut",
+    "url": "https://platform.openai.com/docs/guides/text-to-speech",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T13",
+    "name": "Whisper",
+    "category": "Ses",
+    "role": "Sesin metne dökülmesi",
+    "fit": "Altyazı üretimi ve kontrol",
+    "limitation": "Hizalama, özel terim ve konuşma kalitesi",
+    "hosting": "Yerel",
+    "url": "https://github.com/openai/whisper",
+    "documents": [
+      "D05"
+    ]
+  },
+  {
+    "id": "T14",
+    "name": "Remotion",
+    "category": "Kurgu",
+    "role": "React ile programatik video",
+    "fit": "Marka motion sistemi ve veri grafikleri",
+    "limitation": "Şirket lisansı ve render operasyonu",
+    "hosting": "Yerel",
+    "url": "https://github.com/remotion-dev/remotion",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T15",
+    "name": "FFmpeg",
+    "category": "Kurgu",
+    "role": "Encode, filtre, ses ve mux",
+    "fit": "Deterministik medya işlemleri",
+    "limitation": "Yaratıcı sahne üretmez; build lisansı incelenir",
+    "hosting": "Yerel",
+    "url": "https://ffmpeg.org/",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T16",
+    "name": "Shotstack",
+    "category": "Kurgu",
+    "role": "JSON timeline ve cloud render",
+    "fit": "API ile hızlı üretim hattı",
+    "limitation": "Kullanım maliyeti ve sağlayıcı bağımlılığı",
+    "hosting": "Bulut",
+    "url": "https://shotstack.io/docs/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T17",
+    "name": "Creatomate",
+    "category": "Kurgu",
+    "role": "Şablon ve JSON ile render",
+    "fit": "Sosyal video varyantları",
+    "limitation": "Kredi modeli ve template sınırları",
+    "hosting": "Bulut",
+    "url": "https://creatomate.com/docs/api/introduction",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T18",
+    "name": "JSON2Video",
+    "category": "Kurgu",
+    "role": "JSON ile sahne birleştirme",
+    "fit": "Basit otomatik video şablonları",
+    "limitation": "Render ve çözünürlük maliyeti",
+    "hosting": "Bulut",
+    "url": "https://json2video.com/docs/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T19",
+    "name": "auto-editor",
+    "category": "Kurgu",
+    "role": "Sessizlik tabanlı otomatik kesim",
+    "fit": "Konuşma içeriklerini temizleme",
+    "limitation": "Anlatı/viral an seçiminin yerine geçmez",
+    "hosting": "Yerel",
+    "url": "https://github.com/WyattBlue/auto-editor",
+    "documents": [
+      "D03"
+    ]
+  },
+  {
+    "id": "T20",
+    "name": "OpusClip",
+    "category": "Kurgu",
+    "role": "Uzun videodan kısa kesitler",
+    "fit": "Podcast ve webinar yeniden kullanımı",
+    "limitation": "Kaynaklardaki API planları çelişkili; teyit gerekli",
+    "hosting": "Bulut",
+    "url": "https://www.opus.pro/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T21",
+    "name": "MoneyPrinterTurbo",
+    "category": "Kurgu",
+    "role": "Stok, ses ve altyazı otomasyonu",
+    "fit": "Hızlı faceless pilot",
+    "limitation": "Auth, lisans, secret ve editoryal katman gerekir",
+    "hosting": "Yerel",
+    "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+    "documents": [
+      "D01",
+      "D05"
+    ]
+  },
+  {
+    "id": "T22",
+    "name": "ShortGPT",
+    "category": "Kurgu",
+    "role": "Programlanabilir kısa video üretimi",
+    "fit": "Stok ve dublaj deneyleri",
+    "limitation": "Bağımlılık ve bakım durumunu incele",
+    "hosting": "Yerel",
+    "url": "https://github.com/RayVentura/ShortGPT",
+    "documents": [
+      "D01",
+      "D05"
+    ]
+  },
+  {
+    "id": "T23",
+    "name": "ComfyUI",
+    "category": "Model",
+    "role": "Düğüm tabanlı inference workflow",
+    "fit": "Yerel video/görsel GPU üretimi",
+    "limitation": "VRAM, node tedarik zinciri ve model lisansı",
+    "hosting": "Yerel",
+    "url": "https://github.com/Comfy-Org/ComfyUI",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T24",
+    "name": "LTX-2",
+    "category": "Model",
+    "role": "Video ve ses üretim modeli",
+    "fit": "Hibrit GPU pilotu",
+    "limitation": "Ağırlık lisansı ve donanım benchmark’ı",
+    "hosting": "Yerel",
+    "url": "https://github.com/Lightricks/LTX-2",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T25",
+    "name": "Wan 2.2",
+    "category": "Model",
+    "role": "Açık video model ailesi",
+    "fit": "Yerel sahne üretimi",
+    "limitation": "Daha yeni Wan sürümlerine lisansı genelleme",
+    "hosting": "Yerel",
+    "url": "https://github.com/Wan-Video/Wan2.2",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T26",
+    "name": "HunyuanVideo",
+    "category": "Model",
+    "role": "Video üretim modeli",
+    "fit": "GPU tabanlı araştırma/pilot",
+    "limitation": "Donanım ve ticari kullanım koşulları",
+    "hosting": "Yerel",
+    "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T27",
+    "name": "CogVideo",
+    "category": "Model",
+    "role": "Video üretim ve ince ayar",
+    "fit": "Kontrollü açık model deneyi",
+    "limitation": "Model/weight lisansı ve kaynak ihtiyacı",
+    "hosting": "Yerel",
+    "url": "https://github.com/zai-org/CogVideo",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T28",
+    "name": "Postiz",
+    "category": "Yayın",
+    "role": "Sosyal içerik planlama",
+    "fit": "Kontrollü self-host yayın katmanı",
+    "limitation": "Platform uygulama ve OAuth gereksinimleri",
+    "hosting": "Hibrit",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "documents": [
+      "D05"
+    ]
+  },
+  {
+    "id": "T29",
+    "name": "Blotato",
+    "category": "Yayın",
+    "role": "Çoklu sosyal yayın katmanı",
+    "fit": "Entegrasyon pilotunu hızlandırma",
+    "limitation": "Hesap izinlerini ve plan kapsamını teyit et",
+    "hosting": "Bulut",
+    "url": "https://blotato.com/",
+    "documents": [
+      "D05"
+    ]
+  },
+  {
+    "id": "T30",
+    "name": "Upload-Post",
+    "category": "Yayın",
+    "role": "Sosyal yayın API katmanı",
+    "fit": "Dar kapsamlı yayın pilotu",
+    "limitation": "Kota, desteklenen platform ve plan",
+    "hosting": "Bulut",
+    "url": "https://upload-post.com/",
+    "documents": [
+      "D01",
+      "D05"
+    ]
+  },
+  {
+    "id": "T31",
+    "name": "Ayrshare",
+    "category": "Yayın",
+    "role": "Birleşik sosyal API",
+    "fit": "Çoklu müşteri/hesap entegrasyonu",
+    "limitation": "Profil bazlı maliyet ve sözleşme",
+    "hosting": "Bulut",
+    "url": "https://www.ayrshare.com/",
+    "documents": [
+      "D05"
+    ]
+  },
+  {
+    "id": "T32",
+    "name": "n8n",
+    "category": "Orkestrasyon",
+    "role": "Webhook ve deterministik iş akışı",
+    "fit": "Video hattı, CI bildirimleri ve onay",
+    "limitation": "Fair-code lisans; queue ve secrets yönetimi",
+    "hosting": "Hibrit",
+    "url": "https://docs.n8n.io/",
+    "documents": [
+      "D01",
+      "D03",
+      "D05",
+      "D06"
+    ]
+  },
+  {
+    "id": "T33",
+    "name": "Temporal",
+    "category": "Orkestrasyon",
+    "role": "Kalıcı ve uzun süreli workflow",
+    "fit": "Kritik asenkron üretim işleri",
+    "limitation": "Yeni altyapı ve deterministik workflow disiplini",
+    "hosting": "Hibrit",
+    "url": "https://docs.temporal.io/workflows",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T34",
+    "name": "Make / Zapier",
+    "category": "Orkestrasyon",
+    "role": "Görsel SaaS otomasyonu",
+    "fit": "Düşük hacimli iş sistemi bağlantıları",
+    "limitation": "İşlem maliyeti ve taşınabilirlik",
+    "hosting": "Bulut",
+    "url": "https://www.make.com/",
+    "documents": [
+      "D03",
+      "D05"
+    ]
+  },
+  {
+    "id": "T35",
+    "name": "OpenClaw",
+    "category": "Orkestrasyon",
+    "role": "Araç kullanan otonom ajan",
+    "fit": "Triage, öneri ve mesajlaşma",
+    "limitation": "Güçlü araç erişimi; izolasyon ve izin denetimi",
+    "hosting": "Yerel",
+    "url": "https://github.com/openclaw/openclaw",
+    "documents": [
+      "D05",
+      "D06"
+    ]
+  },
+  {
+    "id": "T36",
+    "name": "LangGraph",
+    "category": "Orkestrasyon",
+    "role": "Durumlu ajan grafı",
+    "fit": "Gerçek dallanan ajan iş akışları",
+    "limitation": "Küçük ihtiyaçta ek karmaşıklık",
+    "hosting": "Yerel",
+    "url": "https://github.com/langchain-ai/langgraph",
+    "documents": [
+      "D04",
+      "D05",
+      "D06"
+    ]
+  },
+  {
+    "id": "T37",
+    "name": "Codex",
+    "category": "Kodlama",
+    "role": "Repo, terminal ve test ajanı",
+    "fit": "Tanımlı bug, refactor ve test görevleri",
+    "limitation": "İzin, ortam ve model kapasitesi ayrı konular",
+    "hosting": "Hibrit",
+    "url": "https://github.com/openai/codex",
+    "documents": [
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T38",
+    "name": "Claude Code",
+    "category": "Kodlama",
+    "role": "Terminal ve araç kullanan ajan",
+    "fit": "Bağlamlı repo geliştirme",
+    "limitation": "Hooks ve alt ajan izinleri gözden geçirilmeli",
+    "hosting": "Hibrit",
+    "url": "https://code.claude.com/docs/",
+    "documents": [
+      "D02",
+      "D06"
+    ]
+  },
+  {
+    "id": "T39",
+    "name": "Cursor",
+    "category": "Kodlama",
+    "role": "Ajan odaklı IDE",
+    "fit": "Etkileşimli geliştirme ve repo keşfi",
+    "limitation": "Kota, ortam erişimi ve review yükü",
+    "hosting": "Bulut",
+    "url": "https://cursor.com/",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T40",
+    "name": "GitHub Copilot",
+    "category": "Kodlama",
+    "role": "IDE, review ve repo ajanı",
+    "fit": "GitHub merkezli geliştirme",
+    "limitation": "Review tam hata kapsamı sağlamaz",
+    "hosting": "Bulut",
+    "url": "https://docs.github.com/en/copilot",
+    "documents": [
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T41",
+    "name": "Aider",
+    "category": "Kodlama",
+    "role": "Git ile çalışan terminal ajanı",
+    "fit": "Model bağımsız küçük değişiklikler",
+    "limitation": "Doğru context ve test altyapısı gerekir",
+    "hosting": "Yerel",
+    "url": "https://github.com/Aider-AI/aider",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T42",
+    "name": "OpenHands",
+    "category": "Kodlama",
+    "role": "Yazılım ajan platformu",
+    "fit": "İzole görev ve özelleştirme",
+    "limitation": "Sandbox kurulumu ve operasyon",
+    "hosting": "Yerel",
+    "url": "https://github.com/OpenHands/openhands",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T43",
+    "name": "Qwen Code / Coder",
+    "category": "Kodlama",
+    "role": "Ajan runtime’ı ve ayrı model ailesi",
+    "fit": "Açık ekosistem coding pilotu",
+    "limitation": "Runtime ile model ağırlığı lisansı farklı",
+    "hosting": "Yerel",
+    "url": "https://github.com/QwenLM/qwen-code",
+    "documents": [
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T44",
+    "name": "Spec Kit",
+    "category": "Kodlama",
+    "role": "Spec, plan ve task iş akışı",
+    "fit": "Uzun ömürlü ve çok modüllü geliştirme",
+    "limitation": "Küçük görevlerde ek süreç yükü",
+    "hosting": "Yerel",
+    "url": "https://github.com/github/spec-kit",
+    "documents": [
+      "D06"
+    ]
+  },
+  {
+    "id": "T45",
+    "name": "Playwright",
+    "category": "Kalite",
+    "role": "Tarayıcı akışı ve E2E testi",
+    "fit": "Mobil/masaüstü davranış doğrulama",
+    "limitation": "Test senaryosu ve assertion kalitesi önemli",
+    "hosting": "Yerel",
+    "url": "https://playwright.dev/",
+    "documents": [
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T46",
+    "name": "CodeRabbit",
+    "category": "Kalite",
+    "role": "PR bağlamında AI inceleme",
+    "fit": "Review kuyruğuna yardımcı ilk katman",
+    "limitation": "Yanlış pozitifler ve plan özellikleri",
+    "hosting": "Bulut",
+    "url": "https://coderabbit.ai/",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T47",
+    "name": "Qodo",
+    "category": "Kalite",
+    "role": "Kod kalitesi, test ve review",
+    "fit": "Kurala dayalı doğrulama pilotu",
+    "limitation": "Vendor metrikleri bağımsız ölçüm değil",
+    "hosting": "Bulut",
+    "url": "https://www.qodo.ai/",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T48",
+    "name": "Semgrep",
+    "category": "Kalite",
+    "role": "Statik güvenlik ve triage",
+    "fit": "CI ve agent değişikliklerini tarama",
+    "limitation": "Kural kapsamı ve veri akışı sınırları",
+    "hosting": "Hibrit",
+    "url": "https://semgrep.dev/",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T49",
+    "name": "SonarQube",
+    "category": "Kalite",
+    "role": "Kalite kapısı ve teknik borç",
+    "fit": "Kurumsal kod kalite görünürlüğü",
+    "limitation": "AI doğruluğu veya güvenlik garantisi değil",
+    "hosting": "Hibrit",
+    "url": "https://www.sonarsource.com/products/sonarqube/",
+    "documents": [
+      "D02"
+    ]
+  },
+  {
+    "id": "T50",
+    "name": "Sentry Seer",
+    "category": "Kalite",
+    "role": "Telemetry bağlamında hata araştırması",
+    "fit": "Production hata → kanıt → fix adayı",
+    "limitation": "Kaliteli log/trace ve veri maskeleme gerekir",
+    "hosting": "Bulut",
+    "url": "https://docs.sentry.io/product/ai-in-sentry/",
+    "documents": [
+      "D04",
+      "D06"
+    ]
+  },
+  {
+    "id": "T51",
+    "name": "Context7",
+    "category": "Kodlama",
+    "role": "Kütüphane dokümantasyonunu getirme",
+    "fit": "Sürüm bağlamı ve API araştırması",
+    "limitation": "Dönen veri doğrulanmalı; halüsinasyonu sıfırlamaz",
+    "hosting": "Bulut",
+    "url": "https://github.com/upstash/context7",
+    "documents": [
+      "D06"
+    ]
+  },
+  {
+    "id": "T52",
+    "name": "vLLM / SGLang",
+    "category": "Model",
+    "role": "Yüksek verimli model serving",
+    "fit": "Eşzamanlı self-host ajan pilotu",
+    "limitation": "KV cache, batching, GPU ve bakım maliyeti",
+    "hosting": "Yerel",
+    "url": "https://github.com/vllm-project/vllm",
+    "documents": [
+      "D02",
+      "D06"
+    ]
+  },
+  {
+    "id": "T53",
+    "name": "MLX / Ollama",
+    "category": "Model",
+    "role": "Yerel model çalıştırma",
+    "fit": "Mac/kişisel ortamda gizli veri pilotu",
+    "limitation": "Belleğe sığmak hedef gecikmeyi garanti etmez",
+    "hosting": "Yerel",
+    "url": "https://github.com/ml-explore/mlx",
+    "documents": [
+      "D02",
+      "D06"
+    ]
+  },
+  {
+    "id": "T54",
+    "name": "LlamaIndex / Haystack",
+    "category": "Orkestrasyon",
+    "role": "Bilgi getirme ve veri pipeline’ı",
+    "fit": "Repo dışı kurumsal bilgi",
+    "limitation": "Gereksiz RAG eklemek context ve bakım yükü yaratır",
+    "hosting": "Yerel",
+    "url": "https://github.com/run-llama/llama_index",
+    "documents": [
+      "D04"
+    ]
+  },
+  {
+    "id": "T55",
+    "name": "SWE-agent",
+    "category": "Kodlama",
+    "role": "Araştırma amaçlı repo ajanı",
+    "fit": "Harness ve agent deneyleri",
+    "limitation": "Benchmark başarısı ürün ROI’si değildir",
+    "hosting": "Yerel",
+    "url": "https://github.com/swe-agent/swe-agent",
+    "documents": [
+      "D04"
+    ]
+  }
+]

@@ -1,0 +1,1597 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:66341) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 28 tests using 4 workers
+
+(node:66346) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66345) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66347) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (575ms)
+  ✘   1 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma (585ms)
+  ✘   4 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma (626ms)
+(node:66372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66371) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66373) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   6 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma (572ms)
+  ✘   3 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma (1.6s)
+  ✘   5 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma (619ms)
+  ✘   7 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma (603ms)
+(node:66402) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66405) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [desktop] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (317ms)
+  ✓  11 [desktop] › tests/e2e/accessibility.spec.ts:26:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (615ms)
+  ✓  12 [desktop] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (359ms)
+  ✘   8 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma (639ms)
+  ✓  13 [desktop] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (147ms)
+(node:66433) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [desktop] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (301ms)
+(node:66434) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66435) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  15 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (510ms)
+  ✘  16 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma (492ms)
+(node:66451) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66453) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  17 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma (522ms)
+(node:66458) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma (449ms)
+  ✘  20 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma (518ms)
+  ✘  21 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma (490ms)
+(node:66472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma (1.3s)
+  ✓  22 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma (494ms)
+  ✓  23 [mobile] › tests/e2e/accessibility.spec.ts:26:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (579ms)
+  ✓  25 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (288ms)
+  ✓  27 [mobile] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (138ms)
+  ✓  26 [mobile] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (378ms)
+  ✓  28 [mobile] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (263ms)
+  ✘   9 [desktop] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü (5.2s)
+  ✘  24 [mobile] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü (5.2s)
+
+
+  1) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma ──────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -   1
+    + Received  + 128
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eef2e7",
+    +               "contrastRatio": 1.06,
+    +               "expectedContrastRatio": "3:1",
+    +               "fgColor": "#e5ecdb",
+    +               "fontSize": "127.5pt (170px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 1.06 (foreground color: #e5ecdb, background color: #eef2e7, font size: 127.5pt (170px), font weight: normal). Expected contrast ratio of 3:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card video-track card\">",
+    +                 "target": Array [
+    +                   ".video-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.06 (foreground color: #e5ecdb, background color: #eef2e7, font size: 127.5pt (170px), font weight: normal). Expected contrast ratio of 3:1",
+    +         "html": "<span class=\"track-watermark\" aria-hidden=\"true\">01</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".video-track > .track-watermark[aria-hidden=\"true\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eeedf5",
+    +               "contrastRatio": 4.47,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6d6b7a",
+    +               "fontSize": "9.8pt (13px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.47 (foreground color: #6d6b7a, background color: #eeedf5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card code-track card\">",
+    +                 "target": Array [
+    +                   ".code-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.47 (foreground color: #6d6b7a, background color: #eeedf5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Ajanlar, bağlam, test ve kod inceleme. Daha hızlı üretimi, ölçülebilir kaliteye dönüştüren mühendislik.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".code-track > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eeedf5",
+    +               "contrastRatio": 1.08,
+    +               "expectedContrastRatio": "3:1",
+    +               "fgColor": "#e6e4f0",
+    +               "fontSize": "127.5pt (170px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 1.08 (foreground color: #e6e4f0, background color: #eeedf5, font size: 127.5pt (170px), font weight: normal). Expected contrast ratio of 3:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card code-track card\">",
+    +                 "target": Array [
+    +                   ".code-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.08 (foreground color: #e6e4f0, background color: #eeedf5, font size: 127.5pt (170px), font weight: normal). Expected contrast ratio of 3:1",
+    +         "html": "<span class=\"track-watermark\" aria-hidden=\"true\">02</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".code-track > .track-watermark[aria-hidden=\"true\"]",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-overview-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-overview-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-overview-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma ─────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.13,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#73816b",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a class=\"next-article\" href=\"#/software\">",
+    +                 "target": Array [
+    +                   ".next-article",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>SONRAKİ BÖLÜM</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".next-article > span > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-video-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-video-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-video-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma ──────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -   1
+    + Received  + 163
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#dcebba",
+    +               "contrastRatio": 3.91,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#5e7847",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/architecture\" aria-current=\"page\" class=\"nav-link active \">",
+    +                 "target": Array [
+    +                   ".active",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>03</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".active > small",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f0f3ed",
+    +               "contrastRatio": 2.87,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#88928b",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 2.87 (foreground color: #88928b, background color: #f0f3ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"tabs tabs-box\" role=\"tablist\" aria-label=\"Üretim hattı\"><button class=\"tab tab-active\" role=\"tab\" aria-selected=\"true\">Video hattı</button><button class=\"tab \" role=\"tab\" aria-selected=\"false\">Kod hattı</button></div>",
+    +                 "target": Array [
+    +                   ".tabs",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.87 (foreground color: #88928b, background color: #f0f3ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<button class=\"tab \" role=\"tab\" aria-selected=\"false\">Kod hattı</button>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".tab[role=\"tab\"]:nth-child(2)",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.45,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6c7c65",
+    +               "fontSize": "8.3pt (11px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #6c7c65, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<section class=\"pipeline-card card\">",
+    +                 "target": Array [
+    +                   ".pipeline-card",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.45 (foreground color: #6c7c65, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p class=\"pipeline-note\">",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".pipeline-note",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.13,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#73816b",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a class=\"next-article\" href=\"#/tools\">",
+    +                 "target": Array [
+    +                   ".next-article",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>SONRAKİ BÖLÜM</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".next-article > span > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-architecture-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-architecture-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-architecture-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma ─────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#dcebba",
+    +               "contrastRatio": 3.91,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#5e7847",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/tools\" aria-current=\"page\" class=\"nav-link active \">",
+    +                 "target": Array [
+    +                   ".active",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>04</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".active > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-tools-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-tools-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-tools-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma ──────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#dcebba",
+    +               "contrastRatio": 3.91,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#5e7847",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/cost\" aria-current=\"page\" class=\"nav-link active \">",
+    +                 "target": Array [
+    +                   ".active",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>05</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".active > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-cost-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-cost-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-cost-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma ───────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 93
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#dcebba",
+    +               "contrastRatio": 3.91,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#5e7847",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/roadmap\" aria-current=\"page\" class=\"nav-link active \">",
+    +                 "target": Array [
+    +                   ".active",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>07</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".active > small",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.13,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#73816b",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a class=\"next-article\" href=\"#/sources\">",
+    +                 "target": Array [
+    +                   ".next-article",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>SONRAKİ BÖLÜM</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".next-article > span > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-roadmap-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-roadmap-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-roadmap-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma ───────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 93
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#dcebba",
+    +               "contrastRatio": 3.91,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#5e7847",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/sources\" aria-current=\"page\" class=\"nav-link active \">",
+    +                 "target": Array [
+    +                   ".active",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>08</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".active > small",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#edf2e7",
+    +               "contrastRatio": 4.11,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#657a5b",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.11 (foreground color: #657a5b, background color: #edf2e7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"method-note\">",
+    +                 "target": Array [
+    +                   ".method-note",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.11 (foreground color: #657a5b, background color: #edf2e7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>209 eski sohbet atıf belirteci tam metinlerde saklanıyor. URL’si olmayan atıflar için bağlantı uydurulmadı. D01 ve D02’nin satır yapısı özgün aktarımda kaybolmuş.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "div > p",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-sources-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-sources-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-sources-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#dcebba",
+    +               "contrastRatio": 3.91,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#5e7847",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/sources\" aria-current=\"page\" class=\"nav-link active \">",
+    +                 "target": Array [
+    +                   ".active",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.91 (foreground color: #5e7847, background color: #dcebba, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>08</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".active > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-sources-tab-verified-erişilebilirlik-ve-taşma-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-sources-tab-verified-erişilebilirlik-ve-taşma-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-sources-tab-verified-erişilebilirlik-ve-taşma-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [desktop] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü ─
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('searchbox', { name: 'Tüm araştırmada ara' })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('searchbox', { name: 'Tüm araştırmada ara' }) with timeout 5000ms
+      - waiting for getByRole('searchbox', { name: 'Tüm araştırmada ara' })
+        14 × locator resolved to <input value="" type="search" aria-label="Tüm araştırmada ara" placeholder="Bir fikir, araç veya kavram…"/>
+           - unexpected value "inactive"
+
+
+      18 |   await trigger.focus();
+      19 |   await page.keyboard.press('Control+k');
+    > 20 |   await expect(page.getByRole('searchbox', { name: 'Tüm araştırmada ara' })).toBeFocused();
+         |                                                                              ^
+      21 |   await page.keyboard.press('Escape');
+      22 |   await expect(page.getByRole('dialog')).toHaveCount(0);
+      23 |   await expect(trigger).toBeFocused();
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:20:78
+
+    Error Context: test-results/accessibility-klavye-araması-Escape-ve-odak-geri-dönüşü-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-klavye-araması-Escape-ve-odak-geri-dönüşü-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-klavye-araması-Escape-ve-odak-geri-dönüşü-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma ──────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eeedf5",
+    +               "contrastRatio": 4.47,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6d6b7a",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.47 (foreground color: #6d6b7a, background color: #eeedf5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card code-track card\">",
+    +                 "target": Array [
+    +                   ".code-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.47 (foreground color: #6d6b7a, background color: #eeedf5, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Ajanlar, bağlam, test ve kod inceleme. Daha hızlı üretimi, ölçülebilir kaliteye dönüştüren mühendislik.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".code-track > p",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-overview-erişilebilirlik-ve-taşma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-overview-erişilebilirlik-ve-taşma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-overview-erişilebilirlik-ve-taşma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [mobile] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma ─────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.13,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#73816b",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a class=\"next-article\" href=\"#/software\">",
+    +                 "target": Array [
+    +                   ".next-article",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>SONRAKİ BÖLÜM</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".next-article > span > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-video-erişilebilirlik-ve-taşma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-video-erişilebilirlik-ve-taşma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-video-erişilebilirlik-ve-taşma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [mobile] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma ──────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -   1
+    + Received  + 128
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f0f3ed",
+    +               "contrastRatio": 2.87,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#88928b",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 2.87 (foreground color: #88928b, background color: #f0f3ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"tabs tabs-box\" role=\"tablist\" aria-label=\"Üretim hattı\"><button class=\"tab tab-active\" role=\"tab\" aria-selected=\"true\">Video hattı</button><button class=\"tab \" role=\"tab\" aria-selected=\"false\">Kod hattı</button></div>",
+    +                 "target": Array [
+    +                   ".tabs",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 2.87 (foreground color: #88928b, background color: #f0f3ed, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<button class=\"tab \" role=\"tab\" aria-selected=\"false\">Kod hattı</button>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".tab[role=\"tab\"]:nth-child(2)",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.45,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6c7c65",
+    +               "fontSize": "8.3pt (11px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #6c7c65, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<section class=\"pipeline-card card\">",
+    +                 "target": Array [
+    +                   ".pipeline-card",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.45 (foreground color: #6c7c65, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p class=\"pipeline-note\">",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".pipeline-note",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.13,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#73816b",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a class=\"next-article\" href=\"#/tools\">",
+    +                 "target": Array [
+    +                   ".next-article",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>SONRAKİ BÖLÜM</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".next-article > span > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-architecture-erişilebilirlik-ve-taşma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-architecture-erişilebilirlik-ve-taşma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-architecture-erişilebilirlik-ve-taşma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [mobile] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma ───────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.13,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#73816b",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a class=\"next-article\" href=\"#/sources\">",
+    +                 "target": Array [
+    +                   ".next-article",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.13 (foreground color: #73816b, background color: #ffffff, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>SONRAKİ BÖLÜM</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".next-article > span > small",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-roadmap-erişilebilirlik-ve-taşma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-roadmap-erişilebilirlik-ve-taşma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-roadmap-erişilebilirlik-ve-taşma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma ───────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#edf2e7",
+    +               "contrastRatio": 4.11,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#657a5b",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.11 (foreground color: #657a5b, background color: #edf2e7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"method-note\">",
+    +                 "target": Array [
+    +                   ".method-note",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.11 (foreground color: #657a5b, background color: #edf2e7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>209 eski sohbet atıf belirteci tam metinlerde saklanıyor. URL’si olmayan atıflar için bağlantı uydurulmadı. D01 ve D02’nin satır yapısı özgün aktarımda kaybolmuş.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "div > p",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-sources-erişilebilirlik-ve-taşma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-sources-erişilebilirlik-ve-taşma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-sources-erişilebilirlik-ve-taşma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [mobile] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü ─
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('searchbox', { name: 'Tüm araştırmada ara' })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('searchbox', { name: 'Tüm araştırmada ara' }) with timeout 5000ms
+      - waiting for getByRole('searchbox', { name: 'Tüm araştırmada ara' })
+        14 × locator resolved to <input value="" type="search" aria-label="Tüm araştırmada ara" placeholder="Bir fikir, araç veya kavram…"/>
+           - unexpected value "inactive"
+
+
+      18 |   await trigger.focus();
+      19 |   await page.keyboard.press('Control+k');
+    > 20 |   await expect(page.getByRole('searchbox', { name: 'Tüm araştırmada ara' })).toBeFocused();
+         |                                                                              ^
+      21 |   await page.keyboard.press('Escape');
+      22 |   await expect(page.getByRole('dialog')).toHaveCount(0);
+      23 |   await expect(trigger).toBeFocused();
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:20:78
+
+    Error Context: test-results/accessibility-klavye-araması-Escape-ve-odak-geri-dönüşü-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-klavye-araması-Escape-ve-odak-geri-dönüşü-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-klavye-araması-Escape-ve-odak-geri-dönüşü-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15 failed
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma ───────────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma ──────────────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma ───────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma ──────────────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma ───────────────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma ────────────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma ────────────
+    [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma 
+    [desktop] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü ──
+    [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma ────────────
+    [mobile] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma ───────────────
+    [mobile] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma ────────
+    [mobile] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma ─────────────
+    [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma ─────────────
+    [mobile] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü ───
+  13 passed (11.7s)

@@ -1,0 +1,129 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test
+
+[WebServer] (node:68369) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 34 tests using 4 workers
+
+(node:68376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68378) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68377) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (530ms)
+  ✓   2 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma (535ms)
+  ✓   4 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma (569ms)
+  ✓   5 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma (470ms)
+  ✓   6 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma (515ms)
+  ✓   7 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma (528ms)
+  ✓   9 [desktop] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü (208ms)
+  ✓  11 [desktop] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (303ms)
+  ✓   8 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma (586ms)
+  ✓   1 [desktop] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma (1.6s)
+  ✓  10 [desktop] › tests/e2e/accessibility.spec.ts:26:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (651ms)
+  ✓  13 [desktop] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (173ms)
+  ✓  14 [desktop] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (329ms)
+  ✓  12 [desktop] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (377ms)
+  ✓  17 [desktop] › tests/e2e/reader.spec.ts:70:1 › statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur (31ms)
+  ✓  16 [desktop] › tests/e2e/reader.spec.ts:57:1 › depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır (362ms)
+(node:68435) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68437) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › video: erişilebilirlik ve taşma (464ms)
+  ✓  19 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (466ms)
+  ✓  20 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › architecture: erişilebilirlik ve taşma (524ms)
+  ✓  22 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › cost: erişilebilirlik ve taşma (450ms)
+  ✓  23 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › roadmap: erişilebilirlik ve taşma (502ms)
+  ✓  24 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources: erişilebilirlik ve taşma (495ms)
+  ✓  26 [mobile] › tests/e2e/accessibility.spec.ts:15:1 › klavye araması, Escape ve odak geri dönüşü (159ms)
+  ✓  25 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › sources?tab=verified: erişilebilirlik ve taşma (546ms)
+  ✓  21 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › tools: erişilebilirlik ve taşma (1.5s)
+  ✓  28 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (282ms)
+  ✓  30 [mobile] › tests/e2e/reader.spec.ts:24:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (154ms)
+  ✓  27 [mobile] › tests/e2e/accessibility.spec.ts:26:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (622ms)
+  ✓  29 [mobile] › tests/e2e/reader.spec.ts:14:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (344ms)
+  ✓  31 [mobile] › tests/e2e/reader.spec.ts:34:1 › araç filtreleri ve karşılaştırma (324ms)
+  ✓  34 [mobile] › tests/e2e/reader.spec.ts:70:1 › statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur (24ms)
+  ✓  33 [mobile] › tests/e2e/reader.spec.ts:57:1 › depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır (324ms)
+  ✘  15 [desktop] › tests/e2e/reader.spec.ts:46:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir (5.2s)
+  ✘  32 [mobile] › tests/e2e/reader.spec.ts:46:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir (5.2s)
+
+
+  1) [desktop] › tests/e2e/reader.spec.ts:46:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('cell', { name: 'Stok + ses + altyazı', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('cell', { name: 'Stok + ses + altyazı', exact: true }) with timeout 5000ms
+      - waiting for getByRole('cell', { name: 'Stok + ses + altyazı', exact: true })
+
+
+      48 |   await page.goto('#/video');
+      49 |   await page.getByRole('button', { name: /Beş üretim yaklaşımı/ }).click();
+    > 50 |   await expect(page.getByRole('cell', { name: 'Stok + ses + altyazı', exact: true })).toBeVisible();
+         |                                                                                       ^
+      51 |   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      52 |   await page.getByRole('button', { name: 'Bölümler', exact: true }).click();
+      53 |   await page.getByRole('dialog').getByRole('link', { name: /Yazılım geliştirme/ }).click();
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:50:87
+
+    Error Context: test-results/reader-320px-ekranda-tablo-675ef-bölüm-seçimi-kullanılabilir-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-320px-ekranda-tablo-675ef-bölüm-seçimi-kullanılabilir-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-320px-ekranda-tablo-675ef-bölüm-seçimi-kullanılabilir-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests/e2e/reader.spec.ts:46:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('cell', { name: 'Stok + ses + altyazı', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('cell', { name: 'Stok + ses + altyazı', exact: true }) with timeout 5000ms
+      - waiting for getByRole('cell', { name: 'Stok + ses + altyazı', exact: true })
+
+
+      48 |   await page.goto('#/video');
+      49 |   await page.getByRole('button', { name: /Beş üretim yaklaşımı/ }).click();
+    > 50 |   await expect(page.getByRole('cell', { name: 'Stok + ses + altyazı', exact: true })).toBeVisible();
+         |                                                                                       ^
+      51 |   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      52 |   await page.getByRole('button', { name: 'Bölümler', exact: true }).click();
+      53 |   await page.getByRole('dialog').getByRole('link', { name: /Yazılım geliştirme/ }).click();
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:50:87
+
+    Error Context: test-results/reader-320px-ekranda-tablo-675ef-bölüm-seçimi-kullanılabilir-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-320px-ekranda-tablo-675ef-bölüm-seçimi-kullanılabilir-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-320px-ekranda-tablo-675ef-bölüm-seçimi-kullanılabilir-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/e2e/reader.spec.ts:46:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir 
+    [mobile] › tests/e2e/reader.spec.ts:46:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir 
+  32 passed (10.8s)

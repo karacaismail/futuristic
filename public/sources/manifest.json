@@ -1,0 +1,1201 @@
+{
+  "documents": [
+    {
+      "id": "D01",
+      "title": "Video otomasyonu: mimari ve risk analizi",
+      "topic": "video",
+      "summary": "Ajansal prodüksiyon, Remotion/FFmpeg, n8n, yayınlama, kalite ve provenans.",
+      "path": "sources/D01.txt",
+      "bytes": 24734,
+      "characters": 23050,
+      "sha256": "664eefccfcc0433d3d7bfdd7529f130634862ad70f3774f4d2641d2ae8adc030",
+      "referenceCount": 0,
+      "opaqueCitations": 0
+    },
+    {
+      "id": "D02",
+      "title": "AI ile yazılım: mimari ve üretkenlik",
+      "topic": "software",
+      "summary": "METR, DORA, SDD, bağlam, prompt caching, MCP, yerel modeller ve kalite.",
+      "path": "sources/D02.txt",
+      "bytes": 38392,
+      "characters": 35591,
+      "sha256": "39f467655fe287e42037eed9a22055a98b808de92bfa62344e37a129cd42f13d",
+      "referenceCount": 3,
+      "opaqueCitations": 0
+    },
+    {
+      "id": "D03",
+      "title": "Uçtan uca video: araçlar ve referans mimari",
+      "topic": "video",
+      "summary": "Sağlayıcı envanteri, timeline sözleşmeleri, platform API’leri ve operasyon modeli.",
+      "path": "sources/D03.txt",
+      "bytes": 57415,
+      "characters": 54041,
+      "sha256": "eb8a787c7794d784956fac0e461b1e836fadbf89489e8ec8d67cb6fc4f464d28",
+      "referenceCount": 33,
+      "opaqueCitations": 116
+    },
+    {
+      "id": "D04",
+      "title": "AI geliştirme: 2023–2026 uygulama rehberi",
+      "topic": "software",
+      "summary": "Araç ve repo karşılaştırması, doğrulama döngüsü, ROI, yönetişim ve pilot.",
+      "path": "sources/D04.txt",
+      "bytes": 66000,
+      "characters": 60872,
+      "sha256": "d93d8e5cabac82a417cbd24b810e90b3e0fa642075a6734141ca207eb62d3cc8",
+      "referenceCount": 17,
+      "opaqueCitations": 93
+    },
+    {
+      "id": "D05",
+      "title": "Video içerik hattı: pragmatik saha rehberi",
+      "topic": "video",
+      "summary": "Beş üretim yaklaşımı, B2B senaryoları, self-host, OpenClaw, müzik ve platformlar.",
+      "path": "sources/D05.txt",
+      "bytes": 32688,
+      "characters": 32636,
+      "sha256": "2cf6fbab402d7fdb7d106256e1e8b5f13289ee1bc03d3ee02c38fd8cb9ab4b7f",
+      "referenceCount": 37,
+      "opaqueCitations": 0
+    },
+    {
+      "id": "D06",
+      "title": "Yazılım ajanları: karar odaklı rehber",
+      "topic": "software",
+      "summary": "Worktree, AGENTS.md, Spec Kit, MCP, test, model serving ve GPU ekonomisi.",
+      "path": "sources/D06.txt",
+      "bytes": 44376,
+      "characters": 42014,
+      "sha256": "96d53681790e3d946bf21f5bea55bdac6e54c2d0a6996fb41e635437ab7640ca",
+      "referenceCount": 22,
+      "opaqueCitations": 0
+    }
+  ],
+  "references": [
+    {
+      "id": "R001",
+      "url": "https://Epoch.ai",
+      "title": "Epoch.ai",
+      "documents": [
+        "D02"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R002",
+      "url": "https://arxiv.org/abs/2507.09089",
+      "title": "arxiv.org/abs/2507.09089",
+      "documents": [
+        "D02"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R003",
+      "url": "https://arxiv.org/abs/2605.18461",
+      "title": "arxiv.org/abs/2605.18461",
+      "documents": [
+        "D02"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R004",
+      "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate",
+      "title": "cloud.google.com/vertex-ai/generative-ai/docs/models/veo/3-1-generate",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R005",
+      "url": "https://docs.dev.runwayml.com/",
+      "title": "docs.dev.runwayml.com/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R006",
+      "url": "https://docs.lumalabs.ai/",
+      "title": "docs.lumalabs.ai/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R007",
+      "url": "https://developer.adobe.com/firefly-services/docs/firefly-api/",
+      "title": "developer.adobe.com/firefly-services/docs/firefly-api/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R008",
+      "url": "https://kling.ai/",
+      "title": "kling.ai/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R009",
+      "url": "https://platform.minimax.io/",
+      "title": "platform.minimax.io/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R010",
+      "url": "https://docs.heygen.com/",
+      "title": "docs.heygen.com/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R011",
+      "url": "https://docs.synthesia.io/",
+      "title": "docs.synthesia.io/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R012",
+      "url": "https://docs.tavus.io/",
+      "title": "docs.tavus.io/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R013",
+      "url": "https://developer.adobe.com/firefly-services/docs/audio-video-api/",
+      "title": "developer.adobe.com/firefly-services/docs/audio-video-api/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R014",
+      "url": "https://www.veed.io/",
+      "title": "www.veed.io/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R015",
+      "url": "https://elevenlabs.io/docs/api-reference/text-to-speech",
+      "title": "elevenlabs.io/docs/api-reference/text-to-speech",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R016",
+      "url": "https://cloud.google.com/text-to-speech/docs",
+      "title": "cloud.google.com/text-to-speech/docs",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R017",
+      "url": "https://platform.openai.com/docs/guides/text-to-speech",
+      "title": "platform.openai.com/docs/guides/text-to-speech",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R018",
+      "url": "https://shotstack.io/docs/",
+      "title": "shotstack.io/docs/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R019",
+      "url": "https://creatomate.com/docs/api/introduction",
+      "title": "creatomate.com/docs/api/introduction",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R020",
+      "url": "https://json2video.com/docs/",
+      "title": "json2video.com/docs/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R021",
+      "url": "https://github.com/remotion-dev/remotion",
+      "title": "github.com/remotion-dev/remotion",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 3,
+      "status": "imported"
+    },
+    {
+      "id": "R022",
+      "url": "https://ffmpeg.org/",
+      "title": "ffmpeg.org/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 3,
+      "status": "imported"
+    },
+    {
+      "id": "R023",
+      "url": "https://github.com/WyattBlue/auto-editor",
+      "title": "github.com/WyattBlue/auto-editor",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R024",
+      "url": "https://developer.adobe.com/premiere-pro/",
+      "title": "developer.adobe.com/premiere-pro/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R025",
+      "url": "https://github.com/Comfy-Org/ComfyUI",
+      "title": "github.com/Comfy-Org/ComfyUI",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R026",
+      "url": "https://github.com/Lightricks/LTX-2",
+      "title": "github.com/Lightricks/LTX-2",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R027",
+      "url": "https://arxiv.org/abs/2501.00103",
+      "title": "arxiv.org/abs/2501.00103",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R028",
+      "url": "https://github.com/Wan-Video/Wan2.2",
+      "title": "github.com/Wan-Video/Wan2.2",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R029",
+      "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo",
+      "title": "github.com/Tencent-Hunyuan/HunyuanVideo",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R030",
+      "url": "https://github.com/zai-org/CogVideo",
+      "title": "github.com/zai-org/CogVideo",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R031",
+      "url": "https://arxiv.org/abs/2408.06072",
+      "title": "arxiv.org/abs/2408.06072",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R032",
+      "url": "https://docs.n8n.io/",
+      "title": "docs.n8n.io/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R033",
+      "url": "https://docs.temporal.io/workflows",
+      "title": "docs.temporal.io/workflows",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R034",
+      "url": "https://developers.google.com/youtube/v3/docs/videos/insert",
+      "title": "developers.google.com/youtube/v3/docs/videos/insert",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R035",
+      "url": "https://developers.tiktok.com/products/content-posting-api/",
+      "title": "developers.tiktok.com/products/content-posting-api/",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R036",
+      "url": "https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api",
+      "title": "learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api",
+      "documents": [
+        "D03"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R037",
+      "url": "https://GitLab.com",
+      "title": "GitLab.com",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R038",
+      "url": "https://github.com/bigcode-project/starcoder2",
+      "title": "github.com/bigcode-project/starcoder2",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R039",
+      "url": "https://arxiv.org/abs/2402.19173",
+      "title": "arxiv.org/abs/2402.19173",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R040",
+      "url": "https://github.com/salesforce/CodeGen",
+      "title": "github.com/salesforce/CodeGen",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R041",
+      "url": "https://deepmind.google/blog/competitive-programming-with-alphacode/",
+      "title": "deepmind.google/blog/competitive-programming-with-alphacode/",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R042",
+      "url": "https://github.com/QwenLM/Qwen3-Coder",
+      "title": "github.com/QwenLM/Qwen3-Coder",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R043",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "title": "github.com/QwenLM/qwen-code",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R044",
+      "url": "https://github.com/OpenHands/openhands",
+      "title": "github.com/OpenHands/openhands",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R045",
+      "url": "https://github.com/OpenHands/software-agent-sdk",
+      "title": "github.com/OpenHands/software-agent-sdk",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R046",
+      "url": "https://github.com/swe-agent/swe-agent",
+      "title": "github.com/swe-agent/swe-agent",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R047",
+      "url": "https://arxiv.org/abs/2405.15793",
+      "title": "arxiv.org/abs/2405.15793",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R048",
+      "url": "https://github.com/Aider-AI/aider",
+      "title": "github.com/Aider-AI/aider",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R049",
+      "url": "https://github.com/langchain-ai/langchain",
+      "title": "github.com/langchain-ai/langchain",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R050",
+      "url": "https://github.com/run-llama/llama_index",
+      "title": "github.com/run-llama/llama_index",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R051",
+      "url": "https://github.com/deepset-ai/haystack",
+      "title": "github.com/deepset-ai/haystack",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R052",
+      "url": "https://github.com/huggingface/transformers",
+      "title": "github.com/huggingface/transformers",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R053",
+      "url": "https://github.com/continuedev/continue",
+      "title": "github.com/continuedev/continue",
+      "documents": [
+        "D04"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R054",
+      "url": "https://support.google.com/youtube/answer/1311392",
+      "title": "support.google.com/youtube/answer/1311392",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R055",
+      "url": "https://Captions.ai",
+      "title": "Captions.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R056",
+      "url": "https://fal.ai",
+      "title": "fal.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 7,
+      "status": "imported"
+    },
+    {
+      "id": "R057",
+      "url": "https://AutoShorts.ai",
+      "title": "AutoShorts.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R058",
+      "url": "https://Revid.ai",
+      "title": "Revid.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R059",
+      "url": "https://Predis.ai",
+      "title": "Predis.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R060",
+      "url": "https://Make.com",
+      "title": "Make.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R061",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "title": "github.com/harry0703/MoneyPrinterTurbo",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R062",
+      "url": "https://github.com/gitroomhq/postiz-app",
+      "title": "github.com/gitroomhq/postiz-app",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R063",
+      "url": "https://github.com/openclaw/openclaw",
+      "title": "github.com/openclaw/openclaw",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R064",
+      "url": "https://github.com",
+      "title": "github.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R065",
+      "url": "https://n8n.io/workflows/2971",
+      "title": "n8n.io/workflows/2971",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R066",
+      "url": "https://n8n.io/workflows/10455",
+      "title": "n8n.io/workflows/10455",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R067",
+      "url": "https://n8n.io/workflows/2875",
+      "title": "n8n.io/workflows/2875",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R068",
+      "url": "https://n8n.io/workflows/6014",
+      "title": "n8n.io/workflows/6014",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R069",
+      "url": "https://developers.google.com/youtube/v3",
+      "title": "developers.google.com/youtube/v3",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R070",
+      "url": "https://developers.tiktok.com/doc/content-posting-api-reference-direct-post",
+      "title": "developers.tiktok.com/doc/content-posting-api-reference-direct-post",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R071",
+      "url": "https://developers.facebook.com/documentation/instagram-platform/content-publishing",
+      "title": "developers.facebook.com/documentation/instagram-platform/content-publishing",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R072",
+      "url": "https://elevenlabs.io/docs",
+      "title": "elevenlabs.io/docs",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R073",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-transparency-ai-generated-content",
+      "title": "digital-strategy.ec.europa.eu/en/policies/guidelines-transparency-ai-generated-content",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R074",
+      "url": "https://artificialintelligenceact.eu/transparency-rules-article-50/",
+      "title": "artificialintelligenceact.eu/transparency-rules-article-50/",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R075",
+      "url": "https://modelslab.com",
+      "title": "modelslab.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R076",
+      "url": "https://buildmvpfast.com",
+      "title": "buildmvpfast.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R077",
+      "url": "https://runpod.io/articles",
+      "title": "runpod.io/articles",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R078",
+      "url": "https://blotato.com/blog",
+      "title": "blotato.com/blog",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R079",
+      "url": "https://upload-post.com",
+      "title": "upload-post.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R080",
+      "url": "https://checkthat.ai",
+      "title": "checkthat.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R081",
+      "url": "https://colossyan.com",
+      "title": "colossyan.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R082",
+      "url": "https://eesel.ai",
+      "title": "eesel.ai",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R083",
+      "url": "https://epidemicsound.com",
+      "title": "epidemicsound.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R084",
+      "url": "https://artlist.io",
+      "title": "artlist.io",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R085",
+      "url": "https://help.suno.com",
+      "title": "help.suno.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R086",
+      "url": "https://creatomate.com",
+      "title": "creatomate.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R087",
+      "url": "https://shotstack.io",
+      "title": "shotstack.io",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R088",
+      "url": "https://json2video.com",
+      "title": "json2video.com",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R089",
+      "url": "https://remotion.pro",
+      "title": "remotion.pro",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R090",
+      "url": "https://github.com/RayVentura/ShortGPT",
+      "title": "github.com/RayVentura/ShortGPT",
+      "documents": [
+        "D05"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R091",
+      "url": "https://chatgpt.com/codex",
+      "title": "chatgpt.com/codex",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R092",
+      "url": "https://runpane.com",
+      "title": "runpane.com",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R093",
+      "url": "https://LogicStar.ai",
+      "title": "LogicStar.ai",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R094",
+      "url": "https://coderabbit.ai/pricing",
+      "title": "coderabbit.ai/pricing",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R095",
+      "url": "https://vals.ai/benchmarks/swebench",
+      "title": "vals.ai/benchmarks/swebench",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R096",
+      "url": "https://Arena.ai",
+      "title": "Arena.ai",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R097",
+      "url": "https://support.claude.com",
+      "title": "support.claude.com",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 2,
+      "status": "imported"
+    },
+    {
+      "id": "R098",
+      "url": "https://bex.co",
+      "title": "bex.co",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R099",
+      "url": "https://anthropic.com",
+      "title": "anthropic.com",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R100",
+      "url": "https://openai.com",
+      "title": "openai.com",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R101",
+      "url": "https://github.com/github/spec-kit",
+      "title": "github.com/github/spec-kit",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R102",
+      "url": "https://github.com/no-fluff/awesome-vibe-coding",
+      "title": "github.com/no-fluff/awesome-vibe-coding",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R103",
+      "url": "https://github.com/andyrewlee/awesome-agent-orchestrators",
+      "title": "github.com/andyrewlee/awesome-agent-orchestrators",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R104",
+      "url": "https://github.com/SamurAIGPT/awesome-openclaw",
+      "title": "github.com/SamurAIGPT/awesome-openclaw",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R105",
+      "url": "https://github.com/BloopAI/vibe-kanban",
+      "title": "github.com/BloopAI/vibe-kanban",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R106",
+      "url": "https://github.com/freddy-schuetz/n8n-claw",
+      "title": "github.com/freddy-schuetz/n8n-claw",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R107",
+      "url": "https://github.com/upstash/context7",
+      "title": "github.com/upstash/context7",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R108",
+      "url": "https://github.com/microsoft/playwright-mcp",
+      "title": "github.com/microsoft/playwright-mcp",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R109",
+      "url": "https://github.com/czlonkowski/n8n-mcp",
+      "title": "github.com/czlonkowski/n8n-mcp",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R110",
+      "url": "https://arxiv.org/abs/2602.11988",
+      "title": "arxiv.org/abs/2602.11988",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R111",
+      "url": "https://arxiv.org/abs/2605.10039",
+      "title": "arxiv.org/abs/2605.10039",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    },
+    {
+      "id": "R112",
+      "url": "https://arxiv.org/abs/2603.22489",
+      "title": "arxiv.org/abs/2603.22489",
+      "documents": [
+        "D06"
+      ],
+      "mentions": 1,
+      "status": "imported"
+    }
+  ],
+  "totalBytes": 263605,
+  "referenceOccurrences": 142,
+  "opaqueCitations": 209
+}

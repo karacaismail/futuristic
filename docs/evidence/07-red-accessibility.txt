@@ -1,0 +1,973 @@
+[WebServer] (node:66033) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:66034) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma (480ms)
+
+
+  1) [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma ───────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -   1
+    + Received  + 933
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.43,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66776c",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.43 (foreground color: #66776c, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.43 (foreground color: #66776c, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"eyebrow\">BAĞLANTILI BİR GELECEK İÇİN</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".intro-line > .eyebrow",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.31,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6b786f",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.31 (foreground color: #6b786f, background color: #f6f7f9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.31 (foreground color: #6b786f, background color: #f6f7f9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Fikirleri videoya, gereksinimleri yazılıma dönüştür.<br class=\"desktop-only\"> Altı araştırma. İki üretim hattı. Tek bir açık yol haritası.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".hero-copy > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.29,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#69796f",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Kaynak belge</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".stats-strip > div:nth-child(1) > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.29,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#69796f",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>İzlenebilir referans</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".stats-strip > div:nth-child(2) > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.29,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#69796f",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Araç &amp; teknoloji</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".stats-strip > div:nth-child(3) > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.29,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#69796f",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.29 (foreground color: #69796f, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Birbirini besleyen hat</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".stats-strip > div:nth-child(4) > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.43,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66776c",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.43 (foreground color: #66776c, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.43 (foreground color: #66776c, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"eyebrow\">İKİ ODAK, ORTAK YAKLAŞIM</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".section-block:nth-child(4) > .section-heading > div > .eyebrow",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eef2e7",
+    +               "contrastRatio": 3.65,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.65 (foreground color: #728075, background color: #eef2e7, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card video-track card\">",
+    +                 "target": Array [
+    +                   ".video-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.65 (foreground color: #728075, background color: #eef2e7, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"mono\">01 / İÇERİK</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".video-track > .track-top > .mono",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eeedf5",
+    +               "contrastRatio": 3.57,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.57 (foreground color: #728075, background color: #eeedf5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card code-track card\">",
+    +                 "target": Array [
+    +                   ".code-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.57 (foreground color: #728075, background color: #eeedf5, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"mono\">02 / YAZILIM</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".code-track > .track-top > .mono",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eeedf5",
+    +               "contrastRatio": 4.47,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6d6b7a",
+    +               "fontSize": "9.8pt (13px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.47 (foreground color: #6d6b7a, background color: #eeedf5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<article class=\"track-card code-track card\">",
+    +                 "target": Array [
+    +                   ".code-track",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.47 (foreground color: #6d6b7a, background color: #eeedf5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Ajanlar, bağlam, test ve kod inceleme. Daha hızlı üretimi, ölçülebilir kaliteye dönüştüren mühendislik.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".code-track > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.43,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66776c",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.43 (foreground color: #66776c, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.43 (foreground color: #66776c, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"eyebrow\">BİLGİYİ KARARA DÖNÜŞTÜR</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".section-block:nth-child(6) > .section-heading > div > .eyebrow",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.17,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708075",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.17 (foreground color: #708075, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/tools\" class=\"desk-card card\">",
+    +                 "target": Array [
+    +                   ".desk-card.card[href$=\"#/tools\"]",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.17 (foreground color: #708075, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>55 aracı filtrele. İhtiyacına göre yan yana karşılaştır.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".desk-card.card[href$=\"#/tools\"] > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.15,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.15 (foreground color: #728075, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/tools\" class=\"desk-card card\">",
+    +                 "target": Array [
+    +                   ".desk-card.card[href$=\"#/tools\"]",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.15 (foreground color: #728075, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"mono\">KEŞFET &amp; KARŞILAŞTIR</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".desk-card.card[href$=\"#/tools\"] > .mono",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.17,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708075",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.17 (foreground color: #708075, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/cost\" class=\"desk-card card\">",
+    +                 "target": Array [
+    +                   ".desk-card.card[href$=\"#/cost\"]",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.17 (foreground color: #708075, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Tekrar üretim ve insan emeği dahil, kendi senaryonu hesapla.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".desk-card.card[href$=\"#/cost\"] > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.15,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.15 (foreground color: #728075, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/cost\" class=\"desk-card card\">",
+    +                 "target": Array [
+    +                   ".desk-card.card[href$=\"#/cost\"]",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.15 (foreground color: #728075, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"mono\">VARSAY &amp; HESAPLA</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".desk-card.card[href$=\"#/cost\"] > .mono",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.17,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708075",
+    +               "fontSize": "9.0pt (12px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.17 (foreground color: #708075, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/sources\" class=\"desk-card card\">",
+    +                 "target": Array [
+    +                   ".desk-card.card[href$=\"#/sources\"]",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.17 (foreground color: #708075, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Özgün metinler, referanslar ve tarihli doğrulama kayıtları.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".desk-card.card[href$=\"#/sources\"] > p",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.15,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "6.0pt (8px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.15 (foreground color: #728075, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<a href=\"#/sources\" class=\"desk-card card\">",
+    +                 "target": Array [
+    +                   ".desk-card.card[href$=\"#/sources\"]",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.15 (foreground color: #728075, background color: #ffffff, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"mono\">OKU &amp; DOĞRULA</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".desk-card.card[href$=\"#/sources\"] > .mono",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.18,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#6d7a72",
+    +               "fontSize": "8.3pt (11px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.18 (foreground color: #6d7a72, background color: #f6f7f9, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.18 (foreground color: #6d7a72, background color: #f6f7f9, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>11 kritik iddia kontrol edildi. Fiyat ve benchmark iddialarının kapsamı açıkça belirtiliyor.</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "p > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 3.87,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "8.3pt (11px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.87 (foreground color: #728075, background color: #f6f7f9, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.87 (foreground color: #728075, background color: #f6f7f9, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span><strong>0 / 6</strong> bölüm okundu</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".reading-mini > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 3.87,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "8.3pt (11px)",
+    +               "fontWeight": "bold",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.87 (foreground color: #728075, background color: #f6f7f9, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.87 (foreground color: #728075, background color: #f6f7f9, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +         "html": "<strong>0 / 6</strong>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span > strong",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 3.89,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708075",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #708075, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #708075, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>Meraktan, uygulamaya.</small>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span:nth-child(1) > small",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 4.31,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#657a6a",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.31 (foreground color: #657a6a, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.31 (foreground color: #657a6a, background color: #f6f7f9, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<a href=\"#/methodology\">",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "footer > a[href$=\"#/methodology\"]",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#f6f7f9",
+    +               "contrastRatio": 3.87,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#728075",
+    +               "fontSize": "6.8pt (9px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.87 (foreground color: #728075, background color: #f6f7f9, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<html lang=\"tr\" data-theme=\"futuristic\">",
+    +                 "target": Array [
+    +                   "html",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.87 (foreground color: #728075, background color: #f6f7f9, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"mono\">2026 / 001</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "footer > .mono",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#fdfefd",
+    +               "contrastRatio": 4.04,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708274",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.04 (foreground color: #708274, background color: #fdfefd, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<nav class=\"mobile-dock\" aria-label=\"Mobil gezinme\">",
+    +                 "target": Array [
+    +                   ".mobile-dock",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.04 (foreground color: #708274, background color: #fdfefd, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Bölümler</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".mobile-dock > button > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#fdfefd",
+    +               "contrastRatio": 4.04,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708274",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.04 (foreground color: #708274, background color: #fdfefd, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<nav class=\"mobile-dock\" aria-label=\"Mobil gezinme\">",
+    +                 "target": Array [
+    +                   ".mobile-dock",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.04 (foreground color: #708274, background color: #fdfefd, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Araçlar</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".mobile-dock > a[href$=\"#/tools\"] > span",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#fdfefd",
+    +               "contrastRatio": 4.04,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#708274",
+    +               "fontSize": "7.5pt (10px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.04 (foreground color: #708274, background color: #fdfefd, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<nav class=\"mobile-dock\" aria-label=\"Mobil gezinme\">",
+    +                 "target": Array [
+    +                   ".mobile-dock",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.04 (foreground color: #708274, background color: #fdfefd, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Kaynaklar</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".mobile-dock > a[href$=\"#/sources\"] > span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+       8 |     await page.evaluate(() => document.fonts.ready);
+       9 |     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+    > 10 |     expect(results.violations).toEqual([]);
+         |                                ^
+      11 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      12 |   });
+      13 | }
+        at /Users/w6x/Desktop/futuristic/tests/e2e/accessibility.spec.ts:10:32
+
+    Error Context: test-results/accessibility-overview-erişilebilirlik-ve-taşma-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-overview-erişilebilirlik-ve-taşma-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/accessibility-overview-erişilebilirlik-ve-taşma-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests/e2e/accessibility.spec.ts:5:3 › overview: erişilebilirlik ve taşma ────────────

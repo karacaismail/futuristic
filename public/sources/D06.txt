@@ -1,0 +1,366 @@
+# Yazılım Geliştirmede Yapay Zeka (Eylül 2025 – Eylül 2026): İsmail için Pragmatik, Karar Odaklı Rehber
+
+## TL;DR
+- Son 12 ayın en somut kazancı: kodlama artık tek bir asistanla değil, **paralel çalışan çoklu ajanlarla** yapılıyor; Claude Code (subagent/skills/hooks/Agent SDK), OpenAI Codex (cloud + Agents API) ve Cursor 2.x'in git worktree tabanlı paralel ajanları senin mevcut "Codex master + Claude Code worker" kurulumunu resmî olarak destekliyor. En büyük tek iyileştirme: **spec-driven development (AGENTS.md + Spec Kit) + PR-only ajan politikası** — yani ajanların doğrudan main'e push etmesi yerine PR açması ve insan onayıyla merge edilmesi.
+- Self-hosting kararın için net eşik: 15 ajan 24/7 = yüksek ve sürekli kullanım profili, ki bu tam da self-hosting'in kazandığı senaryodur. Açık-ağırlıklı modeller (DeepSeek V4, GLM-5.2, Qwen3-Coder, Kimi K3) artık SWE-bench Verified'da %70-80 bandında; ama subscription planları (Claude Max, ChatGPT Pro) 15 eşzamanlı 7/24 ajan için tasarlanmadı — gerçek seçim **token-başına API (doğrudan veya OpenRouter) vs. Hetzner GPU'da self-host** arasında.
+- Hemen benimse (öncelik sırasıyla): (1) AGENTS.md standardı + PR-only branch protection, (2) MCP çekirdek üçlüsü GitHub + Context7 + Playwright, (3) Spec Kit ile spec-driven akış, (4) AI PR review (CodeRabbit veya Copilot), (5) Ruff + ty/pyrefly ile hızlı tip-döngüsü, (6) 128 GB M5 Max'te MLX ile yerel model, (7) Hetzner GEX131'i pilot self-host için değerlendir. **Next.js ve Supabase önerilmiyor** — Vite/React/TanStack ve FastAPI/PostgreSQL yolunda kalıyoruz.
+
+## Genel Bakış (sade dil)
+
+Son bir yılda değişen ana şey şu: yapay zeka kod yazma araçları "sohbet ederek kod yaz" (autocomplete) aşamasından çıkıp **ajan orkestrasyonu** aşamasına geçti. Bir ajan (LLM + araçlar + döngü) artık bir hedef alıyor, planlıyor, dosya düzenliyor, test çalıştırıyor, hata görüyor, düzeltiyor ve bir PR açıyor. Senin zaten yaptığın vibecoding'in kurumsal, çok-repolu, çok-ajanlı versiyonu artık resmî ürün özelliği haline geldi.
+
+İkinci değişim: **standartlaşma**. AGENTS.md (ajan talimat dosyası) ve MCP (Model Context Protocol, ajanların dış araçlara/veriye bağlanma standardı) iki büyük açık standart olarak oturdu ve her ikisi de Aralık 2025'te Linux Foundation'ın Agentic AI Foundation'ına (AAIF) devredildi. Bu senin için vendor lock-in riskini azaltıyor: tek bir talimat dosyası ve tek bir araç protokolü, Claude Code / Codex / Cursor / Cline hepsinde çalışıyor.
+
+Üçüncü değişim: **açık-ağırlıklı modeller yakaladı**. Bir yıl önce ciddi kodlama sadece Claude/GPT ile yapılıyordu; bugün DeepSeek V4, GLM-5.2, Qwen3-Coder ve Kimi K3 gibi indirilebilir modeller SWE-bench Verified'da frontier'ın birkaç puan gerisinde ve API fiyatının onda birine geliyor. Bu, senin planladığın Hetzner self-host sunucusunu ekonomik olarak anlamlı kılıyor — ama sadece yüksek ve sürekli kullanımda.
+
+Aşağıda her alanı "Bu nedir? Ne işe yarar? Ne yapar? Ne yapmaz? Senin için pratik fayda ve güvenli/riskli/kurumsal yaklaşım" formatında ele alıyorum.
+
+---
+
+## 1. Kodlama Ajanları ve Orkestrasyon
+
+### Claude Code (Anthropic)
+**Bu nedir?** Terminal-tabanlı kodlama ajanı. Son 12 ayda tek bir CLI'dan programlanabilir bir platforma dönüştü.
+
+**Ne yapar?** Dört ana genişletme primitifi var (Ağustos 2026 itibarıyla resmî dokümantasyonda):
+- **Skills (Beceriler):** SKILL.md dosyası içeren klasörler; ajana "bizim FastAPI feature'ı böyle shipliyoruz" gibi tekrarlanabilir uzmanlık yüklüyor. Ajan her oturumda klasör adını/açıklamasını okuyor, görev eşleşince gövdeyi bağlama çekiyor. Custom slash komutları da Skills'e birleştirildi; /code-review, /verify, /run gibi paketli beceriler geldi.
+- **Hooks (Kancalar):** settings.json'daki yaşam döngüsü olaylarına (PreToolUse, PostToolUse, SubagentStart/Stop, PreCompact/PostCompact, SessionEnd vb.) bağlı deterministik shell komutları. Model'in söz hakkı yok — bu hem gücü hem tehlikesi. Örn: her dosya düzenlemeden sonra prettier/ruff çalıştır, her shell komutunda secret redakte et, repo dışına yazmayı blokla, Stop olayında test suite çalıştır.
+- **Subagents (Alt-ajanlar):** Ana oturumun paralel çalışması için başlattığı izole Claude örnekleri; her birinin kendi context penceresi, kendi araç izinleri, kendi modeli var. Lead ajan sadece her subagent'in nihai özetini görür, ara adımlarını görmez — bu ana transkripti temiz tutar. Nested subagents (5 derinliğe kadar) destekleniyor.
+- **Agent SDK:** Claude Code SDK'dan yeniden adlandırıldı (aynı döngü kodlamadan fazlasını çalıştırdığı için). TypeScript (@anthropic-ai/claude-agent-sdk) ve Python (claude-agent-sdk) için mevcut. CI botları, backend servisleri, zamanlanmış işler için ajanı terminal dışına çıkarır. Ama retry, sandboxing, session state ve maliyet artık senin sorumluluğunda.
+
+**Ne yapmaz?** Subagent'in araç allowlist'i bir güvenlik sınırı değil; 2026 uyarısı: izin modları parent'tan miras alınıyor ve subagent'in kendi frontmatter'ını override edebiliyor. Yani ana oturum gevşek izinlerle çalışıyorsa, subagent'in dikkatli allowlist'i seni kurtarmaz.
+
+**Senin için fayda:** Sen zaten Claude Code'u git worktree'lerde worker ajanlar olarak kullanıyorsun. Skills ile MetaFramer/atonota'nın DDD modüler monolit konvansiyonlarını (bounded context'ler, katman kuralları) kodlaştırabilir; hooks ile "ajan asla main'e push edemez, sadece PR açar" kuralını deterministik olarak zorlayabilirsin. SubagentStop hook'u ile test-geçmeden-tamamlanmaz kapısı kurabilirsin.
+
+### OpenAI Codex (CLI + Cloud + Agents API)
+**Bu nedir?** OpenAI'ın terminal-yerel kodlama ajanı (CLI), artı bulut ajanları ve IDE/desktop/browser uzantıları. Tek "App Server" mimarisi CLI, VS Code eklentisi, web app, macOS desktop ve JetBrains/Xcode entegrasyonlarını besliyor.
+
+**Ne yapar / son 12 ayda ne değişti?**
+- **Subagents** v0.115.0'da (16 Mart 2026) genel kullanıma açıldı; aynı anda 6 subagent çalışabiliyor.
+- **Cloud tasks:** OpenAI-yönetimli ortamlarda asenkron çalışır ("fire and forget"), paralel çalıştırma, tamamlanan işten **PR oluşturma**, ve `codex apply <TASK_ID>` ile bulut sonucunu yerel repoya çekme. chatgpt.com/codex üzerinden de erişilebilir.
+- **Agents API (10 Eylül 2026, public beta):** Codex "harness"ını bulut ajanlarına getiriyor; yönetilen orkestrasyon, uzun-süreli oturumlar, OpenAI-hosted sandbox'lar ve self-hosted ortam desteği. Ek ücret yok, sadece token/araç kullanımı.
+- MCP naming/timeout desteği genişledi (isimlerde : @ / . destekleniyor), araç-başına output_token_limit ayarı.
+
+**Ne yapmaz / risk:** Mart 2026'da SecurityWeek, artık yamalanmış bir Codex açığını raporladı: kötü niyetli GitHub branch isimleri task setup sırasında komut enjekte edip GitHub auth token'ı sızdırabiliyordu. Yani branch isimleri bile bir saldırı yüzeyi.
+
+**Senin için fayda:** Sen Codex'i master orchestrator olarak kullanıyorsun. Cloud tasks + PR oluşturma tam senin "AI PR açar, insan merge eder" güvenli desenine uyuyor. Agents API ile OpenClaw/n8n katmanından Codex'i programatik tetikleyebilirsin.
+
+### Cursor 2.x (background/paralel ajanlar)
+**Bu nedir?** Ajan-öncelikli IDE. Cursor 2.0, 29 Ekim 2025'te native paralel ajan desteğiyle çıktı.
+
+**Ne yapar?** Tek promptta **8 ajana kadar** paralel çalıştırır; her ajan git worktree ile izole çalışma dizininde/branch'te çalışır — dosya çakışması önlenir. "Plan Mode in Background" ile bir model planlar, başka bir model uygular. Composer adlı kendi modeli var (hız odaklı, çoğu turu 30 saniye altında). Background Agents ise internet erişimli izole Ubuntu VM'lerinde çalışır.
+
+**Ne yapmaz?** Composer, mimari/karmaşık problemlerde GPT-5/Claude Sonnet sınıfının gerisinde kalıyor (mid-frontier); derin kararlar için daha güçlü modele geçmek gerekiyor.
+
+**Senin için fayda:** Zaten Cursor kullanıyorsun; worktree izolasyonu senin çoklu-repo paralel çalışmana doğrudan uyuyor.
+
+### Diğer ajanlar (kısa)
+Cline (açık kaynak, VS Code), Aider (terminal, git-native), OpenHands (eski OpenDevin, açık kaynak otonom), Devin (Cognition, bulut otonom), Kilo Code ve Roo Code (VS Code ajanları), Amp (Sourcegraph), Factory Droid, Warp (agentic terminal), Gemini CLI (Google, AGENTS.md'yi context-file ayarıyla okur). Bunların çoğu AGENTS.md standardını destekliyor, dolayısıyla tek talimat dosyanla hepsini besleyebilirsin.
+
+### Ajan Yöneticileri / Orkestratörler (git worktree tabanlı)
+Sen zaten Pane (runpane.com) kullanıyorsun. Ekosistemdeki diğer önemli seçenekler:
+- **Conductor:** macOS uygulaması; birden çok Claude Code/Codex ajanını paralel worktree'lerde çalıştırır, güçlü diff viewer ve PR akışı. Sadece Mac.
+- **Vibe Kanban (BloopAI):** Kanban-tarzı web arayüzü, ajan-agnostik (Claude Code, Codex, Gemini CLI). ÖNEMLİ: Bloop şirketi 10 Nisan 2026'da kapandı; proje açık kaynak/topluluk-bakımlı devam ediyor, bulut özellikleri kaldırıldı, tamamen yerel mimariye geçti.
+- **Claude Squad:** Terminal-öncelikli TUI; tmux + git worktree ile her ajanı arka-plan oturumu olarak çalıştırır (Claude Code, Codex, Aider).
+- **Code Conductor, amux, agentbox (Hetzner/Docker sandbox desteğiyle), Sculptor (container izolasyonu):** worktree/izolasyon çeşitleri.
+
+**Kurumsal doğru yaklaşım:** Orkestratör seçerken izolasyon (worktree mi container mı), agent-agnostikliği (lock-in kaçınmak) ve review/merge akışının insan onayı içerip içermediğine bak. Container izolasyonu (Sculptor/agentbox) worktree'den daha güvenli çünkü tehlikeli bir araç senin laptopuna erişemiyor.
+
+---
+
+## 2. Spec-Driven Development ve Ajan-Context Standartları
+
+### AGENTS.md
+**Bu nedir?** Ajanlar için repo-seviyesinde standart talimat dosyası — "yapay zeka için README". Google, OpenAI, Factory, Sourcegraph ve Cursor tarafından Ağustos 2025'te açık standart olarak başlatıldı, Aralık 2025'te Linux Foundation'a (AAIF) devredildi. 60.000+ proje benimsedi; agents.md ve Linux Foundation AAIF duyurusuna göre (9 Aralık 2025): "adopted by more than 60,000 open-source projects and agent frameworks including Amp, Codex, Cursor, Devin, Factory, Gemini CLI, GitHub Copilot, Jules."
+
+**Ne yapar?** Ajana keşif fazı olmadan proje kurallarını verir: environment setup, build adımları, test yöntemleri, kod standartları, güvenlik notları. Codex, Copilot, Cursor, Aider, Gemini, Jules, Factory, Amp, Zed, RooCode destekliyor.
+
+**Ne yapmaz? (KRİTİK — hype değil kanıt):** Claude Code resmî uyumluluk listesinde değil — Anthropic hâlâ CLAUDE.md okuyor. Pratik desen: AGENTS.md'yi kanonik kaynak yap, CLAUDE.md'de "AGENTS.md'yi oku" de veya symlink kullan. Ayrıca **belirsiz talimatlar işe yaramıyor** ve fazla context zararlı olabiliyor: ETH Zurich + LogicStar.ai'nin "Evaluating AGENTS.md" çalışması (Gloaguen ve ark., arXiv:2602.11988, Şubat 2026) şunu buldu: "providing context files does not generally improve task success rates, while increasing inference cost by over 20% on average" (context dosyaları genelde başarı oranını artırmıyor, ortalama %20'den fazla inference maliyeti ekliyor). Ayrı bir çalışma (arXiv:2605.10039) 1.925 repodan 2.303 CLAUDE.md dosyasını analiz etti. Ders: dosyayı kısa, komut-öncelikli (tam invocation'lar), görev-organize (coding/review/release bölümleri) ve kapanış-tanımlı (açık "done" kriterleri) tut; "dikkatli ol" gibi ifadelerden kaçın.
+
+**Senin için fayda:** Çoklu-repo, çoklu-araç kullanıyorsun (Claude Code + Codex + Cursor + Cline). Tek AGENTS.md ile hepsini besleyip .cursorrules/CLAUDE.md fragmentasyonunu bitirirsin.
+
+### GitHub Spec Kit
+**Bu nedir?** GitHub'ın açık kaynak spec-driven development (SDD) araç seti. `specify` CLI ile projeyi bootstrap eder.
+
+**Ne yapar?** Dört yapılı artefakt üretir: **constitution.md** (proje ilkeleri/kısıtları), **spec.md** (ne ve neden), **plan.md** (teknik blueprint), **tasks.md** (kodlama adımları). `/analyze` komutu kalite kapısı olarak spec/plan/tasks tutarlılığını kontrol eder. Copilot, Claude Code, Codex CLI, Gemini CLI, Cursor dahil 29 entegrasyon destekliyor. Kurulum: `uv tool install specify-cli`.
+
+**Ne yapmaz?** Çok küçük tek-seferlik scriptler için ağır gelir; asıl değeri çok-modüllü, state/permission/data-model içeren, uzun-vadeli bakım gereken işlerde ortaya çıkar.
+
+**Senin için fayda:** Sen zaten Auto-Claude ile spec-driven çalışıyorsun. Spec Kit bunu resmî, araç-agnostik bir iskelete oturtur — constitution.md'de senin kurumsal güvenlik kuralların (AI main'e push edemez, PR açar) ve MetaFramer'ın DDD kısıtları kalıcılaşır.
+
+### Diğer: Kiro-style specs, BMAD, Superpowers-style skill kütüphaneleri, Agent Skills standardı
+- **Kiro** (AWS): spec-driven IDE yaklaşımı; requirements → design → tasks.
+- **BMAD (Breakthrough Method for Agile AI-Driven Development):** rol-tabanlı ajan personları (analyst, PM, architect, dev) ile agile spec akışı.
+- **Agent Skills open standard:** Claude Code'un Skills formatının açık standardı; skill kütüphaneleri (Superpowers gibi) paylaşılabilir uzmanlık paketleri.
+
+**Context engineering:** Ajanlara doğru bağlamı doğru zamanda vermek pratiği. Ana ilke: signal-density (az ama öz), planning-before-coding, ve context penceresini şişirmemek (yukarıdaki maliyet bulgusu bunu doğruluyor).
+
+---
+
+## 3. MCP (Model Context Protocol) Ekosistemi
+
+**Bu nedir?** Ajanların dış sistemlere (GitHub, veritabanı, tarayıcı, dokümanlar) standart tek arayüzle bağlandığı protokol. Anthropic tarafından 2024 sonunda JSON-RPC 2.0 üzerine açıldı, Aralık 2025'te Linux Foundation AAIF'e devredildi (Anthropic, OpenAI, Google, Microsoft, AWS, Cloudflare, Bloomberg ortak yönetimi).
+
+**Senin FastAPI/React/PostgreSQL/Docker/GitHub akışın için olgun ve yararlı MCP sunucuları:**
+Neredeyse tüm rehberler aynı çekirdek üçlüde birleşiyor: **GitHub MCP + Context7 + Playwright**. Bunları önce kur:
+- **GitHub MCP (resmî):** Ajan repo okur, org genelinde arar, PR yönetir, issue yorumlar/açar — hepsi aynı sohbetten. "O PR'ı bul, o dosyayı oku, o issue'yu aç" işini tek isteğe indirir.
+- **Context7 (upstash/context7, 62k GitHub yıldızı; en son sürüm @upstash/context7-mcp@4.1.1, 14 Eylül 2026):** Versiyon-sabitli güncel kütüphane dokümanını prompt'a çeker; ajan paket API'lerini uydurmayı bırakır. Herhangi bir kodlama ajanı için en yüksek-etkili tek sunucu.
+- **Playwright MCP (microsoft/playwright-mcp, 37.1k GitHub yıldızı, Apache-2.0):** Gerçek tarayıcı otomasyonu, screenshot, form doldurma, E2E test. README'nin dediği gibi "operates purely on structured data... No vision models needed" — yani accessibility tree ile çalışır, screenshot/vision modeli gerektirmez (deterministik, token-verimli).
+
+Sonra ihtiyaca göre: **Postgres MCP** (senin PostgreSQL için — ama büyük şemalarda token patlamasına dikkat; Postgres MCP Pro index tuning/health check ekliyor), **Sentry MCP** (hata verisi), **Filesystem MCP** (yerel dosyalar). Not: **Supabase MCP mevcut ama senin yasağın gereği kullanmıyoruz** — düz PostgreSQL MCP yeterli.
+
+**MCP güvenlik endişeleri (kritik):**
+- **Tool poisoning:** Kötü niyetli MCP sunucusu araç açıklamalarına gizli talimat gömer; ajan araç listesini yüklerken bunu context'ine alır. OWASP bunu resmî bir saldırı sınıfı olarak listeliyor. Bir akademik çalışma (arXiv 2603.22489, Mart 2026) bunu en yaygın ve etkili istemci-taraflı açık olarak buldu.
+- **Prompt injection tool sonuçları üzerinden:** Ajan bir Notion sayfası/support ticket okuduğunda, içindeki "önceki talimatları yoksay ve X yap" metni ajanı ele geçirebilir. 2025 Supabase olayı bunun canlı örneği (Cursor+Claude, support ticket üzerinden DB sızıntısı).
+- Güvenlik taramaları alarm verici: bir değerlendirmede test edilen MCP sunucularının önemli kısmında command injection, path traversal, SSRF ve kritik açıklar bulundu. Anthropic 2025'te 20 referans sunucusunun 13'ünü arşivledi — eski tutorial'ların yarısı bakımsız koda işaret ediyor.
+- Her bağlı sunucu 2.000-5.000 token'ı sadece şema enjeksiyonuyla harcıyor ve credential yüzeyini genişletiyor.
+
+**Güvenli yaklaşım:** Aktif MCP setini küçük tut (3-5 sunucu). Sadece resmî/vendor-bakımlı sunucular kullan (GitHub, Microsoft Playwright, Sentry). Token'ları read-only ve dar kapsamlı ver. Prodüksiyon-veri erişimini insan onayının arkasına koy.
+
+### FastMCP (Python)
+**Bu nedir?** Python'da kendi MCP sunucunu inşa etmenin en yaygın yolu; dekoratör-tabanlı API.
+
+**Senin için fayda:** MetaFramer/atonota, Frappe/ERPNext ve QR menü SaaS'ının iç API'lerini birer MCP sunucusu olarak ajanlara açabilirsin — böylece ajan "bu B2B marketplace'te bir tedarikçi oluştur" gibi domain işlemlerini bespoke HTTP entegrasyonu yazmadan çağırır. FastAPI zaten Python olduğu için FastMCP doğal uyum.
+
+---
+
+## 4. AI-Destekli Test/QA ve "Self-Healing" Pipeline'lar
+
+Önce net tanım: sektörde "self-healing" (kendi kendini iyileştiren) denen şey **büyük ölçüde metafordur**. Literal anlamı araca göre değişiyor — bazıları sadece teşhis raporu üretir (kod değiştirmez), bazıları düzeltme önerir, bazıları kodu değiştirip PR açar. Aşağıda her sistemin gerçekte ne yaptığını, aktörü açıkça belirterek veriyorum.
+
+### Agentic test üretimi + Playwright MCP / browser ajanları
+**Ne yapar?** Playwright test agent, LLM'in Playwright'ı bir hedef-odaklı akılda saran bir döngüsüdür: "checkout akışını tamamla ve başarı modalını doğrula" gibi niyet alır, sayfanın accessibility tree'sini inceler, hangi Playwright aracını çağıracağına karar verir, sonucu gözlemler, hedefe ulaşana dek yineler. @playwright/mcp (Microsoft resmî) accessibility snapshot'larıyla çalışır (screenshot/vision değil).
+
+**Ne yapmaz / kritik ayrım:** MCP oturumu **kalıcı artefakt değildir**. Kalıcı olan, stabil locator'lar ve açık beklentiler içeren commit'lenmiş bir Playwright test dosyasıdır. Doğru akış: ajan akışı keşfeder → gözlemlediğini raporlar → Playwright assertion'ları önerir → sen bunu junior mühendis kodu gibi review edersin → test repoya commit'lenir. Ajanın test dosyalarını sessizce yeniden yazmasına izin verme (bkz. "test weakening" anti-pattern, Bölüm 10).
+
+**Senin için fayda:** React + Vite + TanStack frontend'lerinin E2E kapsamını %70-80'e kadar bootstrap edebilir; QR menü ve emlak platformlarının kritik akışları (sipariş, listeleme) için.
+
+### AI PR review araçları (aktörleri açıkça)
+Bu araçlar PR'ı okur, puanlar, inline yorum yapar — **kodu insan onayı olmadan main'e push ETMEZ**; çoğu diagnose+suggest yapar, bazıları PR'a fix commit'i önerir/uygular.
+
+| Araç | Ne yapar | Kodu değiştirir mi? | Güçlü yanı |
+|---|---|---|---|
+| **GitHub Copilot Code Review** | Agentic tool-calling ile kaynak okur, CodeQL/ESLint çalıştırır, inline yorum + önerilen düzeltme | Öneri; Copilot coding agent'a devredilirse stacked PR'da uygular | Zero-setup, GitHub-native, Copilot lisansın varsa bedava katman |
+| **CodeRabbit** | Diff + yakın bağlam analizi, düşük gürültü, Jira entegrasyonu | Öneri (inline), PR yorumu | En yaygın: 2 milyon+ bağlı repo, 13M+ PR, 8.000+ ödemeli müşteri (Chegg, Groupon, Mercury), $40M ARR (Nisan 2026); 2026 Martian bağımsız benchmark'ında %49.2 precision ile 1. sıra (en düşük false-positive); resmi fiyat coderabbit.ai/pricing: "Essentials... $24 per developer per month when billed annually" |
+| **Greptile** | Tüm codebase'i indeksler, cross-file/cross-service bug | Öneri | En yüksek tek-geçiş yakalama (kendi benchmark'ında %82) ama en çok false-positive; ~$30/seat |
+| **Qodo Merge** | Multi-agent, ticket-uyum kontrolü, test üretimi | Öneri + test üretir | Katı PR template/kalite kapısı olan ekipler |
+| **Cursor Bugbot** | ~90 saniyede yüksek-precision review | Öneri | Cursor-native ekipler; usage-based (~$1-1.50/review) |
+| **Codex review / Claude Code review actions** | CI'da PR review | Öneri/PR | Zaten Codex/Claude kullanıyorsan |
+
+**Kritik gerçek:** Bu araçların hepsi kodu **okur, asla çalıştırmaz**. Runtime regresyonları için browser-tabanlı davranış testi (Playwright) ayrı gerekir.
+
+### Otomatik PR-fix ajanları ve CI/CD
+Codex Cloud ve Claude Code, CI hatası veya issue'dan **PR açabilir** — bu PR insan review'ından sonra merge edilir. GitHub Actions ile entegrasyon: PR açıldığında/güncellenirken webhook review'ı tetikler.
+
+**Nerede insan onayı olmalı (senin kurumsal varsayımın):** Branch protection ile main'e doğrudan push yasak; ajan sadece PR açar; en az bir insan (veya güvenilir AI review + insan) onaylar; sonra merge. Amazon bile Mart 2026'daki 6-saatlik store kesintisinden sonra junior/mid mühendislere AI-destekli kodu shiplemeden önce senior onayı zorunlu kıldı — review kapısı sektör standardı oluyor.
+
+---
+
+## 5. Açık-Ağırlıklı Kodlama Modelleri ve Self-Hosting
+
+### Eylül 2026 itibarıyla en iyi açık-ağırlıklı kodlama modelleri
+Not: SWE-bench Verified skorlarının çoğu **vendor self-reported**; bağımsız harness olarak Vals AI (vals.ai/benchmarks/swebench) daha temiz referans. llm-stats board tamamen self-reported.
+
+- **DeepSeek V4 Pro (MIT):** İndirilebilir ağırlıklar arasında ham SWE-bench Verified lideri (%80.6, vendor). Self-hostable. Near-free Flash varyantı ($0.14/$0.28 first-party API). MoE mimarisi.
+- **GLM-5.2 (Zhipu AI, MIT):** Agentic/terminal kodlamada genel tercih (Terminal-Bench 2.1'de 81.0). 744B MoE / 40B active, 1M context. Halefi GLM-5.3 (14 Ağustos 2026).
+- **Kimi K3 (Moonshot AI):** 16 Temmuz 2026'da çıktı; Arena.ai Frontend Code Arena'da #1 (frontend'de lider olan ilk açık model), Claude Fable 5'in önünde. Vals AI SWE-bench Verified %93.4 (3.). ~2.8T parametre, cluster-ölçek — tek kartta self-host EDİLEMEZ.
+- **Qwen3-Coder-Next (Alibaba, Apache 2.0):** 80B toplam / sadece 3B aktif (512 expert, 10 seçili), 256K context (YaRN ile 1M). SWE-bench Verified %70.6. Tek-GPU dostu olan tek gerçek kodlayıcı (~46GB). Ayrıca Qwen3.6-27B tek tüketici GPU'da %77.2.
+- **Mistral Devstral, gpt-oss (OpenAI açık), Llama:** alan tamamlayıcıları.
+
+**Frontier ile kıyas:** Vals AI'da GPT-5.6 Sol %96.2, Claude Fable 5 %95.0, Kimi K3 %93.4. Yani en iyi açık model frontier'ın birkaç puan gerisinde ama çıktı fiyatının ~onda birinde; frontend'de açık model zaten lider.
+
+### Inference serving seçenekleri
+- **vLLM:** Genel prodüksiyon serving, en geniş model uyumu, PagedAttention (KV cache'i OS sanal belleği gibi yönetir). Yüksek batch'te ham throughput lideri. H100'de ~12.500 tok/s.
+- **SGLang:** Latency ve prefix-reuse (RadixAttention) lideri — bu tam **ajan yükü** için önemli (paylaşılan system prompt'lar, büyüyen konuşma geçmişi). 400.000+ GPU'da prodüksiyonda. Küçük modellerde vLLM'den ~%29 daha yüksek throughput (PremAI testi).
+- **TensorRT-LLM:** NVIDIA-only, en düşük latency (compile sonrası) ama en az esnek.
+- **llama.cpp / Ollama / LM Studio:** Yerel/kolay kurulum, GGUF formatı.
+- **MLX (Apple Silicon):** Apple'ın Mac-yerel framework'ü, en hızlı Mac üretimi.
+
+**Ajan yükü için tavsiye:** Hetzner GPU'da SGLang (RadixAttention paylaşılan system prompt'larda çok kazandırır); geniş model desteği/batch için vLLM. İkisi de OpenAI-uyumlu API sunar, aralarında geçiş config değişikliği.
+
+### 128 GB M5 Max MacBook'ta gerçekçi olarak ne çalışır?
+M5 Max: 40-core GPU, 128GB unified memory, ~600-614 GB/s bandwidth. Bandwidth ve unified memory kapasitesi hangi modelin sığacağını ve hızını belirler.
+- **MoE modeller (küçük aktif parametre) hızlı:** Qwen3.5-35B-A3B ~112 tok/s decode (MLX); Qwen3.6-27B (#1 Mac modeli, %77.2 SWE-bench) ~30 tok/s; DeepSeek V4 Flash (284B-A13B MoE) ~39 tok/s (2-bit, community-reported).
+- **Büyük dense modeller bandwidth-bound ve yavaş.** 122B-sınıfı MoE'ler 128GB'a sığabilir ama 192GB daha rahat.
+- Ollama 0.19 (30 Mart 2026) MLX backend ekledi — M5 Max'te prefill 1.154→1.810 tok/s, decode 58→112 tok/s (vendor-reported).
+
+**Senin için fayda:** M5 Max, tek-geliştirici yerel kodlama (Qwen3.6-27B veya bir MoE) için mükemmel — gizlilik, offline, API maliyeti yok. Ama 15 eşzamanlı ajanı beslemez; o iş sunucuya ait.
+
+### Hetzner GPU seçenekleri (15 eşzamanlı ajan için)
+Hetzner GPU hattı Ağustos 2026'da iki model:
+- **GEX44:** NVIDIA RTX 4000 SFF Ada (20GB), ~€184-234/ay. 7B-14B model rahat, 32B ancak 4-bit'te sığar (20GB ağırlık kartı tamamen doldurur — context'e yer kalmaz). 15 ajan için yetersiz.
+- **GEX131:** NVIDIA RTX PRO 6000 Blackwell Max-Q (96GB GDDR7 ECC, 3511 TFLOPS tensor), Xeon Gold 5412U 24-core, 256GB DDR5. Resmi basın bülteninde €889/ay ($989) veya saatlik €1.4247 fiyatlanmış; üçüncü-taraf listelemeler €1.199/ay + €599 setup diyor (config/VAT farkı olabilir — canlı configurator'dan doğrula). Hetzner Cloud'da GPU instance YOK; bunlar dedicated server. **No minimum contract term.**
+
+### Cost/benefit: Self-host vs API (senin 15-ajan-7/24 profilin)
+Kritik gerçek: Subscription planları **tek-kullanıcı ve rate-limited** (5-saatlik pencereler); 15 eşzamanlı 7/24 ajan için tasarlanmadı.
+- **Claude Max** (support.claude.com resmi): "Max 5x: $100 per month · Max 20x: $200 per month"; "Access to Claude Code: Use Claude Code for your terminal-based coding workflows with one unified subscription." Ama bireysel plan, ekip için değil.
+- Anthropic dokümanı Claude Code'u "geliştirici başına $100-200/ay" (Sonnet üzerinde, yüksek varyans) diyor ama bu **tek-ajan** varsayımı — bir kaynağın uyardığı gibi "3-ajanlı 1 saatlik oturum, tek-ajanın tüm gün tükettiğini tüketebilir." Yani senin gerçek seçimin **token-başına API vs self-host**.
+
+Yayınlanmış break-even analizi (bex.co, 16 Ağustos 2026, GEX131 €889 baz alır, tek kart ~100 tok/s = ~259M token/ay):
+- **>150M token/ay VE >%40 ortalama kullanım → self-host GEX131 kazanır**, en ucuz açık-ağırlıklı API'lere karşı bile.
+- Flagship API fiyatlarını (Claude/GPT) ~15-25M token/ayda geçer (günde birkaç saat gerçek trafik).
+- En ucuz açık-ağırlıklı API'lere ($0.14-0.28/M) karşı ~120-180M token/ay gerekir.
+- <15M token/ay veya çok bursty → API kazanır, kart yük.
+- **Gizli maliyet insan:** driver/CUDA/vLLM upgrade/model rollout birinin işi — euro değil mühendislik zamanı olarak bütçele. Ayrıca saatlik açık kart (€1.4247/saat) = ~€1.026/ay, aylık kontrattan pahalı.
+
+**API fiyatları (Eylül 2026, çoğu pricing-tracker/SEO blog, resmi sayfalarda JS-render nedeniyle doğrulanamadı — canlı sayfadan teyit et):**
+- Claude: Opus 5 ~$5/$25, Fable 5.1 ~$10/$50, Sonnet 5 ~$2/$10, Haiku 4.5 ~$1/$5 (per 1M in/out). Batch −50%, cache hit input'un %10'u.
+- OpenAI: ChatGPT Plus $20 (Codex dahil), iki Pro tier ($100 ve $200), Business ~$25/kullanıcı/ay. API: GPT-5.6 Sol ~$4/$20 (promo, en az 21 Kasım 2026'a dek) veya $5/$30; GPT-6 Astra ~$10/$50 (sadece 2 kaynak, emerging).
+- Açık-ağırlıklı (OpenRouter/provider): DeepSeek V4 Flash $0.14/$0.28 (first-party; ama DeepSeek verini tutar/eğitir), GLM-5.2 ~$1.00/$3.41 (Morph), Kimi K3 ~$3/$15, Qwen3-Coder-Next $0.11/$0.80 (Alibaba Cloud).
+
+### OpenRouter
+**Bu nedir?** 500+ modele tek API/tek key/tek bakiye ile birleşik gateway; aynı modeli sunan sağlayıcılar arasında otomatik failover/routing.
+**Ne yapar/yapmaz?** Token markup'ı YOK — sağlayıcının yayınlanmış fiyatını ödersin; gelir kredi alımında %5.5 ücret. **İndirim vaadi değil**, convenience/failover/karşılaştırma vaadi. Gerçek tasarruf ucuz görevi ucuz modele yönlendirmekten gelir. BYOK: aylık $25.000 list-price inference'a dek ücretsiz, sonra %5.
+**Senin için fayda:** Ucuz görevleri (commit mesajı, basit refactor) DeepSeek/GLM'e, zor görevleri Claude/GPT'ye yönlendiren bir model-routing katmanı — API maliyetini önemli düşürür, vendor lock-in azaltır.
+
+---
+
+## 6. Workflow Otomasyonu ve Ajan Platformları
+
+### OpenClaw (senin decision/action ajan katmanın)
+**Bu nedir?** Peter Steinberger'in yarattığı açık kaynak, self-hosted otonom AI ajanı (eski adları Clawdbot/Moltbot). Yerel çalışır, WhatsApp/Telegram/Discord/Signal/Slack dahil 50+ entegrasyon, BYOK (Claude/GPT/Gemini/DeepSeek/Ollama), ClawRouters ile model routing.
+
+**Son gelişmeler (kritik):** Steinberger 14 Şubat'ta OpenAI'a katıldığını duyurdu; proje bağımsız açık kaynak vakfına geçiyor. **Güvenlik:** v2026.1.29 öncesi sürümlerde kritik bir RCE açığı var — v2026.2.21'e (veya daha yenisine) hemen güncelle ve hardening rehberini uygula. AI ajan güvenliği 2026'da önce bir supply-chain problemi: zehirli config dosyaları, ClawHub'da kötü niyetli marketplace skill'leri, authentication'sız açık MCP sunucuları büyük olaylar oldu.
+
+**Senin için fayda:** OpenClaw'ı decision/action katmanı olarak kullanıyorsun. Doğru rol: mesajlaşma-tetikli, bildirim/triyaj işleri — kod yazma/deploy gibi kritik işleri n8n'in deterministik akışına ve insan onayına bırak.
+
+### n8n (senin deterministik workflow katmanın)
+**Bu nedir?** Fair-code workflow otomasyonu; 45.000+ GitHub yıldızı. n8n 2.0 ile native AI Agent node'ları ve MCP desteği geldi.
+**Ne yapar (MCP, 3 yol):**
+1. **MCP Server Trigger node:** Bir n8n workflow'unu MCP endpoint olarak açar — dış ajan (Claude Code/Cursor) workflow'unu bir araç gibi çağırır.
+2. **MCP Client Tool node:** n8n içindeki AI Agent, dış MCP sunucusundan araç çağırır.
+3. **Instance-level MCP server (Public Preview, Nisan 2026):** Claude Desktop/Cursor/ChatGPT senin n8n instance'ında doğrudan workflow inşa/publish eder.
+Ayrıca czlonkowski/n8n-mcp topluluk sunucusu Claude'a n8n'in ~2.000 node'unu öğretir (workflow tasarımı için).
+
+**Senin için fayda:** n8n = deterministik yapıştırıcı (webhook, HTTP, DB, koşul). OpenClaw = otonom karar. İkisini ayrı tutmak doğru mimari.
+
+### Diğer ajan framework'leri (sadece pragmatik değer varsa)
+- **OpenAI Agents SDK / Anthropic Agent SDK:** kendi ajanını inşa etmek için (Bölüm 1).
+- **LangGraph:** stateful graph-tabanlı orkestrasyon; karmaşık, dallanan LLM pipeline'ları için — solo/küçük ekip için çoğu zaman fazla.
+- **CrewAI:** rol-tabanlı multi-agent; hızlı prototip.
+- **Google ADK (Agent Development Kit):** Google ekosistemi.
+**Solo/küçük-ekip gerçeği:** Bu framework'lere ihtiyacın olması için gerçek bir çok-ajanlı orkestrasyon problemin olmalı. Çoğu iş için Claude Code/Codex subagent'ları + n8n zaten yeter; framework eklemek overhead getirir.
+
+---
+
+## 7. Python/FastAPI ve React/TypeScript'e Özel AI Tooling
+
+### Python tarafı
+- **Ruff (Astral):** Rust-tabanlı linter+formatter, flake8/black'in 10-100x hızlısı. Ajan döngüsünde her düzenlemeden sonra hook ile çalıştır. Ruff **tip kontrolü YAPMAZ**.
+- **ty (Astral, beta) ve pyrefly (Meta):** Rust-tabanlı hızlı tip kontrolcüler. ty mypy/pyright'tan 10-100x hızlı (Django 578ms vs pyright 16s), "gradual guarantee" (annotation eklemek yeni hata yaratmaz). pyrefly daha olgun/spec-uyumlu (yeni proje için önerilir), ty Astral ekosistemi (Ruff+uv) kullanıyorsan doğal. ÖNEMLİ: Astral Mart 2026'da OpenAI Codex ekibine katıldı — ty gelişimi ölçekleniyor. Ağır mypy plugin kullanıyorsan (SQLAlchemy, Pydantic v1) şimdilik mypy'de kal.
+- **type-check-driven agent loop:** Ajanın kod yazması → ty/pyrefly çalışır → hataları ajana geri besler → düzeltir. Hızlı tip kontrolcü bu döngüyü saniyeler mertebesine indirir; bu senin en somut kazançlarından biri.
+- **pytest AI test üretimi + Alembic migration:** Ajan pytest testleri ve Alembic migration'ları üretebilir — ama migration'ları PostgreSQL'de insan review'ından geçir (yıkıcı DDL riski).
+
+### React/TypeScript tarafı
+- **Biome ve oxlint:** Rust-tabanlı hızlı JS/TS linter+formatter (ESLint+Prettier alternatifi). Ajan döngüsünde hızlı geri bildirim.
+- **TanStack tooling:** Query/Table/Router zaten senin stack'in; ajanlara AGENTS.md'de TanStack konvansiyonlarını (query key yapısı, table column tanımları) ver.
+- **Storybook AI:** component dokümantasyonu/test üretimi.
+
+### Design-to-code (Next.js YASAK — düz React/Vite alternatifleri)
+- **Figma MCP (resmî):** get_design_context aracı **default React+Tailwind** üretir — bu senin için uygun (Next.js değil). Framework'ü prompt'ta açıkça belirt ("plain React + Vite", "Vue" vb.). Framelink MCP framework-agnostik (descriptive JSON gönderir).
+- **Google Stitch:** 19 Mart 2026 güncellemesiyle infinite canvas + MCP server. React/Tailwind, HTML/CSS, Vue, vb. export ediyor; MCP ile Claude Code/Cursor'a design çeker. Free (aylık 350 generation).
+- **v0 (Vercel):** Production React component üretir AMA **default Next.js** — bu senin için sorun. Component'i düz React/Vite'a taşımak ek iş; Stitch veya Figma MCP + "plain React" prompt'u daha temiz yol.
+
+**Senin için pratik design-to-code akışı:** Stitch veya Figma'da tasarla → Figma MCP / Stitch MCP ile Claude Code/Cursor'a çek → "generate as plain React + Vite + TanStack, no Next.js" de → component'i review et → commit.
+
+---
+
+## 8. DevOps/Infra AI
+
+- **Docker/Compose AI:** Ajanlar Dockerfile/compose üretir/düzeltir; ama prodüksiyon compose'unu review et.
+- **GitHub Actions troubleshooting:** Codex/Claude Code, Actions loglarını (GitHub MCP üzerinden) okuyup CI hatasını teşhis eder, düzeltme PR'ı açar.
+- **Log/observability AI:**
+  - **Sentry Seer / Sentry AI:** hata gruplarını analiz eder, kök-neden önerir; senin FastAPI/React stack'ine Sentry MCP ile bağlanır. (Sentry'nin AI autofix'i teşhis+öneri odaklı; kod değişikliğini PR olarak insan onayına sunar — sessizce main'e push etmez.)
+  - **Datadog Bits:** Datadog'un AI asistanı.
+  - **Self-hosted alternatifler:** Grafana/Loki + kendi LLM analizi.
+- **Güvenlik taraması AI:**
+  - **Semgrep (AI destekli):** SAST + AI triyaj.
+  - **Snyk agents / dependency review:** bağımlılık açıkları; GitHub Dependabot/dependency-review-action.
+  - **DeepSource:** hybrid static+AI, OpenSSF CVE Benchmark'ta güçlü (F1 ~%84.51).
+
+**Senin Hetzner deploy akışın için:** GitHub Actions'tan 6 Hetzner sunucuna custom shell deploy fonksiyonun var. AI'yı buraya sadece **teşhis+PR** rolünde koy: CI hatası triyajı, deploy log analizi. Deploy'un kendisi deterministik kalsın, ajan tetiklemesin.
+
+---
+
+## 9. Son 12 Ayda Yıldızlanmaya Değer GitHub Repo'ları
+
+Yıldız sayıları yaklaşık ve zamanla değişir; işaretlenenler doğrulanmamış olabilir.
+- **github/spec-kit** — Spec-driven development toolkit (constitution/spec/plan/tasks üretir). Somut: vibecoding'i yapılı SDD'ye çevirir.
+- **no-fluff/awesome-vibe-coding** — vibecoding araçları küratörlü liste. Somut: Claude Squad, Code Conductor, Vibe Kanban, VibeTree'yi tek yerde toplar.
+- **andyrewlee/awesome-agent-orchestrators** — ajan orkestratörleri listesi (agentbox, claude-squad, amux vb.). Somut: worktree/sandbox izolasyon seçeneklerini karşılaştırır.
+- **SamurAIGPT/awesome-openclaw** — OpenClaw kaynak/skill/tutorial küratörü. Somut: senin OpenClaw katmanın için skill'ler.
+- **BloopAI/vibe-kanban** (Apache-2.0) — ajan-agnostik Kanban orkestratör. Somut: `npx vibe-kanban`; ama Bloop kapandı, topluluk-bakımlı.
+- **freddy-schuetz/n8n-claw** — n8n'de inşa edilmiş OpenClaw-esque ajan; OpenClaw'a delegasyon skill'i. Somut: n8n'den OpenClaw'a görev devretme.
+- **upstash/context7** (62k yıldız) — güncel kütüphane dokümanını prompt'a çeken MCP sunucusu. Somut: API halüsinasyonunu bitirir.
+- **microsoft/playwright-mcp** (37.1k yıldız) — tarayıcı otomasyonu MCP sunucusu. Somut: ajana gerçek tarayıcı verir, E2E test/scraping.
+- **czlonkowski/n8n-mcp** — Claude'a n8n'in ~2000 node'unu öğreten MCP sunucusu. Somut: n8n workflow'larını AI ile tasarlatma.
+
+---
+
+## 10. Riskler ve Anti-Pattern'ler + Guardrail'ler
+
+**Ajan güvenliği (prompt injection / secret sızıntısı):**
+- MCP tool poisoning ve tool-result injection (Bölüm 3). "Lethal trifecta" (Simon Willison, 16 Haziran 2025): "Access to private data, exposure to untrusted content, and the ability to communicate externally" — yani özel veriye erişim + untrusted içerik işleme + dışarı iletişim aynı ajanda birleşince tam sistem ele geçirme vektörü. Tenet Security "Agentjacking" (12 Haziran 2026): injectable Sentry DSN'lerle Claude Code/Cursor/Codex CLI'de %85 exploitation başarısı.
+- Codex branch-name injection (yamalandı) ve OpenClaw RCE (v2026.1.29 öncesi) — güncel tut.
+
+**Maliyet patlaması:** Otonom ajanlar (özellikle çok-ajanlı) API kredisini hızla yakar. Reviewer subagent'a model belirtmezsen lead'in pahalı modelini miras alır — 2026'nın en yaygın maliyet sürprizi. Guardrail: iterasyon limiti, budget cap, token kullanımı izleme, ucuz modele routing.
+
+**"Test weakening" (testi düzeltmek yerine zayıflatma):** Ajan, geçmeyen testi düzeltmek yerine testi silebilir/gevşetebilir. Guardrail: test dosyalarına yazmayı hook ile kısıtla veya ayrı review kapısı koy; SubagentStop hook ile test-geçti kanıtı zorunlu kıl.
+
+**Tanımadığın kod tabanında aşırı-güven:** Ajan büyük/interconnected repo'da cross-file etkiyi kaçırır. Guardrail: Greptile gibi codebase-indeksleyen review; küçük PR'lar.
+
+**Vendor lock-in:** Tek araca/modele bağlanma. Guardrail: AGENTS.md (araç-agnostik), MCP (protokol-agnostik), OpenRouter (model-agnostik), açık-ağırlıklı self-host opsiyonu.
+
+**Pratik guardrail seti (senin kurumsal varsayımın):**
+1. **Branch protection:** main'e doğrudan push yasak; ajan sadece PR açar; insan onayı + merge.
+2. **PR-only ajan politikası:** hooks ile deterministik zorla (repo dışına/main'e yazmayı blokla).
+3. **Sandboxing:** container izolasyonu (Sculptor/agentbox) worktree'den güvenli.
+4. **Budget caps + iterasyon limitleri + model routing.**
+5. **Review gates:** AI review (CodeRabbit/Copilot) + insan; test-geçti kanıtı; secret redaksiyonu (hook).
+6. **MCP hijyeni:** 3-5 resmî sunucu, read-only dar token, prodüksiyon-veri insan onayı arkasında.
+
+---
+
+## Nereden Başlamalı: İsmail için Öncelikli Adımlar
+
+Aşağıdaki sıra, en yüksek fayda/en düşük risk ve senin mevcut kurulumuna en az sürtünmeyle entegrasyona göre.
+
+**1. AGENTS.md + branch protection (bu hafta).** Her repo'ya kanonik AGENTS.md yaz (komut-öncelikli: build/test/lint komutları, DDD kısıtları, "AI main'e push edemez, PR açar"). CLAUDE.md'de "AGENTS.md'yi oku" de. GitHub'da branch protection aç. **Neden:** Tüm ajanların (Codex master + Claude Code worker + Cursor + Cline) davranışını tek dosyadan hizalar; kurumsal güvenlik varsayımını kalıcılaştırır. Maliyet ~sıfır. (Not: dosyayı kısa/yüksek-sinyal tut — fazla context maliyeti %20+ artırıyor.)
+
+**2. MCP çekirdek üçlüsü (bu hafta).** GitHub MCP + Context7 + Playwright MCP kur. Postgres MCP'yi read-only ekle. **Neden:** Context7 API-halüsinasyonunu bitirir; GitHub MCP PR/issue akışını sohbete taşır; Playwright E2E'yi açar. Aktif seti 5 sunucuda tut.
+
+**3. Spec Kit ile spec-driven akış (bu ay).** `uv tool install specify-cli`; constitution.md'ye kurumsal kuralların ve MetaFramer DDD kısıtlarını yaz. **Neden:** Auto-Claude ile yaptığın spec-driven'ı resmi, araç-agnostik, denetlenebilir iskelete oturtur; çok-repolu paralel işte tutarlılık.
+
+**4. AI PR review (bu ay).** CodeRabbit (düşük gürültü, bağımsız benchmark'ta en yüksek precision, ~$24/dev/ay yıllık) veya Copilot Code Review (zaten Copilot'un varsa). **Neden:** 15 ajanın açtığı PR'lar insan review'ını boğar; AI-review ilk katmanı temizler, insan son onayı verir.
+
+**5. Hızlı Python/JS döngüsü: Ruff + ty/pyrefly + Biome (bu ay).** Hook ile her düzenlemede çalıştır; type-check-driven agent loop kur. **Neden:** Ajanın hatalarını saniyeler içinde geri besler; en somut günlük hızlanma.
+
+**6. M5 Max'te yerel model (M5 Max gelince).** MLX ile Qwen3.6-27B veya bir MoE (DeepSeek V4 Flash) kur; LM Studio/Ollama 0.19 MLX backend. **Neden:** Tek-geliştirici yerel kodlama, gizlilik, offline, sıfır API maliyeti. Ama 15 ajanı beslemez.
+
+**7. Hetzner GEX131 self-host pilotu (1-2 ay içinde, ölç-sonra-karar).** Önce 30 gün API token kullanımını ölç. **>150M token/ay ve >%40 kullanıma** ulaşıyorsan GEX131 (€889-1.199/ay) + SGLang ile GLM-5.2 veya DeepSeek V4 dene. **Neden:** 15 ajan 7/24 = yüksek sürekli kullanım, self-host'un kazandığı tek profil. Ama gizli insan-maliyetini (driver/CUDA/vLLM bakımı) bütçele.
+
+**8. OpenRouter model-routing (opsiyonel, maliyet düşürücü).** Ucuz görevleri DeepSeek/GLM'e, zor görevleri Claude/GPT'ye yönlendir. **Neden:** API maliyetini düşürür, model-agnostiklik.
+
+### Şimdilik atlanacaklar (skip)
+- **LangGraph/CrewAI/ADK:** Gerçek çok-ajanlı orkestrasyon problemin olana dek gereksiz overhead — Claude Code/Codex subagent + n8n yeter.
+- **Devin gibi pahalı bulut otonom ajanlar:** Senin CLI-tabanlı kurulumun (Codex+Claude Code) zaten daha kontrollü ve ucuz.
+- **v0'ı Next.js için:** yasak; Stitch/Figma MCP + "plain React" prompt kullan.
+- **Kimi K3 self-host:** cluster-ölçek, tek kartta olmaz — API'den kullan.
+- **Her MCP sunucusunu kurmak:** context/güvenlik maliyeti; 3-5 ile sınırla.
+
+### OpenClaw + n8n senaryosu (sadece gerçekten oturduğu yerde)
+Zorlama entegrasyon değil, üç somut yerde değer katar:
+1. **PR review bildirimi:** GitHub webhook → n8n (deterministik) → PR özeti + CodeRabbit bulgularını Telegram/Slack'e; OpenClaw sadece "bu PR'ı merge edeyim mi?" gibi karar-sorusunu sana iletir (kararı sen verirsin).
+2. **CI failure triyajı:** GitHub Actions hata → n8n log'u çeker → OpenClaw (Codex Agents API'yi tetikleyerek) kök-neden analizi yapar ve **fix PR'ı açar** → sen review edip merge edersin. main'e asla otomatik push yok.
+3. **Ajan orkestrasyon köprüsü:** n8n-claw ile OpenClaw'a "şu modülü refactor et ve test yaz" görevi devret; sonuç PR olarak gelir. Deterministik akış (n8n) + otonom karar (OpenClaw) + insan onayı (merge) net ayrılır.
+
+---
+
+## Caveat'ler (Belirsizlikler)
+- **Model isimleri ve versiyonları çok hızlı değişiyor.** GPT-5.6 "Sol", "GPT-6 Astra", Claude "Fable 5"/"Opus 5", Kimi K3, GLM-5.2/5.3 gibi isimler kaynaklar arasında tutarsız; hangisinin "flagship" olduğu bile değişiyor. Bunlar SEO/tracker bloglarından; resmi sayfadan teyit et.
+- **SWE-bench Verified skorlarının çoğu vendor self-reported** ve benchmark contamination/gaming'e açık. Vals AI gibi bağımsız harness'ı tercih et; kendi kodunda trial yap.
+- **API fiyatları doğrulanamadı** — anthropic.com/openai.com pricing sayfaları JS-render olduğu için canlı tablo çekilemedi. Karar öncesi canlı sayfadan doğrula. (Claude Max $100/$200 support.claude.com'dan doğrulandı.)
+- **Hetzner GEX131 fiyatı çelişkili:** resmi basın bülteni €889/ay, üçüncü-taraf €1.199/ay — canlı configurator'dan teyit et.
+- **Yıldız sayıları yaklaşık** ve sürekli değişir (Context7 62k, Playwright MCP 37.1k Eylül 2026 itibarıyla).
+- Bazı kaynaklar (Totalum, çeşitli SEO blogları) kendi ürünlerini pazarlıyor; teknik iddiaları resmi doküman/GitHub ile çapraz-doğruladım ama pazarlama dili filtrelenmeli.
+- OpenClaw'ın gelecekteki yönetişimi (Steinberger OpenAI'a katıldı, vakfa geçiş) belirsiz — güvenlik güncellemelerini yakından izle.

@@ -1,0 +1,678 @@
+# Yapay Zekâ ile Yazılım Geliştirmeyi Kolaylaştırma: 2023–2026 Teknolojileri, Araçları, Repo’ları ve Pragmatik Uygulama Rehberi
+
+## Yönetici özeti
+
+16 Eylül 2026 itibarıyla yazılım geliştirmede yapay zekâ tarafındaki en önemli değişim, **“kod öneren model”den “repo üzerinde çalışan yazılım mühendisliği ajanı”na geçiştir**. 2023’te ağırlık autocomplete, chat ve tek seferlik kod üretimindeyken; 2024–2026 döneminde araçlar repository’yi okuyabilen, terminal çalıştırabilen, test koşturabilen, browser kullanabilen, issue’dan pull request üretebilen, statik analiz ve production telemetry sonuçlarını kullanabilen sistemlere dönüştü. SWE-bench ve SWE-agent gibi çalışmalar bu dönüşümün temelini oluşturdu; güncel GitHub Copilot ve OpenAI Codex ürünleri de aynı “model + araçlar + sandbox + test + tekrar deneme” mimarisini ürünleştirdi. citeturn16search3turn16search2turn1search0turn1search8
+
+Buradaki kritik sonuç şudur:
+
+> **2026’da yazılım geliştirme açısından asıl yatırım yapılacak şey tek başına daha iyi LLM değil; iyi bağlam + araç erişimi + doğrulama + güvenlik kapıları + gözlemlenebilirlikten oluşan bir “AI engineering loop”tur.**
+
+Modelin kod yazma yeteneği önemli olmakla birlikte, gerçek repository işleri için modelin doğru dosyaları bulması, mimari kuralları bilmesi, komut çalıştırması, hatayı gözlemlemesi, test sonucuna göre kendini düzeltmesi ve değişikliği insan incelemesine sunması daha belirleyici hale geldi. SWE-agent araştırması özellikle agent-computer interface tasarımının sonuçları ciddi biçimde etkilediğini gösterirken, GitHub Copilot artık repository instructions, MCP, agent mode, cloud agent ve PR review gibi mekanizmaları doğrudan destekliyor. citeturn16search2turn0search9turn2search4
+
+Bununla birlikte **“AI = otomatik olarak daha hızlı geliştirme” şeklinde bir genelleme bilimsel olarak savunulamaz**. GitHub ve çeşitli saha çalışmalarında belirli görevlerde ciddi kazanımlar görülürken, METR’nin 2025 randomize kontrollü çalışmasında kendi olgun açık kaynak projeleri üzerinde çalışan deneyimli geliştiriciler AI kullanırken ortalama yüzde 19 daha uzun süre harcadı. METR’nin 2026’daki yeni deneyleri ise daha yeni ajanlarla yaklaşık yüzde 4–20 aralığında verimlilik faydası yönünde sinyal verdi; araştırmacılar seçim etkileri nedeniyle bu sonucun da dikkatli yorumlanması gerektiğini belirtiyor. citeturn13search0turn13search4turn13search36 DORA da AI kullanımının bireysel üretkenlik ve akış deneyimini iyileştirebildiğini, fakat organizasyon kötü tasarlanmışsa daha büyük değişiklik paketleri üzerinden teslimat kararlılığını ve throughput’u kötüleştirebildiğini raporladı. citeturn12search8turn12search4turn12search1
+
+Dolayısıyla orta büyüklükte bir ekip için önerim, **“her yere AI koyalım” değil, aşağıdaki sırayı uygulamaktır**:
+
+**Deterministik otomasyon → geliştirici asistanı → AI destekli review/test → sınırlı ajan → production telemetry destekli ajan.**
+
+Yani önce formatter, lint, type-check, unit/integration/E2E test, SAST/SCA, secret scanning ve dependency yönetimi sağlam olmalıdır. LLM bunların yerine geçmemeli; bunların çıktısını yorumlayan, problemi çözen ve patch hazırlayan katman olmalıdır. GitHub’ın Copilot Autofix mimarisi tam olarak bu yaklaşımı kullanıyor: CodeQL önce deterministik olarak problemi buluyor, LLM sonra alert, data-flow ve kod bağlamından olası düzeltmeyi üretiyor. Semgrep Autofix de statik analiz sonuçlarını LLM’le birleştiriyor. citeturn17search9turn18search19
+
+Orta ölçekli, GitHub tabanlı bir ekip için benim **varsayılan 2026 teknoloji seçimim** şu olur:
+
+| Katman | Varsayılan tercih | Neden |
+|---|---|---|
+| Günlük IDE yardımı | GitHub Copilot veya Cursor | Çok düşük entegrasyon maliyeti; completion, chat ve agent mode aynı yerde. GitHub-first ekipte Copilot daha az operasyonel parçaya sahiptir. citeturn20search7turn7view0turn9view1 |
+| Terminal/repo ajanı | OpenAI Codex CLI veya Aider | Uzun görevler, çok dosyalı refactor, test çalıştırma ve repo üzerinde iterasyon. Codex CLI açık kaynak agent loop sunuyor; Aider Git entegrasyonu ve repo map yaklaşımıyla hafif bir alternatif. citeturn1search8turn16search1 |
+| Asenkron issue → PR | Codex cloud veya GitHub Copilot coding agent | İyi tanımlı bug, test, dokümantasyon, küçük feature ve bakım işlerini PR’a dönüştürme. citeturn1search0turn0search9 |
+| PR review | Önce Copilot Review; gerekirse CodeRabbit veya Qodo | İkinci bir review ürünü ancak ölçülebilir ek değer üretiyorsa alınmalı. Copilot repository context ve instructions kullanabiliyor. citeturn0search9turn11view1turn11view0 |
+| Güvenlik | CodeQL/GitHub Security veya Semgrep | LLM’den önce deterministik SAST/SCA/secret scanning; LLM’yi remediation katmanı olarak kullanmak. citeturn17search9turn18search29 |
+| Dependency | Dependabot + CI | Dependency update işinde deterministik otomasyon temel katmandır; AI breaking-change analizinde yardımcı olmalıdır. GitHub ve Semgrep bu modeli izliyor. citeturn17search9turn18search19 |
+| Test | Mevcut test framework + agent-generated tests + Playwright | AI test taslağını üretir; test runner gerçeği belirler. Java ağırlıklı büyük legacy sistemlerde Diffblue ayrıca güçlü adaydır. citeturn17search1turn17search4 |
+| Production debugging | Mevcut observability platformunun AI katmanı | Sentry kullanılıyorsa Seer, Datadog kullanılıyorsa Bits; sırf AI için observability platformu değiştirilmemeli. citeturn17search2turn18search4 |
+| Kurumsal bağlam | `AGENTS.md` / repo instructions + MCP | Kod standartları, test komutları, ADR’ler, ticket, docs, telemetry ve iç servisleri modele bağlamak. citeturn0search9turn2search4 |
+| Özel RAG | Yalnız repo dışı bilgi gerçekten gerekiyorsa | Wiki, ürün dokümanı, sözleşme, DB katalogu veya büyük iç bilgi havuzları için. Kodun kendisi için baştan ayrı vector DB kurmak çoğu ekipte gereksiz karmaşıklık yaratır. LlamaIndex, Haystack ve LangChain bu ihtiyaç ortaya çıktığında kullanılabilir. citeturn19search2turn21search27turn3search0 |
+| Hassas kod / local | Aider/OpenHands/Qwen Code + açık ağırlıklı model | Kaynak kodun üçüncü tarafa çıkmasının kabul edilemediği durumlarda daha fazla kontrol sağlar; fakat operasyon ve model kalite maliyeti artar. citeturn16search4turn22search3turn22search0 |
+
+Bu rapordaki maliyet senaryolarında ekip büyüklüğü belirtilmediği için **25 geliştiricilik, GitHub kullanan, mevcut CI/CD’si ve test altyapısı bulunan orta ölçekli bir ekip** referans alınmıştır. Fiyatlar vergi hariç yaklaşık planlama rakamlarıdır; enterprise anlaşmaları, token tüketimi, observability lisansı ve GPU altyapısı şirketten şirkete büyük ölçüde değişir.
+
+Benim temel yatırım önceliğim yaklaşık olarak şöyle olur:
+
+**Birinci öncelik:** repository bağlamı ve coding agent.  
+**İkinci öncelik:** test/review/security doğrulama döngüsü.  
+**Üçüncü öncelik:** issue → PR delegasyonu.  
+**Dördüncü öncelik:** observability → root cause → fix PR döngüsü.  
+**Beşinci öncelik:** ancak gerçekten ihtiyaç varsa özel RAG/self-hosted model altyapısı.
+
+Özellikle Metaframer/Metaframework gibi platform seviyesinde çok sayıda dosya, abstraction ve mimari kural içeren projelerde en yüksek getiriyi “daha fazla autocomplete”ten ziyade **repo instructions, mimari dokümanlar, executable test commands ve agent-compatible development environment** verecektir. HRMS veya İBYS gibi kişisel/hassas veri içerebilecek ürünlerde ise model seçiminin yanında veri aktarımının nerede gerçekleştiği, retention, logging ve yurt dışına aktarım süreçleri teknik mimarinin parçası kabul edilmelidir. KVKK’nın üretken AI rehberi ve 2026 tarihli Agentic AI dokümanı da yaşam döngüsü boyunca kişisel veri işleme risklerinin değerlendirilmesini özellikle vurguluyor. citeturn20search6turn20search12turn19search0
+
+## Son üç yılda teknoloji değişimi
+
+2023–2026 dönemindeki en önemli teknolojik değişiklikleri tek tek ürün isimlerinden ziyade **yazılım geliştirme döngüsünde hangi problemi çözdükleri** üzerinden değerlendirmek daha anlamlıdır.
+
+| Yaklaşım | 2023–2026’daki değişim | Somut olarak ne işe yarıyor? | Pragmatik değeri |
+|---|---|---|---|
+| Genel amaçlı LLM | Chat/code snippet üretiminden uzun-context ve tool-use’a geçti | Kod açıklama, SQL/regex/script, refactor önerisi, debugging hipotezi, doküman üretimi | Küçük ve orta ölçekli zihinsel işi hızlandırır |
+| Code LLM | Sadece autocomplete yerine repository ölçekli kodlama ve agentic training | Multi-file düzenleme, issue çözme, test üretme | Boilerplate yerine gerçek engineering task’larına yaklaşır |
+| Multimodal model | Metin+koda görüntü/browser/UI bağlamı eklendi | Screenshot’tan frontend bug bulma, UI karşılaştırma, browser test validation | Frontend ve E2E QA’da ciddi değer |
+| RAG | Basit vector search’ten hybrid retrieval, reranking ve agentic retrieval’a kaydı | İç doküman, ADR, wiki, schema, ticket ve runbook’ları modele taşıma | Hallucination’ı azaltabilir ve kurumsal bağlam sağlar |
+| Program synthesis | Tek-shot kod üretiminden generate→execute→test→repair döngüsüne geçti | Spec veya issue’dan çalışır patch üretmeye çalışma | Asıl agentic coding sıçramasının temeli |
+| Tool-using agents | Terminal, Git, browser, CI, issue tracker ve API kullanımı yaygınlaştı | “Şu issue’yu çöz” deyip repo üzerinde eylem yaptırma | Kullanıcıdan modele sürekli copy/paste ihtiyacını azaltır |
+| MCP | Araç ve veri bağlantılarını ortak protokole dönüştürdü | Jira, GitHub, DB, docs, Sentry gibi sistemleri aynı agent’a açma | Entegrasyonların her model için baştan yazılmasını azaltır |
+| AI + statik analiz | LLM’in sıfırdan güvenlik problemi araması yerine scanner çıktısı LLM’e verilmeye başlandı | CodeQL/Semgrep finding → açıklama → patch | Daha düşük hallucination, daha izlenebilir remediation |
+| AI test automation | Test snippet üretiminden testleri çalıştırıp kendini düzeltmeye geçti | Unit test, regression test, E2E senaryo üretimi | Legacy ve coverage açığı olan kodlarda yüksek kaldıraç |
+| Model-based code review | Diff özetlemekten repo context ve policy-aware review’a geçti | PR bug/risk/test eksikliği bulma | İnsan reviewer’ın ilk tur yükünü azaltabilir |
+| AI observability/AIOps | Log özetlemekten telemetry üzerinde hipotez kuran ajanlara geçti | Alert → traces/logs → root cause → fix önerisi | MTTR üzerinde potansiyel olarak çok yüksek değer |
+| Context engineering | “Prompt engineering”den repository’nin makinece anlaşılır hale getirilmesine geçiş | `AGENTS.md`, coding standards, ADR, commands, MCP, skills | 2026’daki en önemli pratik uygulamalardan biri |
+
+**Code LLM ve program synthesis tarafındaki evrim** özellikle önemlidir. Salesforce CodeGen ailesi doğal dilden programa geçiş ve program synthesis için erken açık araştırma sistemlerindendi; CodeGen2/2.5 infilling ve daha verimli modeller getirdi. StarCoder2 ise 2024’te geniş ve şeffaflaştırılmış code corpus yaklaşımıyla açık ağırlıklı code-model ekosisteminin önemli örneği oldu. Bunlar bugün doğrudan en güçlü production coding agent’ları olmaktan çok, modern code-LLM mimarisinin kilometre taşlarıdır. citeturn21search0turn21search4turn21search8turn4search29
+
+AlphaCode da program synthesis açısından önemli bir araştırma çizgisidir. İlk AlphaCode 2022’de competitive programming seviyesini ciddi biçimde ileri götürmüş, Gemini döneminde AlphaCode 2 aynı yaklaşımın daha güçlü model jenerasyonuyla devamını temsil etmiştir. Ancak **AlphaCode bir GitHub Copilot alternatifi değildir**; yarışma problemi çözmeye yönelik araştırma sistemi olarak değerlendirilmelidir. citeturn21search9turn21search1
+
+Daha önemli kırılma 2023’te SWE-bench ile geldi. SWE-bench, modelden izole fonksiyon üretmek yerine gerçek GitHub issue’su ve gerçek repository üzerinde patch üretmesini istedi; ilk benchmark 12 popüler Python repository’sinden 2.294 gerçek issue içeriyordu. Bu, “kod üretimi” ile “software engineering” arasındaki farkı ölçülebilir hale getirdi. citeturn16search3turn16search11
+
+2024’te SWE-agent, modelin yalnızca zekâsını değil **bilgisayarla etkileşim arayüzünü** optimize etmeye odaklandı. Agent dosya arayabiliyor, düzenleyebiliyor, terminal çalıştırabiliyor ve test sonuçlarından yeni eylem üretebiliyordu. Bu fikir bugün Codex, Copilot coding agent, OpenHands, Qwen Code ve benzeri sistemlerin merkezinde yer alıyor. citeturn16search2turn16search6turn16search20
+
+2025–2026’da ise kod modellerinin eğitim hedefi de değişmeye başladı. Örneğin Qwen3-Coder-Next yalnız kod token’ı üzerinde değil, **executable task synthesis, environment interaction ve reinforcement learning ile agentic coding** amacıyla eğitildiğini belirtiyor; Qwen Code da terminal, editor, desktop/browser, sub-agent, skills ve MCP katmanlarını açık kaynak bir agent kabuğunda birleştiriyor. citeturn22search0turn22search3turn22search6
+
+OpenAI tarafında da aynı evrim gözleniyor. 2025’te tanıtılan Codex, repository üzerinde bağımsız sandbox içinde özellik yazabilen, bug düzeltebilen ve testleri iteratif çalıştırabilen bir software engineering agent olarak konumlandırıldı. Codex CLI’nin açık kaynak agent loop’u prompt → model inference → tool execution → yeni context döngüsünü açık biçimde gösteriyor. 2026’da Codex app paralel agent çalıştırma, skills ve automations yönüne genişledi. citeturn1search0turn1search8turn1search2
+
+Bu değişimin pratik karşılığı şöyledir:
+
+```mermaid
+flowchart LR
+    A[İstek / Issue] --> B[LLM veya Coding Agent]
+    B --> C[Repo bağlamını bul]
+    C --> D[Plan oluştur]
+    D --> E[Dosyaları değiştir]
+    E --> F[Terminal / Tool çalıştır]
+    F --> G[Test - Lint - Typecheck - SAST]
+    G -->|Başarısız| B
+    G -->|Başarılı| H[Diff / PR oluştur]
+    H --> I[AI Code Review]
+    I --> J[İnsan Review]
+    J --> K[Merge / Deploy]
+    K --> L[Logs - Traces - Errors]
+    L --> M[AI Root Cause Analysis]
+    M --> A
+```
+
+Bu nedenle **“hangi model en iyi kod yazıyor?” artık tek başına yanlış optimizasyon hedefidir**. Daha doğru sorular şunlardır: model doğru repository bağlamını bulabiliyor mu, testleri çalıştırabiliyor mu, architecture constraint’leri biliyor mu, güvenli sandbox’ta mı çalışıyor, diff’i küçük tutabiliyor mu ve çıktısını deterministik araçlarla doğrulayabiliyor muyuz? Bu çıkarım SWE-agent’in ACI sonuçları, GitHub’ın repository instructions/MCP yaklaşımı ve güncel coding-agent mimarileriyle uyumludur. citeturn16search2turn0search9turn2search4
+
+**Multimodal coding** özellikle frontend tarafında yeni bir pratik kategori oluşturuyor. Gemini’nin ilk sürümünden itibaren multimodal model tasarımı öne çıktı; güncel coding-agent modellerinde browser-use ve tool-use ayrıca hedefleniyor. Bunun somut faydası “bu React component’ini yaz”dan daha öte: ajan uygulamayı çalıştırabilir, browser’a gidebilir, screenshot veya DOM durumunu görebilir, tasarımla karşılaştırabilir, console error okuyabilir ve tekrar patch üretebilir. citeturn21search1turn22search0
+
+**RAG tarafında** ise iki farklı problemi ayırmak gerekiyor. Repository kodunu anlamak için güncel coding agent’ların çoğu zaten code search, repo map, semantic search veya context-selection yapıyor. Bunun üzerine ayrıca vector DB kurmak her zaman fayda sağlamaz. RAG asıl olarak repository dışındaki yaşayan kurumsal bilgi için değerlidir: mimari karar kayıtları, müşteri gereksinimleri, PIM veri sözlüğü, API katalogu, HRMS iş kuralları, runbook’lar, ticket geçmişi veya ürün dokümantasyonu. LlamaIndex, Haystack ve LangChain bugün RAG/agent orchestration için aktif altyapılar sunuyor. citeturn19search2turn21search27turn3search0
+
+Buradaki daha yeni yaklaşım **agentic RAG**’dir: sistem her prompt’ta körü körüne beş benzer chunk çekmek yerine “önce hangi veri kaynağına bakmalıyım, SQL mi çalıştırmalıyım, documentation mı aramalıyım, başka bir tool mu kullanmalıyım?” kararını verir. Haystack güncel mimarisinde retrieval, routing, memory ve generation bileşenlerini açık şekilde ayrıştırıyor; LlamaIndex de klasik RAG’ın ötesinde document/agent iş akışlarına yönelmiş durumda. citeturn21search3turn19search2
+
+Bu noktada MCP önemli hale geliyor. Anthropic’in 2024 sonunda duyurduğu Model Context Protocol, LLM uygulamalarının dış veri ve araç sistemlerine standart biçimde bağlanması için geliştirildi; 2025 sonunda Linux Foundation bünyesindeki Agentic AI Foundation’a devredildi. 2026 MCP spesifikasyonunda server’ların resources, prompts ve tools sunması standartlaştırılmış durumda. citeturn2search1turn2search5turn2search4
+
+Pratik olarak şu fark ortaya çıkar:
+
+**RAG:** “Bu bilgiyi bul ve prompt’a koy.”  
+**MCP/tool use:** “Gerekirse bu sisteme git, sor, hesapla, değiştir veya eylem yap.”
+
+Örneğin Metaframer üzerinde bir agent’ın PostgreSQL schema’sını okuması, Jira issue detayını alması, Sentry hatasını sorgulaması ve ardından test çalıştırması RAG’dan çok **tool-using agent/MCP problemi**dir.
+
+## Araç ve repo karşılaştırması
+
+Aşağıdaki tablo ticari veya ürünleşmiş coding araçlarını, 16 Eylül 2026 itibarıyla kullanım biçimleri açısından karşılaştırıyor. “Olgunluk” sütunu benim ürünün yaygınlığı, entegrasyon kapsamı, aktif geliştirilmesi ve kurumsal kontrollerine göre yaptığım analitik sınıflandırmadır; vendor tarafından verilen resmi rating değildir.
+
+| Araç | Temel yetenek | Lisans / model | Olgunluk | Entegrasyon noktaları | En uygun kullanım | Not |
+|---|---|---|---|---|---|---|
+| **GitHub Copilot** | Completion, chat, agent mode, cloud coding agent, code review, CLI | Proprietary SaaS | Çok yüksek | GitHub, VS Code, Visual Studio, JetBrains, Xcode, Neovim ve diğer IDE’ler; MCP | GitHub merkezli ekip için genel varsayılan | Agent mode, custom instructions ve cloud agent ile issue→PR tarafına genişledi. citeturn7view0turn0search9 |
+| **OpenAI Codex** | Repo agent, terminal, sandbox, cloud delegation, SDK, review/security senaryoları | Codex CLI açık kaynak; modeller/hizmet proprietary | Yüksek ve hızlı gelişiyor | CLI, Codex app/cloud, API/SDK, GitHub, Slack | Büyük refactor, bug fix, test, paralel delegasyon | Codex agent izole ortamda kod yazıp testleri iteratif çalıştırabiliyor. citeturn1search0turn1search5turn1search8 |
+| **Cursor** | AI-native editor, autocomplete, repo agent, cloud agents, MCP, hooks | Proprietary | Çok yüksek | Cursor IDE, Git, MCP, cloud agents | Çok yoğun agentic IDE kullanan birey/ekip | Pro kamu fiyatı $20/ay; daha yüksek agent kotaları Pro+/Ultra’da. citeturn9view1 |
+| **Tabnine** | Completion/chat, agentic development; güçlü deployment seçenekleri | Proprietary | Yüksek | Major IDE’ler, Git/Jira/Confluence, MCP; SaaS/VPC/on-prem/air-gapped | IP/veri izolasyonu çok önemli kurum | Code Assistant $39, Agentic Platform $59 kullanıcı/ay yıllık listeleniyor; self-host seçenekleri ayırt edici. citeturn6search1 |
+| **Codeium / Windsurf** | AI IDE ve agentic coding | Proprietary | Ürün yeteneği yüksek; roadmap riski yüksek | IDE, agent workflow | Mevcut kullanıcılar için hâlâ ilgili | Codeium markası Windsurf’e dönüştü; Cognition 2025’te Windsurf’ü satın aldı ve ürün hattı Devin tarafıyla yakınsıyor. Yeni kurumsal yatırımda roadmap özellikle incelenmeli. citeturn21news37turn8search1 |
+| **CodeRabbit** | Agentic PR review, fixes, test/security odaklı review | Proprietary | Yüksek | GitHub/GitLab, PR workflow, Jira/Linear | Review darboğazı yüksek ekipler | Kamu fiyatlarında Essentials $24, Team $48, Advanced $72/developer/ay yıllık; kullanım tabanlı ek ücretler de bulunuyor. citeturn11view1 |
+| **Qodo** | IDE + PR review, organizational rules, pre-PR checks | Proprietary | Yüksek | IDE, Git, CI, organization rules | Kurala dayalı kalite/review standardizasyonu | Enterprise’ta SSO, BYOK ve deployment kontrolleri sunuyor; Qodo kod üzerinde model eğitmediğini belirtiyor. citeturn11view0 |
+| **GitLab Duo** | GitLab içi coding/review/AI özellikleri | Proprietary | Yüksek | GitLab.com, Self-Managed, Dedicated | GitLab-native ekip | Code Review GitLab 18.1’de GA; self-hosted model desteği de GitLab 18.4’te GA oldu. citeturn11view2 |
+| **Diffblue Cover** | Otonom Java unit-test üretimi ve bakımı | Commercial | Yüksek, fakat dar kapsamlı | Java build/test sistemleri, CI | Büyük Java/legacy codebase | Offline/air-gapped deterministic test-generation seçeneği sunması özel bir avantaj. citeturn17search1turn17search4 |
+| **Semgrep** | SAST, SCA, secrets + AI triage/autofix | Open-core/commercial platform | Çok yüksek AppSec olgunluğu | IDE, agent hooks, MCP, CI, PR | Güvenlik gate + AI remediation | 2026 Guardian/Autofix, agent’ın değiştirdiği dosyaları development anında tarayabiliyor. citeturn18search9turn18search19 |
+| **Sentry Seer** | Telemetry-aware debugging, root cause, Autofix | Proprietary | Yüksek | Sentry, GitHub, Slack, MCP, coding agents | Production bug → root cause → patch | Errors, traces, logs ve code context’i birleştiriyor. citeturn17search2turn17search5 |
+| **Datadog Bits Investigation** | Otonom incident investigation ve RCA | Proprietary | Yüksek | Datadog telemetry + GitHub, Sentry, Grafana, Dynatrace, Splunk, ServiceNow | Büyük observability footprint’i olan ekip | Hipotez üretip telemetry üzerinde iteratif araştırma yapıyor. citeturn18search4turn18search10 |
+
+GitHub Copilot açısından ürün artık sadece autocomplete değildir. Güncel planlarda agent mode, coding agent, code review, MCP ve custom instructions gibi özellikler bulunuyor; GitHub code review dokümanında agentic review’un proje bağlamı toplayabildiği ve önerilerden cloud agent’a iş aktarılabildiği belirtiliyor. Bununla birlikte GitHub açıkça review’un tüm problemleri yakalama garantisi olmadığını ve insan incelemesinin yerine geçmemesi gerektiğini söylüyor. citeturn7view0turn0search9
+
+OpenAI Codex tarafında da “eski Codex code completion modeli” ile güncel Codex ürününü ayırmak gerekiyor. Güncel Codex; repository, sandbox, terminal ve testler üzerinde çalışan bir yazılım mühendisliği ajanı. OpenAI 2025 sonunda Codex SDK ve iş akışı entegrasyonlarını genişletti; 2026’da Codex Security gibi AppSec özel ajanlarını ekledi. Codex Security için açıklanan erken beta sonuçları arasında bazı müşterilerde noise ve overreported severity’de ciddi düşüşler yer alıyor, ancak bunlar **vendor beta sonuçlarıdır ve bağımsız benchmark olarak değerlendirilmemelidir**. citeturn1search5turn1search7
+
+Açık kaynak ve araştırma ekosisteminde ise tablo farklıdır:
+
+| Proje / model | Tür | Lisans | 2026’da rolü | Entegrasyon / kullanım | Repo / kaynak |
+|---|---|---|---|---|---|
+| **StarCoder2** | Code LLM | BigCode OpenRAIL-M v1; klasik OSI lisansı gibi değerlendirilmemeli | Araştırma, fine-tuning, kontrollü/self-host code inference | Transformers/TGI vb. | [GitHub](https://github.com/bigcode-project/starcoder2), [paper](https://arxiv.org/abs/2402.19173) citeturn4search29turn13search11 |
+| **CodeGen / CodeGen2.5** | Program synthesis/code LLM | Apache-2.0 repo | Tarihsel ve araştırma değeri yüksek; production frontier değil | Local inference/research | [GitHub](https://github.com/salesforce/CodeGen) citeturn21search0turn21search8 |
+| **AlphaCode / AlphaCode 2** | Program synthesis araştırma sistemi | Genel amaçlı OSS ürün değil | Competitive-programming araştırmasının kilometre taşı | Doğrudan ekip aracı olarak önerilmez | [DeepMind AlphaCode](https://deepmind.google/blog/competitive-programming-with-alphacode/) citeturn21search9turn21search1 |
+| **Qwen3-Coder-Next** | Agentic code model | Açık ağırlıklı; ilgili artifact koşulları ayrıca incelenmeli | 2026’daki daha güncel açık model seçeneklerinden | Qwen Code, Cline vb.; local/cloud | [GitHub](https://github.com/QwenLM/Qwen3-Coder) citeturn22search0turn22search6 |
+| **Qwen Code** | Coding agent | Apache-2.0 | Güçlü açık agent shell | CLI, editor, desktop/browser, MCP, local modeller | [GitHub](https://github.com/QwenLM/qwen-code) citeturn22search3 |
+| **OpenHands** | Software-engineering agent platform/SDK | Açık kaynak | Agent araştırması, self-host ve özelleştirme | Python/TypeScript/REST, repo automation | [OpenHands](https://github.com/OpenHands/openhands), [SDK](https://github.com/OpenHands/software-agent-sdk) citeturn16search0turn16search20 |
+| **SWE-agent** | Araştırma/agent framework | OSS | Agent mimarisi ve evaluation için önemli | GitHub issue → patch, shell/tools | [GitHub](https://github.com/swe-agent/swe-agent), [paper](https://arxiv.org/abs/2405.15793) citeturn16search6turn16search2 |
+| **Aider** | Terminal coding agent | Apache-2.0 | Çok pragmatik, model-agnostic CLI | Local Git repo, repo map, auto-commit | [GitHub](https://github.com/Aider-AI/aider) citeturn16search1turn16search17 |
+| **LangChain** | LLM/agent orchestration | MIT | Genel agent uygulama framework’ü | Model/tool/vector-store abstractions; LangGraph | [GitHub](https://github.com/langchain-ai/langchain) citeturn3search0turn3search2 |
+| **LlamaIndex** | Data/document/RAG/agent framework | MIT | Doküman ve kurumsal knowledge bağlamında güçlü | RAG, parsing, indexing, agents | [GitHub](https://github.com/run-llama/llama_index) citeturn19search2turn19search11 |
+| **Haystack** | AI orchestration/RAG | Apache-2.0 ekosistemi | Production pipeline’larında güçlü | Retrieval, routing, memory, multimodal, agents | [GitHub](https://github.com/deepset-ai/haystack) citeturn21search3turn21search27 |
+| **Hugging Face Transformers** | Model framework | Apache-2.0 | Açık modeller için temel runtime/training katmanlarından | PyTorch/Transformers ekosistemi; text/vision/audio/multimodal | [GitHub](https://github.com/huggingface/transformers) citeturn4search2turn4search10 |
+| **Continue** | IDE/CLI coding agent | Apache-2.0 | Tarihsel olarak önemli fakat **yeni yatırım için değil** | VS Code/JetBrains/CLI | [GitHub](https://github.com/continuedev/continue) — proje 2026’da read-only hale geldi, ekip Cursor’a katıldı. citeturn15search5turn15search1 |
+
+Burada özellikle bir ayrım yapılmalı:
+
+**StarCoder2, CodeGen, AlphaCode gibi “model/araştırma projeleri” ile Copilot, Codex, Cursor, Aider, OpenHands gibi “agent/runtime” ürünleri aynı kategori değildir.**
+
+2026 itibarıyla doğrudan üretkenlik için genellikle **agent/runtime seçmek**, sıfırdan model seçip inference altyapısı kurmaktan daha hızlı ROI üretir. Model self-hosting ancak IP, maliyet, offline çalışma, deterministik deployment veya özel fine-tuning ihtiyacı gerçekten bunu gerektiriyorsa mantıklıdır.
+
+Benzer biçimde **LangChain/LlamaIndex/Haystack coding assistant değildir**. Bunlar kendi AI destekli ürünlerinizi veya şirket içi agent/RAG sistemlerinizi geliştirirken kullanacağınız application framework’leridir. LlamaIndex güncel olarak doküman parsing/extraction tarafına daha çok ağırlık vermiş durumda; Haystack production-ready modular pipelines yaklaşımını sürdürüyor; LangChain ise agent framework ve LangGraph orchestration ekosistemine odaklanıyor. citeturn19search2turn21search19turn3search0
+
+Codeium konusu ayrıca güncellik açısından dikkat çekicidir. Codeium adı zaman içinde Windsurf’e dönüştü ve Windsurf 2025’te Cognition tarafından satın alındı; bu nedenle eski “Codeium vs Copilot” karşılaştırmalarının çoğu 2026 için artık güncel değildir. citeturn21news37turn21search26 Bu aynı zamanda AI developer-tools pazarındaki **vendor/roadmap riskinin** güzel bir örneğidir.
+
+## Somut kullanım desenleri ve mimari
+
+AI’nin en yüksek getiriyi sağladığı işleri “kod yazdırmak” şeklinde genellemek doğru değildir. En iyi sonuçlar genellikle **iyi tanımlanmış, doğrulanabilir ve düşük belirsizliğe sahip görevlerde** ortaya çıkar.
+
+| İş | AI’ye verilecek görev | Gerçek fayda | Otomasyon seviyesi | İnsan kontrolü |
+|---|---|---|---|---|
+| Boilerplate | CRUD, DTO, serializer, mapper, API client | Düşük değerli yazım işini azaltır | Yüksek | Hızlı review |
+| Unit test | Mevcut fonksiyonlar için boundary/error testleri | Coverage açığını kapatmayı hızlandırır | Orta-yüksek | Assertions incelenmeli |
+| Regression test | Bug report’tan önce failing test yazdırma | Fix’in gerçekten problemi çözdüğünü kanıtlar | Yüksek | Test semantiği kontrol edilmeli |
+| Refactor | API değiştirmeden repeated pattern dönüştürme | Büyük mechanical refactor’larda ciddi zaman kazancı | Orta | Test suite zorunlu |
+| Migration | Framework/library API upgrade | Tekrarlı değişiklikleri otomatikleştirir | Orta | Dependency ve breaking-change kontrolü |
+| Documentation | README, API docs, ADR taslağı | Onboarding maliyetini düşürür | Yüksek | Teknik doğruluk review |
+| Code explanation | Legacy/modül/data-flow açıklama | Bilmediğiniz codebase’e giriş hızlanır | Yüksek | Kritik kararlar doğrulanmalı |
+| PR summary | Diff, risk ve test özeti | Reviewer’ın orientation süresini azaltır | Yüksek | Düşük risk |
+| Code review | Diff üzerinde bug/security/test eksikliği arama | İlk review katmanını otomatikleştirir | Orta | Merge gate olmamalı |
+| Bug fixing | Stack trace + ilgili kod → patch | Tanımlı bug’larda yüksek değer | Orta | CI + review |
+| Issue → PR | İyi tanımlı backlog maddesi | Bakım backlog’unu eritmek için iyi | Orta | Merge insan tarafından |
+| Security remediation | SAST alert → patch | Security bilgisini geliştiriciye taşır | Orta-yüksek | Scanner tekrar çalışmalı |
+| Dependency upgrade | CVE/dependency → upgrade + breaking fixes | Manuel migration araştırmasını azaltır | Orta | SCA/test zorunlu |
+| E2E frontend | UI requirement → browser test + screenshot doğrulama | UI regression işini azaltır | Orta | Flaky test kontrolü |
+| Incident RCA | Error/trace/log → kök neden hipotezi | MTTR’ı azaltma potansiyeli yüksek | Orta | Production action insan onaylı |
+| Production fix | Incident → branch → test → PR | On-call yükünü azaltabilir | Düşük-orta başlangıçta | Kesin human approval |
+
+En önemli pattern **spec → failing test → implementation → verification** şeklindedir. Agent’a sadece “özelliği yap” demek yerine:
+
+> “Önce mevcut davranışı analiz et. Gereksinimi temsil eden ve şu anda fail eden testleri yaz. Sonra minimum kod değişikliğiyle testleri geçir. Mevcut test suite’i çalıştır. Public API değiştirme. Sonunda değişiklik, risk ve çalıştırdığın testleri raporla.”
+
+şeklinde bir görev tanımı sonuçların güvenilirliğini önemli ölçüde artırır. Bunun temel nedeni LLM çıktısının doğru olup olmadığını doğal dil değerlendirmesine bırakmak yerine **executable specification** ile sınamanızdır. Güncel agent sistemleri terminal ve test runner kullanabildiğinden bu pattern artık pratik olarak uygulanabilir. citeturn1search0turn16search2
+
+İkinci güçlü pattern **deterministik analiz → AI remediation** modelidir:
+
+```mermaid
+flowchart TD
+    A[Developer / Coding Agent kod değiştirir] --> B[Format + Lint + Type Check]
+    B --> C[Unit / Integration / E2E tests]
+    C --> D[SAST / SCA / Secret Scan]
+    D -->|Finding yok| E[Pull Request]
+    D -->|Finding var| F[LLM remediation agent]
+    F --> G[Patch öner]
+    G --> B
+    E --> H[AI PR Review]
+    H --> I[Human Review]
+    I --> J[Merge]
+```
+
+Bu mimari, **LLM’in “güvenli mi?” diye kendi ürettiği koda bakması yerine**, güvenlik scanner’ının somut finding’ini düzeltmesini ister. GitHub Copilot Autofix, CodeQL’ın SARIF çıktısı, ilgili kod bağlamı ve query açıklamasını LLM’e gönderiyor; Semgrep Autofix de first-party/third-party analiz sonuçlarını LLM remediation ile birleştiriyor. citeturn17search9turn18search19
+
+Bu ayrım özellikle önemlidir çünkü GitHub kendi dokümanında LLM tabanlı düzeltmelerin syntactically incorrect, semantically incorrect, eksik veya yeni vulnerability doğurabilecek nitelikte olabileceğini açıkça belirtiyor. Ayrıca model var olmayan dependency isimleri önerebilir. Bu nedenle scanner/test ve dependency review agent’ın “söylediğine inanmak” yerine gerçek doğrulama katmanıdır. citeturn17search9
+
+**Pre-commit / local hook pattern’i** için ise en iyi kullanım, AI review’u her keystroke’ta çalıştırmak değil; hızlı deterministik kontrolleri yerelde çalıştırıp agent’ın değiştirdiği dosyalarda kritik güvenlik kontrollerini devreye sokmaktır. Semgrep Guardian 2026’da Cursor, Windsurf ve benzeri coding-agent’ların değiştirdiği dosyaları IDE/agent loop içerisinde taramak üzere MCP, hooks ve skills ile entegre edildi. citeturn18search9turn18search24
+
+Örnek bir repository standardı şöyle olabilir:
+
+```text
+repo/
+├── AGENTS.md
+├── docs/
+│   ├── architecture.md
+│   ├── coding-standards.md
+│   ├── domain-glossary.md
+│   └── adr/
+├── scripts/
+│   ├── test-agent.sh
+│   ├── lint-agent.sh
+│   └── validate-agent.sh
+├── .github/
+│   ├── copilot-instructions.md
+│   └── workflows/
+└── ...
+```
+
+Buradaki esas fikir “AI için özel doküman yazmak”tan çok **insanların zaten bilmesi gereken gizli bilgiyi explicit hale getirmektir**. GitHub Copilot code review bugün `AGENTS.md`, `.github/copilot-instructions.md` ve path-specific instruction’ları kullanabiliyor. citeturn0search9
+
+İyi bir `AGENTS.md` yaklaşık şu bilgileri taşımalıdır:
+
+```markdown
+# Repository Instructions
+
+## Architecture
+- Domain katmanı framework bağımsızdır.
+- Controller doğrudan repository çağırmaz.
+- Cross-domain erişim application service üzerinden yapılır.
+
+## Commands
+- Install: pnpm install
+- Lint: pnpm lint
+- Unit tests: pnpm test
+- E2E: pnpm test:e2e
+- Type check: pnpm typecheck
+
+## Change policy
+- Public API değişikliği yapmadan önce approval gerekir.
+- Yeni dependency ekleme; mevcut dependency ile çözüm mümkün değilse PR açıklamasında gerekçe yaz.
+- Bug fix önce regression test içermelidir.
+- Generated migration dosyaları elle değiştirilmez.
+
+## Security
+- Secret veya gerçek müşteri verisini fixture olarak kullanma.
+- Auth/authz değişikliklerinde security tests çalıştır.
+```
+
+Bu yaklaşım Metaframer/Metaframework benzeri framework düzeyindeki projelerde özellikle değerlidir. Çünkü model için en zor problem çoğu zaman syntax değildir; **“bu repository’de doğru çözümün mimari olarak ne olduğu”dur**.
+
+Bir başka yüksek değerli pattern production incident’larıdır:
+
+```mermaid
+sequenceDiagram
+    participant P as Production
+    participant O as Observability
+    participant A as AI RCA Agent
+    participant R as Repository
+    participant C as Coding Agent
+    participant CI as CI/CD
+    participant H as Developer
+
+    P->>O: Error / trace / log
+    O->>A: Incident context
+    A->>O: İlgili trace/logları sorgula
+    A->>R: İlgili commit ve kaynak kodu incele
+    A->>H: Kök neden + kanıt + olası çözüm
+    H->>C: Fix görevini onayla
+    C->>R: Branch / patch oluştur
+    C->>CI: Test + lint + security
+    CI-->>C: Sonuç
+    C->>H: PR oluştur
+    H->>R: Review / merge
+```
+
+Sentry Seer güncel olarak errors, traces, logs ve source context üzerinden root-cause araştırması yapabiliyor ve Autofix oluşturabiliyor. Datadog Bits Investigation da monitor alert’lerinden başlayıp telemetry üzerinde iteratif hipotez araştırması yapıyor. citeturn17search5turn17search12turn18search1turn18search4
+
+Buradaki pragmatik kural şudur:
+
+**Observability veriniz kötüyse AI observability de kötü olacaktır.**
+
+Trace propagation, structured logging, deployment markers, release/version mapping ve ownership bilgisinin olmadığı ortamda LLM sadece daha hızlı tahmin üretir. Dolayısıyla önce telemetry kalitesi yükseltilmelidir.
+
+**RAG ve MCP’yi birlikte kullanma pattern’i** de özellikle PIM, HRMS ve İBYS gibi domain-heavy sistemlerde anlamlı olabilir:
+
+```mermaid
+flowchart LR
+    U[Developer] --> A[Coding Agent]
+    A --> R[Repository]
+    A --> M[MCP Gateway]
+
+    M --> J[Issue Tracker]
+    M --> S[Sentry / Observability]
+    M --> D[DB Schema / API Catalog]
+    M --> K[Knowledge / RAG]
+
+    K --> V[Vector / Search Index]
+    V --> W[ADR - Wiki - Domain Docs]
+
+    A --> X[Sandbox]
+    X --> T[Test / Lint / SAST]
+    T --> A
+```
+
+Örneğin bir PIM projesinde “ürün attribute inheritance bug’ını düzelt” görevinin doğru yapılması için kod dışında product taxonomy, schema, domain glossary ve belki ticket geçmişi gerekebilir. Bu noktada RAG anlamlıdır. Buna karşılık “şu method’u optimize et” görevi için tüm wiki’yi vector DB’ye dönüştürmek muhtemelen gereksizdir.
+
+## Fayda, ölçüm ve gerçekçi ROI
+
+AI developer tooling’in faydasını tek bir “yüzde kaç daha hızlı?” sayısına indirgemek metodolojik olarak zayıftır. Görevin niteliği, geliştiricinin codebase bilgisi, test altyapısı ve kullanılan agent önemli ölçüde sonucu değiştirir.
+
+Kanıtlar şu anda karışıktır:
+
+| Kaynak | Sonuç | Nasıl yorumlanmalı? |
+|---|---|---|
+| GitHub Copilot araştırmaları | Copilot kullanan gruplarda kod kalitesi/okunabilirlik göstergelerinde ve review süreçlerinde olumlu sonuçlar raporlandı; bir GitHub çalışmasında code review yaklaşık %15 daha hızlıydı. citeturn0search0turn0search10 | Vendor tarafından yürütülen araştırma; görev ve ortamınıza doğrudan genellenmemeli |
+| Büyük codebase üzerinde akademik/saha değerlendirmesi | Dokümantasyon/autocomplete gibi görevlerde %50’ye kadar, repetitive coding/test/debugging işlerinde yaklaşık %30–40 seviyesine varan tasarruf raporlandı; karmaşık çok dosyalı görevlerde performans düştü. citeturn12academia38 | Görev tipine göre çok büyük varyans olduğunu gösteriyor |
+| METR 2025 RCT | Deneyimli OSS geliştiricileri AI ile ortalama %19 daha yavaş kaldı; kendileri hızlandıklarını düşünüyordu. citeturn13search0turn13search8 | Olgun codebase + deneyimli maintainer durumunda AI overhead’inin gerçek olabileceğini kanıtlıyor |
+| METR 2026 takip çalışması | Daha yeni agent’larda yaklaşık %4–20 hızlanma yönünde sinyaller; selection-effect uyarısı var. citeturn13search4turn13search36 | Teknolojinin çok hızlı değiştiğini gösteriyor; eski benchmark’la geleceği tahmin etmek zor |
+| DORA | AI bireysel üretkenlik/flow üzerinde fayda gösterebilir; fakat süreç tasarımı kötü ise throughput/stability kötüleşebilir. citeturn12search8turn12search4 | Tool ROI’si organizasyon tasarımından bağımsız değil |
+| 2026 longitudinal developer çalışması | Katılımcıların büyük çoğunluğu daha az kod yazma süresi ve daha yüksek üretkenlik algısı bildirdi; buna rağmen bir bölümünde developer experience kötüleşti ve verification/supervisory yük arttı. citeturn12academia39 | “Daha çok çıktı” ile “daha iyi developer experience” aynı şey değil |
+
+Buradan çıkan en önemli sonuç:
+
+> **Algılanan hız kazanımı ile gerçek throughput’u ayrı ölçmek gerekir.**
+
+Developer “bug’ı iki dakikada çözdüm” hissine sahip olabilir fakat gereksiz büyük diff, AI review yorumları, test failure, security remediation ve sonraki production bug’ları toplam delivery süresini uzatabilir. METR’nin sonuçları bu algı–gerçeklik farkının özellikle ölçülmesi gerektiğini gösteriyor. citeturn13search0
+
+Bu nedenle ekip seviyesinde aşağıdaki metric setini öneririm:
+
+| Metrik | Ölçüm | Neyi gösterir? | AI sonrası istenen yön |
+|---|---|---|---|
+| **Time-to-first-PR** | İş başlangıcı → ilk PR | Implementation hızı | Düşüş |
+| **Time-to-merge** | PR açılışı → merge | Review/rework maliyeti | Düşüş |
+| **PR cycle time** | İlk commit → merge | Uçtan uca development flow | Düşüş |
+| **Review latency** | Reviewer atanması → ilk review | Review bottleneck | Düşüş |
+| **Review rounds** | PR başına comment/fix turu | AI kodunun rework üretip üretmediği | Sabit veya düşüş |
+| **PR size** | Changed LOC/files | AI’nin gereksiz büyük değişiklik yapıp yapmadığı | Kontrol altında |
+| **Build failure rate** | CI run’larının başarısızlık oranı | İlk seferde doğruluk | Düşüş |
+| **Test coverage** | Line/branch + kritik domain coverage | Test-generation faydası | Artış |
+| **Mutation score** | Mutant öldürme oranı | Sırf coverage için zayıf test üretilmesini yakalar | Artış |
+| **Escaped defect rate** | Production’a çıkan defect / release | Gerçek kalite | Düşüş |
+| **Change failure rate** | Deployment sonrası incident/rollback oranı | Delivery stability | Düşüş |
+| **MTTR / failed deployment recovery** | Failure → recovery | Debugging/observability faydası | Düşüş |
+| **Security remediation time** | Finding → resolved | Autofix/security faydası | Düşüş |
+| **AI suggestion acceptance** | Kabul edilen / önerilen değişiklik | Tool relevance | Tek başına başarı metriği değil |
+| **AI-generated LOC** | AI kaynaklı kod oranı | Adoption | Başarı metriği olarak kullanılmamalı |
+| **Developer satisfaction** | Aylık kısa survey | Cognitive load/flow | Artış |
+| **Verification burden** | AI change başına review/test süresi | Gizli AI maliyeti | Düşüş |
+| **Cost per merged PR** | AI maliyeti / merged PR | Finansal verim | Düşüş |
+| **Cost per accepted AI task** | Token/seat/compute / başarılı görev | Agent ekonomiği | Düşüş |
+
+Özellikle **AI-generated LOC oranını KPI yapmamak gerekir**. Bu metrik takımın doğru problemi çözmesini değil, daha fazla kod üretmesini teşvik eder. DORA’nın AI ile daha büyük batch-size ve stability/throughput sorunları arasındaki bulguları da “daha çok kod = daha iyi” varsayımına karşı uyarıdır. citeturn12search1turn12search8
+
+Daha doğru pilot tasarımı şudur:
+
+**Baseline dönem:** en az 2–4 hafta.  
+**Pilot:** benzer görevleri yapan 5–10 geliştirici veya birkaç repository.  
+**Ana KPI:** time-to-merge + escaped defect + developer time.  
+**Guardrail KPI:** PR size + CI failure + production incident + security finding.  
+**Finansal KPI:** seat/API/compute maliyeti ÷ kazanılan mühendislik saati.
+
+Örneğin 25 kişilik bir ekipte kişi başına ayda yalnızca **2 saat gerçek net kazanç** sağlansa bile toplam 50 mühendis-saat eder. Buna karşılık araç kişi başına $20–50 seviyesindeyse lisans maliyeti çoğu yazılım ekibinde teorik olarak kolayca karşılanabilir. Fakat kritik kelime **“gerçek net kazanç”tır**; AI ile kodlama süresi 5 saat azalıp review/rework/incident maliyeti 6 saat artıyorsa ROI negatiftir. Kamu fiyatları örneğin Cursor Pro için $20/ay, Tabnine Code Assistant için $39/ay yıllık ve GitHub’ın bireysel Copilot planlarında $10–$39/ay seviyelerini gösteriyor; team/enterprise maliyetleri ve kullanım kotaları ayrıca değerlendirilmelidir. citeturn9view1turn6search1turn7view0
+
+**Defect reduction konusunda** bugün savunulabilir tek bir sektör geneli yüzde vermek mümkün değildir. GitHub’ın kontrollü çalışmalarında fonksiyonellik ve okunabilirlik gibi kalite göstergelerinde iyileşmeler bulunmuş olsa da, bunun “production bug’ları yüzde X azaltır” şeklinde genellenmesi doğru olmaz. citeturn0search0 Bu nedenle escaped defects ve change failure rate’i doğrudan şirketinizde ölçmek gerekir.
+
+Onboarding’de ise AI’nin değeri daha nettir ama yine ölçülmelidir. Yeni geliştirici:
+
+```text
+"Bu sistemde sipariş fiyatının hesaplanmasından hangi katman sorumlu?"
+"Product attribute inheritance nerede uygulanıyor?"
+"Bu repository'de yeni bir domain event nasıl ekleniyor?"
+"Bu service neden doğrudan DB'ye erişmiyor?"
+```
+
+gibi sorular sorabilir. Repository-aware agent, ilgili dosyaları ve docs’u okuyarak cevap verebilir. Ancak bu sistemin iyi çalışması aynı zamanda codebase’in documentation, naming ve architecture kalitesini de test eder.
+
+## Riskler, yönetişim ve maliyet
+
+AI coding’in en önemli riskleri yalnızca hallucination değildir. Agent’a terminal, GitHub, deployment veya veritabanı erişimi verdiğinizde **model hatası operasyonel eyleme dönüşebilir**.
+
+| Risk | Somut problem | Olasılık / Etki | Önerilen kontrol |
+|---|---|---|---|
+| Hallucination | Var olmayan API/package/function | Yüksek / Orta | Test, compile, dependency verification |
+| Semantik hata | Kod compile olur fakat iş kuralını bozar | Orta-yüksek / Yüksek | Regression test, domain test, human review |
+| Security bug | Injection/auth/authz sorunu üretme | Orta / Çok yüksek | SAST/SCA/secret scan zorunlu |
+| Oversized change | Agent gereksiz onlarca dosyayı değiştirir | Yüksek / Orta | Diff budget, small task, max-files policy |
+| Dependency hallucination | Var olmayan veya kötü niyetli package | Orta / Yüksek | Approved registry, lockfile, SCA |
+| Secret leakage | Prompt/context içine credential girmesi | Orta / Çok yüksek | Secret scan, redaction, provider controls |
+| Source-code leakage | Proprietary kod üçüncü taraf modele gider | Bağlama bağlı / Yüksek | DPA, retention/training policy, self-host/VPC |
+| Personal-data leakage | Log/test fixture/HR data modele gider | Bağlama bağlı / Çok yüksek | Data classification, masking, KVKK kontrolleri |
+| License/IP | Üretilen kodun provenance belirsizliği | Orta / Orta-yüksek | Public-code filter/provenance, legal policy |
+| Prompt injection | Repo/docs/issue içeriği agent’ı manipüle eder | Artan / Yüksek | Tool permission, trust boundaries, MCP security |
+| Excessive agency | Agent destructive command/deploy yapar | Düşük-orta / Çok yüksek | Sandbox, least privilege, approval gate |
+| Review complacency | İnsanlar “AI review etti” diye yüzeysel bakar | Yüksek / Yüksek | Ownership ve sign-off insan üzerinde |
+| Cost runaway | Long agent loop/token/compute tüketimi | Orta / Orta | Budgets, max-turn, observability |
+| Vendor lock-in | Workflow tek IDE/model API’sine bağlanır | Orta / Orta | MCP, standard Git/CI interfaces, model abstraction |
+| Vendor roadmap | Ürün satın alınır/yeniden markalanır | Orta / Orta | Exit plan, open artifacts, contractual checks |
+
+GitHub kendi responsible-use belgelerinde LLM tabanlı Autofix’in yanlış location, syntax veya semantic değişiklik önerebildiğini; kısmi çözüm üretebildiğini ve dependency konusunda uydurma isimler önerebileceğini açıkça belirtiyor. Önerilen karşı önlemler CI testleri, dependency review ve insan incelemesidir. citeturn17search9
+
+MCP ve agent dünyasında yeni bir güvenlik sınırı daha oluşuyor. MCP tool’ları LLM’in dış sistemlerle işlem yapmasını mümkün kıldığı için prompt injection artık yalnızca “model kötü cevap verdi” problemi değildir; yanlış tool invocation’a dönüşebilir. MCP spesifikasyonu bu nedenle authorization ve security best practices katmanlarını sürekli genişletiyor. citeturn2search20turn2search28
+
+Pratik permission model şu şekilde olmalıdır:
+
+```text
+Level A — Read only
+repo read
+docs search
+issue read
+logs read
+
+Level B — Local write
+branch create
+file edit
+test/lint
+local container
+
+Level C — Remote write
+push branch
+open PR
+comment issue
+
+Level D — Sensitive
+modify secrets
+database write
+cloud infrastructure
+deploy production
+merge to protected branch
+```
+
+Başlangıçta ajanların **A–C seviyesinde tutulması**, Level D eylemlerinin explicit human approval istemesi gerekir.
+
+Agent sandbox’ları ayrıca mümkün olduğunca ephemeral olmalıdır:
+
+```text
+agent
+  |
+  +-- temporary branch/worktree
+  +-- disposable container/VM
+  +-- scoped credentials
+  +-- read-only production telemetry
+  +-- no production DB write
+  +-- no direct main/master push
+```
+
+OpenAI Codex görevleri izole cloud sandbox’larında çalıştırma yaklaşımını kullanıyor; bu agent mimarisinde doğru güvenlik yönünün bir örneğidir. citeturn1search0
+
+**Veri gizliliği Türkiye açısından ayrıca kritik.** KVKK’nın güncel üretken yapay zekâ rehberi AI sistemlerinin yaşam döngüsündeki kişisel veri işleme faaliyetlerinin 6698 sayılı Kanun çerçevesinde değerlendirilmesini vurguluyor. Kurum 2026’da ayrıca iş yerlerinde üretken AI kullanımı ve agentic AI konusunda ayrı içerikler yayımladı; yurt dışı veri aktarımı da KVKK’nın ayrı düzenleme alanıdır. citeturn20search6turn20search3turn20search12turn19search0
+
+Bu nedenle özellikle HRMS veya İBYS gibi sistemlerde aşağıdaki içerikler doğrudan genel-purpose cloud coding prompt’una gönderilmemelidir:
+
+gerçek çalışan kayıtları, sağlık/iş güvenliği verileri, müşteri credential’ları, production dump’ları, erişim token’ları, secret’lar ve kişiye özel log kayıtları.
+
+Bunların yerine sentetik fixtures, masked telemetry ve minimum gerekli context kullanılmalıdır. Bu, KVKK’nın veri minimizasyonu/mahremiyet odaklı yaklaşımıyla da uyumludur. citeturn20search6turn20search15
+
+Lisans açısından da “open-source model” ifadesi dikkatle kullanılmalıdır. Örneğin StarCoder2 modeli BigCode OpenRAIL-M v1 altında yayımlanmıştır; bu klasik permissive OSI lisansıyla aynı şey değildir. Buna karşılık CodeGen repository’si Apache-2.0, LlamaIndex MIT ve Qwen Code Apache-2.0’dır. Model weight lisansı ile agent/framework kod lisansını ayrı ayrı kontrol etmek gerekir. citeturn13search11turn21search0turn19search11turn22search3
+
+Maliyet tarafında, ekip büyüklüğü ve mevcut toolchain verilmediği için aşağıdaki rakamlar **planlama tahminidir; teklif değildir**.
+
+| Senaryo | Kapsam | Yaklaşık kurulum emeği | Yaklaşık aylık AI/tool ek maliyeti | Takvim | Beklenen sonuç |
+|---|---|---:|---:|---:|---|
+| **Düşük** | 5–10 kişilik pilot; IDE assistant + repo instructions + mevcut CI | 3–8 kişi-gün | $150–$750 | 2–4 hafta | Gerçek kullanım verisi ve quick wins |
+| **Orta** | ~25 dev; IDE agent + PR review + security autofix + AI test workflow + sınırlı API kullanımı | 15–30 kişi-gün | $1.000–$3.500 | 6–10 hafta | SDLC’nin birkaç noktasında ölçülebilir otomasyon |
+| **Yüksek** | 25–50 dev; issue→PR agents, MCP, RAG, observability agent, self-host/hybrid inference, governance | 40–90 kişi-gün | $4.000–$15.000+ | 3–6 ay | Agentic engineering platform |
+| **Regulated/self-host ağırlıklı** | On-prem model, GPU serving, private MCP/RAG, security hardening | 60–150+ kişi-gün | Belirtilmemiş; GPU ve operasyon nedeniyle çok değişken | 4–9+ ay | Maksimum veri kontrolü, daha yüksek operasyon maliyeti |
+
+Kamu fiyatları bu tahminleri kalibre etmek için fikir veriyor: GitHub bireysel Copilot planlarında Free/Pro/Pro+ seçenekleri ve sırasıyla ücretsiz, $10 ve $39/ay seviyeleri listeleniyor; Cursor Pro $20, Pro+ $60 ve Ultra $200/ay; Tabnine Code Assistant $39 ve Agentic Platform $59 kullanıcı/ay yıllık; CodeRabbit’in ücretli planları $24–$72/developer/ay yıllık aralığında. Kurumsal fiyat, security, governance, premium model ve kullanım kotaları toplam maliyeti ciddi biçimde değiştirebilir. citeturn7view0turn9view1turn6search1turn11view1
+
+Bunun önemli sonucu şu: **aynı anda Copilot + Cursor + CodeRabbit + Qodo + Codex + ayrı security AI satın almak çok kolaydır ve çoğu ekipte gereksiz overlap oluşturur.**
+
+25 kişilik ekipte ilk hedef **en çok özellik değil, en az araçla en fazla SDLC kapsamı** olmalıdır.
+
+## Uygulama yol haritası ve önerilen sonraki adımlar
+
+Orta ölçekli bir ekipte AI coding dönüşümünü bir “tool rollout” değil, **software delivery capability geliştirme projesi** olarak yürütmek daha sağlıklıdır.
+
+| Aşama | Yapılacak iş | Teknik çıktı | Geçiş kriteri |
+|---|---|---|---|
+| **Baseline** | Mevcut delivery metriklerini topla | Time-to-merge, defect, CI failure, coverage, MTTR, dev survey | En az 2–4 haftalık baz veri |
+| **Repository readiness** | Test/lint/typecheck komutlarını standartlaştır; docs ve architecture kurallarını düzenle | `AGENTS.md`, scripts, ADR, coding standards | Agent tek komutla doğrulama yapabiliyor |
+| **IDE pilot** | Copilot veya Cursor ile 5–10 geliştirici | Completion/chat/agent kullanım verisi | Net zaman kazancı + kalite bozulmaması |
+| **Agent pilot** | Codex/Aider/OpenHands ile kontrollü issue’lar | Issue→branch→test→PR | Başarı oranı ölçülebilir seviyede |
+| **Review/test** | AI PR review + test generation | PR bot, regression-test workflow | Review cycle veya test coverage iyileşiyor |
+| **Security** | SAST/SCA/secrets → AI remediation | CodeQL/Semgrep + autofix | Vulnerability MTTR düşüyor |
+| **Context integration** | Gereken dış sistemleri MCP/RAG’e bağla | Ticket/docs/schema/telemetry tools | Context kaynaklı hallucination azalıyor |
+| **Observability** | Production telemetry’yi RCA agent’a aç | Seer/Bits veya eşdeğer | Incident MTTR iyileşiyor |
+| **Scale/governance** | Policy, cost, RBAC, audit, model routing | Merkezi AI engineering policy | ROI pozitif ve risk kabul edilebilir |
+
+İlk iki haftada teknoloji satın almaktan önce aşağıdaki repository hazırlığını yapmak daha değerlidir:
+
+**Kod standardını makinece okunabilir hale getirin.** Architecture ve domain kurallarını README içinde dağınık bırakmayın. Test, lint, typecheck ve build komutlarını tek tip script’lere bağlayın. Bug fix için regression-test kuralı koyun. Main’e doğrudan agent push’unu kapatın. Agent’ın dependency eklemesini explicit approval’a bağlayın. Bu yaklaşım GitHub’ın custom instructions ve modern agent architecture’larıyla doğal biçimde çalışır. citeturn0search9turn16search2
+
+Ben olsaydım **ilk pilotu şu şekilde kurardım**:
+
+```text
+Developer
+   |
+   +-- VS Code / JetBrains
+   |      |
+   |      +-- GitHub Copilot Agent
+   |      +-- optional Codex CLI
+   |
+Repository
+   |
+   +-- AGENTS.md
+   +-- architecture docs
+   +-- deterministic test scripts
+   |
+GitHub PR
+   |
+   +-- formatter
+   +-- lint
+   +-- typecheck
+   +-- unit/integration tests
+   +-- CodeQL veya Semgrep
+   +-- secret scan
+   +-- Copilot Review
+   |
+   +--> Human reviewer
+             |
+             +--> merge
+```
+
+İlk pilotta **CodeRabbit/Qodo gibi ikinci review katmanını eklemem**. Önce Copilot Review’un incremental faydasını ölçerim. Human reviewer’ın kaç gerçek issue bulduğunu, AI’nin kaç gerçek issue bulduğunu ve false-positive oranını kaydederim. Copilot yetmiyorsa CodeRabbit veya Qodo ile A/B testi yaparım. Böylece “AI araç koleksiyonu” yerine kanıta dayalı toolchain oluşur.
+
+İkinci fazda **Codex veya benzeri agent’a yalnız seçilmiş task tipleri** veririm:
+
+```text
+Uygun:
+- failing test'i olan bug
+- dependency migration
+- küçük refactor
+- dokümantasyon
+- test coverage
+- repetitive API migration
+- isolated feature
+- lint/type correction backlog
+
+Başlangıçta uygun değil:
+- belirsiz ürün gereksinimi
+- domain mimarisi kararı
+- ödeme/auth/security redesign
+- production DB migration
+- geniş çaplı architectural rewrite
+```
+
+Codex’in repository içinde özellik yazma, bug düzeltme ve testleri iteratif çalışma tasarımı bu tür bounded task’larla iyi örtüşür. citeturn1search0turn1search8
+
+Üçüncü fazda **agent görevlerini issue template ile standardize etmek** ciddi kalite artışı sağlar:
+
+```markdown
+## Goal
+Ürün varyantları için attribute inheritance hatasını düzelt.
+
+## Expected behaviour
+Child variant'ta explicit value varsa parent değeri override edilir.
+Yoksa parent değeri inherit edilir.
+
+## Reproduction
+...
+
+## Constraints
+- Public Product API değişmeyecek.
+- Database schema değişmeyecek.
+- Yeni dependency eklenmeyecek.
+
+## Required validation
+- Önce failing regression test oluştur.
+- Unit test suite çalıştır.
+- PIM integration tests çalıştır.
+- Typecheck/lint çalıştır.
+
+## Deliverable
+- Küçük bir PR.
+- Root cause açıklaması.
+- Değişen davranış.
+- Çalıştırılan testler.
+- Bilinen riskler.
+```
+
+Bu yapı, “prompt engineering”den daha önemli olan **task engineering** yaklaşımıdır.
+
+Dördüncü fazda MCP/RAG eklerim fakat yalnız ölçülen context problemi varsa. Örneğin agent sürekli yanlış domain rule kullandığı için başarısız oluyorsa architecture docs veya product glossary retrieval’a eklenebilir. Agent ticket bağlamını bulamıyorsa issue tracker MCP eklenebilir. Production bug’larında context eksikse Sentry MCP veya observability entegrasyonu eklenebilir. “RAG modadır” diye baştan embedding/vector DB altyapısı kurmak yerine ihtiyaçtan geriye doğru gitmek daha az teknik borç oluşturur. MCP’nin resources/tools modeli ve modern RAG framework’lerinin modüler yapısı buna uygundur. citeturn2search4turn21search27turn19search2
+
+Kendi ürün portföyünüz açısından farklı optimizasyonlar yapılabilir:
+
+| Proje tipi | En yüksek değerli AI kullanımı |
+|---|---|
+| **Metaframer / Metaframework** | Architecture-aware agent, code generation templates, framework migration, multi-file refactor, automated compatibility tests |
+| **PIM** | Schema/domain glossary RAG, mapping/transformation kodu, validation rules, integration tests, API adapters |
+| **HRMS** | Business-rule tests, form/API generation, documentation; hassas kişisel veri nedeniyle sıkı data controls |
+| **İBYS** | Regulation/domain test generation, workflow validation, traceability; hassas veri nedeniyle masked/synthetic context |
+| **Crybro** | Data pipeline tests, exchange adapters, monitoring ve simulation; finansal işlem kararlarında autonomous code/deploy daha sıkı kontrol |
+| **Yeni SaaS ürünleri** | Prototype→test→implementation agent loop, E2E/browser validation, docs ve onboarding |
+
+Özellikle Metaframer için uzun vadede en yüksek kaldıraç, framework’ün kendisini **agent-native** tasarlamak olabilir. Örneğin framework’ün scaffolding CLI’ları, machine-readable metadata’sı, schema’ları, migration komutları, test harness’i ve architecture constraints’i varsa ajan framework’ü çok daha güvenilir kullanabilir. Başka bir ifadeyle gelecekte framework developer experience yalnız insan geliştiriciye değil, **insan + coding agent ikilisine** göre tasarlanacaktır. SWE-agent’in temel bulgusu olan “agent’ın kullandığı bilgisayar arayüzünün performansı etkilediği” sonucu bunu teknik olarak destekleyen erken kanıtlardandır. citeturn16search2
+
+Bu nedenle önümüzdeki 3–6 ay için benim somut yatırım sıralamam şöyledir:
+
+**Önce repository’leri AI-ready hale getirin.** `AGENTS.md`, architecture, domain glossary, komutlar ve test harness.
+
+**Sonra tek bir günlük coding assistant standardize edin.** GitHub ağırlıklı çalışıyorsanız Copilot başlangıç için en düşük sürtünmeli seçenek. GitHub’dan bağımsız daha yoğun agentic IDE deneyimi istiyorsanız Cursor karşılaştırılmalı. GitHub Copilot bugün IDE’den cloud agent ve code review’a kadar tek platformda geniş kapsam sunuyor. citeturn7view0turn0search9
+
+**Repo-level ağır işler için Codex CLI’yi ayrıca pilotlayın.** Özellikle 20–100 dosyalı mekanik migration, test üretimi, bug investigation, dokümantasyon ve bağımsız issue çözme işlerinde IDE autocomplete’inden farklı bir kategori olarak değerlendirin. Codex CLI’nin açık kaynak olması agent loop’unu inceleyebilme ve kendi workflow’unuza entegre edebilme avantajı sunuyor. citeturn1search8turn1search5
+
+**Security’de AI’yi scanner’ın yerine koymayın.** CodeQL veya Semgrep bulsun; agent açıklasın ve düzeltsin. GitHub’ın ve Semgrep’in 2026 ürün yönü de bu hibrit tasarıma gidiyor. citeturn17search9turn18search19
+
+**Test generation’ı en erken ölçeklenecek use-case’lerden biri yapın.** AI tarafından yazılan implementation’ın aynı agent tarafından sadece “looks good” diye onaylanması yerine executable test ile doğrulanması çok daha değerlidir. Java legacy varsa Diffblue ayrıca değerlendirilmeli. citeturn17search1turn17search4
+
+**PR review botlarını üst üste bindirmeyin.** Önce bir tane, sonra precision/recall ve reviewer-time ölçerek karar verin.
+
+**RAG’i erteleyin; context problemini kanıtladıktan sonra kurun.** Repository dışı bilgi gerçekten gerekiyorsa LlamaIndex/Haystack; genel agent orchestration gerekiyorsa LangChain/LangGraph mantıklı seçeneklerdir. citeturn19search2turn21search3turn3search0
+
+**Self-hosted modele yalnız gerekçeniz varsa geçin.** Güncel açık model ekosistemi StarCoder2 döneminden Qwen3-Coder gibi agentic modeller yönüne ilerledi; fakat self-hosting latency, GPU kapasitesi, inference serving, updates ve evaluation sorumluluğunu size taşır. citeturn22search0turn22search6 Hassas HRMS/İBYS senaryolarında bu maliyet anlamlı olabilir; normal SaaS geliştirmede cloud coding agent çoğu zaman daha ekonomik olacaktır.
+
+**Observability AI’yi mevcut platformun üzerine koyun.** Sentry kullanıyorsanız Seer; Datadog kullanıyorsanız Bits’i test etmek, yeni bir observability platformu kurmaktan çok daha düşük entegrasyon maliyetine sahiptir. Her ikisi de telemetry’yi root-cause araştırmasının doğrudan girdisi haline getiriyor. citeturn17search5turn18search4
+
+Son olarak, teknoloji seçiminden daha önemli bir yönetim prensibi vardır:
+
+> **AI’ye kod üretme hedefi değil, doğrulanmış değişiklik üretme hedefi verin.**
+
+2023’ün AI coding modeli:
+
+```text
+Prompt -> Code
+```
+
+2026’nın daha doğru modeli:
+
+```text
+Requirement
+    ↓
+Context
+    ↓
+Plan
+    ↓
+Patch
+    ↓
+Compile / Typecheck
+    ↓
+Tests
+    ↓
+Static analysis / Security
+    ↓
+AI review
+    ↓
+Human review
+    ↓
+Deploy
+    ↓
+Telemetry
+    ↓
+Feedback
+```
+
+Yazılım geliştirmede önümüzdeki dönemin gerçek verimlilik kazancı büyük olasılıkla “LLM daha hızlı kod yazıyor” noktasından değil, bu uçtan uca döngünün ne kadarının **güvenilir biçimde makine tarafından yürütülebildiğinden** gelecektir. SWE-bench’in tek dosyalı code generation’dan gerçek repository issue’larına geçişi, SWE-agent’in execution/tool loop yaklaşımı, Copilot/Codex’in repository ajanlarına dönüşmesi ve Sentry/Datadog gibi observability ürünlerinin root-cause ajanları eklemesi aynı yönde ilerleyen gelişmelerdir. citeturn16search3turn16search2turn1search0turn0search9turn17search5turn18search4
+
+Pratik olarak sizin için en yüksek getirili hedef, **“AI kod yazsın” değil; “AI küçük, test edilmiş, security gate’lerinden geçmiş, açıklanabilir PR’lar üretsin ve insanın zihinsel yükünü mimari/ürün kararlarına kaydırsın”** olmalıdır. Mevcut ampirik kanıtlar da AI’nin en iyi sonuçları doğrulanabilir ve sınırları iyi tanımlanmış görevlerde verdiğini; karmaşık, olgun ve bağlam açısından zengin codebase’lerde ise yanlış uygulandığında üretkenliği dahi azaltabildiğini gösteriyor. citeturn13search0turn13search36turn12academia38

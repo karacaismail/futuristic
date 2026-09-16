@@ -1,0 +1,49 @@
+[WebServer] (node:64303) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:64305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (5.2s)
+
+
+  1) [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı ──────────────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('heading', { level: 1 })
+    Expected substring: "Yapay zekâdan"
+    Received string:    "Hazırlanıyor"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('heading', { level: 1 }) with timeout 5000ms
+      - waiting for getByRole('heading', { level: 1 })
+        - waiting for navigation to finish...
+        - navigated to "http://127.0.0.1:4173/futuristic/"
+        14 × locator resolved to <h1>Hazırlanıyor</h1>
+           - unexpected value "Hazırlanıyor"
+
+
+      3 | test('rapor akışı, geri dönüş ve okuma kaydı', async ({ page }) => {
+      4 |   await page.goto('');
+    > 5 |   await expect(page.getByRole('heading', { level: 1 })).toContainText('Yapay zekâdan');
+        |                                                         ^
+      6 |   await page.getByRole('link', { name: 'Video raporunu oku' }).click();
+      7 |   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fikirden yayına, tek bir üretim hattı.');
+      8 |   await page.getByRole('button', { name: 'Okundu olarak işaretle' }).click();
+        at /Users/w6x/Desktop/futuristic/tests/e2e/reader.spec.ts:5:57
+
+    Error Context: test-results/reader-rapor-akışı-geri-dönüş-ve-okuma-kaydı-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/reader-rapor-akışı-geri-dönüş-ve-okuma-kaydı-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/reader-rapor-akışı-geri-dönüş-ve-okuma-kaydı-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı ───────────────

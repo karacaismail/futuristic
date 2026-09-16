@@ -1,0 +1,40 @@
+
+> futuristic-research@1.0.0 prebuild
+> npm run report:export
+
+
+> futuristic-research@1.0.0 report:export
+> node scripts/export-report.mjs
+
+Rapor: 60140 karakter, 112 referans, 55 araç.
+
+> futuristic-research@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2138 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                  0.81 kB │ gzip:   0.49 kB
+dist/assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2        8.52 kB
+dist/assets/manrope-greek-wght-normal-DL7QRZyv.woff2             9.44 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2         10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2          11.23 kB
+dist/assets/ibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff    11.76 kB
+dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff        13.14 kB
+dist/assets/ibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2   13.34 kB
+dist/assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2         14.50 kB
+dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2       14.70 kB
+dist/assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2        15.12 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2           18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2              18.99 kB
+dist/assets/manrope-latin-wght-normal-DHIcAJRg.woff2            24.83 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2       25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2              48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2          85.06 kB
+dist/assets/index-BOl0tR7M.css                                 133.08 kB │ gzip:  26.43 kB
+dist/assets/Markdown-tUkk8xRx.js                               154.72 kB │ gzip:  46.20 kB
+dist/assets/index-Cn-xL7mu.js                                  349.45 kB │ gzip: 109.55 kB
+
+✓ built in 263ms

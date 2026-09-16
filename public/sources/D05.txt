@@ -1,0 +1,287 @@
+EYLUL 2026: UCTAN UCA AI VIDEO ICERIK HATTI — KAPSAMLI ARASTIRMA RAPORU
+
+Not: Bu raporda urun ve teknik terimler ilk gectiginde kisaca aciklanmistir. Fiyat, kota ve politika rakamlari Eylul 2026 civari kaynaklardan derlenmistir ve sik degistigi icin her satin alma/kurulum oncesi resmi sayfadan dogrulanmalidir. Emoji kullanilmamistir.
+
+TL;DR
+- Eylul 2026'da "sifir insan dokunuslu" tam otomatik video icerik operasyonu teknik olarak mumkundur ama surdurulebilir/monetize edilebilir degildir. Konu arastirmasindan yayina kadar tum zincir otomatiklestirilebilir; ancak kanca (hook), editoryal yargi, marka sesi ve kalite kontrol hala insan gerektirir ve YouTube'un 15 Temmuz 2025 "inauthentic content" politikasi kitlesel/tekrarli uretilen "AI slop" kanallarini monetizasyondan disar.
+- Bu kullanici icin pratik oneri: orkestrasyon beyni olarak n8n + OpenClaw'u kendi Hetzner sunucusunda calistirmak; uretimde API-tabanli modeller (ElevenLabs Turkce sesi, Kling/Veo, HeyGen avatar) ve sablonlu render (Creatomate/Shotstack veya self-host Remotion/FFmpeg) kullanmak; yayinda denetimden gecmis bir katman (Blotato) veya acik-kaynak Postiz kullanmak; ve mutlaka script onayi + final video onayi olmak uzere iki insan onay kapisi koymak.
+- Ekonomi: bir monetize faceless kanal tipik olarak ayda 100-500 USD ile baslar, iyi bir RPM nisinde (finans/AI/is ~7-25 USD RPM) 12-18 ayda dusuk-orta bin USD'ye ulasabilir; 10.000 USD/ay ustu azinlik bir sonuctur ve genellikle 1-3 yil veya bir "breakout" video ister. B2B SaaS pazarlamada AI hatti maliyeti dusurur ama asil deger insan-onayli, marka-tutarli ciktidadir.
+
+1. YONETICI OZETI: EYLUL 2026'DA GERCEKCI DURUM
+
+Terimler: "faceless" (yuzsuz kanal) = sunucunun kameraya cikmadigi, stok goruntu/AI gorsel + AI seslendirme + altyazi ile kurulan video; "orkestrasyon" = tum adimlari birbirine baglayan otomasyon katmani; "TTS" (text-to-speech) = metinden konusma uretimi; "TTV/ITV" (text/image-to-video) = metinden/gorselden video ureten jeneratif modeller; "RPM" = 1000 goruntuleme basina net gelir; "CPM" = reklamverenin 1000 gosterim icin odedigi.
+
+Teknik gerceklik: Eylul 2026 itibariyle tum zincir otomatiklestirilebilir. n8n gibi bir arac Google Sheet'ten konu ceker, LLM script yazar, ElevenLabs ses uretir, jeneratif model veya stok gorsel saglar, Creatomate/Shotstack sablonu videoyu birlestirir, Whisper/Scribe altyazi ekler, bir LLM thumbnail/metadata uretir ve Blotato/Upload-Post yayinlar. Bunu yapan hazir n8n sablonlari bugun mevcut ve calisir durumdadir (asagida referanslar).
+
+Ancak "calisiyor" ile "para kazaniyor / hesap kapanmiyor" ayni sey degildir. Uc buyuk yapisal engel var:
+
+1) Platform politikalari tam otomatik uretimi cezalandirir. YouTube resmi kaydina gore (support.google.com/youtube/answer/1311392), 15 Temmuz 2025'te sunu yapti: "We're making a minor update to our 'repetitious content' policy to better clarify this includes content that is repetitive or mass-produced. We are also renaming this policy from 'repetitious content' to 'inauthentic content.'" Degisiklik YouTube Creator Liaison Rene Ritchie tarafindan duyuruldu. AI kullanmak yasak degildir (YouTube kendi AI araclarini sunar); yasak olan ozgun ve "authentic" olmayan, kitlesel/sablonlu uretimdir.
+
+2) Kalite tavani insan yargisindadir. Bagimsiz kullanici raporlari (Reddit, GitHub issue'lari, YouTube incelemeleri) tutarli sekilde AI ciktisinin jenerik kaldigini gosterir; kanca, anlatim ritmi, trend yargisi ve marka sesi hala insan isidir.
+
+3) Hukuki/uyum yuku artiyor. EU AI Act (Regulation (EU) 2024/1689) Article 50 seffaflik yukumlulukleri 2 Agustos 2026'dan itibaren gecerlidir; Komisyon rehber ilkeleri 20 Temmuz 2026'da kabul edildi. Cezalar Cooley'nin ozetiyle: "Noncompliance can trigger fines of up to EUR 15 million or 3% of worldwide annual turnover, whichever is higher."
+
+Pozisyon: "insan-in-the-loop" (dongude insan) tasarim guvenli ve dogru olandir; "incelemesiz otomatik yayin" (auto-publish without review) risklidir ve hem kalite hem hesap guvenligi acisindan onerilmez.
+
+2. YAKLASIMLAR (5 ANA URETIM YAKLASIMI)
+
+Her yaklasim icin: bu nedir, ne ise yarar, ne yapar, ne yapmaz, maliyet, kalite, Turkce destek, otomasyon dostlugu ve risk verilmistir.
+
+2.1 FACELESS (stok/B-roll + AI seslendirme + altyazi)
+Bu nedir: Sunucunun gorunmedigi, stok video (Pexels, Pixabay, Storyblocks) veya AI gorsel + TTS seslendirme + otomatik altyazi ile kurulan video.
+Ne ise yarar: Dusuk maliyetle yuksek hacim; motivasyon, "ilginc bilgiler", finans/egitim nisleri.
+Ne yapar: Bir konudan tam bir video uretir; MoneyPrinterTurbo tipi araclar video basi 1 USD altinda API maliyetiyle uretebilir.
+Ne yapmaz: Ozgun gorsel anlatim uretmez. MoneyPrinterTurbo'nun tavani stok goruntudur; gorseller anahtar-kelime eslemeli stok kliplerdir ve soyut/nis scriptlerde alakasiz B-roll ceker. Marka kimligi ve derin editoryal deger katmaz.
+Maliyet: Video basi ~0.20-1 USD API; hazir SaaS ile 19-69 USD/ay.
+Kalite: Orta; format tekduzelesirse YouTube "inauthentic" riskine girer.
+Turkce destek: ElevenLabs Turkce TTS guclu; Whisper/Scribe Turkce transkripsiyon iyi.
+Otomasyon dostlugu: Cok yuksek — en kolay otomatiklestirilen yaklasim.
+Risk: Demonetizasyon, doygunluk.
+
+2.2 AI AVATAR / TALKING-HEAD
+Bu nedir: HeyGen, Synthesia, D-ID, Captions.ai, Hedra, Argil, Tavus gibi araclarla AI avatarin metni seslendirip dudak senkronuyla anlattigi video.
+Ne ise yarar: B2B aciklayici, egitim, LinkedIn thought-leadership, cok dilli lokalizasyon.
+Ne yapar: Metinden sunucu-liderli video uretir. HeyGen 175+ dil ve 100+ avatar; Synthesia 160+ dil ve 240+ avatar destekler (Colossyan karsilastirmasi).
+Ne yapmaz: Sinematik sahne/aksiyon uretmez; uzun-form dogal duygu sinirlidir.
+Maliyet: HeyGen Creator 29 USD/ay (kredi tabanli, yillik). HeyGen API ayri faturalanir; Avatar V API orani 0.05 USD/saniye yani 3 USD/dakika (eesel AI). Bir Reddit kullanicisi API hattinda ayda 330 USD harcadigini bildirdi. Synthesia ~18 USD/ay yillik (Starter) baslar.
+Kalite: HeyGen avatar dogalliginda onde; Synthesia yapisal kurumsal editorde ve ongorulebilir faturada onde.
+Turkce destek: Dil listelerinde Turkce var; ancak Turkce dudak-senkron kalitesi bagimsiz olarak Ingilizce kadar guclu degildir (bkz. Gap Analizi).
+Otomasyon dostlugu: Yuksek — HeyGen fal.ai, Replicate, n8n entegrasyonlari sunar.
+Risk: Kredi tukenmesiyle maliyet patlamasi; Avatar IV/V yuksek kalite kredileri hizla tuketir.
+
+2.3 TAM JENERATIF (text-to-video / image-to-video)
+Bu nedir: Sora 2, Google Veo 3.1, Runway Gen-4.5, Kling 3.0, Luma, Pika, Hailuo/MiniMax, ByteDance Seedance 2.0 gibi kapali modeller; ve acik-kaynak Wan 2.x, HunyuanVideo, LTX-2, Mochi, CogVideoX.
+Ne ise yarar: Ozgun sinematik cekim, urun animasyonu, dikkat cekici gorsel.
+Ne yapar: Metinden/gorselden 5-25 sn klip uretir. Veo 3.1 tek cagride senkron ses (dialog/ortam sesi) uretebilir; diger modeller ayri bir ses adimi gerektirir.
+Ne yapmaz: Uzun-form ve karakter tutarliligini garanti etmez; watermark, tutarsizlik ve "prompt drift" surer.
+Maliyet (saniye basi API, ~2026 civari, ikincil kaynaklar): Kling 3.0 ~0.10 USD/sn (en ucuz premium); Veo 3.1 Fast ~0.15 USD/sn, Standard ~0.75 USD/sn (4K, en iyi dudak-senkron, ses dahil); Sora 2 ~0.10 USD/sn baz; Runway Gen-4.5 ~0.12-0.15 USD/sn; acik Wan/Grok ~0.05 USD/sn. Ornek: 30 sn video Veo Fast'te ~4.50 USD, Standard'da ~12 USD.
+Kalite: En yuksek katman Veo 3.1, Kling 3.0, Sora 2; Runway Gen-4.5 yakin takipte.
+Turkce destek: Gorsel model dilden bagimsiz; Turkce seslendirme icin ayri TTS gerekir.
+Otomasyon dostlugu: Yuksek (fal.ai, Replicate, ModelsLab tek API'den 600+ model).
+Risk: Erisim surtunmesi (Runway Gen-4.5 enterprise waitlist); model deprecation — OpenAI Sora web/app 26 Nisan 2026'da kapatildi, Sora 2 API 24 Eylul 2026'da tamamen kapaniyor; maliyet patlamasi.
+
+2.4 REPURPOSING (uzun videoyu shorts'a bolme + AI montaj)
+Bu nedir: OpusClip, Vizard, Klap, Munch, Descript ile uzun-form videoyu kisa vertical kliplere bolme; Descript, CapCut, DaVinci Resolve AI, AutoPod, Wisecut montaj araclari.
+Ne ise yarar: Mevcut uzun icerigi (podcast, webinar, demo) coklu shorts'a donusturme.
+Ne yapar: AI viral-an tespiti, oto-reframe, altyazi. Vizard API'yi her Creator abonesine acar; OpusClip API'yi Business fiyatina kilitler.
+Ne yapmaz: Kaynak icerik yoksa sifirdan uretim yapmaz.
+Maliyet: OpusClip Starter 15 USD/ay; Vizard Creator ~14.50 USD/ay yillik; Ssemble 7.50 USD/ay (tum planlarda API).
+Kalite: OpusClip viral-an siralamada guclu; Vizard temiz kesim ve 32+ dil transkripsiyonda guclu.
+Turkce destek: Vizard 32+ dilde guvenilir; OpusClip Ingilizce'de en guclu. Turkce icin Vizard daha guvenli.
+Otomasyon dostlugu: Orta-yuksek.
+Risk: Kredi modeli olcekte pahalilasir.
+
+2.5 PROGRAMATIK / KOD-TABANLI (sablon render)
+Bu nedir: Remotion, MoviePy, FFmpeg, Creatomate, Shotstack, Bannerbear/Plainly, JSON2Video, Editly, Revideo ile deterministik, sablon-tabanli render.
+Ne ise yarar: Marka-tutarli, tekrarlanabilir, self-hosted render; en kontrollu yol.
+Ne yapar: JSON/kod ile ayni sablonu her seferinde ayni sekilde uretir; n8n hatlarinda "birlestirme/render" adiminin bel kemigidir.
+Ne yapmaz: Yaratici/ozgun gorsel uretmez — sadece verilen parcalari birlestirir.
+Maliyet (subagent dogrulamasi): Creatomate Essential 49-54 USD/ay (2.000 kredi; 1 gorsel = 1 kredi, ~1 dk 720p video ~14 kredi; self-host YOK); Shotstack pay-as-you-go 0.30 USD/dk, abonelik 39 USD/ay'dan 0.20 USD/dk (self-host YOK); JSON2Video ucretsiz 600 kredi, Professional 49.95 USD/ay (200 dk Full HD; 1 kredi = 1 sn 1080p, 4K 4x); Remotion bireyler ve <=3 kisilik sirketler icin ucretsiz (MIT DEGIL, sirket-boyutu lisansi), sirket lisansi 25 USD/koltuk/ay (Creators) veya 0.01 USD/render min 100 USD/ay (Automators), self-host EVET; Bannerbear 49 USD/ay (1.000 kredi); Plainly Starter 69 USD/ay (50 render dk, Adobe After Effects sablonlari, self-host YOK).
+Kalite: Deterministik, yuksek marka-tutarliligi.
+Turkce destek: Metin/altyazi Turkce sorunsuz (font/karakter).
+Otomasyon dostlugu: En yuksek — API-first.
+Risk: Yaratici tavan dusuk; bu bir "montaj" katmanidir, "yaraticilik" katmani degil.
+
+3. ARACLAR (KATEGORILI PEYZAJ)
+
+Asagidaki her tablodan once kisa aciklama verilmistir. "Self-host" = kullanicinin kendi Hetzner sunucusunda calisabilir mi.
+
+3.1 Jeneratif video modelleri
+Bu tablo, sifirdan video ureten modelleri saniye-basi API maliyeti, native ses destegi ve erisilebilirlik bakimindan karsilastirir.
+
+Model | Fiyat/sn | Native ses | Erisim | Self-host
+Kling 3.0 | ~0.10 USD | Hayir | ModelsLab, fal.ai (self-serve) | Hayir
+Veo 3.1 Fast | ~0.15 USD | Evet | Vertex AI/Gemini (bolge/hesap kisitli) | Hayir
+Veo 3.1 Standard | ~0.75 USD | Evet (4K) | Vertex AI | Hayir
+Sora 2 | ~0.10 USD baz | Evet | OpenAI API (24 Eyl 2026 kapaniyor) | Hayir
+Runway Gen-4.5 | ~0.12-0.15 USD | Hayir | Enterprise waitlist | Hayir
+Wan 2.2 (acik) | ~0.05 USD; RunPod ~0.25-0.60/klip | Hayir | fal.ai/RunPod/self | Evet (24-80GB VRAM)
+HunyuanVideo (acik) | GPU'ya bagli | Hayir | RunPod/self | Evet (60-80GB VRAM)
+LTX-2 (acik) | GPU'ya bagli | Evet (senkron) | RunPod/ComfyUI | Evet (24GB'de calisabilir)
+
+Kritik notlar: Wan 2.5/2.6/2.7 acik-agirlik DEGILDIR; sadece Wan 2.2'ye kadar indirilebilir agirlik vardir (Hugging Face'de en yeni Wan2.2-Animate-14B, Kasim 2025). Self-hosting dusuk hacimde API'den ucuz degildir: kiralik ust-duzey H100 GPU saatte ~2-2.70 USD (RunPod); kirilma noktasi, muhendislik maliyeti dahil, yaklasik 5.000 klip/ay uzerindedir. Self-host'u fiyat icin degil; gizlilik, ticari lisans ve ince-ayar (fine-tune) icin secin.
+
+3.2 TTS / seslendirme (Turkce odakli)
+Bu bolum Turkce ses kalitesini degerlendirir. ElevenLabs Turkce TTS pazarin en guclusu olarak konumlaniyor: Multilingual v2 (29 dil) en yuksek kalite, Flash v2.5 (32 dil, ~75ms gecikme) gercek-zamanli; ucretsiz plan 10.000 karakter/ay (~10 dk). Turkce voice library'de cok sayida yerli ses (genc/kurumsal/anlatici) mevcut. Scribe (STT) Turkce 88M konusmaci ve Istanbul/Ege/Karadeniz/Guneydogu aksani destegi sunar. Alternatifler OpenAI TTS ve Google/Azure neural TTS'tir; Turkce'de dogallik genelde ElevenLabs lehinedir.
+
+3.3 Avatar araclari
+Bu tablo talking-head avatar araclarini karsilastirir.
+
+Arac | Giris fiyati | Diller | Not
+HeyGen | 29 USD/ay (Creator, yillik) | 175+ | API ayri (~0.05 USD/sn Avatar V); avatar dogalliginda onde
+Synthesia | ~18 USD/ay yillik | 160+ | Kurumsal editor, ongorulebilir fatura, SCORM
+D-ID / Hedra / Argil / Tavus | Degisken | Degisken | Nis: gercek-zamanli/interaktif avatar
+
+3.4 Sosyal yayin API katmanlari
+Bu tablo, videoyu platformlara yayinlayan ucuncu-parti API'leri karsilastirir. Bu katman kritiktir cunku TikTok/Instagram dogrudan API'leri agir onay sureci ister (bkz. Bolum 5).
+
+Arac | Fiyat | Platform sayisi | Self-host | Not
+Blotato | 29 USD/ay flat | 9 | Hayir | TikTok denetiminden gecmis; hosted MCP server (Claude/n8n)
+Upload-Post | 24 USD/ay (16 yillik); ucretsiz 10/ay | Cok | Hayir | En ucuz giris
+Ayrshare | 149 USD/ay'dan | 30+ | Hayir | Profil-basi faturalama; developer-first
+Postiz | Ucretsiz (self-host) / 29 USD/ay bulut | 30+ | EVET (Docker) | Acik-kaynak, MCP server, n8n/Make entegrasyonu
+Mixpost | 299 USD tek seferlik lisans | Cok | EVET (Laravel) | Acik-kaynak
+Buffer / Metricool / Publer / Late / SocialBee | Degisken | Cok | Hayir | Geleneksel zamanlayicilar
+
+3.5 Hepsi-bir-arada SaaS
+AutoShorts.ai (19/39/69 USD/ay, oto-post; zayifligi paylasilan sablon-tekduzeligi ve abonelik-basi tek seri); Revid.ai (kredi tabanli; en yaygin sikayet basarisiz uretimde bile kredi dusmesi; video uretir ama otomatik yayinlamaz); InVideo AI (Plus 17 USD/ay'dan; 200+ model, Veo 3.1/Kling/Seedance erisimi; not: paketledigi Sora 2 API 24 Eyl 2026'da kapaniyor); Creatify (reklam/UGC odakli); Fliki, Pictory, Lumen5, Zebracat, Arcads, Predis.ai, VideoGen. Bu araclar hizli baslangic saglar ama ozel hat kadar kontrol/marka-farklilastirma sunmaz.
+
+3.6 Acik-kaynak uctan-uca projeler
+MoneyPrinterTurbo (harry0703): Python/FastAPI/Streamlit; GitHub'da MIT lisansli, 119.000 yildiz ve 18.200 fork (Eylul 2026); en son surum v1.3.6, 2 Eylul 2026'da yayinlandi. WebUI/REST/CLI/AI-agent arayuzu ve Docker sunar. Guvenlik incelemesi: dahili kimlik dogrulama (auth) yok, ucuncu-parti API anahtarlarina bagimli, buyuk Whisper model indirmesi, README'de sponsor/affiliate baglantilari, yayin icin ucuncu-parti upload servisi. Oneri: Docker imaj surumlerini pinle, izole ortamda test et, API anahtarlarini kapsamla (scope). ShortGPT: programlanabilir framework, MoneyPrinterTurbo'nun kardesi; ikisi de stok-goruntu tavaniyla sinirli. Uretim hatti icin: fork edilebilir temel, ancak kurumsal guvenlik/onay katmani sizin sorumlulugunuzdadir.
+
+3.7 Orkestrasyon / ajan framework'leri
+n8n (self-host, gorsel workflow, en olgun otomasyon), Make.com/Zapier (SaaS; kolay ama lock-in ve maliyet), Activepieces (acik-kaynak alternatif), Windmill/Temporal/Prefect (agir kod-tabanli hatlar). Ajan framework'leri: LangGraph, CrewAI, OpenAI Agents SDK, Claude Agent SDK / Claude Code, AutoGen. OpenClaw ayri bir bolumde ele alinmistir.
+
+4. OPENCLAW: NE OLDUGU VE n8n ILE KOMBINASYON
+
+Dogrulama: OpenClaw, Avusturyali gelistirici Peter Steinberger tarafindan Kasim 2025'te "Clawdbot" adiyla yayinlanan, once "Moltbot" (marka anlasmazligi), sonra 29 Ocak 2026'da "OpenClaw" olarak yeniden adlandirilan acik-kaynak, self-hosted otonom AI ajan framework'udur. MIT lisanslidir; TypeScript ile yazilmis, Node.js/bun ile calisir. 3 Mart 2026'da 250.829 GitHub yildizini asarak React (243.000) ve Linux'u (218.000) gecti. Kurucu Steinberger (daha once PSPDFKit'i yaklasik 800M USD'ye satmisti) Subat 2026'da OpenAI'a katildi; proje bagimsiz bir 501(c)(3) vakfina devredildi ve MIT lisansi korundu.
+
+Mimari: Gateway (HTTP/WebSocket kontrol duzlemi, komut kuyrugu ve ExecApprovalManager onay yoneticisi), Agent Runtime (ReAct akil yurutme dongusu), Skills/Plug-ins (moduler yetenekler; ClawHub kayit defteri), Heartbeat (zamanlanmis proaktif dongu), Memory (kalici durum). WhatsApp, Telegram, Slack, Discord, Signal, iMessage, WebChat kanallariyla baglanir. Ajan kimligi "SOUL.md" adli duz Markdown dosyasiyla tanimlanir — davranisi degistirmek bir metin dosyasini duzenlemek kadar kolaydir.
+
+n8n ile kombinasyon (bu kullanici icin oneri): n8n, deterministik gorsel is-akisi motoru olarak "boru hatti"ni (topic -> script -> ses -> gorsel -> render -> altyazi -> metadata -> yayin) yurutur. OpenClaw ise "ajan beyni" olarak karar/akil-yurutme, proaktif tetikleme (heartbeat ile analitik cekip "sonraki ne uretilsin" onerisi) ve mesajlasma kanaliyla (orn. Telegram) insan onayi toplama gorevini ustlenir. Boylece kullanici mobilden script ve final video onayini verebilir.
+
+Guvenlik uyarisi: OpenClaw shell komutu, dosya-sistemi, browser otomasyonu ve Docker erisimine sahiptir; 2026 tarihli arxiv guvenlik analizleri (birden fazla) dahili auth eksikligi, komut-onay yonetimi zorluklari ve prompt-injection risklerine dikkat ceker. Bu nedenle OpenClaw izole bir Linux kullanicisi altinda, kapsamli (scoped) API anahtarlariyla calistirilmali ve ExecApprovalManager onay kapilari aktif tutulmalidir.
+
+Ajan framework karsilastirmasi (icerik "ajansi" icin): LangGraph = deterministik graf/durum-makinesi, uretim-grade kontrol; CrewAI = rol-tabanli coklu-ajan, hizli prototip; OpenAI Agents SDK / Claude Agent SDK (Claude Code) = guclu arac-kullanimi, orkestratör olarak Claude Code guclu; AutoGen = arastirma/konusma-tabanli. Bu kullanici icin pratik kombinasyon: n8n (hat) + Claude Code veya OpenClaw (ajan/mobil onay) + gerekirse karmasik dallanma icin LangGraph.
+
+5. REFERANS MIMARILER (3 UCTAN UCA TASARIM)
+
+Her adimda aktör acikca belirtilmistir: SISTEM (deterministik otomasyon), AJAN (LLM karar verir), INSAN (onay/mudahale). Her mimari, hangi araci hangi adimda kullandigini ve insan onayinin nerede oldugunu gosterir.
+
+MIMARI A — "Butce faceless hatti, agirlikli self-hosted" (~50-150 USD/ay + kullanim)
+1. Konu arastirmasi: AJAN (Claude/GPT/Gemini) trend/nis onerir; SISTEM Google Sheet'e yazar.
+2. Script: AJAN yazar; INSAN onaylar (1. ONAY KAPISI).
+3. Seslendirme: SISTEM ElevenLabs API cagirir (Turkce ses).
+4. Gorsel: SISTEM stok (Pexels) ceker veya self-hosted Wan 2.2 (RunPod GPU, klip basi ~0.25-0.60 USD).
+5. Birlestirme/render: SISTEM Creatomate/Shotstack sablonu veya self-hosted FFmpeg/Remotion.
+6. Altyazi: SISTEM Whisper/Scribe (Turkce).
+7. Thumbnail + metadata/SEO: AJAN uretir.
+8. Yayin: SISTEM Postiz (self-host) veya Blotato ile yayinlar; INSAN final video onayi (2. ONAY KAPISI).
+9. Analitik dongu: SISTEM YouTube/TikTok analitigini ceker; AJAN sonraki konulari onerir.
+Orkestrasyon: n8n (Hetzner) + OpenClaw. Maliyet: video basi ~0.20-1 USD + araclar.
+
+MIMARI B — "Premium jeneratif + avatar hatti, API uzerinden" (~300-800 USD/ay + kullanim)
+1-2. Konu + script: AJAN uretir + INSAN onayi (1. kapi).
+3. Seslendirme: ElevenLabs veya Veo native ses.
+4. Video: SISTEM Kling 3.0/Veo 3.1 (jeneratif) + HeyGen (avatar talking-head).
+5. Montaj: SISTEM Creatomate; repurposing icin OpusClip/Vizard.
+6-7. Altyazi + metadata: SISTEM + AJAN.
+8. Yayin: Blotato (denetimden gecmis) + INSAN final onay (2. kapi).
+9. Analitik: AJAN A/B (kanca/baslik/thumbnail) karar dongusu; INSAN karar.
+Maliyet: jeneratif saniye-basi + avatar kredi; 30 sn Veo Standard klip ~12 USD'ye kadar olceklenir.
+
+MIMARI C — "B2B SaaS pazarlama hatti, insan onay kapili" (~150-400 USD/ay + kullanim) — bu kullanicinin ana ihtiyaci
+1. Girdi: INSAN urun/ozellik notu verir (veya Notion/Drive'dan cekilir).
+2. Script: AJAN (marka sesi prompt'uyla) yazar; INSAN duzenler+onaylar.
+3. Sunum: HeyGen/Synthesia avatar (LinkedIn thought-leadership) veya Veo urun demo.
+4. Seslendirme: ElevenLabs (kurumsal Turkce/Ingilizce ses).
+5. Render: Remotion (marka-tutarli, self-host) veya Creatomate.
+6. Yayin: LinkedIn API + Ayrshare/Blotato; INSAN her video onayi (yuksek marka riski nedeniyle zorunlu).
+7. Analitik: SISTEM raporlar; INSAN strateji karari.
+Bu mimaride otomasyon "hiz", insan "marka guvenligi" saglar. Yasak stack notu: Next.js/Supabase kullanilmaz; ozel uygulama gerekirse Vite/React + FastAPI + PostgreSQL + SQLModel/Alembic + Alembic migrasyon.
+
+6. OTOMASYONLAR NASIL KURULUR (ADIM ADIM + API ONAY SURECLERI)
+
+API kimlik/onay surecleri ve gercekci sureler:
+
+YouTube Data API v3: Google Cloud projesi olustur ve API'yi etkinlestir (~5 dk, kredi karti gerekmez). Varsayilan kota 10.000 birim/gun (proje basi, API anahtari basi degil). Video upload 1.600 birim (gunde ~6 video tavani), search 100 birim, cogu okuma 1 birim. Kota gece yarisi Pasifik saatinde sifirlanir. Yuksek hacim icin kota artis talebi bir compliance audit gerektirir (haftalar surebilir; ucretsizdir). "Made for kids"/unlisted yanlis isaretlemesi monetizasyonu etkiler.
+
+TikTok Content Posting API: Uygulama kaydi + urun/scope yapilandirmasi + URL dogrulama + app review (en az bir uctan-uca demo video ile). Kritik tuzak: uygulama denetimden (audit) gecene kadar tum postlar zorla "private/self-only" gorunur — entegrasyon calisir gibi gorunur ama kimse goremez. Direct Post icin video.publish scope; upload/inbox icin video.upload. Her access_token 6 istek/dakika ile sinirlidir. Onay oncesi disclosure/consent UX'i TikTok spesifikasyonuna birebir uymalidir; yanlis olursa reddedilir. Bu nedenle denetimden gecmis bir katman (Blotato) pratik cozumdur.
+
+Instagram Graph API (Reels): Facebook Business hesabi + bagli Facebook Page + Instagram Professional (Business) hesabi + Meta developer app + instagram_business_content_publish izni (app review 2-4 hafta). Reels API sadece Business hesaplarda calisir; API 5-90 sn ve 9:16 klipleri Reels sekmesine uygun sayar (uzun olanlar normal video olur). Yayin iki adimlidir: once media container POST (/{ig-user-id}/media), sonra media_publish. Otomatik DM limiti 200/saat.
+
+LinkedIn video API: kurumsal erisim gerektirir; pratikte Ayrshare/Blotato araciligi daha hizlidir.
+
+Guvenli vs riskli tasarimlar:
+- GUVENLI: script onayi + final video onayi olan insan-in-the-loop; denetimden gecmis yayin katmani; her platform icin uyarlanmis (birebir ayni olmayan) icerik.
+- RISKLI: incelemesiz auto-publish; tek videoyu tum platformlara birebir repost (algoritma cezasi); C2PA metadata soyma (TikTok bunu kasitli aldatma sayar).
+- KURUMSAL-DOGRU: onay kapilari + AI aciklama etiketleri (YouTube "altered content" toggle, TikTok AI label) + EU AI Act makine-okunur isaretleme + denetim gunlukleri + coklu-saglayici routing.
+
+7. NELER YAPMAK LAZIM (ONCELIKLI KONTROL LISTESI)
+
+1. Hetzner'de n8n'i (Docker) ve OpenClaw'u izole kullanici + kapsamli anahtarlarla kur; GitHub private repo deploy hattini bagla.
+2. ElevenLabs (Turkce ses) + bir LLM (Claude/GPT/Gemini) + bir render katmani (Creatomate veya self-host FFmpeg/Remotion) API anahtarlarini al.
+3. Yayin icin Blotato (hizli, denetimden gecmis) VEYA Postiz (self-host, lock-in yok) sec.
+4. TikTok app review ve Instagram app review sureclerini HEMEN baslat (haftalar surer); YouTube kotasi icin gerekirse audit talebi ac.
+5. Iki onay kapisi tasarla: script onayi + final video onayi (OpenClaw ile mobilden Telegram onayi).
+6. AI aciklama is-akisini kur: YouTube altered-content toggle, TikTok AI label, EU AI Act makine-okunur isaret.
+7. Tek nis ile basla, 10-20 video ile test et, sonra n8n workflow'unu duplicate ederek kanal cogalt.
+8. Analitik geri-besleme dongusu kur: YouTube/TikTok API'den metrik cek, AJAN A/B onersin, INSAN karar versin.
+9. Muzik lisansini netlestir (Bolum 8) — Epidemic/Artlist Pro veya dikkatli Suno.
+10. Maliyet tavani koy: jeneratif saniye-basi ve token maliyetlerine aylik hard-limit tanimla.
+
+8. BILINMEYEN BILINMEYENLER (TUZAKLAR)
+
+Telif/lisans: Stok kaynaklar (Pexels/Pixabay ucretsiz ama bazi kisitlar) ve AI ciktilarinin telifi. ABD'de %100 AI-uretimi eserler insan-yazarlik sarti nedeniyle telif korumasi almaz (Thaler v. Perlmutter cizgisi) — yani ciktinizi baskasi kullanirsa dava acmakta zorlanirsiniz.
+
+Muzik lisansi (subagent dogrulamasi): Suno ve Udio 2025 sonunda major labellarla anlasti. Warner-Suno 25 Kasim 2025'te (PR Newswire) "first-of-its-kind partnership" ilan etti ve davayi sonlandirdi; WMG CEO Robert Kyncl: "This landmark pact with Suno is a victory for the creative community that benefits everyone." UMG-Udio ve Warner-Udio anlasmalari Ekim/Kasim 2025'te yapildi. ANCAK Sony hala dava ediyor, UMG-Suno hala litigasyonda (UMG+Sony Mayis 2026'da eser sayisini genisletme talebinde bulundu; potansiyel yasal tazminat milyar-dolar seviyesinde). Suno ucretli planlari (Pro 10 USD/ay, veya yillik 8 USD/ay) abone iken uretilen/indirilen sarkilara ticari kullanim + YouTube monetizasyon hakki verir. Suno Help verbatim: "Songs downloaded while subscribed are granted commercial use rights ... Commercial use rights allow you to monetize the songs however you wish." Ucretsiz plan verbatim: "Songs made on the free plan are only intended for personal, non-commercial use. These songs cannot be monetized." Kritik uyari: Suno "commercial use rights ... does not guarantee copyright protection" der ve indemnification (tazmin garantisi) yoktur — risk kullanicida. Daha guvenli yol: Epidemic Sound (Creator 9.99 USD/ay yillik; Pro 16.99 USD/ay yillik) — tum ucretli planlar sinirsiz muzik/SFX ve YouTube/TikTok Content ID whitelist saglar; abonelik aktifken yayinlanan icerik "stays cleared forever, even after you cancel". Epidemic Pro sayfasi verbatim: "Major publishers making over $5m per year and companies making more than $10m per year are not eligible for our Pro plan and should use our Enterprise Plan instead." Alternatif Artlist: Social plan 9.99 USD/ay yillik (sadece organik sosyal), Pro/Max planlar 3 kanala kadar monetizasyon + AI indemnification (ust tierlerde).
+
+Platform AI-aciklama: YouTube altered/synthetic disclosure (Mart 2024, 2025 enforcement) — gercekci AI icerik icin "Altered content" toggle zorunlu; salt etiket erisim/monetizasyonu degistirmez. TikTok C2PA Content Credentials + gorunmez watermark + tespit modelleri kullanir; 10 Temmuz 2026'da 3 milyar+ videoyu AI-uretimi olarak etiketledigini acikladi (Kasim 2025'teki 1.3 milyardan sekiz ayda yaklasik iki kati); TikTok 27 Temmuz 2026'da C2PA yonetim kuruluna katildi. Meta (Instagram/Facebook/Threads) C2PA etiketleri uygular. C2PA metadata soymak kasitli aldatma sayilir ve gorsel analizle yine tespit edilebilir.
+
+EU AI Act Article 50: 2 Agustos 2026'dan gecerli; saglayici (provider) AI uretimi ses/gorsel/video/metni makine-okunur isaretlemeli, deployer deepfake ve kamu-yarari metnini aciklamali. Cezalar 15M EUR veya kuresel cironun %3'une kadar (Cooley). Piyasada 2 Agustos 2026'dan once bulunan jeneratif sistemler, Article 50(2) makine-okunur isaret uyumu icin 2 Aralik 2026'ya kadar sure aldi (Digital Omnibus). Bu kullanici EU pazarina yayin yapiyorsa hem "deployer" hem muhtemelen ic-arac gelistirici olarak yukumludur.
+
+Turkiye-ozel: RTUK, 2026'da yapay-zeka destekli dijital yayin izleme/analiz sistemini devreye alacagini acikladi (TBMM Plan ve Butce Komisyonu sunumu); sistem anahtar kelime, nefret soylemi, etik-disi oge ve telif/yayin ihlallerini otomatik tespit edip uzmana sunacak, ciddi ihlalde icerik cikarma/erisim engeli/lisans iptaline kadar yaptirim gundeme gelebilecek. YouTube ve sosyal medyaya lisans/denetim sinyali verildi ama yasal cerceve henuz netlesmedi. Ayrica KVKK (kisisel veri) ve ses-klonlama riza gereksinimleri dikkate alinmali.
+
+Diger tuzaklar:
+- Hesap banlari: Otomasyon platform kurallarini ihlal ederse (denetimsiz API, birebir coklu-repost) shadowban/ban riski.
+- API kota/rate limit: YouTube 10.000 birim/gun (~6 video), TikTok 6 istek/dakika, Instagram DM 200/saat.
+- Ses klonlama riza: Gercek kisi sesini klonlamak KVKK/EU kapsaminda riza gerektirir.
+- Model deprecation: Sora 2 API 24 Eylul 2026'da kapaniyor; Wan 2.5+ artik acik-agirlik degil. Coklu-saglayici routing (fal.ai/Replicate) ile korunun.
+- Maliyet patlamasi: Jeneratif saniye-basi ve avatar kredi modelleri hizla birikir (bir kullanici HeyGen API'de ayda 330 USD bildirdi).
+- Prompt drift ve karakter tutarliligi: Uzun-form/coklu-sahnede cozulmemis problem (Kling karakter tutarliliginda goreceli en iyi).
+- Depolama/bant genisligi: Video dosyalari buyuk; Hetzner disk + CDN maliyeti planlanmali.
+- Thumbnail CTR bagimligi: YouTube basarisi buyuk olcude thumbnail/baslik CTR'sine baglidir — bu hala insan-yargi isidir.
+- Coklu-platform repost cezasi: Ayni videoyu birebir cok platforma atmak erisim cezasi dogurabilir; her platforma uyarlayin.
+
+9. GAP ANALIZI
+
+Boru hatti asamasi bazinda otomasyon durumu:
+- Konu arastirmasi: TAM otomatiklestirilebilir (LLM + trend API); nis secimi/trend yargisi kismi insan.
+- Script: KISMI — AI taslak yazar; kanca/anlatim/marka sesi insan rotusu gerektirir.
+- Seslendirme: TAM (ElevenLabs Turkce guclu).
+- Gorsel/video uretimi: KISMI — kalite yuksek ama tutarlilik/ozgunluk insan secimi.
+- Montaj/render: TAM (sablonlu/programatik deterministik).
+- Altyazi: TAM (Whisper/Scribe Turkce).
+- Thumbnail: KISMI — AI uretir, CTR-kazandiran tasarim insan-yargi.
+- Metadata/SEO: TAM.
+- Yayin: TAM (denetimden gecmis katmanla).
+- Kalite kontrol/onay: INSAN GAP — kalan en kritik insan asamasi.
+- Analitik -> strateji: KISMI — AI oneri, insan karar.
+
+Arac gap'leri (henuz hicbir aracin iyi yapamadigi):
+- Turkce avatar dudak-senkron: Ingilizce'nin gerisinde.
+- Uzun-form tutarlilik/koherans: cozulmemis.
+- Muzik-gorsel senkron (beat-matching): zayif.
+- Marka sesi tutarliligi: prompt-muhendisligi ile ancak kismi.
+- Trend yargisi ve "taste": tamamen insan.
+
+10. KAYNAKLAR (URL'LER)
+
+GitHub / acik-kaynak:
+- MoneyPrinterTurbo: github.com/harry0703/MoneyPrinterTurbo
+- Postiz: github.com/gitroomhq/postiz-app
+- OpenClaw: github.com/openclaw/openclaw
+- ShortGPT: github.com uzerinde arama (RayVentura/ShortGPT)
+
+n8n sablonlari:
+- n8n.io/workflows/2971 (Leonardo AI + Creatomate faceless)
+- n8n.io/workflows/10455 (Sora 2 ile YouTube Shorts)
+- n8n.io/workflows/2875 (faceless YouTube AI agent)
+- n8n.io/workflows/6014 (Gemini + ElevenLabs + Leonardo + Shotstack)
+
+Resmi API / politika dokumantasyonu:
+- YouTube Data API kota: developers.google.com/youtube/v3
+- YouTube monetizasyon politikasi: support.google.com/youtube/answer/1311392
+- TikTok Content Posting API: developers.tiktok.com/doc/content-posting-api-reference-direct-post
+- Instagram content publishing: developers.facebook.com/documentation/instagram-platform/content-publishing
+- ElevenLabs: elevenlabs.io/docs
+- EU AI Act Article 50: digital-strategy.ec.europa.eu/en/policies/guidelines-transparency-ai-generated-content ; artificialintelligenceact.eu/transparency-rules-article-50/
+
+Fiyat/inceleme kaynaklari: modelslab.com, buildmvpfast.com, runpod.io/articles, fal.ai, blotato.com/blog, upload-post.com, checkthat.ai, colossyan.com, eesel.ai; muzik: epidemicsound.com, artlist.io, help.suno.com; render: creatomate.com, shotstack.io, json2video.com, remotion.pro.
+
+11. GUVENLI / RISKLI / KURUMSAL-DOGRU / BU KULLANICI ICIN PRATIK ONERI
+
+- GUVENLI: n8n + OpenClaw self-host (Hetzner); ElevenLabs Turkce ses; sablonlu render; script + final onay kapilari; Epidemic/Artlist muzik; AI etiketleme aktif; tek nis pilot.
+- RISKLI: incelemesiz auto-publish; Suno/Udio muzigini indemnification olmadan yuksek-risk ticari kullanma; tek videoyu tum platformlara birebir repost; denetimsiz TikTok API kullanimi; %100 AI slop faceless kanal (demonetizasyon).
+- KURUMSAL-DOGRU: onay kapilari + AI aciklama + EU AI Act makine-okunur isaret + KVKK/riza + denetim gunlukleri + coklu-saglayici routing (model deprecation'a karsi); ozel app gerekirse Vite/React + FastAPI + PostgreSQL/SQLModel/Alembic (Next.js/Supabase kullanilmaz).
+- BU KULLANICI ICIN PRATIK ONERI: Iki kollu strateji izleyin. (1) B2B SaaS pazarlama icin Mimari C: insan onay kapili, HeyGen/Synthesia avatar + Remotion self-host + LinkedIn/Ayrshare — dusuk hacim, yuksek marka-guvenligi; asil ROI burada, cunku demo/aciklayici/thought-leadership videolari dogrudan urun satisini destekler. (2) Ayni altyapiyla, tek bir Turkce veya Ingilizce faceless nis kanalini (finans/AI/is gibi yuksek-RPM nis) pilot olarak Mimari A ile calistirin; 10-20 video ve net analitik sonrasi olceklendirin. Orkestrasyonu n8n (deterministik hat) + OpenClaw/Claude Code (ajan + mobil onay) uzerine kurun. Yayinda once Blotato ile hizli baslayin (TikTok/Instagram onay surtunmesini atlar), olcek buyurse maliyet ve bagimsizlik icin Postiz self-host'a gecin. Sora 2 gibi kapanan modellere bagimlilik kurmayin; fal.ai/Replicate routing ile model-agnostik kalin. Beklenti yonetimi: "sifir insan" bir hedef degil, bir risktir — kalan kritik insan asamasi (kanca + kalite onayi) tam da monetizasyonu ve marka guvenligini koruyan asamadir.
