@@ -2,8 +2,14 @@ import { test, expect } from '@playwright/test';
 
 test('rapor akışı, geri dönüş ve okuma kaydı', async ({ page }) => {
   await page.goto('');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Yapay zekâdan');
-  await page.getByRole('link', { name: 'Video raporunu oku' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('İsmail için önce');
+  const menu = page.getByRole('button', { name: 'Bölümler', exact: true });
+  if (await menu.isVisible()) await menu.click();
+  await page
+    .getByRole('link', { name: /Video üretimi/ })
+    .filter({ visible: true })
+    .first()
+    .click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Fikirden yayına, tek bir üretim hattı.',
   );
@@ -50,7 +56,10 @@ test('araç filtreleri ve karşılaştırma', async ({ page }) => {
 test('320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('#/video');
-  await page.getByRole('button', { name: /Beş üretim yaklaşımı/ }).click();
+  await expect(page.getByRole('button', { name: /Beş üretim yaklaşımı/ })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
   await expect(
     page.getByRole('cell', { name: 'Yaklaşım Stok + ses + altyazı', exact: true }),
   ).toBeVisible();

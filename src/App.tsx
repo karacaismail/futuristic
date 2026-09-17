@@ -93,7 +93,7 @@ export default function App() {
           </span>
         </a>
         <div className="workspace-label">
-          <span className="status-dot" /> RESEARCH ATLAS <span>v2.1</span>
+          <span className="status-dot" /> RESEARCH ATLAS <span>v2.2</span>
         </div>
         <button
           className="sidebar-search"
@@ -121,11 +121,19 @@ export default function App() {
               aria-label="Okuma ilerlemesi"
             />
           </div>
-          <a href={`${import.meta.env.BASE_URL}rapor.md`} download className="sidebar-download">
+          <a
+            href={`${import.meta.env.BASE_URL}yonetici-ozeti.md`}
+            download
+            className="sidebar-download"
+          >
             <Icon name="download" size={18} />
-            <span>Raporu indir</span>
+            <span>Yönetici özetini indir</span>
             <small>MD</small>
           </a>
+          <div className="sidebar-report-files">
+            <a href={`${import.meta.env.BASE_URL}rapor.html`}>Tam rapor</a>
+            <a href={`${import.meta.env.BASE_URL}rapor-ekleri.html`}>Ekler</a>
+          </div>
           <div className="sidebar-signature">
             <span className="avatar-placeholder">İK</span>
             <span>
@@ -159,9 +167,9 @@ export default function App() {
             </button>
             <a
               className="btn btn-ghost btn-square"
-              href={`${import.meta.env.BASE_URL}rapor.md`}
+              href={`${import.meta.env.BASE_URL}yonetici-ozeti.md`}
               download
-              aria-label="Raporu Markdown olarak indir"
+              aria-label="Yönetici özetini Markdown olarak indir"
             >
               <Icon name="download" size={19} />
             </a>
@@ -197,7 +205,7 @@ export default function App() {
                 <h1 tabIndex={-1}>Bu bölüm bulunamadı.</h1>
                 <p>Araştırma atlasından devam edebilirsin.</p>
                 <a href="#/overview" className="btn btn-primary">
-                  Genel bakışa dön <Icon name="arrow" />
+                  Yönetici özetine dön <Icon name="arrow" />
                 </a>
               </div>
             )}
@@ -217,7 +225,7 @@ export default function App() {
       <nav className="mobile-dock" aria-label="Mobil gezinme">
         <a href="#/overview" aria-current={route.id === 'overview' ? 'page' : undefined}>
           <Icon name="grid" />
-          <span>Genel bakış</span>
+          <span>Özet</span>
         </a>
         <button onClick={() => setMenu(true)} aria-expanded={menu}>
           <Icon name="book" />

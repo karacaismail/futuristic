@@ -55,7 +55,9 @@ test('tüm sayfa ve pencerelerde metin en az 1rem', async ({ page }) => {
     await page.goto(`#/${route}`);
     await expect(page.locator('h1')).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
-    for (const toggle of await page.locator('.mobile-section-toggle:not(:disabled)').all()) {
+    for (const toggle of await page
+      .locator('.mobile-section-toggle[aria-expanded="false"]')
+      .all()) {
       if (await toggle.isVisible()) await toggle.click();
     }
     if (route.includes('doc=')) await expect(page.locator('.source-reading')).toBeVisible();

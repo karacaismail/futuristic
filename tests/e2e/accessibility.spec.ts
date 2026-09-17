@@ -62,7 +62,9 @@ for (const theme of ['light', 'dark']) {
     ]) {
       await page.goto(`#/${route}`);
       await expect(page.locator('h1')).toBeVisible();
-      for (const toggle of await page.locator('.mobile-section-toggle:not(:disabled)').all())
+      for (const toggle of await page
+        .locator('.mobile-section-toggle[aria-expanded="false"]')
+        .all())
         if (await toggle.isVisible()) await toggle.click();
       await page.evaluate(() => document.fonts.ready);
       const results = await new AxeBuilder({ page })

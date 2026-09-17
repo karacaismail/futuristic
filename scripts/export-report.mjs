@@ -21,7 +21,7 @@ const navigation =
   '[Yönetici özeti](yonetici-ozeti.md) · [Araştırma raporu](rapor.md) · [Tam ekler](rapor-ekleri.md)\n\n';
 const scope = `${tools.filter((t) => t.availability.pricing).length} araç kaydında fiyat; ${tools.filter((t) => t.availability.license).length} kayıtta lisans, açık kaynak sınıflandırması veya kullanım koşulu bilgisi var. Bilgi varlığı bağımsız doğrulama değildir. Araştırma raporu uygulama rehberlerini; tam ekler araç verileri, sayısal iddialar ve referans indeksini içerir.`;
 let report = '# Futuristic — Yapay zekâdan üretim sistemine\n\n';
-report += '**Araştırma raporu · 17 Eylül 2026 · v2.1**\n\n';
+report += '**Araştırma raporu · 17 Eylül 2026 · v2.2**\n\n';
 report +=
   'AI video üretimi ve yazılım geliştirme için mimari, araç, maliyet, kalite ve uygulama raporu. Altı kaynak belgenin tamamı korunmuştur; bütün iddiaların doğrulandığı ileri sürülmez.\n\n';
 report += navigation;
@@ -55,7 +55,7 @@ report += '\n## 8. Ayrıntılı uygulama rehberi\n\n';
 for (const topic of topics)
   report += `### ${topic.title}\n\n**${topic.documents.join(', ')} · ${topic.category}**\n\n${fs.readFileSync(`src/content/guide/${topic.id}.md`, 'utf8').replace(/^### /gm, '##### ').replace(/^## /gm, '#### ')}\n\n`;
 let appendix =
-  '# Futuristic — Tam veri ve kaynak ekleri\n\n**17 Eylül 2026 · v2.1**\n\n' +
+  '# Futuristic — Tam veri ve kaynak ekleri\n\n**17 Eylül 2026 · v2.2**\n\n' +
   navigation +
   scope +
   '\n\n';
@@ -101,7 +101,7 @@ appendix +=
 for (const unit of coverage)
   appendix += `- **${unit.id}** (${unit.start}–${unit.end}): ${unit.title.replaceAll('\n', ' ')} — [Kapsam haritası](${base}#/coverage?doc=${unit.document})\n`;
 const executive =
-  '# Futuristic — Yönetici özeti\n\n**17 Eylül 2026 · v2.1**\n\n' +
+  '# Futuristic — Yönetici özeti\n\n**17 Eylül 2026 · v2.2**\n\n' +
   navigation +
   fs.readFileSync('src/content/executive.md', 'utf8') +
   '\n\n**Kayıt kapsamı:** ' +

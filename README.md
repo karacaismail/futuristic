@@ -36,17 +36,19 @@ npm run lint                # Biome
 npm test                    # birim davranışları + kaynak bütünlüğü
 npm run typecheck           # TypeScript
 npm run build               # rapor dışa aktarımı + production derlemesi
-npx playwright install chromium
+npx playwright install chromium webkit
 npm run test:e2e            # production preview üzerinde tarayıcı kontrolleri
 npm run check              # format + lint + birim + build + E2E
 ```
 
-Tarayıcı testleri 1440px masaüstü ve iPhone boyutunda mobil Chromium profillerinde çalışır; gerçek iOS Safari sertifikasyonu değildir. Ek ekran boyutu, hata kurtarma, klavye ve axe erişilebilirlik kontrolleri testlerde tanımlıdır. Tarayıcı testleri `vite preview` kullanır: geliştirme sunucusunun HMR olayları test durumunu sıfırlamaz.
+Tarayıcı testleri 1440px masaüstü ve iPhone boyutunda mobil Chromium profillerinde çalışır. Rapor okuma akışı ayrıca WebKit’te sınanır; gerçek iOS Safari cihaz sertifikasyonu değildir. Ek ekran boyutu, hata kurtarma, klavye ve axe erişilebilirlik kontrolleri testlerde tanımlıdır. Tarayıcı testleri `vite preview` kullanır: geliştirme sunucusunun HMR olayları test durumunu sıfırlamaz.
 
 ## Mobile-first UX ve DX
 
 - Birincil gezinme mobilde altta; tüm bölüm listesi native dialog panelinde.
-- Önce karar/özet, sonra açılabilir alt bölümler; okundu işareti cihazda korunur.
+- Açılış doğrudan yönetici özeti ve karar tablosudur; indirme önceliği kısa özettir. Keşif araçları özetten sonra gelir.
+- Mobilde tam metin açık başlar; toplu aç/daralt ve destekleyen tarayıcılarda `hidden="until-found"` / `beforematch` ile bulunca açma. Destek yoksa tam metin açık kalır; okundu işareti cihazda korunur.
+- Okuma sütunu en fazla 68ch; seçili fontun gerçek satır ölçüsü için ayrıca 36rem sınırı. Masaüstünde h1/h2/h3 ve gövde ölçüleri ayrışır.
 - Geniş tablolar mobilde etiketli kayıt kartları; araç karşılaştırması dikey akış.
 - Masaüstünde kalıcı menü, bölüm içi gezinme ve yan yana karşılaştırma.
 - Dokunma hedefleri, safe-area, en az 1rem metin ve kullanıcı kök boyutuna uyan girişler, reduced motion ve görünür odak.

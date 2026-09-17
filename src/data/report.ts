@@ -97,13 +97,13 @@ export const sections: ReportSection[] = [
   },
 ];
 export const navigation = [
-  { id: 'overview', label: 'Genel bakış', icon: 'grid' },
-  { id: 'guide', label: 'Ayrıntılı rehber', icon: 'book' },
-  { id: 'claims', label: 'Sayılar & iddialar', icon: 'calculator' },
-  { id: 'coverage', label: 'Kapsam haritası', icon: 'network' },
+  { id: 'overview', label: 'Yönetici özeti', icon: 'file', number: '00' },
   { id: 'video', label: 'Video üretimi', icon: 'video', number: '01' },
   { id: 'software', label: 'Yazılım geliştirme', icon: 'code', number: '02' },
   { id: 'architecture', label: 'Referans mimari', icon: 'network', number: '03' },
+  { id: 'guide', label: 'Ayrıntılı rehber', icon: 'book' },
+  { id: 'claims', label: 'Sayılar & iddialar', icon: 'calculator' },
+  { id: 'coverage', label: 'Kapsam haritası', icon: 'network' },
   { id: 'tools', label: 'Araç radarı', icon: 'boxes', number: '04' },
   { id: 'cost', label: 'Maliyet laboratuvarı', icon: 'calculator', number: '05' },
   { id: 'risks', label: 'Riskler & boşluklar', icon: 'shield', number: '06' },

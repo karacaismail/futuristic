@@ -1,5 +1,6 @@
-import { lazy, Suspense, useState } from 'react';
-const Markdown = lazy(() => import('./Markdown'));
+import { useEffect, useState } from 'react';
+import Executive from './Executive';
+import ReadingBody from './ReadingBody';
 import { Icon, Pill, PageTitle, SourceChips, HeroDiagram } from './components';
 import { navigation, sections, milestones, type ReportSection } from './data/report';
 import corpus from './data/corpus.json';
@@ -11,6 +12,17 @@ import { useStoredIds } from './lib/storage';
 export function Overview({ read }: { read: string[] }) {
   return (
     <>
+      <Executive />
+      <details className="research-directory">
+        <summary>Rehberler, araçlar ve kaynaklar</summary>
+        <ResearchDirectory read={read} />
+      </details>
+    </>
+  );
+}
+function ResearchDirectory({ read }: { read: string[] }) {
+  return (
+    <>
       <div className="intro-line">
         <span className="eyebrow">BAĞLANTILI BİR GELECEK İÇİN</span>
         <span className="edition">ARAŞTIRMA SERİSİ / 001</span>
@@ -20,18 +32,18 @@ export function Overview({ read }: { read: string[] }) {
           <Pill tone="green">
             <span className="status-dot" /> Eylül 2026 araştırması
           </Pill>
-          <h1 tabIndex={-1}>
+          <h2>
             Yapay zekâdan
             <br />
             <span>üretim sistemine.</span>
-          </h1>
+          </h2>
           <p>
             Fikirleri videoya, gereksinimleri yazılıma dönüştür.
             <br className="desktop-only" /> Altı araştırma. İki üretim hattı. Tek bir açık yol
             haritası.
           </p>
           <a className="btn btn-primary" href="#/guide">
-            Araştırmayı keşfet <Icon name="arrow" size={18} />
+            Uygulama rehberlerini aç <Icon name="arrow" size={18} />
           </a>
           <a className="hero-text-link" href="#/methodology">
             Rapor hakkında <Icon name="chevron" size={16} />
@@ -261,7 +273,16 @@ export function Article({
   onRead: () => void;
   persisted: boolean;
 }) {
-  const [expanded, setExpanded] = useState<string[]>([]);
+  const [collapsed, setCollapsed] = useState<string[]>([]);
+  const [desktop, setDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+  const [supportsReveal] = useState(() => 'onbeforematch' in document.createElement('div'));
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 1024px)');
+    const change = () => setDesktop(media.matches);
+    media.addEventListener('change', change);
+    return () => media.removeEventListener('change', change);
+  }, []);
+  const canCollapse = !desktop && supportsReveal;
   const parts = section.body
     .split(/^## /m)
     .filter(Boolean)
@@ -294,41 +315,68 @@ export function Article({
       </div>
       {section.id === 'architecture' && <Pipeline />}
       {section.id === 'roadmap' && <RoadmapChecklist />}
+      {canCollapse && (
+        <div className="reading-controls" role="group" aria-label="Bölümlerin görünümü">
+          <button
+            className="btn btn-outline"
+            onClick={() => setCollapsed([])}
+            disabled={!collapsed.length}
+          >
+            Tümünü aç
+          </button>
+          <button
+            className="btn btn-ghost"
+            onClick={() => setCollapsed(parts.map((part) => part.id))}
+            disabled={collapsed.length === parts.length}
+          >
+            Tümünü daralt
+          </button>
+          <span>Daraltılan bölümler sayfada aramayla açılır.</span>
+        </div>
+      )}
       <div className="article-layout">
         <article className="article-body">
-          {parts.map((part, index) => (
-            <section
-              className={`article-part ${index === 0 || expanded.includes(part.id) ? 'expanded' : ''}`}
-              key={part.id}
-              id={part.id}
-            >
-              <h2 className="desktop-section-title">{part.title}</h2>
-              <button
-                className="mobile-section-toggle"
-                aria-expanded={index === 0 || expanded.includes(part.id)}
-                aria-controls={`${part.id}-body`}
-                onClick={() =>
-                  setExpanded((current) =>
-                    current.includes(part.id)
-                      ? current.filter((id) => id !== part.id)
-                      : [...current, part.id],
-                  )
-                }
-                disabled={index === 0}
+          {parts.map((part, index) => {
+            const open = !canCollapse || !collapsed.includes(part.id);
+            return (
+              <section
+                className={`article-part ${open ? 'expanded' : ''}`}
+                key={part.id}
+                id={part.id}
               >
-                <span>
-                  <small>{String(index + 1).padStart(2, '0')}</small>
-                  {part.title}
-                </span>
-                {index > 0 && <Icon name="chevron" size={18} />}
-              </button>
-              <div id={`${part.id}-body`} className="article-part-body">
-                <Suspense fallback={<p role="status">Bölüm yükleniyor…</p>}>
-                  <Markdown body={part.body} />
-                </Suspense>
-              </div>
-            </section>
-          ))}
+                <h2 className="article-section-heading">
+                  {canCollapse ? (
+                    <button
+                      className="mobile-section-toggle"
+                      aria-expanded={open}
+                      aria-controls={`${part.id}-body`}
+                      onClick={() =>
+                        setCollapsed((current) =>
+                          current.includes(part.id)
+                            ? current.filter((id) => id !== part.id)
+                            : [...current, part.id],
+                        )
+                      }
+                    >
+                      <span>
+                        <small>{String(index + 1).padStart(2, '0')}</small>
+                        {part.title}
+                      </span>
+                      <Icon name="chevron" size={18} />
+                    </button>
+                  ) : (
+                    <span className="static-section-title">{part.title}</span>
+                  )}
+                </h2>
+                <ReadingBody
+                  id={`${part.id}-body`}
+                  body={part.body}
+                  open={open}
+                  onReveal={() => setCollapsed((current) => current.filter((id) => id !== part.id))}
+                />
+              </section>
+            );
+          })}
         </article>
         <aside className="on-this-page">
           <span className="eyebrow">BU BÖLÜMDE</span>

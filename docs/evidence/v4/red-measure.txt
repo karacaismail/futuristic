@@ -1,0 +1,39 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test tests/e2e/report-reading.spec.ts --project=desktop --grep okuma sütunu
+
+
+Running 1 test using 1 worker
+
+(node:149) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/e2e/report-reading.spec.ts:100:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır (457ms)
+
+
+  1) [desktop] › tests/e2e/report-reading.spec.ts:100:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 75
+    Received:    92
+
+      136 |     return [...rows.values()].slice(0, -1).map(text => text.trim().length);
+      137 |   });
+    > 138 |   expect(Math.max(...lines)).toBeLessThanOrEqual(75);
+          |                              ^
+      139 | });
+      140 |
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:138:30
+
+    Error Context: test-results/report-reading-okuma-sütun-eaa21-ı-başlıklar-ölçüyle-ayrışır-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-okuma-sütun-eaa21-ı-başlıklar-ölçüyle-ayrışır-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-okuma-sütun-eaa21-ı-başlıklar-ölçüyle-ayrışır-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/e2e/report-reading.spec.ts:100:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır 

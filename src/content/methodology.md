@@ -23,7 +23,7 @@ D03/D04’teki eski sohbet atıf belirteçleri (`turn…search…` vb.) erişile
 
 ## Tasarım tercihleri
 
-Mobil kullanıcı önce kararı, özeti ve sonraki adımı görür. Alt gezinme ve bölüm paneli tek elle erişilir. Uzun rapor alt bölümlere ayrılır; araç karşılaştırması dar ekranda dikey kartlara dönüşür. 48px etkileşim alanı, klavye odağı, reduced motion ve cihaz güvenli alanı tasarımın temelidir.
+Ana sayfa yönetici özeti ve kararı değiştiren sayılarla açılır; araç dizini özetin ardından gelir. Mobil rapor metni başlangıçta bütünüyle açıktır. İsteğe bağlı toplu daraltma/açma vardır; destekleyen tarayıcılarda sayfada arama daraltılmış bölümü açar. Destek yoksa metin açık kalır. Alt gezinme ve bölüm paneli tek elle erişilir; araç karşılaştırması dar ekranda dikey kartlara dönüşür. Okuma sütunu 68ch üst sınırına ve seçili fontun gerçek satır ölçüsüne göre daraltılır; başlık basamakları 1rem alt sınırının üzerinde ayrışır. 48px etkileşim alanı, klavye odağı, reduced motion ve cihaz güvenli alanı tasarımın temelidir.
 
 Masaüstünde kalıcı içerik menüsü, daha geniş karşılaştırma alanı ve aynı URL/okuma durumu kullanılır. Okundu ve yol haritası işaretleri yalnızca bu tarayıcıda saklanır; hesap veya cihazlar arası senkronizasyon yoktur. Depolama engellenirse oturum içi kullanım devam eder.
 

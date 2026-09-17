@@ -709,14 +709,14 @@ svg {
   display: inline-flex;
   gap: 6px;
 }
-.hero-copy h1 {
+.hero-copy h2 {
   font-size: 2.4375rem;
   line-height: 1.17;
   font-weight: 650;
   letter-spacing: -0.055em;
   margin: 20px 0 18px;
 }
-.hero-copy h1 span {
+.hero-copy h2 span {
   color: var(--palette-6c7e66);
 }
 .hero-copy > p {
@@ -1289,12 +1289,12 @@ svg {
   transform: rotate(90deg);
 }
 .article-part-body {
-  display: none;
   padding-bottom: 23px;
 }
-.expanded .article-part-body {
-  display: block;
+.article-part-body[hidden='until-found'] {
+  padding-bottom: 0;
 }
+
 .report-prose {
   font-size: 1rem;
   line-height: 1.95;
@@ -2432,7 +2432,7 @@ svg {
   .main-content {
     padding: 35px 32px 115px;
   }
-  .hero-copy h1 {
+  .hero-copy h2 {
     font-size: 3rem;
   }
   .hero-diagram {
@@ -2841,7 +2841,7 @@ svg {
     gap: 24px;
     align-items: center;
   }
-  .hero-copy h1 {
+  .hero-copy h2 {
     font-size: 2.6875rem;
   }
   .hero-copy > p {
@@ -2946,7 +2946,6 @@ svg {
     margin: 0 0 35px;
   }
   .article-part-body {
-    display: block;
     padding: 0;
   }
   .report-prose {
@@ -3015,7 +3014,7 @@ svg {
   .topbar {
     padding: 0 48px;
   }
-  .hero-copy h1 {
+  .hero-copy h2 {
     font-size: 3.25rem;
   }
   .hero-copy > p {
@@ -3166,7 +3165,7 @@ svg {
   }
 }
 @media (min-width: 1600px) {
-  .hero-copy h1 {
+  .hero-copy h2 {
     font-size: 3.875rem;
   }
   .hero-copy > p {
@@ -3772,6 +3771,156 @@ body {
   min-width: 0;
   max-width: 100%;
   overflow-wrap: anywhere;
+}
+
+/* Report reading: the prose measure follows the text's font size, not the dashboard grid. */
+.reading-column,
+.article-body {
+  width: 100%;
+  max-width: 68ch;
+  min-width: 0;
+  font-size: 1rem;
+}
+.article-body {
+  max-width: min(68ch, 36rem);
+}
+.report-prose {
+  max-width: min(68ch, 36rem);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+#executive-numbers .report-prose {
+  max-width: 68ch;
+}
+.executive-summary h1 {
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  margin: 0.75rem 0 1rem;
+  max-width: 24ch;
+}
+.executive-lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  color: var(--color-base-content);
+}
+.executive-summary h2,
+.article-section-heading,
+.report-prose h2 {
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.executive-summary h2 {
+  margin: 2rem 0 1rem;
+}
+.executive-summary #numbers-title {
+  margin-top: 0;
+}
+.report-prose h3 {
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+.article-section-heading {
+  margin: 0;
+}
+.static-section-title {
+  display: block;
+  padding-block: 1.25rem;
+}
+.mobile-section-toggle > span {
+  font-size: inherit;
+  line-height: inherit;
+}
+.mobile-section-toggle {
+  font-size: inherit;
+  font-weight: inherit;
+}
+.reading-controls,
+.executive-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 1.5rem;
+}
+.reading-controls > span {
+  flex-basis: 100%;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.reading-controls .btn,
+.executive-downloads .btn {
+  min-height: 3rem;
+  height: auto;
+  white-space: normal;
+}
+.research-directory {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding-top: 1rem;
+}
+.research-directory > summary {
+  font-size: 1.25rem;
+  font-weight: 650;
+  min-height: 3rem;
+  padding-block: 0.75rem;
+  cursor: pointer;
+}
+.research-directory[open] > summary {
+  margin-bottom: 2rem;
+}
+.sidebar-report-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.sidebar-report-files a {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+@media (min-width: 768px) {
+  .reading-column,
+  .article-body,
+  .report-prose {
+    font-size: 1.125rem;
+  }
+  .executive-summary h2,
+  .article-section-heading,
+  .report-prose h2 {
+    font-size: 1.625rem;
+  }
+  .report-prose h3 {
+    font-size: 1.375rem;
+  }
+}
+@media (min-width: 1280px) {
+  .article-layout {
+    grid-template-columns: minmax(0, 36rem) 205px;
+    gap: 2.25rem;
+  }
+}
+@media print {
+  .reading-controls,
+  .executive-downloads,
+  .research-directory {
+    display: none;
+  }
+  .article-part-body[hidden='until-found'] {
+    content-visibility: visible !important;
+  }
+  .article-section-heading .mobile-section-toggle {
+    display: flex;
+  }
 }
 [data-theme='futuristic-dark'] .track-card .pill {
   background: var(--color-base-100);

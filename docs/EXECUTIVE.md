@@ -1,6 +1,6 @@
 # Futuristic — Yönetici özeti
 
-**17 Eylül 2026 · v2.1**
+**17 Eylül 2026 · v2.2**
 
 [Yönetici özeti](EXECUTIVE.md) · [Araştırma raporu](REPORT.md) · [Tam ekler](APPENDIX.md)
 

@@ -1,0 +1,194 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test tests/e2e/report-reading.spec.ts --project=mobile
+
+
+Running 5 tests using 4 workers
+
+(node:97537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97534) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97535) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [mobile] › tests/e2e/report-reading.spec.ts:60:1 › bulunca açma desteği yoksa okunabilir açık metne düşer (229ms)
+(node:97554) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [mobile] › tests/e2e/report-reading.spec.ts:73:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır (441ms)
+  ✘  4 [mobile] › tests/e2e/report-reading.spec.ts:3:1 › ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir (5.2s)
+  ✘  2 [mobile] › tests/e2e/report-reading.spec.ts:16:1 › özet ilk gezinme ve indirme hedefidir (5.3s)
+  ✘  1 [mobile] › tests/e2e/report-reading.spec.ts:37:1 › mobil rapor açık başlar; toplu açma, bulunca açma ve geniş ekrana geçiş çalışır (30.1s)
+
+
+  1) [mobile] › tests/e2e/report-reading.spec.ts:3:1 › ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByRole('heading', { level: 1 })
+    Expected: "İsmail için önce hangi yatırım?"
+    Received: "Yapay zekâdanüretim sistemine."
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByRole('heading', { level: 1 }) with timeout 5000ms
+      - waiting for getByRole('heading', { level: 1 })
+        14 × locator resolved to <h1 tabindex="-1">…</h1>
+           - unexpected value "Yapay zekâdanüretim sistemine."
+
+
+      3 | test('ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir', async ({ page }) => {
+      4 |   await page.goto('');
+    > 5 |   await expect(page.getByRole('heading', { level: 1 })).toHaveText('İsmail için önce hangi yatırım?');
+        |                                                         ^
+      6 |   const summary = page.locator('.executive-summary');
+      7 |   await expect(summary.locator('.executive-lead')).toContainText('Önce mevcut yazılım çalışma döngüsünü güçlendir');
+      8 |   const finding = page.locator('#executive-numbers').getByText('$22,50', {exact:true});
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:5:57
+
+    Error Context: test-results/report-reading-ilk-ekran-s-118ff-losu-dizinlerden-önce-gelir-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-ilk-ekran-s-118ff-losu-dizinlerden-önce-gelir-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-ilk-ekran-s-118ff-losu-dizinlerden-önce-gelir-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests/e2e/report-reading.spec.ts:16:1 › özet ilk gezinme ve indirme hedefidir ──────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('navigation', { name: 'Bölüm seçimi' }).getByRole('link').first()
+    Expected substring: "Yönetici özeti"
+    Received string:    "Genel bakış"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('navigation', { name: 'Bölüm seçimi' }).getByRole('link').first() with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Bölüm seçimi' }).getByRole('link').first()
+        14 × locator resolved to <a href="#/overview" class="nav-link  ">…</a>
+           - unexpected value "Genel bakış"
+
+
+      19 |     await page.getByRole('button', {name:'Bölümler',exact:true}).click();
+      20 |     const first = page.getByRole('navigation', {name:'Bölüm seçimi'}).getByRole('link').first();
+    > 21 |     await expect(first).toContainText('Yönetici özeti');
+         |                         ^
+      22 |     await expect(first).toContainText('00');
+      23 |     await first.click();
+      24 |   } else {
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:21:25
+
+    Error Context: test-results/report-reading-özet-ilk-gezinme-ve-indirme-hedefidir-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-özet-ilk-gezinme-ve-indirme-hedefidir-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-özet-ilk-gezinme-ve-indirme-hedefidir-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests/e2e/report-reading.spec.ts:37:1 › mobil rapor açık başlar; toplu açma, bulunca açma ve geniş ekrana geçiş çalışır 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Tümünü daralt', exact: true })
+
+
+      40 |   await expect(page.locator('.article-part-body')).toHaveCount(7);
+      41 |   for (const body of await page.locator('.article-part-body').all()) await expect(body).not.toHaveAttribute('hidden');
+    > 42 |   await page.getByRole('button', {name:'Tümünü daralt',exact:true}).click();
+         |                                                                     ^
+      43 |   const body = page.locator('#software-2-body');
+      44 |   await expect(body).toHaveAttribute('hidden','until-found');
+      45 |   expect(await body.evaluate(el=>getComputedStyle(el).display)).not.toBe('none');
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:42:69
+
+    Error Context: test-results/report-reading-mobil-rapor-b1ae6--geniş-ekrana-geçiş-çalışır-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-mobil-rapor-b1ae6--geniş-ekrana-geçiş-çalışır-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-mobil-rapor-b1ae6--geniş-ekrana-geçiş-çalışır-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests/e2e/report-reading.spec.ts:60:1 › bulunca açma desteği yoksa okunabilir açık metne düşer 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Python için Ruff"
+    Received string:    "01
+    Karar: ajanı doğrulanabilir işlerle başlat·
+    Bölüm yükleniyor…·
+    02
+    Bir model ile bir ajan aynı şey değil
+    03
+    TDD, ajan için çalıştırılabilir sözleşme
+    04
+    Bağlamı küçük ve işe yarar tut
+    05
+    MCP ve RAG: farklı ihtiyaçlar
+    06
+    Daha çok kod, daha yüksek üretkenlik anlamına gelmez
+    07
+    Yerel model kararı: önce iş yükünü ölç"
+
+      68 |   await expect(page.locator('.article-part-body[hidden]')).toHaveCount(0);
+      69 |   await expect(page.getByRole('button',{name:'Tümünü daralt',exact:true})).toHaveCount(0);
+    > 70 |   expect(await page.locator('.article-body').innerText()).toContain('Python için Ruff');
+         |                                                           ^
+      71 | });
+      72 |
+      73 | test('okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır', async ({ page })=>{
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:70:59
+
+    Error Context: test-results/report-reading-bulunca-açm-f40ed-okunabilir-açık-metne-düşer-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-bulunca-açm-f40ed-okunabilir-açık-metne-düşer-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-bulunca-açm-f40ed-okunabilir-açık-metne-düşer-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile] › tests/e2e/report-reading.spec.ts:73:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 773.171875
+    Received:    850
+
+      84 |     return {width:el.getBoundingClientRect().width,max,body:parseFloat(style.fontSize),h2:parseFloat(getComputedStyle(h2).fontSize)};
+      85 |   });
+    > 86 |   expect(measure.width).toBeLessThanOrEqual(measure.max+1);
+         |                         ^
+      87 |   expect(measure.h2).toBeGreaterThan(measure.body*1.25);
+      88 | });
+      89 |
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:86:25
+
+    Error Context: test-results/report-reading-okuma-sütun-eaa21-ı-başlıklar-ölçüyle-ayrışır-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-okuma-sütun-eaa21-ı-başlıklar-ölçüyle-ayrışır-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-okuma-sütun-eaa21-ı-başlıklar-ölçüyle-ayrışır-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [mobile] › tests/e2e/report-reading.spec.ts:3:1 › ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir 
+    [mobile] › tests/e2e/report-reading.spec.ts:16:1 › özet ilk gezinme ve indirme hedefidir ───────
+    [mobile] › tests/e2e/report-reading.spec.ts:37:1 › mobil rapor açık başlar; toplu açma, bulunca açma ve geniş ekrana geçiş çalışır 
+    [mobile] › tests/e2e/report-reading.spec.ts:60:1 › bulunca açma desteği yoksa okunabilir açık metne düşer 
+    [mobile] › tests/e2e/report-reading.spec.ts:73:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır 

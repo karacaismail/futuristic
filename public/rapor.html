@@ -3,7 +3,7 @@
     1rem/1.8 system-ui,
     sans-serif;
   color: #243c2b;
-  max-width: 1000px;
+  max-width: 68ch;
   margin: auto;
   padding: 35px 22px;
 }
@@ -115,7 +115,7 @@ nav a {
   }
 }
 </style></head><body><nav><button onclick="window.print()">Yazdır / PDF olarak kaydet</button><a href="https://karacaismail.github.io/futuristic/">Etkileşimli rapora dön</a></nav><main><h1>Futuristic — Yapay zekâdan üretim sistemine</h1>
-<p><strong>Araştırma raporu · 17 Eylül 2026 · v2.1</strong></p>
+<p><strong>Araştırma raporu · 17 Eylül 2026 · v2.2</strong></p>
 <p>AI video üretimi ve yazılım geliştirme için mimari, araç, maliyet, kalite ve uygulama raporu. Altı kaynak belgenin tamamı korunmuştur; bütün iddiaların doğrulandığı ileri sürülmez.</p>
 <p><a href="yonetici-ozeti.html">Yönetici özeti</a> · <a href="rapor.html">Araştırma raporu</a> · <a href="rapor-ekleri.html">Tam ekler</a></p>
 <h2>Okuma kılavuzu</h2>
@@ -290,7 +290,7 @@ nav a {
 <p>İki belgede paragraf/satır ayrımları aktarım sırasında kaybolmuştur. Orijinal dosya aynen korunur; okuma görünümü cümle sınırlarında pasaj ve paragraf araları oluşturur. “Kaynak pasajı” etiketleri yeni okuma bölümlemesidir; kayıp özgün başlıkların aynen geri getirildiği iddia edilmez. Düz metin görünümü ve özgün indirme ayrıca korunur. D04 kapsam haritası paragraflara ve tablo satırlarına ayrılmıştır; kod blokları bölünmez. Ayrı satırın okunabilmesi için tablo başlığı gösterimde tekrar edilir, özgün kaynak aralığı değiştirilmez. Diğer belgelerin Markdown, tablo, kod ve şema metinleri de özgün biçimleriyle indirilebilir.</p>
 <p>D03/D04’teki eski sohbet atıf belirteçleri (<code>turn…search…</code> vb.) erişilebilir kaynak URL’si değildir. Bu belirteçlerden bağlantı uydurulmaz; orijinal metinde saklanır ve çözümlenemeyen atıf olarak sayılır. Açık URL’ler, çıplak alan adları, açık GitHub repo kimlikleri ve arXiv numaraları ayrı indekslenir.</p>
 <h3>Tasarım tercihleri</h3>
-<p>Mobil kullanıcı önce kararı, özeti ve sonraki adımı görür. Alt gezinme ve bölüm paneli tek elle erişilir. Uzun rapor alt bölümlere ayrılır; araç karşılaştırması dar ekranda dikey kartlara dönüşür. 48px etkileşim alanı, klavye odağı, reduced motion ve cihaz güvenli alanı tasarımın temelidir.</p>
+<p>Ana sayfa yönetici özeti ve kararı değiştiren sayılarla açılır; araç dizini özetin ardından gelir. Mobil rapor metni başlangıçta bütünüyle açıktır. İsteğe bağlı toplu daraltma/açma vardır; destekleyen tarayıcılarda sayfada arama daraltılmış bölümü açar. Destek yoksa metin açık kalır. Alt gezinme ve bölüm paneli tek elle erişilir; araç karşılaştırması dar ekranda dikey kartlara dönüşür. Okuma sütunu 68ch üst sınırına ve seçili fontun gerçek satır ölçüsüne göre daraltılır; başlık basamakları 1rem alt sınırının üzerinde ayrışır. 48px etkileşim alanı, klavye odağı, reduced motion ve cihaz güvenli alanı tasarımın temelidir.</p>
 <p>Masaüstünde kalıcı içerik menüsü, daha geniş karşılaştırma alanı ve aynı URL/okuma durumu kullanılır. Okundu ve yol haritası işaretleri yalnızca bu tarayıcıda saklanır; hesap veya cihazlar arası senkronizasyon yoktur. Depolama engellenirse oturum içi kullanım devam eder.</p>
 <h3>Teknik kapsam</h3>
 <p>Portal React, TypeScript, Vite, Tailwind CSS ve daisyUI ile hazırlanmış statik bir GitHub Pages uygulamasıdır. Gerçek video üretimi, ücretli model çağrısı, sosyal hesap bağlantısı veya sunucu tarafı ajan çalıştırma içermez. Hesaplayıcı bir planlama aracıdır; canlı fiyat servisi değildir.</p>

@@ -1,0 +1,54 @@
+
+> futuristic-research@1.0.0 prebuild
+> npm run report:export
+
+
+> futuristic-research@1.0.0 report:export
+> node scripts/export-report.mjs
+
+rapor: 18371 sözcük
+rapor-ekleri: 18985 sözcük
+yonetici-ozeti: 728 sözcük
+
+> futuristic-research@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2179 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                  1.24 kB │ gzip:   0.67 kB
+dist/assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2        8.52 kB
+dist/assets/manrope-greek-wght-normal-DL7QRZyv.woff2             9.44 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2         10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2          11.23 kB
+dist/assets/ibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff    11.76 kB
+dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff        13.14 kB
+dist/assets/ibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2   13.34 kB
+dist/assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2         14.50 kB
+dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2       14.70 kB
+dist/assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2        15.12 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2           18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2              18.99 kB
+dist/assets/manrope-latin-wght-normal-DHIcAJRg.woff2            24.83 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2       25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2              48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2          85.06 kB
+dist/assets/index-CNaUaTG6.css                                 176.88 kB │ gzip:  33.54 kB
+dist/assets/TopicLinks-sgXaIZvv.js                               0.32 kB │ gzip:   0.24 kB
+dist/assets/topics-FzYze24K.js                                   6.74 kB │ gzip:   2.52 kB
+dist/assets/Guide-B_48PoNV.js                                    7.69 kB │ gzip:   2.95 kB
+dist/assets/Catalog-Dyt6M7uW.js                                  8.15 kB │ gzip:   2.96 kB
+dist/assets/Library-D4XBbnO9.js                                 13.83 kB │ gzip:   4.79 kB
+dist/assets/Markdown-C6SwRp7q.js                               154.73 kB │ gzip:  46.20 kB
+dist/assets/index-BvrtB6G0.js                                  336.95 kB │ gzip: 107.66 kB
+dist/assets/tools-iT-w4lxp.js                                  384.75 kB │ gzip:  53.53 kB
+dist/assets/coverage-CV-YJ2Au.js                               521.31 kB │ gzip: 169.66 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 249ms

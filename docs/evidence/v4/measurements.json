@@ -1,0 +1,15 @@
+{
+  "desktopWidth": 1440,
+  "lineLengths": [
+    65,
+    56,
+    66,
+    59,
+    70,
+    43
+  ],
+  "webkit": {
+    "beforematch": true,
+    "hidden": 0
+  }
+}
