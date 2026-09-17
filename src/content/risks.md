@@ -4,18 +4,18 @@ Altı kaynak birbirini destekleyen mimari öneriler yanında çelişkili fiyat, 
 
 ## Öncelikli risk kaydı
 
-| Risk | Erken sinyal | Kontrol | Sorumlu rol |
-|---|---|---|---|
-| Sahne / ürün tutarsızlığı | Yüksek insan ret oranı | Onaylı referanslar, sahne bazlı yeniden üretim | İçerik editörü |
-| Mükerrer yayın | Timeout sonrası ikinci post | İdempotency, işlem uzlaştırma, platform ID’si | Backend |
-| Maliyet taşması | Attempt ve token artışı | İş başına bütçe, tur/süre limiti, alarm | Operasyon |
-| Prompt injection | Araç çıktısındaki eylem talimatı | Trust boundary, sınırlı yetki, veri çıkışı kontrolü | Güvenlik |
-| Test zayıflatma | Silinen assertion veya test | Test diff incelemesi, davranış sözleşmesi | Reviewer |
-| Gizli veri sızıntısı | Prompt/log içinde kişisel veri veya secret | Sentetik fixture, maskeleme, dar erişim | Veri sorumlusu |
-| Sağlayıcı kapanışı | Deprecation ve model ID değişimi | Adaptör, sürüm kayıtları, alternatif pilot | Teknik lider |
-| İçerik hakları | Asset’in rıza/lisans kaydı yok | Asset bazlı kullanım kaydı ve yayın kapısı | İçerik/uyum |
-| Yayın erişimi | İşlem başarılı ama private | Audit, hesap izinleri, görünürlük sorgusu | Entegrasyon |
-| Review darboğazı | PR kuyruğu ve yeniden iş artışı | Küçük işler, kapasite limiti, net sahiplik | Ekip lideri |
+| Risk                      | Erken sinyal                               | Kontrol                                             | Sorumlu rol    |
+| ------------------------- | ------------------------------------------ | --------------------------------------------------- | -------------- |
+| Sahne / ürün tutarsızlığı | Yüksek insan ret oranı                     | Onaylı referanslar, sahne bazlı yeniden üretim      | İçerik editörü |
+| Mükerrer yayın            | Timeout sonrası ikinci post                | İdempotency, işlem uzlaştırma, platform ID’si       | Backend        |
+| Maliyet taşması           | Attempt ve token artışı                    | İş başına bütçe, tur/süre limiti, alarm             | Operasyon      |
+| Prompt injection          | Araç çıktısındaki eylem talimatı           | Trust boundary, sınırlı yetki, veri çıkışı kontrolü | Güvenlik       |
+| Test zayıflatma           | Silinen assertion veya test                | Test diff incelemesi, davranış sözleşmesi           | Reviewer       |
+| Gizli veri sızıntısı      | Prompt/log içinde kişisel veri veya secret | Sentetik fixture, maskeleme, dar erişim             | Veri sorumlusu |
+| Sağlayıcı kapanışı        | Deprecation ve model ID değişimi           | Adaptör, sürüm kayıtları, alternatif pilot          | Teknik lider   |
+| İçerik hakları            | Asset’in rıza/lisans kaydı yok             | Asset bazlı kullanım kaydı ve yayın kapısı          | İçerik/uyum    |
+| Yayın erişimi             | İşlem başarılı ama private                 | Audit, hesap izinleri, görünürlük sorgusu           | Entegrasyon    |
+| Review darboğazı          | PR kuyruğu ve yeniden iş artışı            | Küçük işler, kapasite limiti, net sahiplik          | Ekip lideri    |
 
 Bu risk öncelikleri analitik sentezdir; ölçülmüş olasılık yüzdeleri değildir. [D01](#/sources?doc=D01) [D02](#/sources?doc=D02) [D03](#/sources?doc=D03) [D04](#/sources?doc=D04) [D05](#/sources?doc=D05) [D06](#/sources?doc=D06)
 
@@ -35,8 +35,10 @@ Günlük hacim, eşzamanlı iş, hedef platform, ortalama süre, marka sayısı,
 
 Yazılım tarafında da repo büyüklüğü, mevcut test kalitesi, gerçek aylık token kullanımı, cache oranı, inceleme yükü ve self-host bakım kapasitesi ölçülmelidir. D06’daki 15 ajan ve GPU donanımı anlatımı, bu portalın kullanıcısına ait doğrulanmış canlı kapasite verisi değildir.
 
-## Karara taşınmayan sayısal iddialar
+## Sayıları karara taşıma biçimi
 
-Kaynaklarda geçen model liderlik skorları, GitHub yıldızları, API/abonelik fiyatları, sabit GPU break-even eşiği, gelir/RPM projeksiyonları ve güvenlik açıklarına ait başarı yüzdeleri topluca yeniden doğrulanmadı. Bunlar tam metin arşivinde bulunur; dashboard’da doğrulanmış istatistik olarak kullanılmaz.
+Önceki sürümün fiyat, benchmark, GitHub yıldızı, GPU eşiği ve RPM projeksiyonlarını yalnız arşivde bırakması içerik kaybıydı. Bu sürümde bunlar [sayısal kayıtlar](#/claims) içinde kaynak ifadesi ve değerlendirmesiyle birlikte, ilgili [uygulama rehberinde](#/guide) ise karar bağlamıyla yer alır. Doğrulanmamış olmak, görünmez bırakılma gerekçesi değildir.
 
-Benzer şekilde “Q8 kayıpsızdır”, “KV cache context ile logaritmik büyür”, “MCP halüsinasyonu engeller” ve “bir araç tek başına güvenliği garanti eder” türü genellemeler karar temeli değildir. Donanım kapasitesi ve kaliteyi seçilen runtime, model ve iş yükünde ölçmek gerekir.
+Örneğin D05’teki 30 × $0,75 hesabı $12 değil $22,50’dir. D06’daki 150M token × $0,28/M = $42, €889 GPU’nun otomatik break-even kanıtı değildir. Özgün rakam ve düzeltme yan yana korunur. Q8 “kayıpsız”, KV cache “logaritmik”, MCP “halüsinasyonu engeller” gibi genellemelerin sınırları ilgili rehberlerde açıklanır.
+
+[Ajan güvenliği ve OWASP](#/guide?topic=security), [KVKK / RTÜK](#/guide?topic=turkey-compliance), [müzik hakları](#/guide?topic=music-rights) ve [provenance](#/guide?topic=provenance) dosyaları riskin uygulanabilir kontrolünü ayrıntılandırır.

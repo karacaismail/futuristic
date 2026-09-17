@@ -1,0 +1,344 @@
+[
+  {
+    "id": "personal-stack",
+    "title": "İsmail için karar haritası",
+    "category": "Kişisel bağlam",
+    "documents": [
+      "D04",
+      "D05",
+      "D06"
+    ],
+    "summary": "Mevcut Codex–Claude ve FastAPI düzenini ölçerek geliştir; 15 ajan ile kişisel Mac’i ayrı kapasite problemleri olarak ele al.",
+    "minutes": 4
+  },
+  {
+    "id": "video-formats",
+    "title": "Beş video yöntemi ve üç mimari",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Faceless, avatar, jeneratif sahne, repurposing ve programatik render için girdi ve kabul ölçütünü ayrı seç.",
+    "minutes": 3
+  },
+  {
+    "id": "video-agents",
+    "title": "Director ve sahne ajanları",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Yaratıcı kararları, sahne üretimini ve final onayını ayrı sorumluluklara bağla.",
+    "minutes": 3
+  },
+  {
+    "id": "video-models",
+    "title": "Video modelleri ve yönlendirme",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Aynı sahne setinde kalite, tekrar sayısı, gecikme ve kabul edilen saniye maliyetini birlikte karşılaştır.",
+    "minutes": 4
+  },
+  {
+    "id": "voice-localization",
+    "title": "Türkçe ses, altyazı ve lokalizasyon",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Türkçe dil desteğini telaffuz, özel terim, altyazı hizası ve ses hakkıyla birlikte sına.",
+    "minutes": 3
+  },
+  {
+    "id": "avatar",
+    "title": "Avatar ve canlı persona",
+    "category": "Video",
+    "documents": [
+      "D03",
+      "D05"
+    ],
+    "summary": "Offline presenter ile canlı persona farklı mimariler ister; Türkçe ses ve lip-sync’i birlikte değerlendir.",
+    "minutes": 3
+  },
+  {
+    "id": "editing-finishing",
+    "title": "Kurgu, render ve finishing",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Timeline sözleşmesini sağlayıcıdan ayır; deterministik render ile yaratıcı finishing’i birlikte tasarla.",
+    "minutes": 3
+  },
+  {
+    "id": "repurposing",
+    "title": "Uzun videodan kısa içerik",
+    "category": "Video",
+    "documents": [
+      "D03",
+      "D05"
+    ],
+    "summary": "Kesitin anlamını özgün bağlamıyla kontrol et; viral skorunu sonuç garantisi sayma.",
+    "minutes": 3
+  },
+  {
+    "id": "media-contracts",
+    "title": "İçerik veri modeli ve sözleşmeler",
+    "category": "Mimari",
+    "documents": [
+      "D01",
+      "D03"
+    ],
+    "summary": "Script, sahne, deneme, varlık, render, onay ve yayını ayrı sürümlü kayıtlarla ilişkilendir.",
+    "minutes": 3
+  },
+  {
+    "id": "media-quality",
+    "title": "Kalite kapıları ve insan onayı",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Teknik, anlamsal, marka ve hak kontrollerini ayrı kapılarda yap; final onayını dosya hash’ine bağla.",
+    "minutes": 3
+  },
+  {
+    "id": "orchestration",
+    "title": "Workflow, retry ve kalıcı durum",
+    "category": "Mimari",
+    "documents": [
+      "D01",
+      "D03",
+      "D04",
+      "D05",
+      "D06"
+    ],
+    "summary": "Kararı ajana, durum ve tekrarlı yürütme güvenilirliğini workflow katmanına ver.",
+    "minutes": 3
+  },
+  {
+    "id": "publishing",
+    "title": "Yayın API’leri ve sosyal dağıtım",
+    "category": "Video",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Yükleme yanıtından sonra işlenme ve yayın durumunu doğrula; OAuth ve kota türlerini ayır.",
+    "minutes": 3
+  },
+  {
+    "id": "music-rights",
+    "title": "Müzik ve medya hakları",
+    "category": "Uyum",
+    "documents": [
+      "D03",
+      "D05"
+    ],
+    "summary": "Ticari kullanım izni, telif koruması ve tazminat kapsamını birbirinden ayır.",
+    "minutes": 3
+  },
+  {
+    "id": "provenance",
+    "title": "C2PA, SynthID ve AI açıklaması",
+    "category": "Uyum",
+    "documents": [
+      "D01",
+      "D03",
+      "D05"
+    ],
+    "summary": "Kaynak izi, filigran ve AI açıklaması birbirini tamamlar; hiçbiri içerik doğruluğunu tek başına kanıtlamaz.",
+    "minutes": 3
+  },
+  {
+    "id": "video-economics",
+    "title": "Video bütçesi, RPM ve gelir",
+    "category": "Ekonomi",
+    "documents": [
+      "D03",
+      "D05"
+    ],
+    "summary": "Başarısız denemeleri ve insan emeğini dahil ederek kabul edilen video başına maliyeti hesapla.",
+    "minutes": 3
+  },
+  {
+    "id": "coding-agents",
+    "title": "Kodlama ajanları ve çalışma döngüsü",
+    "category": "Yazılım",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Aracı kendi repo görevlerinde test, review yükü, yetki ve kabul edilen iş maliyetiyle seç.",
+    "minutes": 3
+  },
+  {
+    "id": "agent-managers",
+    "title": "Worktree ve çoklu ajan yöneticileri",
+    "category": "Yazılım",
+    "documents": [
+      "D06"
+    ],
+    "summary": "Worktree dosya çakışmasını azaltır; güvenlik izolasyonu ve review kapasitesi ayrıca tasarlanır.",
+    "minutes": 3
+  },
+  {
+    "id": "spec-context",
+    "title": "SDD, AGENTS.md ve bağlam",
+    "category": "Yazılım",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Davranışı ve kabul kanıtını önce yaz; yalnız gereken repo bağlamını gerektiğinde yükle.",
+    "minutes": 3
+  },
+  {
+    "id": "mcp",
+    "title": "MCP ve domain araçları",
+    "category": "Mimari",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Üç dar entegrasyonla başla; tool sonucunu talimat veya otomatik güvenlik garantisi sayma.",
+    "minutes": 3
+  },
+  {
+    "id": "rag",
+    "title": "RAG ve kurumsal bilgi getirme",
+    "category": "Mimari",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Repo araması ve kurumsal bilgi getirmeyi ayır; erişim filtresini retrieval aşamasında uygula.",
+    "minutes": 3
+  },
+  {
+    "id": "local-models",
+    "title": "Yerel modeller ve inference",
+    "category": "Yazılım",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Önce ağırlık ve KV cache’in sığmasını, sonra görev kalitesini ve eşzamanlı kapasiteyi ölç.",
+    "minutes": 4
+  },
+  {
+    "id": "gpu-economics",
+    "title": "API, M5 Max ve Hetzner ekonomisi",
+    "category": "Ekonomi",
+    "documents": [
+      "D06"
+    ],
+    "summary": "API, abonelik ve GPU’yu aynı kalite ve gerçek iş yükünde karşılaştır; kaynaktaki break-even hesabını düzelt.",
+    "minutes": 3
+  },
+  {
+    "id": "testing-review",
+    "title": "TDD, AI review ve otomatik onarım",
+    "category": "Yazılım",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Failing test, küçük patch, scanner ve bağımsız review birbirinin yerine geçmez.",
+    "minutes": 4
+  },
+  {
+    "id": "measurement",
+    "title": "Benchmark ve gerçek üretkenlik",
+    "category": "Ekonomi",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Benchmark skorunu teslimat hızına çevirmeden önce örneklem, harness, review ve rework paydasını incele.",
+    "minutes": 3
+  },
+  {
+    "id": "developer-toolchain",
+    "title": "FastAPI, React ve geliştirici araçları",
+    "category": "Yazılım",
+    "documents": [
+      "D04",
+      "D06"
+    ],
+    "summary": "Ajanın yanlış komut tahmin etmesini daha büyük modelden önce tutarlı CLI, şema ve testlerle çöz.",
+    "minutes": 3
+  },
+  {
+    "id": "security",
+    "title": "Ajan güvenliği ve OWASP",
+    "category": "Uyum",
+    "documents": [
+      "D02",
+      "D04",
+      "D06"
+    ],
+    "summary": "Yetkiyi görev kadar daralt; test zayıflatma, veri çıkışı ve araç çıktısındaki enjeksiyonu ayrıca kontrol et.",
+    "minutes": 3
+  },
+  {
+    "id": "turkey-compliance",
+    "title": "KVKK, ses rızası ve RTÜK",
+    "category": "Uyum",
+    "documents": [
+      "D03",
+      "D04",
+      "D05",
+      "D06"
+    ],
+    "summary": "KVKK, ses/yüz hakları, yurt dışı aktarım ve yayıncılık kapsamını ayrı kayıtlarla değerlendir.",
+    "minutes": 3
+  },
+  {
+    "id": "operations",
+    "title": "Gözlemlenebilirlik ve operasyon",
+    "category": "Mimari",
+    "documents": [
+      "D03",
+      "D04",
+      "D06"
+    ],
+    "summary": "Task veya job kimliğini maliyet, log, onay ve sonuca kadar koru; operasyonu ölçülebilir yap.",
+    "minutes": 3
+  },
+  {
+    "id": "rollout",
+    "title": "Pilot, takvim ve yatırım planı",
+    "category": "Kişisel bağlam",
+    "documents": [
+      "D03",
+      "D04",
+      "D05",
+      "D06"
+    ],
+    "summary": "Bir format ve az sayıda görevle başla; kalite ve net kazanç kanıtından sonra ölçekle.",
+    "minutes": 3
+  }
+]

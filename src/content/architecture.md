@@ -46,14 +46,14 @@ Bu payload bir tasarım örneğidir; çalışan bir API veya gerçek iş kaydı 
 
 ## Orkestrasyon seçenekleri
 
-| Seçenek | Ne zaman değerli? | Operasyonel bedel |
-|---|---|---|
-| n8n | Webhook, HTTP, DB, onay ve iş sistemi entegrasyonları | Queue/concurrency, secrets, yükseltme ve hata yönetimi |
-| Make / Zapier | Teknik olmayan ekibin dar kapsamlı otomasyonu | İşlem bazlı maliyet, plan sınırları ve dışa taşıma |
-| Temporal | Uzun süren, yeniden başlayabilen, kritik iş akışı | Workflow determinismi ve yeni altyapı |
-| Container workers | FFmpeg/Remotion render | Kaynak sınırı, job izolasyonu ve ölçekleme |
-| ComfyUI + GPU worker | Gizlilik veya ölçülmüş yüksek hacimli üretim | Model lisansı, VRAM, cold start ve kapasite |
-| OpenClaw / ajan SDK | Araştırma, triage, öneri ve mesajlaşma | Tool izinleri ve dış içerik güvenliği |
+| Seçenek              | Ne zaman değerli?                                     | Operasyonel bedel                                      |
+| -------------------- | ----------------------------------------------------- | ------------------------------------------------------ |
+| n8n                  | Webhook, HTTP, DB, onay ve iş sistemi entegrasyonları | Queue/concurrency, secrets, yükseltme ve hata yönetimi |
+| Make / Zapier        | Teknik olmayan ekibin dar kapsamlı otomasyonu         | İşlem bazlı maliyet, plan sınırları ve dışa taşıma     |
+| Temporal             | Uzun süren, yeniden başlayabilen, kritik iş akışı     | Workflow determinismi ve yeni altyapı                  |
+| Container workers    | FFmpeg/Remotion render                                | Kaynak sınırı, job izolasyonu ve ölçekleme             |
+| ComfyUI + GPU worker | Gizlilik veya ölçülmüş yüksek hacimli üretim          | Model lisansı, VRAM, cold start ve kapasite            |
+| OpenClaw / ajan SDK  | Araştırma, triage, öneri ve mesajlaşma                | Tool izinleri ve dış içerik güvenliği                  |
 
 n8n akışı yürütür; ajan sınırlı karar verir; insan yüksek etkili sonucu onaylar. OpenClaw, LangGraph veya CrewAI gereksinim olmadan eklenirse yönetilecek yeni bir sistem oluşturur. n8n’in fair-code lisansını da dağıtım/ticari kullanım modeliyle birlikte değerlendir. [D03](#/sources?doc=D03) [D05](#/sources?doc=D05) [D06](#/sources?doc=D06)
 

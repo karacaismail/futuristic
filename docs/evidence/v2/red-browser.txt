@@ -1,0 +1,127 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test tests/e2e/revision.spec.ts --project=desktop
+
+[WebServer] (node:68479) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 3 workers
+
+(node:68482) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68481) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [desktop] › tests/e2e/revision.spec.ts:16:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur (5.3s)
+  ✘  2 [desktop] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur (5.3s)
+  ✘  1 [desktop] › tests/e2e/revision.spec.ts:29:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır (5.4s)
+
+
+  1) [desktop] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur ─
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('heading', { level: 1 })
+    Expected substring: "İsmail"
+    Received string:    "Bu bölüm bulunamadı."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('heading', { level: 1 }) with timeout 5000ms
+      - waiting for getByRole('heading', { level: 1 })
+        14 × locator resolved to <h1 tabindex="-1">Bu bölüm bulunamadı.</h1>
+           - unexpected value "Bu bölüm bulunamadı."
+
+
+      3 | test('rehber ve sayılar tam raporda ve aramada bulunur', async ({ page, request }) => {
+      4 |   await page.goto('#/guide?topic=personal-stack');
+    > 5 |   await expect(page.getByRole('heading', { level: 1 })).toContainText('İsmail');
+        |                                                         ^
+      6 |   await expect(page.locator('main')).toContainText('MetaFramer');
+      7 |   await page.goto('#/claims?claim=gpu-break-even');
+      8 |   await expect(page.locator('main')).toContainText('$42');
+        at /Users/w6x/Desktop/futuristic/tests/e2e/revision.spec.ts:5:57
+
+    Error Context: test-results/revision-rehber-ve-sayılar-tam-raporda-ve-aramada-bulunur-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/revision-rehber-ve-sayılar-tam-raporda-ve-aramada-bulunur-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/revision-rehber-ve-sayılar-tam-raporda-ve-aramada-bulunur-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/e2e/revision.spec.ts:16:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByRole('heading', { level: 1 })
+    Expected: "ComfyUI"
+    Received: "Doğru iş için, doğru araç."
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByRole('heading', { level: 1 }) with timeout 5000ms
+      - waiting for getByRole('heading', { level: 1 })
+        14 × locator resolved to <h1 tabindex="-1">Doğru iş için, doğru araç.</h1>
+           - unexpected value "Doğru iş için, doğru araç."
+
+
+      16 | test('araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur', async ({ page }) => {
+      17 |   await page.goto('#/tools?tool=T23');
+    > 18 |   await expect(page.getByRole('heading', { level: 1 })).toHaveText('ComfyUI');
+         |                                                         ^
+      19 |   for (const name of ['Fiyat ve birim', 'Lisans ve haklar', 'Entegrasyon', 'Sınırlar']) await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
+      20 |   await page.goto('#/tools?category=Kurgu&q=Remotion&compare=T14,T15&view=compare');
+      21 |   await expect(page.getByRole('dialog')).toContainText('Remotion');
+        at /Users/w6x/Desktop/futuristic/tests/e2e/revision.spec.ts:18:57
+
+    Error Context: test-results/revision-araç-bağlantısı-d-178c3-rşılaştırma-URL-ile-korunur-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/revision-araç-bağlantısı-d-178c3-rşılaştırma-URL-ile-korunur-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/revision-araç-bağlantısı-d-178c3-rşılaştırma-URL-ile-korunur-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests/e2e/revision.spec.ts:29:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog').locator('.source-reading p').first()
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog').locator('.source-reading p').first() with timeout 5000ms
+      - waiting for getByRole('dialog').locator('.source-reading p').first()
+
+
+      30 |   await page.goto('#/sources?doc=D01');
+      31 |   const dialog=page.getByRole('dialog');
+    > 32 |   await expect(dialog.locator('.source-reading p').first()).toBeVisible();
+         |                                                             ^
+      33 |   await expect(dialog.getByText('Okuma düzeni', {exact:true})).toBeVisible();
+      34 |   await page.getByRole('button', { name: 'Pencereyi kapat' }).click();
+      35 |   await page.goto('#/coverage?doc=D01');
+        at /Users/w6x/Desktop/futuristic/tests/e2e/revision.spec.ts:32:61
+
+    Error Context: test-results/revision-kaynak-okuma-düze-bf609--izi-görünür-tema-kalıcıdır-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/revision-kaynak-okuma-düze-bf609--izi-görünür-tema-kalıcıdır-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/revision-kaynak-okuma-düze-bf609--izi-görünür-tema-kalıcıdır-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur ──
+    [desktop] › tests/e2e/revision.spec.ts:16:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur 
+    [desktop] › tests/e2e/revision.spec.ts:29:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır 

@@ -1,0 +1,75 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test
+
+
+Running 50 tests using 4 workers
+
+(node:72905) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › video: erişilebilirlik ve taşma (524ms)
+  ✓   1 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › overview: erişilebilirlik ve taşma (528ms)
+  ✓   4 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma (555ms)
+  ✓   5 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › cost: erişilebilirlik ve taşma (455ms)
+  ✓   6 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › roadmap: erişilebilirlik ve taşma (496ms)
+  ✓   7 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › sources: erişilebilirlik ve taşma (792ms)
+  ✓   9 [desktop] › tests/e2e/accessibility.spec.ts:28:1 › klavye araması, Escape ve odak geri dönüşü (473ms)
+  ✓   8 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › sources?tab=verified: erişilebilirlik ve taşma (817ms)
+  ✓  10 [desktop] › tests/e2e/accessibility.spec.ts:42:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (873ms)
+  ✓  13 [desktop] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (260ms)
+  ✓   2 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › tools: erişilebilirlik ve taşma (3.4s)
+  ✓  15 [desktop] › tests/e2e/reader.spec.ts:28:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (141ms)
+  ✓  14 [desktop] › tests/e2e/reader.spec.ts:18:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (1.4s)
+  ✓  16 [desktop] › tests/e2e/reader.spec.ts:38:1 › araç filtreleri ve karşılaştırma (587ms)
+  ✓  17 [desktop] › tests/e2e/reader.spec.ts:50:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir (305ms)
+  ✓  19 [desktop] › tests/e2e/reader.spec.ts:87:1 › statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur (33ms)
+  ✓  18 [desktop] › tests/e2e/reader.spec.ts:66:1 › depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır (293ms)
+  ✓  21 [desktop] › tests/e2e/revision.spec.ts:19:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur (1.3s)
+  ✓  20 [desktop] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur (2.1s)
+  ✓  11 [desktop] › tests/e2e/accessibility.spec.ts:52:3 › light: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (5.6s)
+  ✓  22 [desktop] › tests/e2e/revision.spec.ts:36:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır (1.6s)
+  ✓  12 [desktop] › tests/e2e/accessibility.spec.ts:52:3 › dark: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (5.6s)
+  ✓  25 [desktop] › tests/e2e/typography.spec.ts:92:1 › tam rapor ve yazdırma metni en az 1rem (244ms)
+(node:73070) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73071) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  26 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › overview: erişilebilirlik ve taşma (416ms)
+  ✓  27 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › video: erişilebilirlik ve taşma (403ms)
+  ✓  28 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma (406ms)
+  ✓  30 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › cost: erişilebilirlik ve taşma (358ms)
+  ✓  24 [desktop] › tests/e2e/typography.spec.ts:78:1 › 1rem tarayıcı kök boyutuyla büyür ve 320px akışını korur (1.8s)
+(node:73091) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  31 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › roadmap: erişilebilirlik ve taşma (413ms)
+  ✓  32 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › sources: erişilebilirlik ve taşma (731ms)
+  ✓  33 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › sources?tab=verified: erişilebilirlik ve taşma (764ms)
+  ✓  34 [mobile] › tests/e2e/accessibility.spec.ts:28:1 › klavye araması, Escape ve odak geri dönüşü (448ms)
+  ✓  35 [mobile] › tests/e2e/accessibility.spec.ts:42:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (859ms)
+  ✓  29 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › tools: erişilebilirlik ve taşma (3.1s)
+  ✓  38 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (261ms)
+  ✓  23 [desktop] › tests/e2e/typography.spec.ts:34:1 › tüm sayfa ve pencerelerde metin en az 1rem (5.5s)
+(node:73115) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  40 [mobile] › tests/e2e/reader.spec.ts:28:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (155ms)
+  ✓  41 [mobile] › tests/e2e/reader.spec.ts:38:1 › araç filtreleri ve karşılaştırma (607ms)
+  ✓  39 [mobile] › tests/e2e/reader.spec.ts:18:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (1.4s)
+  ✓  42 [mobile] › tests/e2e/reader.spec.ts:50:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir (306ms)
+  ✓  44 [mobile] › tests/e2e/reader.spec.ts:87:1 › statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur (31ms)
+  ✓  43 [mobile] › tests/e2e/reader.spec.ts:66:1 › depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır (288ms)
+  ✓  46 [mobile] › tests/e2e/revision.spec.ts:19:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur (1.3s)
+  ✓  45 [mobile] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur (2.1s)
+  ✓  36 [mobile] › tests/e2e/accessibility.spec.ts:52:3 › light: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (5.6s)
+  ✓  47 [mobile] › tests/e2e/revision.spec.ts:36:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır (1.6s)
+  ✓  37 [mobile] › tests/e2e/accessibility.spec.ts:52:3 › dark: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (5.6s)
+  ✓  50 [mobile] › tests/e2e/typography.spec.ts:92:1 › tam rapor ve yazdırma metni en az 1rem (244ms)
+  ✓  49 [mobile] › tests/e2e/typography.spec.ts:78:1 › 1rem tarayıcı kök boyutuyla büyür ve 320px akışını korur (1.9s)
+  ✓  48 [mobile] › tests/e2e/typography.spec.ts:34:1 › tüm sayfa ve pencerelerde metin en az 1rem (6.5s)
+
+  50 passed (22.3s)

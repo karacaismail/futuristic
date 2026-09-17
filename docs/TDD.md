@@ -30,3 +30,13 @@ Otomatik erişilebilirlik denetimi tam WCAG uyum sertifikası değildir. Mobil p
 Önce `tests/e2e/typography.spec.ts` eklendi; mevcut arayüzde üç mobil senaryo da başarısız oldu. Tüm özel metin ölçüleri rem birimine taşındı ve 1rem alt sınırı uygulandı. daisyUI tablo başlıkları, etiketler, form alanları, pencereler ve tam raporun yazdırma görünümü kapsama alındı. Genişleyen metin için masaüstü menüsü ve mobil satır geçişleri düzenlendi.
 
 Sonuç: 40 tarayıcı testi geçti. Yeni kontroller, görüntülenen metnin hesaplanan boyutunu kök boyutuyla karşılaştırır; 320px ekranda 20px kök yazı boyutu ve yatay taşma da sınanır. 320, 768, 1024 ve 1440px görünümleri ayrıca kontrol edildi.
+
+## 17 Eylül 2026 — Anlamsal kapsam revizyonu
+
+Önce `tests/coverage.test.ts` kapsam sözleşmesi yazıldı; veri dosyaları yokken kırmızı oldu (`evidence/v2/red-content.txt`). Sonra yeni sayfalar eklenmeden `revision.spec.ts` çalıştırıldı: rehber/iddia sayfası, gerçek ComfyUI detayı ve paragraflı okuyucu bulunamadığı için üç davranış testi kırmızı oldu (`evidence/v2/red-browser.txt`).
+
+29 ayrıntılı rehber, 177 araç kaydı, 70 sayısal kayıt ve 158 kaynak bölüm/pasaj bağlantısı eklendi. Testler kaynak aralıklarının özgün metinle eşleşmesini, boşluksuz kapsamı, gerçek kanıt pasajlarını, iç bağlantıları ve bütün içeriğin tam rapora aktarılmasını doğrular. Bu yapısal kontroller tek başına anlamsal yeterlilik veya iddia doğruluğu sertifikası değildir.
+
+Tarayıcı testleri; gerçek araç permalink’i, URL’de filtre/karşılaştırma, rehber araması, kaynak okuma görünümü, kalıcı tema ve mobil tablo akışını kapsar. Genişletme sırasında checkbox’ın hash olayını beklerken geri dönmesi, büyütülmüş metinde buton taşması, HTML raporda h5 alt sınırı ve koyu temada kontrast/ilk yükleme renk geçişi düzeltildi. Assertion’lar gevşetilmedi.
+
+Son sonuç: **26 birim/içerik testi + 50 Chromium mobil/masaüstü testi geçti.** Açık/koyu tema için axe, 320px’de 20px kök metin ve çıktı raporunda 1rem minimum dahildir. Prettier, Biome, TypeScript ve production build başarılı. Kanıtlar `evidence/v2/` içinde. İlk sayfa yaklaşık104KB gzip JS; rehber/katalog/kaynak verileri ayrı chunk’larda.

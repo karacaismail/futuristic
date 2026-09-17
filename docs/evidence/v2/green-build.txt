@@ -1,0 +1,47 @@
+
+> futuristic-research@1.0.0 prebuild
+> npm run report:export
+
+
+> futuristic-research@1.0.0 report:export
+> node scripts/export-report.mjs
+
+Rapor: 500331 karakter, 112 referans, 177 araç.
+
+> futuristic-research@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2176 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                  1.24 kB │ gzip:   0.68 kB
+dist/assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2        8.52 kB
+dist/assets/manrope-greek-wght-normal-DL7QRZyv.woff2             9.44 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2         10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2          11.23 kB
+dist/assets/ibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff    11.76 kB
+dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff        13.14 kB
+dist/assets/ibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2   13.34 kB
+dist/assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2         14.50 kB
+dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2       14.70 kB
+dist/assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2        15.12 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2           18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2              18.99 kB
+dist/assets/manrope-latin-wght-normal-DHIcAJRg.woff2            24.83 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2       25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2              48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2          85.06 kB
+dist/assets/index-Ds3NCddx.css                                 160.78 kB │ gzip:  31.51 kB
+dist/assets/TopicLinks-BzgZz5DI.js                               0.32 kB │ gzip:   0.24 kB
+dist/assets/Catalog-Gi4OL243.js                                  6.38 kB │ gzip:   2.46 kB
+dist/assets/topics-FzYze24K.js                                   6.74 kB │ gzip:   2.52 kB
+dist/assets/Guide-CGBrXGzK.js                                    7.62 kB │ gzip:   2.92 kB
+dist/assets/Library-2bwzmN4u.js                                 13.37 kB │ gzip:   4.58 kB
+dist/assets/Markdown-65qqdAJy.js                               154.73 kB │ gzip:  46.21 kB
+dist/assets/index-U5-v8P3z.js                                  326.16 kB │ gzip: 103.94 kB
+dist/assets/tools-_yr0HhfI.js                                  425.31 kB │ gzip:  69.02 kB
+dist/assets/coverage-BXsrJTSe.js                               452.43 kB │ gzip: 161.79 kB
+
+✓ built in 215ms

@@ -4,11 +4,15 @@ test('rapor akışı, geri dönüş ve okuma kaydı', async ({ page }) => {
   await page.goto('');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Yapay zekâdan');
   await page.getByRole('link', { name: 'Video raporunu oku' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fikirden yayına, tek bir üretim hattı.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Fikirden yayına, tek bir üretim hattı.',
+  );
   await page.getByRole('button', { name: 'Okundu olarak işaretle' }).click();
   await page.reload();
   await expect(page.getByRole('button', { name: 'Okundu işaretini kaldır' })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
 });
 
 test('kaynakların tam metni yüklenir ve Türkçe arama çalışır', async ({ page }) => {
@@ -47,10 +51,15 @@ test('320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir', async
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('#/video');
   await page.getByRole('button', { name: /Beş üretim yaklaşımı/ }).click();
-  await expect(page.getByRole('cell', { name: 'Yaklaşım Stok + ses + altyazı', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('cell', { name: 'Yaklaşım Stok + ses + altyazı', exact: true }),
+  ).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.getByRole('button', { name: 'Bölümler', exact: true }).click();
-  await page.getByRole('dialog').getByRole('link', { name: /Yazılım geliştirme/ }).click();
+  await page
+    .getByRole('dialog')
+    .getByRole('link', { name: /Yazılım geliştirme/ })
+    .click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Daha çok kod');
 });
 
@@ -59,12 +68,20 @@ test('depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır', asy
   await page.getByRole('checkbox').first().check();
   await page.reload();
   await expect(page.getByRole('checkbox').first()).toBeChecked();
-  await page.addInitScript(() => Object.defineProperty(window, 'localStorage', { get: () => { throw new Error('blocked'); } }));
+  await page.addInitScript(() =>
+    Object.defineProperty(window, 'localStorage', {
+      get: () => {
+        throw new Error('blocked');
+      },
+    }),
+  );
   await page.goto('#/video');
   await page.reload();
   await page.getByRole('button', { name: 'Okundu olarak işaretle' }).click();
   await expect(page.getByRole('button', { name: 'Okundu işaretini kaldır' })).toBeVisible();
-  await expect(page.getByText('Tarayıcı kaydetmeye izin vermiyor; durum bu oturumda korunuyor.')).toBeVisible();
+  await expect(
+    page.getByText('Tarayıcı kaydetmeye izin vermiyor; durum bu oturumda korunuyor.'),
+  ).toBeVisible();
 });
 
 test('statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur', async ({ request }) => {

@@ -6,13 +6,13 @@ Başlangıç için önerimiz, **30 saniyelik Türkçe bir B2B ürün anlatımı*
 
 ## Beş üretim yaklaşımı
 
-| Yaklaşım | En uygun kullanım | Sınırı | Pilot kararı |
-|---|---|---|---|
-| Stok + ses + altyazı | Basit açıklayıcı, düşük maliyetli kısa video | Anahtar kelimeye göre stok eşleşmesi anlatıyı kaçırabilir | Özgün analiz ve editoryal kontrolle dene |
-| Avatar / sunucu | Eğitim, onboarding, B2B anlatım, lokalizasyon | Rıza, Türkçe telaffuz ve dudak uyumu | Gerçek izleyiciyle kör değerlendirme |
-| Jeneratif sahneler | Ürün atmosferi, sinematik B-roll, kampanya | Sahne tutarlılığı, tekrar üretim maliyeti | Onaylı görselden kısa sahneler üret |
-| Uzun içerikten kısa video | Webinar, podcast, mevcut demo | Kaynak materyal ve bağlamın korunması gerekir | Kaynak içerik varsa ilk aday |
-| Programatik kurgu | Marka şablonu, ürün kataloğu, veri grafikleri | Yaratıcı varlıkları kendisi üretmez | Üretim hattının ortak temeli |
+| Yaklaşım                  | En uygun kullanım                             | Sınırı                                                    | Pilot kararı                             |
+| ------------------------- | --------------------------------------------- | --------------------------------------------------------- | ---------------------------------------- |
+| Stok + ses + altyazı      | Basit açıklayıcı, düşük maliyetli kısa video  | Anahtar kelimeye göre stok eşleşmesi anlatıyı kaçırabilir | Özgün analiz ve editoryal kontrolle dene |
+| Avatar / sunucu           | Eğitim, onboarding, B2B anlatım, lokalizasyon | Rıza, Türkçe telaffuz ve dudak uyumu                      | Gerçek izleyiciyle kör değerlendirme     |
+| Jeneratif sahneler        | Ürün atmosferi, sinematik B-roll, kampanya    | Sahne tutarlılığı, tekrar üretim maliyeti                 | Onaylı görselden kısa sahneler üret      |
+| Uzun içerikten kısa video | Webinar, podcast, mevcut demo                 | Kaynak materyal ve bağlamın korunması gerekir             | Kaynak içerik varsa ilk aday             |
+| Programatik kurgu         | Marka şablonu, ürün kataloğu, veri grafikleri | Yaratıcı varlıkları kendisi üretmez                       | Üretim hattının ortak temeli             |
 
 MoneyPrinterTurbo ve ShortGPT hızlı stok tabanlı başlangıç sağlar. OpenMontage kaynaklarda daha ajansal prodüksiyon örneği olarak sunuluyor; araç/skill sayıları ve olgunluk iddiaları bağımsız doğrulanmadı. Bir projeyi üretime alırken lisansı, güncelliği, kimlik doğrulaması ve bağımlılıkları ayrıca incele. [D01](#/sources?doc=D01) [D05](#/sources?doc=D05)
 
@@ -28,12 +28,12 @@ Sesi sahne sürelerinden bağımsız üretip sonradan rastgele sıkıştırma. T
 
 YouTube, TikTok, Instagram/Facebook ve LinkedIn için ayrı adaptör kullan. Ortak arayüz; gönderim, durum sorgusu, token yenileme, hata sınıflandırma ve sonuç kaydını kapsasın. HTTP 200, videonun herkese açık olarak yayında olduğunu kanıtlamaz. Processing ve moderasyon durumunu izle. [D03](#/sources?doc=D03)
 
-| Platform | Tasarımda korunacak ayrım | Doğrulama |
-|---|---|---|
-| YouTube | Proje kotası, kanal sınırı ve audit ayrı konular | Güncel tabloda videos.insert için 100 çağrı/gün; eski 1.600 birim hesabını kullanma |
-| TikTok | Creator bilgisi, kullanıcı onayı, görünürlük, audit | Denetlenmemiş istemciler private ile sınırlı; init için token başına 6 istek/dk |
-| Instagram | Container → processing → publish; login yolu ve scope | 90 saniye evrensel API sınırı değil; Meta örneği 3 sn–15 dk |
-| LinkedIn | Medya upload ile post oluşturma farklı işlemler | Organizasyon/üye izinlerini ve kullanılan sürümü hesap üzerinde sınama |
+| Platform  | Tasarımda korunacak ayrım                             | Doğrulama                                                                           |
+| --------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| YouTube   | Proje kotası, kanal sınırı ve audit ayrı konular      | Güncel tabloda videos.insert için 100 çağrı/gün; eski 1.600 birim hesabını kullanma |
+| TikTok    | Creator bilgisi, kullanıcı onayı, görünürlük, audit   | Denetlenmemiş istemciler private ile sınırlı; init için token başına 6 istek/dk     |
+| Instagram | Container → processing → publish; login yolu ve scope | 90 saniye evrensel API sınırı değil; Meta örneği 3 sn–15 dk                         |
+| LinkedIn  | Medya upload ile post oluşturma farklı işlemler       | Organizasyon/üye izinlerini ve kullanılan sürümü hesap üzerinde sınama              |
 
 [YouTube kota tablosu](https://developers.google.com/youtube/v3/determine_quota_cost) · [TikTok Direct Post](https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post) · [Meta örneği](https://github.com/fbsamples/reels_publishing_apis/blob/main/insta_reels_publishing_api_sample/README.md)
 

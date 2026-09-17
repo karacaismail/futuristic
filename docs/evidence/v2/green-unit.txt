@@ -1,0 +1,13 @@
+
+> futuristic-research@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /Users/w6x/Desktop/futuristic
+
+
+ Test Files  3 passed (3)
+      Tests  26 passed (26)
+   Start at  14:01:23
+   Duration  228ms (transform 55%, tests 23%, import 18%, worker 3%)
+

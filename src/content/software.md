@@ -6,15 +6,15 @@ Birincil yatırım, tek bir modele bağlanmak yerine **spesifikasyon → başar�
 
 Model akıl yürütür ve çıktı üretir. Ajan; modele repo araması, dosya düzenleme, terminal, tarayıcı, test ve tekrar deneme döngüsü sağlar. Kodlama ortamı bu araçların izinlerini ve çalışma alanını belirler. Orkestratör görevleri koordine eder. Bu katmanları bir ürün sıralamasında karıştırmak yanlış satın alma kararına yol açar.
 
-| Katman | Kaynaklardaki örnekler | Seçim sorusu |
-|---|---|---|
-| IDE / CLI ajanı | Codex, Claude Code, Cursor, Copilot, Aider, Cline | Kendi repo görevlerinde doğru değişiklik yapabiliyor mu? |
-| İzole ajan ortamı | OpenHands, worktree, container/VM | Dosya ayrımı mı gerekiyor, güvenlik izolasyonu mu? |
-| Spec / bağlam | AGENTS.md, Spec Kit, ADR, alan sözlüğü | Komutlar, sınırlar ve done kriteri açık mı? |
-| Test ve review | Playwright, CodeRabbit, Qodo, Copilot review | Gerçek hatayı yakalıyor mu, inceleme yükünü azaltıyor mu? |
-| Deterministik güvenlik | Semgrep, CodeQL, dependency/secret scan | Kritik bulgu build’i durduruyor mu? |
-| Model serving | vLLM, SGLang, MLX, llama.cpp/Ollama | Gerçek eşzamanlı yükte kalite, gecikme ve maliyet ne? |
-| RAG / uygulama framework’ü | LlamaIndex, Haystack, LangGraph | Repo dışı bilgi veya kalıcı dallanan iş akışı gerekiyor mu? |
+| Katman                     | Kaynaklardaki örnekler                            | Seçim sorusu                                                |
+| -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| IDE / CLI ajanı            | Codex, Claude Code, Cursor, Copilot, Aider, Cline | Kendi repo görevlerinde doğru değişiklik yapabiliyor mu?    |
+| İzole ajan ortamı          | OpenHands, worktree, container/VM                 | Dosya ayrımı mı gerekiyor, güvenlik izolasyonu mu?          |
+| Spec / bağlam              | AGENTS.md, Spec Kit, ADR, alan sözlüğü            | Komutlar, sınırlar ve done kriteri açık mı?                 |
+| Test ve review             | Playwright, CodeRabbit, Qodo, Copilot review      | Gerçek hatayı yakalıyor mu, inceleme yükünü azaltıyor mu?   |
+| Deterministik güvenlik     | Semgrep, CodeQL, dependency/secret scan           | Kritik bulgu build’i durduruyor mu?                         |
+| Model serving              | vLLM, SGLang, MLX, llama.cpp/Ollama               | Gerçek eşzamanlı yükte kalite, gecikme ve maliyet ne?       |
+| RAG / uygulama framework’ü | LlamaIndex, Haystack, LangGraph                   | Repo dışı bilgi veya kalıcı dallanan iş akışı gerekiyor mu? |
 
 Worktree ayrı checkout sağlar; host dosyalarına veya ağa erişimi engelleyen bir sandbox değildir. Üretim verisi ve güçlü araç erişimi varsa container/VM, dar kapsamlı kimlik bilgileri ve ayrı işlem yetkileri gerekir. [D04](#/sources?doc=D04) [D06](#/sources?doc=D06)
 

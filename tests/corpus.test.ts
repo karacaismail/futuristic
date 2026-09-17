@@ -16,22 +16,24 @@ describe('kayıpsız kaynak arşivi', () => {
     expect(total).toBe(263605);
   });
   it('atıfları tekilleştirir ve belgeye kadar izlenebilir tutar', () => {
-    expect(new Set(corpus.references.map(ref => ref.url.replace(/\/$/, ''))).size).toBe(corpus.references.length);
+    expect(new Set(corpus.references.map((ref) => ref.url.replace(/\/$/, ''))).size).toBe(
+      corpus.references.length,
+    );
     for (const ref of corpus.references) {
       expect(ref.documents.length).toBeGreaterThan(0);
-      expect(ref.documents.every(id => corpus.documents.some(doc => doc.id === id))).toBe(true);
+      expect(ref.documents.every((id) => corpus.documents.some((doc) => doc.id === id))).toBe(true);
       expect(ref.url).toMatch(/^https?:\/\//);
     }
   });
   it('düz metindeki bitişik cümleleri ve API yöntemlerini URL sanmaz', () => {
-    const links = corpus.references.map(ref => ref.url);
+    const links = corpus.references.map((ref) => ref.url);
     expect(links).not.toContain('https://incelemektedir.Sistem');
     expect(links).not.toContain('https://videos.insert');
     expect(links).not.toContain('https://s01.mp');
     expect(links).not.toContain('https://fal.ai/Replicate');
   });
   it('çıplak alan adlarını ve açık repo kimliklerini de indeksler', () => {
-    const links = corpus.references.map(ref => ref.url);
+    const links = corpus.references.map((ref) => ref.url);
     expect(links).toContain('https://github.com/github/spec-kit');
     expect(links).toContain('https://n8n.io/workflows/2971');
     expect(links).toContain('https://openai.com');

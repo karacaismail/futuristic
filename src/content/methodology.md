@@ -1,8 +1,8 @@
 ## Kapsam ve yöntem
 
-Bu rapor 16 Eylül 2026 tarihli bir araştırma sentezidir. Kullanıcının paylaştığı altı belgenin tamamı değişmeden arşivlendi. Video belgeleri D01/D03/D05; yazılım belgeleri D02/D04/D06 olarak kimliklendirildi. Ortak öneriler birleştirildi, farklı senaryolar ayrı tutuldu ve karar etkisi yüksek seçilmiş iddialar birincil kaynaklardan kontrol edildi.
+Bu rapor 17 Eylül 2026 tarihinde kapsamı genişletilen bir araştırma sentezidir. Kullanıcının paylaştığı altı belgenin tamamı değişmeden arşivlendi. Video belgeleri D01/D03/D05; yazılım belgeleri D02/D04/D06 olarak kimliklendirildi. Ortak öneriler birleştirildi, farklı senaryolar ayrı tutuldu ve karar etkisi yüksek seçilmiş iddialar birincil kaynaklardan kontrol edildi.
 
-**Eksiksiz arşiv, bütün iddiaların doğrulanması anlamına gelmez.** Dış bağlantıların tamamı indekslendi; hepsinin güncel fiyatı, bütün sayfaların içeriği veya bütün akademik sonuçlar yeniden araştırılmadı. Doğrulama tablosu kontrol edilen iddiayı, tarihi, ilgili belgeyi ve kanıt bağlantısını ayrı gösterir.
+**Arşiv bütünlüğü, anlamsal kapsam ve doğrulama ayrı sorumluluklardır.** İlk sürüm arşivi korudu fakat birçok yöntemi ve sayısal veriyi karar metnine taşımadı. Bu eksik, 29 ayrıntılı rehber, 177 araç kaydı ve 70 sayısal kayıtla giderilmeye çalışıldı; kapsam haritası denetimi görünür kılar. Konu eşleşmesi tek başına her ayrıntının yeterince açıklanmış olduğunun otomatik kanıtı değildir. Dış bağlantıların tamamı indekslendi; hepsinin güncel fiyatı, bütün sayfaların içeriği veya bütün akademik sonuçlar yeniden araştırılmadı. Doğrulama tablosu kontrol edilen iddiayı, tarihi, ilgili belgeyi ve kanıt bağlantısını ayrı gösterir.
 
 ## Dört kanıt seviyesi
 
@@ -11,13 +11,13 @@ Bu rapor 16 Eylül 2026 tarihli bir araştırma sentezidir. Kullanıcının payl
 - **Kaynak aktarımı:** belgede bulunan bağlantı, araç veya iddia; yeniden doğrulama anlamına gelmiyor.
 - **Sentez / varsayım:** bu raporun mimari önerisi, deney tasarımı veya kullanıcı kontrollü hesap girdisi.
 
-Araç kataloğu kaynakların rol ve kullanım senaryolarını bir araya getirir. Bir araç kartında yer almak, bağımsız performans testi, satın alma önerisi veya mevcut API erişimi garantisi değildir. Fiyat ve benchmark sıralamaları bu nedenle katalog kartlarına kesin sayı olarak aktarılmadı.
+Araç kataloğu kaynakların rol ve kullanım senaryolarını bir araya getirir. Bir araç kartında yer almak, bağımsız performans testi, satın alma önerisi veya mevcut API erişimi garantisi değildir. Fiyatlar, skorlar, kapasite ve gelir projeksiyonları artık kaynak iddiası / kontrol / düzeltme / çelişki / senaryo durumlarıyla görünürdür. Farklı benchmark harness’leri tek sıralama yapılmaz; araç detayında fiyat, lisans, limit, olgunluk, entegrasyon, iş akışı ve kaynak pasajı bulunur.
 
 ## Kaynak izlenebilirliği
 
-Her özgün dosya byte uzunluğu ve SHA-256 ile manifestoda yer alır. Kaynak sayfasında tam metni okumak, tek dosyayı indirmek veya altı belgeyi manifestoyla ZIP olarak almak mümkündür. Tam metinler ihtiyaç anında yüklenir; mobil açılışta bütün arşiv indirilmez.
+Her özgün dosya byte uzunluğu ve SHA-256 ile manifestoda yer alır. Kaynak sayfasında tam metni okumak, tek dosyayı indirmek veya altı belgeyi manifestoyla ZIP olarak almak mümkündür. Özgün TXT dosyaları ihtiyaç anında yüklenir. Konu/kapsam indeksi açıklamalı rehber ve kaynak pasajlarını da taşır.
 
-İki belgede paragraf/satır ayrımları aktarım sırasında kaybolmuştur. Orijinal dosya aynen korunur; okuyucu yalnızca görsel satır kırma uygular. Diğer belgelerin Markdown, tablo, kod ve şema metinleri de özgün biçimleriyle indirilebilir.
+İki belgede paragraf/satır ayrımları aktarım sırasında kaybolmuştur. Orijinal dosya aynen korunur; okuma görünümü cümle sınırlarında pasaj ve paragraf araları oluşturur. “Kaynak pasajı” etiketleri yeni okuma bölümlemesidir; kayıp özgün başlıkların aynen geri getirildiği iddia edilmez. Düz metin görünümü ve özgün indirme ayrıca korunur. Diğer belgelerin Markdown, tablo, kod ve şema metinleri de özgün biçimleriyle indirilebilir.
 
 D03/D04’teki eski sohbet atıf belirteçleri (`turn…search…` vb.) erişilebilir kaynak URL’si değildir. Bu belirteçlerden bağlantı uydurulmaz; orijinal metinde saklanır ve çözümlenemeyen atıf olarak sayılır. Açık URL’ler, çıplak alan adları, açık GitHub repo kimlikleri ve arXiv numaraları ayrı indekslenir.
 
@@ -32,3 +32,11 @@ Masaüstünde kalıcı içerik menüsü, daha geniş karşılaştırma alanı ve
 Portal React, TypeScript, Vite, Tailwind CSS ve daisyUI ile hazırlanmış statik bir GitHub Pages uygulamasıdır. Gerçek video üretimi, ücretli model çağrısı, sosyal hesap bağlantısı veya sunucu tarafı ajan çalıştırma içermez. Hesaplayıcı bir planlama aracıdır; canlı fiyat servisi değildir.
 
 DX için birim ve tarayıcı testleri, tip kontrolü, sürümü sabitlenmiş bağımlılıklar, kaynak bütünlüğü testi ve GitHub Actions yayın hattı kullanılır. Test başarısızsa yeni sürüm yayın aşamasına geçmez.
+
+## Anlamsal kapsam nasıl denetlenir?
+
+[Kapsam haritası](#/coverage) altı belgeyi bölüm/pasaj sırasıyla gösterir. Her kayıt gerçek kaynak karakter aralığı ve ilgili konu bağlantılarını taşır. Yöntem rehberleri amaç, girdi/çıktı, adımlar, sınırlamalar ve seçim gerekçesini açıklar. Kaynağın yalnız alternatif olarak adını andığı ürünlerde eksik fiyat veya yetenek uydurulmaz.
+
+İsmail’e özel bağlam [karar haritasında](#/guide?topic=personal-stack); sayılar [iddia defterinde](#/claims); özgün belgelere ait 112 açık referans [kütüphanede](#/sources?tab=references) yer alır. Yeni kontrol bağlantıları ilgili rehber ve kayıtta gösterilir, 112 özgün referans sayısıyla karıştırılmaz. İndirilebilir rapor bu rehberleri, sayısal kayıtları ve araç detaylarını içerir.
+
+Tema açık/koyu/sistem olarak seçilebilir. Tipografi en az 1rem’dir; ana okuma metni daha büyük, metadata ve kontroller en az taban boyuttadır. Formatter, lint, tip kontrolü, içerik bağlantıları ve mobil/masaüstü davranışları CI’da doğrulanır.

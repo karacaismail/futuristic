@@ -1,0 +1,79 @@
+
+> futuristic-research@1.0.0 test
+> vitest run tests/coverage.test.ts
+
+
+ RUN  v5.0.1 /Users/w6x/Desktop/futuristic
+
+ ❯ tests/coverage.test.ts (4 tests | 4 failed) 5ms
+   ❯ arşivden karara anlamsal kapsam (4)
+     × her kaynak bölümü açıklamalı bir konuya ve gerçek kaynak aralığına bağlanır 2ms
+     × araçlar yalnız etiket değildir; fiyat, lisans, sınır ve entegrasyon taşır 2ms
+     × kaynak sayıları ve çelişkileri erişilebilir tutar 0ms
+     × kişisel bağlam ve Türkiye uyumu ayrı karar dosyalarında açıklanır 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/coverage.test.ts > arşivden karara anlamsal kapsam > her kaynak bölümü açıklamalı bir konuya ve gerçek kaynak aralığına bağlanır
+Error: ENOENT: no such file or directory, open 'src/data/topics.json'
+ ❯ json tests/coverage.test.ts:4:43
+      2| import { describe, expect, it } from 'vitest';
+      3|
+      4| const json = (name: string) => JSON.parse(readFileSync(`src/data/${nam…
+       |                                           ^
+      5|
+      6| describe('arşivden karara anlamsal kapsam', () => {
+ ❯ tests/coverage.test.ts:8:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/coverage.test.ts > arşivden karara anlamsal kapsam > araçlar yalnız etiket değildir; fiyat, lisans, sınır ve entegrasyon taşır
+AssertionError: ComfyUI.pricing: expected undefined to be truthy
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/coverage.test.ts:29:160
+     27|       const tool = tools.find((tool: any) => tool.name.includes(name));
+     28|       expect(tool, name).toBeDefined();
+     29|       for (const key of ['pricing', 'license', 'limits', 'maturity', '…
+       |                                                                                                                                                                ^
+     30|     }
+     31|     expect(tools.find((tool: any) => tool.id === 'T23').name).toBe('Co…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/coverage.test.ts > arşivden karara anlamsal kapsam > kaynak sayıları ve çelişkileri erişilebilir tutar
+Error: ENOENT: no such file or directory, open 'src/data/claims.json'
+ ❯ json tests/coverage.test.ts:4:43
+      2| import { describe, expect, it } from 'vitest';
+      3|
+      4| const json = (name: string) => JSON.parse(readFileSync(`src/data/${nam…
+       |                                           ^
+      5|
+      6| describe('arşivden karara anlamsal kapsam', () => {
+ ❯ tests/coverage.test.ts:34:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/coverage.test.ts > arşivden karara anlamsal kapsam > kişisel bağlam ve Türkiye uyumu ayrı karar dosyalarında açıklanır
+Error: ENOENT: no such file or directory, open 'src/content/guide/personal-stack.md'
+ ❯ tests/coverage.test.ts:47:21
+     45|   });
+     46|   it('kişisel bağlam ve Türkiye uyumu ayrı karar dosyalarında açıklanı…
+     47|     const profile = readFileSync('src/content/guide/personal-stack.md'…
+       |                     ^
+     48|     for (const term of ['MetaFramer', 'atonota', 'Next.js', 'Supabase'…
+     49|     const compliance = readFileSync('src/content/guide/turkey-complian…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  13:03:54
+   Duration  89ms (transform 51%, tests 22%, import 18%, worker 8%)
+

@@ -36,12 +36,12 @@ Yüksek hacimli video için D03’ün 3–6 aylık durable workflow, gelişmiş 
 
 ## Başarı panosu
 
-| Video operasyonu | Yazılım operasyonu |
-|---|---|
-| Kabul edilen saniye başına maliyet | Kabul edilen görev / merge başına maliyet |
-| İlk denemede kabul oranı | İlk CI geçiş oranı |
-| Editör dakikası / video | Review ve rework dakikası / PR |
-| Yayınlama başarısı ve görünürlük | Change failure ve escaped defect |
-| İzleyici tutulması ve ürün dönüşümü | PR cycle time ve ekip memnuniyeti |
+| Video operasyonu                    | Yazılım operasyonu                        |
+| ----------------------------------- | ----------------------------------------- |
+| Kabul edilen saniye başına maliyet  | Kabul edilen görev / merge başına maliyet |
+| İlk denemede kabul oranı            | İlk CI geçiş oranı                        |
+| Editör dakikası / video             | Review ve rework dakikası / PR            |
+| Yayınlama başarısı ve görünürlük    | Change failure ve escaped defect          |
+| İzleyici tutulması ve ürün dönüşümü | PR cycle time ve ekip memnuniyeti         |
 
 Yalnızca üretilen video veya kod satırı sayısı başarı ölçütü değildir. Baseline, dönem, örneklem ve ölçüm yöntemiyle birlikte karar ver.
