@@ -396,7 +396,18 @@ const sectionItems: SearchItem[] = sections.map((s) => ({
 const toolItems: SearchItem[] = tools.map((t) => ({
   id: t.id,
   title: t.name,
-  text: JSON.stringify(t),
+  text: [
+    t.role,
+    t.fit,
+    t.pricing,
+    t.license,
+    t.limits,
+    t.maturity,
+    t.integration,
+    t.workflow,
+    t.decision,
+    ...t.evidence.map((e) => e.excerpt),
+  ].join(' '),
   type: 'Araç',
 }));
 const guideItems: SearchItem[] = topics.map((t) => ({
