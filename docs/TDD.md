@@ -24,3 +24,9 @@ Arama Türkçe/ASCII yazımlarını eşler, birden fazla sözcüğü birlikte ar
 ## Sınırlar
 
 Otomatik erişilebilirlik denetimi tam WCAG uyum sertifikası değildir. Mobil profil Chromium emülasyonudur. Gerçek ses/video üretimi, sosyal API izinleri ve ücretli modeller bu statik raporun doğrulama kapsamı dışındadır.
+
+## 17 Eylül 2026 — Minimum metin boyutu
+
+Önce `tests/e2e/typography.spec.ts` eklendi; mevcut arayüzde üç mobil senaryo da başarısız oldu. Tüm özel metin ölçüleri rem birimine taşındı ve 1rem alt sınırı uygulandı. daisyUI tablo başlıkları, etiketler, form alanları, pencereler ve tam raporun yazdırma görünümü kapsama alındı. Genişleyen metin için masaüstü menüsü ve mobil satır geçişleri düzenlendi.
+
+Sonuç: 40 tarayıcı testi geçti. Yeni kontroller, görüntülenen metnin hesaplanan boyutunu kök boyutuyla karşılaştırır; 320px ekranda 20px kök yazı boyutu ve yatay taşma da sınanır. 320, 768, 1024 ve 1440px görünümleri ayrıca kontrol edildi.
