@@ -87,7 +87,10 @@ test('depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır', asy
 test('statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur', async ({ request }) => {
   const md = await request.get('rapor.md');
   expect(md.ok()).toBe(true);
-  expect(await md.text()).toContain('11. Tam referans indeksi');
+  expect(await md.text()).toContain('rapor-ekleri.md');
+  const appendix = await request.get('rapor-ekleri.md');
+  expect(appendix.ok()).toBe(true);
+  expect(await appendix.text()).toContain('E. Tam referans indeksi');
   const html = await request.get('rapor.html');
   expect(await html.text()).toContain('Yazdır / PDF olarak kaydet');
   const zip = await request.get('sources/arastirma-arsivi.zip');

@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { sourceBlocks } from './source-blocks.mjs';
 const rows = `personal-stack|İsmail için karar haritası|Kişisel bağlam|D04,D05,D06|MetaFramer,atonota,PIM,HRMS,İBYS,İsmail,Ismail,Next.js,Supabase,Frappe
 video-formats|Beş video yöntemi ve üç mimari|Video|D01,D03,D05|faceless,template-first,generative-first,mimari A,mimari B,mimari C
 video-agents|Director ve sahne ajanları|Video|D01,D03,D05|OpenMontage,ShortGPT,MoneyPrinter,Director,Screenwriter,SceneBuilder
@@ -62,7 +63,32 @@ const units = [];
 for (const doc of ['D01', 'D02', 'D03', 'D04', 'D05', 'D06']) {
   const raw = fs.readFileSync(`public/sources/${doc}.txt`, 'utf8');
   let boundaries = [{ start: 0, title: 'Giriş ve kapsam' }];
-  if (doc === 'D01' || doc === 'D02') {
+  if (doc === 'D04') {
+    let section = 'Giriş ve kapsam';
+    boundaries = [];
+    let pendingHeading;
+    for (const block of sourceBlocks(raw)) {
+      if (block.kind === 'heading') {
+        section = block.text.trim().replace(/^#+\s*/, '');
+        if (pendingHeading === undefined) pendingHeading = block.start;
+        continue;
+      }
+      const plain = block.text.trim().replaceAll('**', '');
+      const label =
+        block.kind === 'table-row'
+          ? plain.split('|')[1]?.trim()
+          : block.kind === 'code'
+            ? 'Kod / mimari örneği'
+            : plain.split(/\n|(?<=[.!?])\s/)[0]?.slice(0, 105);
+      boundaries.push({
+        start: pendingHeading ?? block.start,
+        title: `${section} · ${label || 'Devam'}`,
+        tableHeader: block.tableHeader,
+      });
+      pendingHeading = undefined;
+    }
+    if (pendingHeading !== undefined) boundaries.push({ start: pendingHeading, title: section });
+  } else if (doc === 'D01' || doc === 'D02') {
     // Original paragraph boundaries were lost. Split only after sentences; these are passages, not reconstructed original headings.
     const sentences = [...raw.matchAll(/[.!?](?=\s+[A-ZÇĞİÖŞÜ])/gu)];
     let last = 0;
@@ -101,10 +127,7 @@ for (const doc of ['D01', 'D02', 'D03', 'D04', 'D05', 'D06']) {
       .filter((t) => t.documents.includes(doc))
       .map((t) => ({
         id: t.id,
-        score: t.keywords.reduce(
-          (n, k) => n + (lower.includes(k.toLocaleLowerCase('tr')) ? 1 : 0),
-          0,
-        ),
+        score: t.keywords.reduce((n, k) => n + (keywordMatch(lower, k) ? 1 : 0), 0),
       }))
       .sort((a, b) => b.score - a.score);
     const ids = ranked
@@ -120,19 +143,20 @@ for (const doc of ['D01', 'D02', 'D03', 'D04', 'D05', 'D06']) {
       start: b.start,
       end,
       text,
+      tableHeader: b.tableHeader || '',
       topics: ids,
     });
   });
 }
-// The personal and compliance subjects are distributed in broad source sections; preserve their explicit relationships.
-for (const t of parsed)
-  for (const doc of t.documents) {
-    const candidates = units.filter(
-      (u) =>
-        u.document === doc &&
-        t.keywords.some((k) => u.text.toLocaleLowerCase('tr').includes(k.toLocaleLowerCase('tr'))),
-    );
-    for (const u of candidates) if (!u.topics.includes(t.id)) u.topics.push(t.id);
-  }
+function keywordMatch(text, keyword) {
+  const key = keyword.toLocaleLowerCase('tr');
+  // Short tool names such as uv must not match the middle of an unrelated word.
+  return key.length > 3
+    ? text.includes(key)
+    : new RegExp(
+        `(?<![\\p{L}\\p{N}])${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\p{N}])`,
+        'u',
+      ).test(text);
+}
 fs.writeFileSync('src/data/coverage.json', JSON.stringify(units, null, 2) + '\n');
 console.log(`${topics.length} konu, ${units.length} kaynak bölümü/pasajı`);

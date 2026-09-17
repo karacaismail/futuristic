@@ -456,7 +456,7 @@
   {
     "id": "video-other-limits",
     "title": "Diğer video modelleri",
-    "statement": "Luma 10–15 sn sınıfı; MiniMax H3 4–15 sn, 768p/2K, 24fps; Kling 3.0/Omni native 4K iddiası.",
+    "statement": "Luma 10–15 sn sınıfı; MiniMax H3 4–15 sn, 768p/2K, 24 fps; Kling 3.0/Omni native 4K iddiası.",
     "assessment": "Kaynak ürün kabiliyetleri; UI/API ve model sürümü eşit değil. Güncel erişim ve sözleşme ayrıca kontrol edilir.",
     "documents": [
       "D03",
@@ -480,7 +480,7 @@
   {
     "id": "video-research",
     "title": "Video araştırma ölçümleri",
-    "statement": "LTX H100’de 5 sn/24fps/768×512 çıktıyı 2 sn üretme; CogVideoX 10 sn/768×1360.",
+    "statement": "LTX H100’de 5 sn/24 fps/768×512 çıktıyı 2 sn üretme; CogVideoX 10 sn/768×1360.",
     "assessment": "Research ölçümleri uçtan uca SLA değil; cold-start, queue, I/O ve encode eklenir.",
     "documents": [
       "D03"
@@ -536,7 +536,7 @@
   {
     "id": "tts-numbers",
     "title": "Ses ve transkripsiyon sayıları",
-    "statement": "ElevenLabs v2 29 dil; Flash v2.5 32 dil/~75ms; free 10k karakter/ay; Scribe Türkçe 88M konuşmacı; OpenAI 11 voice; MiniMax speech-2.8 40 dil.",
+    "statement": "ElevenLabs v2 29 dil; Flash v2.5 32 dil/~75 ms; free 10k karakter/ay; Scribe Türkçe 88M konuşmacı; OpenAI 11 voice; MiniMax speech-2.8 40 dil.",
     "assessment": "Dil/konuşmacı sayısı kalite puanı değil. Latency koşulu, model ve ses hakkı ayrı; Türkçe özel terimler test edilir.",
     "documents": [
       "D03",
@@ -560,7 +560,7 @@
   {
     "id": "render-prices",
     "title": "Cloud renderer fiyatları",
-    "statement": "Shotstack $0,30/dk PAYG, $39/ay abonelikte $0,20/dk; Creatomate $49–54/2.000 kredi, 720p dk~14 kredi; JSON2Video $49,95/200 dk Full HD, free600 kredi, 4K4×; Bannerbear $49/1.000 kredi; Plainly $69/50dk.",
+    "statement": "Shotstack $0,30/dk PAYG, $39/ay abonelikte $0,20/dk; Creatomate $49–54/2.000 kredi, 720p dk ~14 kredi; JSON2Video $49,95/200 dk Full HD, free 600 kredi, 4K = 4×; Bannerbear $49/1.000 kredi; Plainly $69/50 dk.",
     "assessment": "Kredi ve dakika eşdeğer değil; kaynak planları güncel teklif sayılmaz. Egress, concurrency ve render tekrarları ayrıca.",
     "documents": [
       "D05"
@@ -594,7 +594,7 @@
   {
     "id": "social-prices",
     "title": "Yayın gateway fiyatları",
-    "statement": "Blotato $29/ay/9 platform; Upload-Post $24 veya yıllık $16, free10 upload; Ayrshare $149 ve 30+ profil için ayrı fiyat; Postiz self-host free/cloud29; Mixpost $299 tek sefer.",
+    "statement": "Blotato $29/ay/9 platform; Upload-Post $24 veya yıllık $16, free 10 upload; Ayrshare $149 ve 30+ profil için ayrı fiyat; Postiz self-host free/cloud 29; Mixpost $299 tek sefer.",
     "assessment": "Platform izinleri ortadan kalkmaz. Hesap/profil/marka başına maliyet ve gerçek API kapsamı güncel kontrol ister.",
     "documents": [
       "D05"
@@ -605,8 +605,8 @@
   {
     "id": "youtube-quota",
     "title": "YouTube upload kota değişimi",
-    "statement": "D05 videos.insert1.600, D01 100 birim/çağrı aktarıyor.",
-    "assessment": "17 Eylül resmi tablo: videos.insert ve search.list ayrı ayrı100 çağrı/gün; çağrı başına1 kota. Otomatik sayfa özetindeki eski1.600 ifadesi gövdeyle çelişiyor. Kanal upload limiti farklı; ~20/gün evrensel değil.",
+    "statement": "D05 videos.insert 1.600, D01 100 birim/çağrı aktarıyor.",
+    "assessment": "17 Eylül resmi tablo: videos.insert ve search.list ayrı ayrı 100 çağrı/gün; çağrı başına 1 kota. Otomatik sayfa özetindeki eski 1.600 ifadesi gövdeyle çelişiyor. Kanal upload limiti farklı; ~20/gün evrensel değil.",
     "documents": [
       "D01",
       "D03",
@@ -630,7 +630,7 @@
   {
     "id": "instagram-limit",
     "title": "Instagram süre ve kota iddiaları",
-    "statement": "D05 evrensel 90 sn; D01 200/saat BUC ve 60 günlük token; review2–4 hafta.",
+    "statement": "D05 evrensel 90 sn; D01 200/saat BUC ve 60 günlük token; review 2–4 hafta.",
     "assessment": "Doğrulanan Facebook Login Reels yolu 3 sn–15 dk. Diğer sayılar endpoint/hesap bağlamı olmadan kapasite/SLA kabul edilmez.",
     "documents": [
       "D01",
@@ -654,7 +654,7 @@
   {
     "id": "stock-music",
     "title": "Epidemic / Artlist planları",
-    "statement": "Epidemic Creator $9,99/Pro16,99 yıllık; Pro’da 5M takipçi/$10M şirket sınırı; Artlist Social9,99, Pro/Max3kanal iddiası.",
+    "statement": "Epidemic Creator $9,99/Pro $16,99 yıllık; Pro’da 5M takipçi/$10M şirket sınırı; Artlist Social $9,99, Pro/Max 3 kanal iddiası.",
     "assessment": "Kaynak sözleşme özeti güncel hukuk görüşü değil. Reklam, client work, whitelist ve abonelik sonrası yeni yayın ayrı kontrol edilir.",
     "documents": [
       "D05"
@@ -677,7 +677,7 @@
   {
     "id": "platform-population",
     "title": "AI içerik ve kapatma sayıları",
-    "statement": "TikTok 1,3B (Kasım2025) ve 3B (Temmuz2026) etiket; YouTube16kanal35M abone; shadowban%90 iddiası.",
+    "statement": "TikTok 1,3B (Kasım 2025) ve 3B (Temmuz 2026) etiket; YouTube 16 kanal 35M abone; shadowban %90 iddiası.",
     "assessment": "Bağımsız teyit edilmedi. Etiket sayısı toplam AI hacmi veya erişim nedeni değil; nedensellik kurulamaz.",
     "documents": [
       "D01",
@@ -689,7 +689,7 @@
   {
     "id": "ai-act",
     "title": "AB AI Act tarih ve yaptırım",
-    "statement": "Kaynaklarda 2 Ağustos2026 genel yürürlük, €15M/%3 yaptırım.",
+    "statement": "Kaynaklarda 2 Ağustos 2026 genel yürürlük, €15M/%3 yaptırım.",
     "assessment": "V11 konsolide metin sağlayıcı/deployer ve geçiş tarihlerini ayırır; her medya/her ihlal için aynı tarih/ceza varsayılmaz.",
     "documents": [
       "D01",
@@ -702,7 +702,7 @@
   {
     "id": "video-compute",
     "title": "Video GPU ve ölçek eşiği",
-    "statement": "H100 $2–2,70/saat; Wan $0,25–0,60/clip; ayda5.000 clip self-host eşiği.",
+    "statement": "H100 $2–2,70/saat; Wan $0,25–0,60/clip; ayda 5.000 clip self-host eşiği.",
     "assessment": "İş yükü, kalite ve doluluk olmadan evrensel eşik değil. Bakım ve tekrar üretim eklenmeli.",
     "documents": [
       "D05"
@@ -713,7 +713,7 @@
   {
     "id": "video-storage",
     "title": "Depolama senaryosu",
-    "statement": "100 video/gün × 200MB =20GB final; work3–10× =60–200GB/gün.",
+    "statement": "100 video/gün × 200 MB = 20 GB final; work 3–10× = 60–200 GB/gün.",
     "assessment": "Senaryo hesabı; master retention ve egress ayrıca. Hacim gerçek telemetry ile güncellenir.",
     "documents": [
       "D03"
@@ -735,7 +735,7 @@
   {
     "id": "rollout-investment",
     "title": "Ekip yatırım senaryoları",
-    "statement": "5–10dev:3–8kişi-gün/$150–750/2–4hafta;25dev:15–30/$1k–3,5k/6–10hafta;25–50dev:40–90/$4k–15k+/3–6ay;regüle60–150+/4–9+ay.",
+    "statement": "5–10 dev: 3–8 kişi-gün/$150–750/2–4 hafta; 25 dev: 15–30/$1k–3,5k/6–10 hafta; 25–50 dev: 40–90/$4k–15k+/3–6 ay; regüle 60–150+/4–9+ ay.",
     "assessment": "Kaynak varsayımları; tek geliştiriciye veya kendi ekibine doğrudan fiyat biçmez. Baseline ile net tasarruf ölçülür.",
     "documents": [
       "D04"
@@ -746,7 +746,7 @@
   {
     "id": "video-roadmap",
     "title": "Video programı ve benchmark",
-    "statement": "21 Eylül2026–Şubat2027; 20–50 benchmark sahnesi, 17 belirsizlik grubu, ~12gün rollout, platform review için8haftaya varan pay.",
+    "statement": "21 Eylül 2026–Şubat 2027; 20–50 benchmark sahnesi, 17 belirsizlik grubu, ~12 gün rollout, platform review için 8 haftaya varan pay.",
     "assessment": "Plan önerisi ve tamponlar, teslimat SLA’sı değil. Paralel işler basitçe toplanmaz; ayrıntılı evreler rehberde.",
     "documents": [
       "D03"
@@ -757,7 +757,7 @@
   {
     "id": "pilot",
     "title": "Ölçüm pilotu",
-    "statement": "2–4hafta baseline,5–10dev pilot;10–20video;15ajan7/24 hedefi.",
+    "statement": "2–4 hafta baseline, 5–10 dev pilot; 10–20 video; 15 ajan 7/24 hedefi.",
     "assessment": "Kaynak başlangıç senaryosu. Aynı görev türü, review maliyeti, ret ve başarısız işler ölçüme dahil.",
     "documents": [
       "D04",
@@ -770,7 +770,7 @@
   {
     "id": "make-webhook",
     "title": "Make webhook kapasitesi",
-    "statement": "300 gelen webhook/10sn iddiası.",
+    "statement": "300 gelen webhook/10 sn iddiası.",
     "assessment": "Plan ve endpoint bazında teyit gerekir. Paralel/sıralı yürütme ayrı seçenek; queue ve retry tasarlanır.",
     "documents": [
       "D03"
@@ -781,7 +781,7 @@
   {
     "id": "retry",
     "title": "Circuit breaker örnek eşiği",
-    "statement": "Beş hata/60sn; retry base×2^n+jitter.",
+    "statement": "Beş hata/60 sn; retry base×2^n+jitter.",
     "assessment": "Kaynak tasarım örneği; evrensel eşik değil. Retry-After, hata türü, bütçe ve DLQ/insan revizyon ayrımı gerekli.",
     "documents": [
       "D01"
@@ -792,7 +792,7 @@
   {
     "id": "vibe-kanban",
     "title": "Vibe Kanban yaşam döngüsü",
-    "statement": "Bloop kapanışı10Nisan2026, Apache community/fork ayrımı.",
+    "statement": "Bloop kapanışı 10 Nisan 2026, Apache community/fork ayrımı.",
     "assessment": "Kaynak iddiası; ürün hizmeti, açık repo ve fork bakımını ayrı kontrol et. Sırf isim var diye mevcut Pane’den geçiş önerilmez.",
     "documents": [
       "D06"

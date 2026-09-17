@@ -147,17 +147,24 @@ describe('yayınlanan içeriğin izlenebilirliği', () => {
     }
     for (const claim of claims) expect(topics.some((topic) => topic.id === claim.topic)).toBe(true);
   });
-  it('tam rapor bütün rehberleri, sayısal kayıtları ve araç kararlarını içerir', () => {
+  it('okuma raporu rehberleri, ekler bütün sayısal kayıtları ve somut araç verilerini içerir', () => {
     const report = readFileSync('public/rapor.md', 'utf8');
+    const appendix = readFileSync('public/rapor-ekleri.md', 'utf8');
     for (const topic of topics) expect(report).toContain(topic.title);
     for (const claim of claims) {
-      expect(report).toContain(claim.statement);
-      expect(report).toContain(claim.assessment);
+      expect(appendix).toContain(claim.statement);
+      expect(appendix).toContain(claim.assessment);
     }
     for (const tool of tools) {
-      expect(report).toContain(tool.pricing);
-      expect(report).toContain(tool.license);
-      expect(report).toContain(tool.decision);
+      expect(appendix).toContain(`${tool.id} · ${tool.name}`);
+      for (const key of ['pricing', 'license', 'limits', 'maturity', 'integration'] as const)
+        if (tool.availability[key]) expect(appendix).toContain(tool[key]);
+      expect(appendix).toContain(tool.workflow);
+      if (
+        !tool.decision.includes('rehberindeki kabul ölçütleriyle') &&
+        !tool.decision.startsWith('Mevcut stack’in')
+      )
+        expect(appendix).toContain(tool.decision);
     }
   });
 });

@@ -271,18 +271,35 @@ export function SourcesPage({ params }: { params: URLSearchParams }) {
             <Empty title="Belge bulunamadı" description="Farklı bir sözcük veya konu seç." />
           )}
           <div className="report-download">
-            <a
-              className="btn btn-outline"
-              href={`${import.meta.env.BASE_URL}rapor.html`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Icon name="file" size={17} />
-              Tam raporu aç / yazdır
-            </a>
-            <a className="btn btn-ghost" href={`${import.meta.env.BASE_URL}rapor.md`} download>
-              Markdown indir <Icon name="download" size={16} />
-            </a>
+            {[
+              [
+                'yonetici-ozeti',
+                'Yönetici özeti',
+                'Öncelikler, maliyet düzeltmeleri ve pilot kararı.',
+              ],
+              ['rapor', 'Araştırma raporu', '29 uygulama rehberi, mimari ve karar gerekçeleri.'],
+              ['rapor-ekleri', 'Tam ekler', 'Araç verileri, 70 sayısal kayıt ve kaynak indeksi.'],
+            ].map(([file, title, description]) => (
+              <section key={file} className="card report-option">
+                <h2>{title}</h2>
+                <p>{description}</p>
+                <a
+                  className="btn btn-outline"
+                  href={`${import.meta.env.BASE_URL}${file}.html`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {title} · HTML
+                </a>
+                <a
+                  className="btn btn-ghost"
+                  href={`${import.meta.env.BASE_URL}${file}.md`}
+                  download
+                >
+                  {title} · Markdown <Icon name="download" size={16} />
+                </a>
+              </section>
+            ))}
           </div>
           <div className="method-note">
             <Icon name="info" />

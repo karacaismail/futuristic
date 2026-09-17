@@ -24,7 +24,13 @@ export function Evidence({ unit }: { unit: (typeof coverage)[number] }) {
         <TopicLinks ids={unit.topics} />
         {open && (
           <div className="source-excerpt">
-            <Markdown body={unit.text} />
+            <Markdown
+              body={
+                unit.tableHeader && !unit.text.includes(unit.tableHeader)
+                  ? `${unit.tableHeader}${unit.text}`
+                  : unit.text
+              }
+            />
           </div>
         )}
       </div>

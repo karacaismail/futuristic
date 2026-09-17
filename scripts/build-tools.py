@@ -6,4 +6,6 @@ assert len({item['id'] for item in items}) == len(items)
 for item in items:
     for field in ('name', 'topic', 'pricing', 'license', 'limits', 'maturity', 'integration', 'workflow', 'decision', 'evidence'):
         assert item[field], (item['id'], field)
+    for field in ('pricing', 'license', 'limits', 'maturity', 'integration'):
+        assert isinstance(item['availability'][field], bool), (item['id'], field)
 print(len(items), 'araç doğrulandı; düzenleme src/data/tools.json içinde yapılır.')

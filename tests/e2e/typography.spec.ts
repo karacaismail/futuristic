@@ -89,9 +89,12 @@ test('1rem tarayıcı kök boyutuyla büyür ve 320px akışını korur', async 
   }
 });
 
-test('tam rapor ve yazdırma metni en az 1rem', async ({ page }) => {
-  await page.goto('rapor.html');
-  await expectReadableText(page);
-  await page.emulateMedia({ media: 'print' });
-  await expectReadableText(page);
+test('üç rapor sürümü ve yazdırma metni en az 1rem', async ({ page }) => {
+  for (const file of ['rapor.html', 'rapor-ekleri.html', 'yonetici-ozeti.html']) {
+    await page.emulateMedia({ media: 'screen' });
+    await page.goto(file);
+    await expectReadableText(page);
+    await page.emulateMedia({ media: 'print' });
+    await expectReadableText(page);
+  }
 });

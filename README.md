@@ -2,16 +2,16 @@
 
 AI video üretimi ve yazılım geliştirme için kaynaklara dayalı Türkçe araştırma atlası.
 
-**[Canlı rapor](https://karacaismail.github.io/futuristic/)** · **[Tam rapor](docs/REPORT.md)** · **[Kaynak manifestosu](public/sources/manifest.json)**
+**[Canlı rapor](https://karacaismail.github.io/futuristic/)** · **[Yönetici özeti](docs/EXECUTIVE.md)** · **[Araştırma raporu](docs/REPORT.md)** · **[Tam ekler](docs/APPENDIX.md)** · **[Kaynak manifestosu](public/sources/manifest.json)**
 
 React + TypeScript + Vite + Tailwind CSS + **daisyUI 5**. Statik GitHub Pages; API anahtarı veya backend gerekmez.
 
 ## İçerik
 
 - 6 özgün belge, byte düzeyinde korunmuş 263.605 bayt; SHA-256 manifestosu.
-- 112 özgün kaynak referansı, 177 araç/teknoloji kaydı, 29 ayrıntılı rehber ve 70 sayısal iddia kaydı. İlk sürümdeki 11 kritik kontrol ile yeni rehberlerdeki birincil kontrol/hesap düzeltmeleri ayrı izlenir.
+- 112 özgün kaynak referansı, 177 araç/teknoloji kaydı, 29 ayrıntılı rehber ve 70 sayısal iddia kaydı. 13 seçilmiş birincil kontrol kaydı ve hesap düzeltmeleri ayrı izlenir. Katalogda 39 fiyat, 37 lisans/kullanım koşulu/sınıflandırma ve 60 entegrasyon kaydı bulunur; ortak tavsiye metinleri bu sayılara dahil değildir.
 - Video üretimi, yazılım geliştirme, ortak mimari, kalite/risk, maliyet ve yol haritası.
-- Türkçe/ASCII arama bütün rehberleri, sayıları, araçları ve özgün metinleri kapsar. Gerçek araç detay URL’si; filtre ve üçlü karşılaştırmanın paylaşılabilir URL’si.
+- Türkçe/ASCII arama bütün rehberleri, sayıları, araçları ve özgün metinleri kapsar. Gerçek araç detay URL’si; fiyat/lisans varlığı filtreleri ve üçlü karşılaştırmanın paylaşılabilir URL’si.
 - Yeniden üretim, insan süresi, sabit/değişken giderleri içeren maliyet senaryosu.
 - Yerel okuma ve yol haritası kaydı; kaynak ağı sorununda hata ve yeniden deneme.
 
@@ -62,12 +62,15 @@ Tarayıcı testleri 1440px masaüstü ve iPhone boyutunda mobil Chromium profill
 - `src/data/report.ts`: bölüm başlığı ve gezinme metadatası.
 - `src/data/tools.json`: elle düzenlenen araç kataloğu; `scripts/build-tools.py` içeriği ezmeden alanlarını doğrular.
 - `src/content/guide/*.md` ve `src/data/topics.json`: uygulama rehberleri ve kısa karar özetleri.
+- `scripts/build-tool-evidence.mjs`: araç bağlamlarını sözcük kesmeden kaynak bloklarından üretir; `start/end/kind` bilgisi tutar. Alana özel tablo satırları `fieldSources` altında ayrıca saklanır.
 - `scripts/build-coverage.mjs`: kaynak bölüm/pasaj aralıkları ve konu indeksi; editoryal özetleri korur. İndeks eşleşmesi iddia doğruluğu veya anlamsal tamlık sertifikası değildir.
 - `scripts/build-claims.py`: kaynak sayıları, değerlendirme ve düzeltmeleri içeren `claims.json` üretimi.
 - `src/data/verification.json`: tarih, iddia, sonuç ve birincil kanıt.
 - `public/sources/D01.txt` … `D06.txt`: değişmemiş orijinaller.
 - `scripts/import-sources.py`: mevcut orijinallerden manifestoyu/referansları/ZIP’i yeniden üretir. Repository’deki dosyalar yeterlidir; eksik orijinal varsa işlem hata verir.
-- `npm run report:export`: aynı içerikten `public/rapor.md`, `public/rapor.html` ve `docs/REPORT.md` üretir. Build öncesinde otomatik çalışır.
+- `src/content/executive.md`: kısa yönetici özeti.
+- `npm run report:export`: `public/yonetici-ozeti`, `public/rapor`, `public/rapor-ekleri` için HTML/Markdown ve `docs/EXECUTIVE.md`, `docs/REPORT.md`, `docs/APPENDIX.md` üretir. Build öncesinde otomatik çalışır.
+- Katalogdaki `availability`, gerçekten bilgi taşıyan alanları işaretler. Eksik bilgi tavsiyesi dolu alan sayılmaz; genel workflow/karar metinleri editoryal sentezdir.
 
 Kaynak metni değiştirmeden önce bunun artık aynı orijinal olmadığını dikkate alın. Hash testindeki baz uzunluk bilinçli bir bütünlük kontrolüdür. Atıf veya doğrulama sayısı değişirse kullanıcıya gösterilen anlatımları ve test sözleşmesini de güncelleyin.
 

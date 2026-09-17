@@ -2,6 +2,7 @@ import { Dialog, Empty, Icon, PageTitle, Pill, SourceChips } from './components'
 import { TopicLinks } from './TopicLinks';
 import tools from './data/tools.json';
 import { normalizeText } from './lib/research';
+import Markdown from './Markdown';
 type Tool = (typeof tools)[number];
 const fields: [keyof Tool, string][] = [
   ['pricing', 'Fiyat ve birim'],
@@ -9,9 +10,35 @@ const fields: [keyof Tool, string][] = [
   ['limits', 'Sınırlar'],
   ['maturity', 'Olgunluk ve bakım'],
   ['integration', 'Entegrasyon'],
-  ['workflow', 'İş akışı'],
-  ['decision', 'Seçim gerekçesi'],
+  ['workflow', 'Ortak çalışma deseni · Sentez'],
+  ['decision', 'Seçim ölçütü · Sentez'],
 ];
+const dataFilters = [
+  ['pricing', 'Fiyat verisi olanlar'],
+  ['license', 'Lisans bilgisi olanlar'],
+] as const;
+const priceCount = tools.filter((t) => t.availability.pricing).length;
+const licenseCount = tools.filter((t) => t.availability.license).length;
+function FieldCitation({ tool, field }: { tool: Tool; field: string }) {
+  const source =
+    'fieldSources' in tool
+      ? (
+          tool.fieldSources as Record<
+            string,
+            { document: string; excerpt: string; tableHeader?: string }
+          >
+        )[field]
+      : undefined;
+  return source ? (
+    <details className="field-citation">
+      <summary>Bu alanın kaynak satırı · {source.document}</summary>
+      <div className="source-excerpt">
+        <Markdown body={`${source.tableHeader || ''}${source.excerpt}`} />
+      </div>
+      <SourceChips ids={[source.document]} />
+    </details>
+  ) : null;
+}
 export function ToolsPage({ params }: { params: URLSearchParams }) {
   const query = params.get('q') || '',
     category = params.get('category') || 'Tümü',
@@ -21,6 +48,9 @@ export function ToolsPage({ params }: { params: URLSearchParams }) {
     .slice(0, 3);
   const compare = params.get('view') === 'compare';
   const detail = tools.find((t) => t.id === params.get('tool'));
+  const requiredData = (params.get('data') || '')
+    .split(',')
+    .filter((key): key is 'pricing' | 'license' => key === 'pricing' || key === 'license');
   const update = (key: string, value: string) => {
     const next = new URLSearchParams(params);
     if (value && value !== 'Tümü') next.set(key, value);
@@ -56,21 +86,31 @@ export function ToolsPage({ params }: { params: URLSearchParams }) {
           {fields.map(([key, label]) => (
             <section className="card bg-base-100" key={key}>
               <h2>{label}</h2>
+              {key in detail.availability &&
+                !detail.availability[key as keyof typeof detail.availability] && (
+                  <Pill>Kaynakta araç özelinde veri yok</Pill>
+                )}
               <p>{String(detail[key])}</p>
+              <FieldCitation tool={detail} field={key} />
             </section>
           ))}
         </div>
         <section className="section-block">
           <h2>Kaynakta geçtiği yer</h2>
           <p className="fine-print">
-            Bağlam alıntısı; buradaki her sayı güncel/doğrulanmış sayılmaz. Tam uygulama açıklaması
-            ilgili rehberdedir.
+            İlgili paragraf veya tablo satırı kaynak bağlamını gösterir. Alanların tamamını
+            doğrulayan kanıt değildir. Kaynak iddiası ile güncel doğrulama ayrı tutulur.
           </p>
           {detail.evidence.map((e, i) => (
             <details className="collapse collapse-arrow bg-base-100 border-base-300 border" key={i}>
               <summary className="collapse-title">{e.document} · Kaynak pasajını aç</summary>
               <div className="collapse-content">
-                <p className="source-excerpt">…{e.excerpt}…</p>
+                <p className="fine-print">
+                  Kaynak karakter aralığı: {e.start}–{e.end}
+                </p>
+                <div className="source-excerpt">
+                  <Markdown body={`${e.tableHeader || ''}${e.excerpt}`} />
+                </div>
                 <SourceChips ids={[e.document]} />
               </div>
             </details>
@@ -89,6 +129,7 @@ export function ToolsPage({ params }: { params: URLSearchParams }) {
     (t) =>
       (category === 'Tümü' || t.category === category) &&
       (hosting === 'Tümü' || t.hosting === hosting) &&
+      requiredData.every((key) => t.availability[key]) &&
       normalizeText(`${t.name} ${t.role} ${t.fit}`).includes(normalizeText(query)),
   );
   const chosen = tools.filter((t) => selected.includes(t.id));
@@ -97,7 +138,7 @@ export function ToolsPage({ params }: { params: URLSearchParams }) {
       <PageTitle
         eyebrow="04 / ARAÇ & TEKNOLOJİ"
         title="Doğru iş için, doğru araç."
-        description={`${tools.length} araç ve teknoloji: ayrıntılı kullanım, fiyat, lisans, sınır ve kaynak izi. En fazla üçünü karşılaştır; filtreler ve seçim URL’de korunur.`}
+        description={`${tools.length} araç ve teknoloji kaydı. ${priceCount} kayıtta fiyat, ${licenseCount} kayıtta lisans veya kullanım koşulu bilgisi var. Bilgi varlığı güncel doğrulama demek değildir; açık kaynak sınıflandırması da lisans bilgisine dahildir.`}
       />
       <div className="catalog-toolbar">
         <label className="input search-field">
@@ -121,6 +162,29 @@ export function ToolsPage({ params }: { params: URLSearchParams }) {
           ))}
         </select>
       </div>
+      <fieldset className="data-filters">
+        <legend>Kaynakta bilgi bulunan alanlar</legend>
+        {dataFilters.map(([key, label]) => (
+          <label key={key}>
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={requiredData.includes(key)}
+              onChange={() =>
+                update(
+                  'data',
+                  (requiredData.includes(key)
+                    ? requiredData.filter((k) => k !== key)
+                    : [...requiredData, key]
+                  ).join(','),
+                )
+              }
+            />
+            {label}
+          </label>
+        ))}
+        <p>İkisini seçersen her iki alanda da bilgi bulunan araçlar gösterilir.</p>
+      </fieldset>
       <div className="filter-chips">
         {['Tümü', ...new Set(tools.map((t) => t.category))].map((cat) => (
           <button
@@ -157,6 +221,10 @@ export function ToolsPage({ params }: { params: URLSearchParams }) {
               <a href={`#/tools?tool=${t.id}`}>{t.name}</a>
             </h2>
             <p>{t.role}</p>
+            <div className="data-badges">
+              <Pill>{t.availability.pricing ? 'Fiyat verisi var' : 'Fiyat belirtilmemiş'}</Pill>
+              <Pill>{t.availability.license ? 'Lisans bilgisi var' : 'Lisans belirtilmemiş'}</Pill>
+            </div>
             <dl>
               <dt>Uygun kullanım</dt>
               <dd>{t.fit}</dd>

@@ -3435,6 +3435,64 @@ svg {
   gap: 10px;
   margin: 28px 0;
 }
+
+.data-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--color-base-300);
+  border-radius: 1rem;
+  min-width: 0;
+}
+.data-filters legend {
+  font-weight: 700;
+  padding-inline: 0.5rem;
+}
+.data-filters label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3rem;
+  cursor: pointer;
+}
+.data-filters p {
+  flex-basis: 100%;
+  margin: 0;
+}
+.data-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.field-citation summary {
+  cursor: pointer;
+  padding-block: 0.75rem;
+  min-height: 3rem;
+  font-weight: 600;
+}
+.field-citation blockquote {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-left: 3px solid var(--color-primary);
+}
+.report-download .report-option {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding: 1.25rem;
+  gap: 1rem;
+  border: 1px solid var(--color-base-300);
+  background: var(--color-base-100);
+}
+.report-option h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.report-option p {
+  flex: 1;
+  margin: 0;
+}
 .compare-bar {
   position: fixed;
   left: 20px;

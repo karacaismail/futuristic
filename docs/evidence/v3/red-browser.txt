@@ -1,0 +1,79 @@
+
+> futuristic-research@1.0.0 test:e2e
+> playwright test tests/e2e/catalog-data.spec.ts --project=desktop
+
+
+Running 2 tests using 2 workers
+
+(node:76747) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:76746) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/e2e/catalog-data.spec.ts:18:1 › rapor indirme seçenekleri ve sınırı belirli kaynak bağlamı (5.2s)
+  ✘  1 [desktop] › tests/e2e/catalog-data.spec.ts:3:1 › gerçek fiyat ve lisans verisi filtrelenir ve URL ile korunur (30.1s)
+
+
+  1) [desktop] › tests/e2e/catalog-data.spec.ts:3:1 › gerçek fiyat ve lisans verisi filtrelenir ve URL ile korunur 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.check: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Fiyat verisi olanlar')
+
+
+      3 | test('gerçek fiyat ve lisans verisi filtrelenir ve URL ile korunur',async({page})=>{
+      4 |  await page.goto('#/tools');
+    > 5 |  await page.getByLabel('Fiyat verisi olanlar').check();
+        |                                                ^
+      6 |  await expect(page).toHaveURL(/data=pricing/);
+      7 |  await page.getByRole('searchbox',{name:'Araçlarda ara'}).fill('ComfyUI');
+      8 |  await expect(page.getByTestId('tool-card')).toHaveCount(0);
+        at /Users/w6x/Desktop/futuristic/tests/e2e/catalog-data.spec.ts:5:48
+
+    Error Context: test-results/catalog-data-gerçek-fiyat--1122b-trelenir-ve-URL-ile-korunur-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/catalog-data-gerçek-fiyat--1122b-trelenir-ve-URL-ile-korunur-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/catalog-data-gerçek-fiyat--1122b-trelenir-ve-URL-ile-korunur-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/e2e/catalog-data.spec.ts:18:1 › rapor indirme seçenekleri ve sınırı belirli kaynak bağlamı 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('link', { name: 'Yönetici özeti · HTML' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('link', { name: 'Yönetici özeti · HTML' }) with timeout 5000ms
+      - waiting for getByRole('link', { name: 'Yönetici özeti · HTML' })
+
+
+      18 | test('rapor indirme seçenekleri ve sınırı belirli kaynak bağlamı',async({page,request})=>{
+      19 |  await page.goto('#/sources');
+    > 20 |  await expect(page.getByRole('link',{name:'Yönetici özeti · HTML'})).toBeVisible();
+         |                                                                      ^
+      21 |  await expect(page.getByRole('link',{name:'Araştırma raporu · HTML'})).toBeVisible();
+      22 |  await expect(page.getByRole('link',{name:'Tam ekler · HTML'})).toBeVisible();
+      23 |  for(const name of ['yonetici-ozeti.md','rapor.md','rapor-ekleri.md'])expect((await request.get(name)).ok()).toBe(true);
+        at /Users/w6x/Desktop/futuristic/tests/e2e/catalog-data.spec.ts:20:70
+
+    Error Context: test-results/catalog-data-rapor-indirme-df42e-nırı-belirli-kaynak-bağlamı-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/catalog-data-rapor-indirme-df42e-nırı-belirli-kaynak-bağlamı-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/catalog-data-rapor-indirme-df42e-nırı-belirli-kaynak-bağlamı-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/e2e/catalog-data.spec.ts:3:1 › gerçek fiyat ve lisans verisi filtrelenir ve URL ile korunur 
+    [desktop] › tests/e2e/catalog-data.spec.ts:18:1 › rapor indirme seçenekleri ve sınırı belirli kaynak bağlamı 

@@ -93,7 +93,7 @@ export default function App() {
           </span>
         </a>
         <div className="workspace-label">
-          <span className="status-dot" /> RESEARCH ATLAS <span>v2.0</span>
+          <span className="status-dot" /> RESEARCH ATLAS <span>v2.1</span>
         </div>
         <button
           className="sidebar-search"
