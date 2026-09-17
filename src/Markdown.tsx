@@ -36,6 +36,21 @@ export default function Markdown({ body }: { body: string }) {
             </a>
           ),
           table: ({ children }) => <AdaptiveTable>{children}</AdaptiveTable>,
+          pre: ({ children }) => (
+            <pre
+              tabIndex={0}
+              role="region"
+              aria-label="Kod örneği"
+              onKeyDown={(event) => {
+                if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                event.currentTarget.scrollBy({ left: event.key === 'ArrowRight' ? 40 : -40 });
+              }}
+            >
+              {children}
+            </pre>
+          ),
         }}
       >
         {body}

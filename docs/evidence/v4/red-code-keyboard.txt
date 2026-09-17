@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:4521) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/e2e/report-reading.spec.ts:111:1 › kayan kod örneklerine klavyeyle erişilir (5.4s)
+
+
+  1) [desktop] › tests/e2e/report-reading.spec.ts:111:1 › kayan kod örneklerine klavyeyle erişilir ─
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.report-prose pre').first()
+    Expected: "0"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('.report-prose pre').first() with timeout 5000ms
+      - waiting for locator('.report-prose pre').first()
+        14 × locator resolved to <pre>…</pre>
+           - unexpected value "null"
+
+
+      114 |   await expect(page.locator('.report-prose pre')).toHaveCount(2);
+      115 |   for (const block of await page.locator('.report-prose pre').all()) {
+    > 116 |     await expect(block).toHaveAttribute('tabindex', '0');
+          |                         ^
+      117 |     await expect(block).toHaveAttribute('role', 'region');
+      118 |     await expect(block).toHaveAccessibleName('Kod örneği');
+      119 |     await block.focus();
+        at /Users/w6x/Desktop/futuristic/tests/e2e/report-reading.spec.ts:116:25
+
+    Error Context: test-results/report-reading-kayan-kod-örneklerine-klavyeyle-erişilir-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/report-reading-kayan-kod-örneklerine-klavyeyle-erişilir-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/report-reading-kayan-kod-örneklerine-klavyeyle-erişilir-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/e2e/report-reading.spec.ts:111:1 › kayan kod örneklerine klavyeyle erişilir ──

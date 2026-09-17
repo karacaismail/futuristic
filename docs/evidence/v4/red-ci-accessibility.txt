@@ -1,0 +1,285 @@
+verify	Run npm run test:e2e	﻿2026-09-17T13:36:22.8090654Z ##[group]Run npm run test:e2e
+verify	Run npm run test:e2e	2026-09-17T13:36:22.8091019Z ^[[36;1mnpm run test:e2e^[[0m
+verify	Run npm run test:e2e	2026-09-17T13:36:22.8126872Z shell: /usr/bin/bash -e {0}
+verify	Run npm run test:e2e	2026-09-17T13:36:22.8127161Z ##[endgroup]
+verify	Run npm run test:e2e	2026-09-17T13:36:22.9109861Z 
+verify	Run npm run test:e2e	2026-09-17T13:36:22.9110472Z > futuristic-research@1.0.0 test:e2e
+verify	Run npm run test:e2e	2026-09-17T13:36:22.9110979Z > playwright test
+verify	Run npm run test:e2e	2026-09-17T13:36:22.9111187Z 
+verify	Run npm run test:e2e	2026-09-17T13:36:24.0972341Z 
+verify	Run npm run test:e2e	2026-09-17T13:36:24.0973543Z Running 69 tests using 2 workers
+verify	Run npm run test:e2e	2026-09-17T13:36:24.0974013Z 
+verify	Run npm run test:e2e	2026-09-17T13:36:26.7142805Z   ✓   1 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › overview: erişilebilirlik ve taşma (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:36:26.9347836Z   ✓   2 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › video: erişilebilirlik ve taşma (2.0s)
+verify	Run npm run test:e2e	2026-09-17T13:36:28.8600988Z   ✘   3 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma (2.0s)
+verify	Run npm run test:e2e	2026-09-17T13:36:30.8686923Z   ✓   5 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › cost: erişilebilirlik ve taşma (1.4s)
+verify	Run npm run test:e2e	2026-09-17T13:36:32.3621387Z   ✓   6 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › roadmap: erişilebilirlik ve taşma (1.5s)
+verify	Run npm run test:e2e	2026-09-17T13:36:33.9598663Z   ✓   7 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › sources: erişilebilirlik ve taşma (1.6s)
+verify	Run npm run test:e2e	2026-09-17T13:36:35.8057093Z   ✓   8 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › sources?tab=verified: erişilebilirlik ve taşma (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:36:36.6614705Z   ✓   9 [desktop] › tests/e2e/accessibility.spec.ts:28:1 › klavye araması, Escape ve odak geri dönüşü (846ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:37.7816777Z   ✓  10 [desktop] › tests/e2e/accessibility.spec.ts:42:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (1.1s)
+verify	Run npm run test:e2e	2026-09-17T13:36:39.0007982Z   ✓   4 [desktop] › tests/e2e/accessibility.spec.ts:14:3 › tools: erişilebilirlik ve taşma (12.1s)
+verify	Run npm run test:e2e	2026-09-17T13:36:48.7509689Z   ✓  11 [desktop] › tests/e2e/accessibility.spec.ts:52:3 › light: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (11.0s)
+verify	Run npm run test:e2e	2026-09-17T13:36:49.7566765Z   ✓  12 [desktop] › tests/e2e/accessibility.spec.ts:52:3 › dark: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (10.7s)
+verify	Run npm run test:e2e	2026-09-17T13:36:50.3531357Z   ✓  13 [desktop] › tests/e2e/catalog-data.spec.ts:3:1 › gerçek fiyat ve lisans verisi filtrelenir ve URL ile korunur (1.6s)
+verify	Run npm run test:e2e	2026-09-17T13:36:51.0907323Z   ✓  14 [desktop] › tests/e2e/catalog-data.spec.ts:18:1 › rapor indirme seçenekleri ve sınırı belirli kaynak bağlamı (1.3s)
+verify	Run npm run test:e2e	2026-09-17T13:36:51.1200590Z   ✓  15 [desktop] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (737ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:51.6553515Z   ✓  17 [desktop] › tests/e2e/reader.spec.ts:34:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (517ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:52.7405273Z   ✓  18 [desktop] › tests/e2e/reader.spec.ts:44:1 › araç filtreleri ve karşılaştırma (1.1s)
+verify	Run npm run test:e2e	2026-09-17T13:36:53.2270791Z   ✓  16 [desktop] › tests/e2e/reader.spec.ts:24:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (2.1s)
+verify	Run npm run test:e2e	2026-09-17T13:36:53.5847311Z   ✓  19 [desktop] › tests/e2e/reader.spec.ts:56:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir (821ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:53.6740783Z   ✓  21 [desktop] › tests/e2e/reader.spec.ts:96:1 › statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur (75ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:54.2254420Z   ✓  20 [desktop] › tests/e2e/reader.spec.ts:75:1 › depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır (987ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:54.3614207Z   ✓  22 [desktop] › tests/e2e/report-reading.spec.ts:3:1 › ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir (663ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:54.8561041Z   ✓  23 [desktop] › tests/e2e/report-reading.spec.ts:20:1 › özet ilk gezinme ve indirme hedefidir (611ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:55.4351412Z   ✓  25 [desktop] › tests/e2e/report-reading.spec.ts:96:1 › bulunca açma desteği yoksa okunabilir açık metne düşer (566ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:55.7471324Z   ✓  24 [desktop] › tests/e2e/report-reading.spec.ts:50:1 › mobil rapor açık başlar; toplu açma, bulunca açma ve geniş ekrana geçiş çalışır (1.4s)
+verify	Run npm run test:e2e	2026-09-17T13:36:56.1050203Z   ✓  26 [desktop] › tests/e2e/report-reading.spec.ts:111:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır (650ms)
+verify	Run npm run test:e2e	2026-09-17T13:36:57.3442806Z   ✓  28 [desktop] › tests/e2e/revision.spec.ts:19:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur (1.2s)
+verify	Run npm run test:e2e	2026-09-17T13:36:57.5647148Z   ✓  27 [desktop] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:36:58.9498280Z   ✓  29 [desktop] › tests/e2e/revision.spec.ts:36:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır (1.6s)
+verify	Run npm run test:e2e	2026-09-17T13:37:00.7768161Z   ✓  31 [desktop] › tests/e2e/typography.spec.ts:80:1 › 1rem tarayıcı kök boyutuyla büyür ve 320px akışını korur (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:37:01.7196925Z   ✓  32 [desktop] › tests/e2e/typography.spec.ts:94:1 › üç rapor sürümü ve yazdırma metni en az 1rem (932ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:02.8660967Z   ✓  30 [desktop] › tests/e2e/typography.spec.ts:34:1 › tüm sayfa ve pencerelerde metin en az 1rem (5.3s)
+verify	Run npm run test:e2e	2026-09-17T13:37:03.9577085Z   ✓  33 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › overview: erişilebilirlik ve taşma (1.6s)
+verify	Run npm run test:e2e	2026-09-17T13:37:05.3333080Z   ✓  34 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › video: erişilebilirlik ve taşma (1.7s)
+verify	Run npm run test:e2e	2026-09-17T13:37:06.0041655Z   ✘  35 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:37:08.0004240Z   ✓  37 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › cost: erişilebilirlik ve taşma (1.3s)
+verify	Run npm run test:e2e	2026-09-17T13:37:09.3435385Z   ✓  38 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › roadmap: erişilebilirlik ve taşma (1.3s)
+verify	Run npm run test:e2e	2026-09-17T13:37:10.8440394Z   ✓  39 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › sources: erişilebilirlik ve taşma (1.5s)
+verify	Run npm run test:e2e	2026-09-17T13:37:12.6413559Z   ✓  40 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › sources?tab=verified: erişilebilirlik ve taşma (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:37:13.4440355Z   ✓  41 [mobile] › tests/e2e/accessibility.spec.ts:28:1 › klavye araması, Escape ve odak geri dönüşü (788ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:14.5797220Z   ✓  42 [mobile] › tests/e2e/accessibility.spec.ts:42:1 › kaynak ağ hatası yeniden denemeyle kurtarılır (1.1s)
+verify	Run npm run test:e2e	2026-09-17T13:37:16.8291046Z   ✓  36 [mobile] › tests/e2e/accessibility.spec.ts:14:3 › tools: erişilebilirlik ve taşma (11.5s)
+verify	Run npm run test:e2e	2026-09-17T13:37:24.0205270Z   ✓  43 [mobile] › tests/e2e/accessibility.spec.ts:52:3 › light: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (9.4s)
+verify	Run npm run test:e2e	2026-09-17T13:37:25.5161668Z   ✓  45 [mobile] › tests/e2e/catalog-data.spec.ts:3:1 › gerçek fiyat ve lisans verisi filtrelenir ve URL ile korunur (1.5s)
+verify	Run npm run test:e2e	2026-09-17T13:37:25.8038058Z   ✓  44 [mobile] › tests/e2e/accessibility.spec.ts:52:3 › dark: yeni rehber, tablo, araç ve sayısal kayıt erişilebilir (9.0s)
+verify	Run npm run test:e2e	2026-09-17T13:37:26.5710816Z   ✓  47 [mobile] › tests/e2e/reader.spec.ts:3:1 › rapor akışı, geri dönüş ve okuma kaydı (729ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:26.7648183Z   ✓  46 [mobile] › tests/e2e/catalog-data.spec.ts:18:1 › rapor indirme seçenekleri ve sınırı belirli kaynak bağlamı (1.2s)
+verify	Run npm run test:e2e	2026-09-17T13:37:27.1756046Z   ✓  49 [mobile] › tests/e2e/reader.spec.ts:34:1 › maliyet hesaplayıcı gerçek girdilerle sonucu günceller (385ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:28.2503765Z   ✓  50 [mobile] › tests/e2e/reader.spec.ts:44:1 › araç filtreleri ve karşılaştırma (1.1s)
+verify	Run npm run test:e2e	2026-09-17T13:37:28.6767637Z   ✓  48 [mobile] › tests/e2e/reader.spec.ts:24:1 › kaynakların tam metni yüklenir ve Türkçe arama çalışır (2.1s)
+verify	Run npm run test:e2e	2026-09-17T13:37:29.1166297Z   ✓  51 [mobile] › tests/e2e/reader.spec.ts:56:1 › 320px ekranda tablo kayıtları ve bölüm seçimi kullanılabilir (852ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:29.1897325Z   ✓  53 [mobile] › tests/e2e/reader.spec.ts:96:1 › statik rapor, arşiv ve kaynaklar Pages alt yolunda sunulur (58ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:29.5309074Z   ✓  52 [mobile] › tests/e2e/reader.spec.ts:75:1 › depolama engeli okumayı bozmaz, yol haritası normalde kalıcıdır (838ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:29.7936987Z   ✓  54 [mobile] › tests/e2e/report-reading.spec.ts:3:1 › ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir (585ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:30.2306329Z   ✓  55 [mobile] › tests/e2e/report-reading.spec.ts:20:1 › özet ilk gezinme ve indirme hedefidir (674ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:30.7540407Z   ✓  57 [mobile] › tests/e2e/report-reading.spec.ts:96:1 › bulunca açma desteği yoksa okunabilir açık metne düşer (513ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:31.1543094Z   ✓  56 [mobile] › tests/e2e/report-reading.spec.ts:50:1 › mobil rapor açık başlar; toplu açma, bulunca açma ve geniş ekrana geçiş çalışır (1.3s)
+verify	Run npm run test:e2e	2026-09-17T13:37:31.4062988Z   ✓  58 [mobile] › tests/e2e/report-reading.spec.ts:111:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır (639ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:32.4944588Z   ✓  60 [mobile] › tests/e2e/revision.spec.ts:19:1 › araç bağlantısı detay açar, filtre ve karşılaştırma URL ile korunur (1.1s)
+verify	Run npm run test:e2e	2026-09-17T13:37:32.7997615Z   ✓  59 [mobile] › tests/e2e/revision.spec.ts:3:1 › rehber ve sayılar tam raporda ve aramada bulunur (1.6s)
+verify	Run npm run test:e2e	2026-09-17T13:37:33.9962989Z   ✓  61 [mobile] › tests/e2e/revision.spec.ts:36:1 › kaynak okuma düzeni ve konu izi görünür, tema kalıcıdır (1.5s)
+verify	Run npm run test:e2e	2026-09-17T13:37:35.7743835Z   ✓  63 [mobile] › tests/e2e/typography.spec.ts:80:1 › 1rem tarayıcı kök boyutuyla büyür ve 320px akışını korur (1.8s)
+verify	Run npm run test:e2e	2026-09-17T13:37:36.6382257Z   ✓  64 [mobile] › tests/e2e/typography.spec.ts:94:1 › üç rapor sürümü ve yazdırma metni en az 1rem (847ms)
+verify	Run npm run test:e2e	2026-09-17T13:37:37.7721903Z   ✓  62 [mobile] › tests/e2e/typography.spec.ts:34:1 › tüm sayfa ve pencerelerde metin en az 1rem (5.0s)
+verify	Run npm run test:e2e	2026-09-17T13:37:42.8117537Z   ✓  65 [webkit-reading] › tests/e2e/report-reading.spec.ts:3:1 › ilk ekran sonuçla başlar, karar tablosu dizinlerden önce gelir (4.9s)
+verify	Run npm run test:e2e	2026-09-17T13:37:44.8905162Z   ✓  66 [webkit-reading] › tests/e2e/report-reading.spec.ts:20:1 › özet ilk gezinme ve indirme hedefidir (6.5s)
+verify	Run npm run test:e2e	2026-09-17T13:37:45.2508427Z   ✓  67 [webkit-reading] › tests/e2e/report-reading.spec.ts:50:1 › mobil rapor açık başlar; toplu açma, bulunca açma ve geniş ekrana geçiş çalışır (2.4s)
+verify	Run npm run test:e2e	2026-09-17T13:37:46.0407177Z   ✓  68 [webkit-reading] › tests/e2e/report-reading.spec.ts:96:1 › bulunca açma desteği yoksa okunabilir açık metne düşer (1.1s)
+verify	Run npm run test:e2e	2026-09-17T13:37:46.5588484Z   ✓  69 [webkit-reading] › tests/e2e/report-reading.spec.ts:111:1 › okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır (1.3s)
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6605671Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6611441Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6622862Z   1) [desktop] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma ─────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6623472Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6623895Z     Error: expect(received).toEqual(expected) // deep equality
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6624455Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6624651Z     - Expected  -  1
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6625300Z     + Received  + 52
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6625515Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6625635Z     - Array []
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6625941Z     + Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6626356Z     +   Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6627055Z     +     "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6628272Z     +     "help": "Scrollable region must have keyboard access",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6629481Z     +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6630311Z     +     "id": "scrollable-region-focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6630736Z     +     "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6631107Z     +     "nodes": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6631400Z     +       Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6631706Z     +         "all": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6632016Z     +         "any": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6632318Z     +           Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6632638Z     +             "data": null,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6633011Z     +             "id": "focusable-content",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6633419Z     +             "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6633914Z     +             "message": "Element should have focusable content",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6634288Z     +             "relatedNodes": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6634554Z     +           },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6634959Z     +           Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6635595Z     +             "data": null,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6635897Z     +             "id": "focusable-element",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6636219Z     +             "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6636578Z     +             "message": "Element should be focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6636926Z     +             "relatedNodes": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6637194Z     +           },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6637404Z     +         ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6637686Z     +         "failureSummary": "Fix any of the following:
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6638046Z     +   Element should have focusable content
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6638371Z     +   Element should be focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6638653Z     +         "html": "<pre>",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6639077Z     +         "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6639355Z     +         "none": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6639611Z     +         "target": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6639871Z     +           "pre:nth-child(1)",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6640121Z     +         ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6640321Z     +       },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6640508Z     +     ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6640700Z     +     "tags": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6640938Z     +       "cat.keyboard",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6654973Z     +       "wcag2a",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6655329Z     +       "wcag211",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6655586Z     +       "wcag213",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6655865Z     +       "TTv5",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6656192Z     +       "TT4.a",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6656425Z     +       "EN-301-549",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6656673Z     +       "EN-9.2.1.1",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6656900Z     +       "EN-9.2.1.3",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6657125Z     +       "RGAAv4",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6657355Z     +       "RGAA-7.3.2",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6657593Z     +     ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6657791Z     +   },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6657976Z     + ]
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6658088Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6658278Z       19 |       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6658622Z       20 |       .analyze();
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6658962Z     > 21 |     expect(results.violations).toEqual([]);
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6659323Z          |                                ^
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6659873Z       22 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6660349Z       23 |       true,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6660572Z       24 |     );
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6660991Z         at /home/runner/work/futuristic/futuristic/tests/e2e/accessibility.spec.ts:21:32
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6661344Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6661951Z     Error Context: test-results/accessibility-architecture-erişilebilirlik-ve-taşma-desktop/error-context.md
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6662430Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6662861Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6663606Z     test-results/accessibility-architecture-erişilebilirlik-ve-taşma-desktop/trace.zip
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6664074Z     Usage:
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6664200Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6664732Z         npx playwright show-trace test-results/accessibility-architecture-erişilebilirlik-ve-taşma-desktop/trace.zip
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6665454Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6665824Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6666129Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6666558Z   2) [mobile] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma ──────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6666937Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6667152Z     Error: expect(received).toEqual(expected) // deep equality
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6667423Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6667525Z     - Expected  -  1
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6667755Z     + Received  + 90
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6667907Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6667991Z     - Array []
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6668194Z     + Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6668391Z     +   Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6668878Z     +     "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6669693Z     +     "help": "Scrollable region must have keyboard access",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6670357Z     +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6670945Z     +     "id": "scrollable-region-focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6671272Z     +     "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6671526Z     +     "nodes": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6671757Z     +       Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6671997Z     +         "all": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6672235Z     +         "any": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6672471Z     +           Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6672723Z     +             "data": null,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6673166Z     +             "id": "focusable-content",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6673500Z     +             "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6673871Z     +             "message": "Element should have focusable content",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6674246Z     +             "relatedNodes": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6674525Z     +           },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6674735Z     +           Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6675236Z     +             "data": null,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6675532Z     +             "id": "focusable-element",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6675845Z     +             "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6676191Z     +             "message": "Element should be focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6676534Z     +             "relatedNodes": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6676801Z     +           },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6677008Z     +         ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6677284Z     +         "failureSummary": "Fix any of the following:
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6677636Z     +   Element should have focusable content
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6677969Z     +   Element should be focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6678254Z     +         "html": "<pre>",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6678520Z     +         "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6678786Z     +         "none": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6679048Z     +         "target": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6679318Z     +           "pre:nth-child(1)",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6679565Z     +         ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6679765Z     +       },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6679996Z     +       Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6680231Z     +         "all": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6680491Z     +         "any": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6680731Z     +           Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6681000Z     +             "data": null,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6681300Z     +             "id": "focusable-content",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6681630Z     +             "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6682000Z     +             "message": "Element should have focusable content",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6682384Z     +             "relatedNodes": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6682667Z     +           },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6682887Z     +           Object {
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6683142Z     +             "data": null,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6683438Z     +             "id": "focusable-element",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6683894Z     +             "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6684241Z     +             "message": "Element should be focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6684600Z     +             "relatedNodes": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6685189Z     +           },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6685424Z     +         ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6685733Z     +         "failureSummary": "Fix any of the following:
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6686108Z     +   Element should have focusable content
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6686441Z     +   Element should be focusable",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6686796Z     +         "html": "<pre><code class=\"language-json\">{
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6687146Z     +   \"content_id\": \"demo-001\",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6687581Z     +   \"version\": 1,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6688048Z     +   \"language\": \"tr-TR\",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6688500Z     +   \"target\": \"shorts_9x16\",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6688836Z     +   \"state\": \"AWAITING_SCRIPT_APPROVAL\",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6689206Z     +   \"idempotency_key\": \"demo-001:v1:youtube\",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6689529Z     +   \"budget_limit\": 20,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6689787Z     +   \"currency\": \"USD\"
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6690017Z     + }
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6690213Z     + </code></pre>",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6690471Z     +         "impact": "serious",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6690753Z     +         "none": Array [],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6691015Z     +         "target": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6691283Z     +           "pre:nth-child(3)",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6691546Z     +         ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6691745Z     +       },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6691937Z     +     ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6692142Z     +     "tags": Array [
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6692376Z     +       "cat.keyboard",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6692785Z     +       "wcag2a",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6693007Z     +       "wcag211",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6693222Z     +       "wcag213",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6693433Z     +       "TTv5",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6693641Z     +       "TT4.a",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6693857Z     +       "EN-301-549",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6694092Z     +       "EN-9.2.1.1",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6694314Z     +       "EN-9.2.1.3",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6694539Z     +       "RGAAv4",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6694753Z     +       "RGAA-7.3.2",
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6695314Z     +     ],
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6695515Z     +   },
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6695697Z     + ]
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6695805Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6695978Z       19 |       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6696316Z       20 |       .analyze();
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6696628Z     > 21 |     expect(results.violations).toEqual([]);
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6696966Z          |                                ^
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6697506Z       22 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6698005Z       23 |       true,
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6698219Z       24 |     );
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6698639Z         at /home/runner/work/futuristic/futuristic/tests/e2e/accessibility.spec.ts:21:32
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6699009Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6699553Z     Error Context: test-results/accessibility-architecture-erişilebilirlik-ve-taşma-mobile/error-context.md
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6700014Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6700423Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6701160Z     test-results/accessibility-architecture-erişilebilirlik-ve-taşma-mobile/trace.zip
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6701606Z     Usage:
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6701720Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6702222Z         npx playwright show-trace test-results/accessibility-architecture-erişilebilirlik-ve-taşma-mobile/trace.zip
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6702688Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6703042Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6703353Z 
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6703435Z   2 failed
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6703986Z     [desktop] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma ──────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6705147Z     [mobile] › tests/e2e/accessibility.spec.ts:14:3 › architecture: erişilebilirlik ve taşma ───────
+verify	Run npm run test:e2e	2026-09-17T13:37:46.6705629Z   67 passed (1.4m)
+verify	Run npm run test:e2e	2026-09-17T13:37:46.7560846Z ##[error]Process completed with exit code 1.

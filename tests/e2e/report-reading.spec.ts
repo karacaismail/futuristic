@@ -108,6 +108,22 @@ test('bulunca açma desteği yoksa okunabilir açık metne düşer', async ({ pa
   expect(await page.locator('.article-body').innerText()).toContain('Python için Ruff');
 });
 
+test('kayan kod örneklerine klavyeyle erişilir', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('#/architecture');
+  await expect(page.locator('.report-prose pre')).toHaveCount(2);
+  for (const block of await page.locator('.report-prose pre').all()) {
+    await expect(block).toHaveAttribute('tabindex', '0');
+    await expect(block).toHaveAttribute('role', 'region');
+    await expect(block).toHaveAccessibleName('Kod örneği');
+    await block.focus();
+    await expect(block).toBeFocused();
+    expect(await block.evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(true);
+    await page.keyboard.press('ArrowRight');
+    await expect.poll(() => block.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
+  }
+});
+
 test('okuma sütunu 68ch ile sınırlı, başlıklar ölçüyle ayrışır', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await page.goto('#/software');
